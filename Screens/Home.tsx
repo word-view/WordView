@@ -169,8 +169,8 @@ function ContinueSection({ isDesktop }: ReactiveComponent) {
   );
 }
 
-export default function Home({ navigation }: ScreenProps) {
-  const { isDesktop } = ResponsiveChecker();
+export default function Home({ navigation, testing = false }: ScreenProps) {
+  const isDesktop = testing ? true : ResponsiveChecker().isDesktop;
 
   const hasUndoneActivities = false;
   const isNewUser = true;

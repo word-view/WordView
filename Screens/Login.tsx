@@ -65,8 +65,8 @@ function InputContainer({
   );
 }
 
-export default function Login({ navigation }: ScreenProps) {
-  const { isDesktop } = ResponsiveChecker();
+export default function Login({ navigation, testing }: ScreenProps) {
+  const isDesktop = testing ? true : ResponsiveChecker().isDesktop;
 
   return (
     <View

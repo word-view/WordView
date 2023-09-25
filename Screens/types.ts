@@ -4,4 +4,5 @@ export interface WelcomeScreenProps extends ScreenProps {
 
 export interface ScreenProps {
         navigation: any;
+        testing?: boolean;
 }

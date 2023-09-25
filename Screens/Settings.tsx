@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, StatusBar, Button } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { ScrollView } from "react-native-gesture-handler";
 import Header from "../Components/Home/Header";
@@ -7,11 +7,10 @@ import globalStyles from "../globalStyles";
 import ResponsiveChecker from "../BackendComponents/ResponsiveChecker";
 import { ScreenProps } from "./types";
 import SVGButton from "../Components/SVGButton";
-import SettingsIcon from "../SVGComponents/SettingsIcon";
 import BackArrowIcon from "../SVGComponents/BackArrowIcon";
 
-export default function Settings({ navigation }: ScreenProps) {
-  const { isDesktop } = ResponsiveChecker();
+export default function Settings({ navigation, testing }: ScreenProps) {
+  const isDesktop = testing ? true : ResponsiveChecker().isDesktop;
 
   return (
     <>

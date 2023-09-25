@@ -5,8 +5,8 @@ import { ScrollView } from "react-native-gesture-handler";
 import { ScreenProps } from "./types";
 import ResponsiveChecker from "../BackendComponents/ResponsiveChecker";
 
-export default function PickLanguage({ navigation }: ScreenProps) {
-  const { isDesktop } = ResponsiveChecker();
+export default function PickLanguage({ navigation, testing }: ScreenProps) {
+  const isDesktop = testing ? true : ResponsiveChecker().isDesktop;
 
   return (
     <>

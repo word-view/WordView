@@ -39,7 +39,7 @@ function RecommendedSection({ isDesktop }: ReactiveComponent) {
           !isDesktop && { marginLeft: 15 },
         ]}
       >
-        Aulas simples para você aprender como o app funciona
+        Aulas simples para você entender como o app funciona
       </Text>
 
       <ScrollView

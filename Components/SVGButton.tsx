@@ -3,6 +3,10 @@ import { SVGButtonProps } from "./types";
 import { useRef } from "react";
 import { Speed, animateTiming } from "@wordview/animator";
 
+function wait(ms: number) {
+  return new Promise((res) => setTimeout(res, ms));
+}
+
 export default function SVGButton({
   pressAction,
   children,
@@ -35,21 +39,22 @@ export default function SVGButton({
         onPressIn={onPressIn}
         onPressOut={onPressOut}
         style={[styles.button, !isDesktop && { width: 32, height: 32 }, style]}
-        onPress={pressAction}
+        onPress={async () => {
+          await wait(Speed.Fastest);
+          pressAction?.();
+        }}
       >
         {children}
 
         <Animated.View
-          style={{
-            alignSelf: "center",
-            width: 48,
-            height: 48,
-            borderRadius: 48 / 2,
-            transform: [{ scale: scaleValue }],
-            opacity: opacityValue,
-            backgroundColor: "white",
-            position: "absolute",
-          }}
+          style={[
+            styles.rippleView,
+            {
+              backgroundColor: "white",
+              opacity: opacityValue,
+              transform: [{ scale: scaleValue }],
+            },
+          ]}
         />
       </Pressable>
     </Animated.View>
@@ -62,5 +67,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 24,
     height: 24,
+  },
+  rippleView: {
+    alignSelf: "center",
+    width: 48,
+    height: 48,
+    borderRadius: 48 / 2,
+    position: "absolute",
   },
 });

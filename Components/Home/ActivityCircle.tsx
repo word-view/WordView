@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Animated, Pressable, Text, View, StyleSheet } from "react-native";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { ActivitySquareProps } from "../types";
-import PlayIcon from "../../SVGComponents/PlayIcon";
+import PlayIcon from "../SVGComponents/PlayIcon";
 import globalStyles from "../../globalStyles";
 import { animateTiming, Speed } from "@wordview/animator";
 

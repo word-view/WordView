@@ -7,13 +7,13 @@ import ActivityCircle from "../Components/Home/ActivityCircle";
 import RoundedButton from "../Components/RoundedButton";
 import AttentionBox from "../Components/Home/AttentionBox";
 import globalStyles from "../globalStyles";
-import ResponsiveChecker from "../BackendComponents/ResponsiveChecker";
+import ResponsiveChecker from "../Components/BackendComponents/ResponsiveChecker";
 import { ScreenProps } from "./types";
 import { ReactiveComponent } from "../Components/types";
 import ContinueProgressBar from "../Components/Home/ContinueProgressBar";
 import images from "../images";
 import SVGButton from "../Components/SVGButton";
-import SettingsIcon from "../SVGComponents/SettingsIcon";
+import SettingsIcon from "../Components/SVGComponents/SettingsIcon";
 import { Lesson, getLessons } from "@wordview/api";
 
 function RecommendedSection({ isDesktop }: ReactiveComponent) {
@@ -39,7 +39,7 @@ function RecommendedSection({ isDesktop }: ReactiveComponent) {
           !isDesktop && { marginLeft: 15 },
         ]}
       >
-        Aprenda a usar o app com uma simples atividade
+        Aulas simples para você aprender como o app funciona
       </Text>
 
       <ScrollView
@@ -176,16 +176,7 @@ export default function Home({ navigation, testing = false }: ScreenProps) {
   return (
     <>
       <Header {...{ isDesktop }}>
-        <View
-          style={{
-            flexDirection: "row",
-            alignSelf: "flex-start",
-            alignItems: "center",
-            justifyContent: "center",
-            alignContent: "center",
-            position: "absolute",
-          }}
-        >
+        <View style={styles.wvTitleHolder}>
           <Image style={styles.wvIcon} source={images.wvIcon} />
           {isDesktop && (
             <Image style={styles.wvTitle} source={images.wvTitle} />
@@ -237,6 +228,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#353535",
     position: "relative",
+  },
+  wvTitleHolder: {
+    flexDirection: "row",
+    alignSelf: "flex-start",
+    alignItems: "center",
+    justifyContent: "center",
+    alignContent: "center",
+    position: "absolute",
   },
   borderAvoider: {
     marginTop: 20,

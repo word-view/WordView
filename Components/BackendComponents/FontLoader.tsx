@@ -4,7 +4,7 @@ import { useFonts } from "expo-font";
 
 export default function FontLoader() {
   const [fontsLoaded] = useFonts({
-    OpenSansSBold: require("../assets/fonts/open-sans/static/OpenSans-SemiBold.ttf"),
+    OpenSansSBold: require("../../assets/fonts/open-sans/static/OpenSans-SemiBold.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {

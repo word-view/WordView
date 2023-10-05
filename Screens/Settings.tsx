@@ -4,10 +4,10 @@ import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { ScrollView } from "react-native-gesture-handler";
 import Header from "../Components/Home/Header";
 import globalStyles from "../globalStyles";
-import ResponsiveChecker from "../BackendComponents/ResponsiveChecker";
+import ResponsiveChecker from "../Components/BackendComponents/ResponsiveChecker";
 import { ScreenProps } from "./types";
 import SVGButton from "../Components/SVGButton";
-import BackArrowIcon from "../SVGComponents/BackArrowIcon";
+import BackArrowIcon from "../Components/SVGComponents/BackArrowIcon";
 
 export default function Settings({ navigation, testing }: ScreenProps) {
   const isDesktop = testing ? true : ResponsiveChecker().isDesktop;

@@ -1,62 +1,37 @@
 import { Animated, Easing, Pressable, StyleSheet } from "react-native";
 import { SVGButtonProps } from "./types";
 import { useRef } from "react";
-import { animateTiming } from "@wordview/animator";
+import { Speed, animateTiming } from "@wordview/animator";
 
 export default function SVGButton({
   pressAction,
   children,
   style,
-  onHoverAnimationDirection,
   isDesktop = false,
 }: SVGButtonProps) {
-  const translateY = useRef(new Animated.Value(0)).current;
-  const translateX = useRef(new Animated.Value(0)).current;
-
-  function onHoverIn() {
-    animateTiming(translateY, -5, 100, Easing.linear);
-    animateTiming(translateX, -5, 100, Easing.linear);
-  }
-
-  function onHoverOut() {
-    animateTiming(translateY, 0, 100, Easing.linear);
-    animateTiming(translateX, 0, 100, Easing.linear);
-  }
-
   const maxOpacity = 0.12;
   const scaleValue = useRef(new Animated.Value(0.01)).current;
   const opacityValue = useRef(new Animated.Value(maxOpacity)).current;
 
   function onPressIn() {
-    Animated.timing(scaleValue, {
-      toValue: 1,
-      duration: 225,
-      easing: Easing.bezier(0.0, 0.0, 0.2, 1),
-      useNativeDriver: true,
-    }).start();
+    animateTiming(
+      scaleValue,
+      1,
+      Speed.Fastest,
+      Easing.bezier(0.0, 0.0, 0.2, 1)
+    );
   }
+
   function onPressOut() {
-    Animated.timing(opacityValue, {
-      toValue: 0,
-      useNativeDriver: true,
-    }).start(() => {
+    animateTiming(opacityValue, 0, Speed.Fast, undefined, () => {
       scaleValue.setValue(0.01);
       opacityValue.setValue(maxOpacity);
     });
   }
 
   return (
-    <Animated.View
-      style={{
-        transform:
-          onHoverAnimationDirection == "top"
-            ? [{ translateY: translateY }]
-            : [{ translateX: translateX }],
-      }}
-    >
+    <Animated.View>
       <Pressable
-        onHoverIn={onHoverIn}
-        onHoverOut={onHoverOut}
         onPressIn={onPressIn}
         onPressOut={onPressOut}
         style={[styles.button, !isDesktop && { width: 32, height: 32 }, style]}

@@ -10,7 +10,6 @@ const RAISE_ANIMATION_START_LOCATION = 10;
 
 export default function ActivitySquare({
   children,
-  color,
   style,
   isDesktop,
   textUnder,
@@ -25,12 +24,12 @@ export default function ActivitySquare({
 
   function onHoverIn() {
     setShowingPlay(true);
-    animateTiming(opacity, 1, Speed.Faster / 1.25);
+    animateTiming(opacity, 1, Speed.Fastest / 1.25);
     animateTiming(translateY, 0, Speed.Fast / 1.25);
   }
 
   function onHoverOut() {
-    animateTiming(opacity, 0, Speed.Faster);
+    animateTiming(opacity, 0, Speed.Fastest);
     animateTiming(translateY, RAISE_ANIMATION_START_LOCATION, Speed.Fast);
     setShowingPlay(false);
   }

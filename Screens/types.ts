@@ -1,8 +1,8 @@
 export interface WelcomeScreenProps extends ScreenProps {
-        onLayoutRootView: () => void;
+  onLayoutRootView: () => void;
 }
 
 export interface ScreenProps {
-        navigation: any;
-        testing?: boolean;
+  navigation: any;
+  testing?: boolean;
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { ScrollView } from "react-native-gesture-handler";
@@ -14,8 +14,13 @@ import ContinueProgressBar from "../Components/Home/ContinueProgressBar";
 import images from "../images";
 import SVGButton from "../Components/SVGButton";
 import SettingsIcon from "../SVGComponents/SettingsIcon";
+import { Lesson, getLessons } from "@wordview/api";
 
 function RecommendedSection({ isDesktop }: ReactiveComponent) {
+  const [lessons, setLessons] = useState([] as Lesson[]);
+
+  getLessons("starter").then(({ data }) => setLessons(data));
+
   return (
     <>
       <Text
@@ -47,32 +52,25 @@ function RecommendedSection({ isDesktop }: ReactiveComponent) {
           marginTop: 10,
         }}
       >
-        <ActivityCircle
-          color="#63FF72"
-          style={{ marginLeft: 15 }}
-          textUnder="Jobs"
-          {...{ isDesktop }}
-        >
-          <Image
-            style={{
-              width: "100%",
-              height: "100%",
+        {lessons.map((lesson, i) => (
+          <ActivityCircle
+            color="#63FF72"
+            style={{ marginLeft: 15 }}
+            textUnder={lesson.title}
+            {...{ isDesktop }}
+            pressAction={() => {
+              console.log(lesson.id);
             }}
-            source={images.cac}
-          />
-        </ActivityCircle>
-        <ActivityCircle
-          color="#63A1FF"
-          style={{ marginHorizontal: 30 }}
-          textUnder="Eletronics & Techonology"
-          {...{ isDesktop }}
-        />
-        <ActivityCircle
-          color="#9E63FF"
-          style={{ marginRight: 15 }}
-          textUnder="Weather"
-          {...{ isDesktop }}
-        />
+          >
+            <Image
+              style={{
+                width: "100%",
+                height: "100%",
+              }}
+              source={images.cac}
+            />
+          </ActivityCircle>
+        ))}
       </ScrollView>
     </>
   );

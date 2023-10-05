@@ -1,5 +1,5 @@
 import { View, Image, StyleSheet } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import images from "../images";
 import globalStyles from "../globalStyles";
 import UnderlineTextButton from "../Components/Login&Register/UnderlineTextButton";
@@ -9,11 +9,30 @@ import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { ScreenProps } from "./types";
 import ResponsiveChecker from "../BackendComponents/ResponsiveChecker";
 import { ReactiveComponent } from "../Components/types";
+import { login } from "@wordview/api";
 
 function InputContainer({
   isDesktop,
   navigation,
 }: ReactiveComponent & { navigation: any }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleEmailChange = (value: string) => setEmail(value);
+  const handlePasswordChange = (value: string) => setPassword(value);
+
+  async function confirmLogin() {
+    const response = await login(email, password);
+
+    if (response.status == 201) {
+      navigation.navigate("Home");
+    } else {
+      showError(response.data);
+    }
+  }
+
+  function showError(message: string) {}
+
   return (
     <View
       style={[
@@ -27,6 +46,7 @@ function InputContainer({
         placeholderTextColor="#CECECE"
         label="Email"
         labelColor="white"
+        onChangeText={handleEmailChange}
       />
       <CredentialsInput
         placeholder="********"
@@ -37,6 +57,7 @@ function InputContainer({
         style={{
           marginTop: isDesktop ? hp(5) : hp(1.5),
         }}
+        onChangeText={handlePasswordChange}
       />
       <UnderlineTextButton
         text="Esqueceu sua senha?"
@@ -51,6 +72,7 @@ function InputContainer({
         style={{
           marginTop: isDesktop ? hp(7.5) : hp(4),
         }}
+        pressAction={confirmLogin}
       />
       <UnderlineTextButton
         text="Crie sua conta"

@@ -1,6 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import { Input } from "react-native-elements";
 import { CredentialsInputProps } from "../types";
+import { useState } from "react";
 
 export default function CredentialsInput({
   placeholder,
@@ -9,6 +10,7 @@ export default function CredentialsInput({
   labelColor,
   secure = false,
   style,
+  onChangeText,
 }: CredentialsInputProps) {
   return (
     <View style={style}>
@@ -24,6 +26,7 @@ export default function CredentialsInput({
           { color: labelColor, marginBottom: 10 },
         ]}
         secureTextEntry={secure}
+        onChangeText={onChangeText}
       />
     </View>
   );

@@ -7,7 +7,7 @@ import {
   type ViewStyle,
 } from "react-native";
 import React from "react";
-import { ChildrenableComponent, PressableComponent } from "./types";
+import { ChildrenableComponent, PressableComponent } from "../types";
 
 interface AnimatedPressableProps
   extends ChildrenableComponent,

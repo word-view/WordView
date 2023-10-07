@@ -18,7 +18,7 @@ import globalStyles from "../../globalStyles";
 import { animateTiming, Speed } from "@wordview/animator";
 import DifficultyLabel from "./DifficultyLabel";
 import { Difficulty } from "@wordview/api";
-import AnimatedPressable from "../AnimatedPressable";
+import AnimatedPressable from "../Animated/AnimatedPressable";
 
 const RAISE_ANIMATION_START_LOCATION = 10;
 

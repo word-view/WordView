@@ -7,7 +7,7 @@ import Login from "./Screens/Login";
 import Register from "./Screens/Register";
 import PickLanguage from "./Screens/PickLanguage";
 import Home from "./Screens/Home";
-import FontLoader from "./Components/BackendComponents/FontLoader";
+import FontLoader from "./Components/Backend/FontLoader";
 import { StatusBar } from "expo-status-bar";
 import Settings from "./Screens/Settings";
 

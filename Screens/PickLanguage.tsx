@@ -3,7 +3,7 @@ import React from "react";
 import LanguageBar from "../Components/PickLanguage/LanguageBar";
 import { ScrollView } from "react-native-gesture-handler";
 import { ScreenProps } from "./types";
-import ResponsiveChecker from "../Components/BackendComponents/ResponsiveChecker";
+import ResponsiveChecker from "../Components/Backend/ResponsiveChecker";
 
 export default function PickLanguage({ navigation, testing }: ScreenProps) {
   const isDesktop = testing ? true : ResponsiveChecker().isDesktop;

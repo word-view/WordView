@@ -7,7 +7,7 @@ import ActivityCircle from "../Components/Home/ActivityCircle";
 import RoundedButton from "../Components/RoundedButton";
 import AttentionBox from "../Components/Home/AttentionBox";
 import globalStyles from "../globalStyles";
-import ResponsiveChecker from "../Components/BackendComponents/ResponsiveChecker";
+import ResponsiveChecker from "../Components/Backend/ResponsiveChecker";
 import { ScreenProps } from "./types";
 import { ReactiveComponent } from "../Components/types";
 import ContinueProgressBar from "../Components/Home/ContinueProgressBar";

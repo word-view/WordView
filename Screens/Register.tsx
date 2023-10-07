@@ -7,7 +7,7 @@ import Button from "../Components/Button";
 import CredentialsInput from "../Components/Login&Register/CredentialsInput";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { ScreenProps } from "./types";
-import ResponsiveChecker from "../Components/BackendComponents/ResponsiveChecker";
+import ResponsiveChecker from "../Components/Backend/ResponsiveChecker";
 import { ReactiveComponent } from "../Components/types";
 
 function InputContainer({

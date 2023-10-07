@@ -18,6 +18,7 @@ import globalStyles from "../../globalStyles";
 import { animateTiming, Speed } from "@wordview/animator";
 import DifficultyLabel from "./DifficultyLabel";
 import { Difficulty } from "@wordview/api";
+import AnimatedPressable from "../AnimatedPressable";
 
 const RAISE_ANIMATION_START_LOCATION = 10;
 
@@ -58,32 +59,31 @@ export default function ActivityCircle(props: ActivityCircleProps) {
 
   return (
     <View style={props.style}>
-      <Animated.View style={{ transform: [{ scale }] }}>
-        <Pressable
-          onHoverIn={onHoverIn}
-          onHoverOut={onHoverOut}
-          onPress={props.pressAction}
-          style={[
-            styles.pressableCircle,
-            {
-              width: props.isDesktop ? hp(19) : hp(15),
-              height: props.isDesktop ? hp(19) : hp(15),
-            },
-          ]}
-        >
-          {props.children}
-          {props.isDesktop && showingPlay && (
-            <Animated.View
-              style={[
-                styles.playIconView,
-                { opacity: opacity, transform: [{ translateY: translateY }] },
-              ]}
-            >
-              <PlayIcon />
-            </Animated.View>
-          )}
-        </Pressable>
-      </Animated.View>
+      <AnimatedPressable
+        animatedViewStyle={{ transform: [{ scale }] }}
+        pressableStyle={[
+          styles.pressableCircle,
+          {
+            width: props.isDesktop ? hp(19) : hp(15),
+            height: props.isDesktop ? hp(19) : hp(15),
+          },
+        ]}
+        onHoverIn={onHoverIn}
+        onHoverOut={onHoverOut}
+        pressAction={props.pressAction}
+      >
+        {props.children}
+        {props.isDesktop && showingPlay && (
+          <Animated.View
+            style={[
+              styles.playIconView,
+              { opacity: opacity, transform: [{ translateY: translateY }] },
+            ]}
+          >
+            <PlayIcon />
+          </Animated.View>
+        )}
+      </AnimatedPressable>
       {props.textUnder != undefined && (
         <Text
           style={[

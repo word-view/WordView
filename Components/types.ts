@@ -1,3 +1,4 @@
+import { Difficulty } from "@wordview/api";
 import { StyleProp, ViewStyle } from "react-native";
 
 export interface SVGButtonProps
@@ -14,6 +15,10 @@ export interface ContinueProgressBarProps
   percentage: number;
 }
 
+export interface DifficultyLabelProps extends StyleableComponent<ViewStyle> {
+  difficulty: Difficulty;
+}
+
 export interface ActivitySquareProps
   extends StyleableComponent<ViewStyle>,
     ReactiveComponent,
@@ -21,6 +26,7 @@ export interface ActivitySquareProps
   children?: any;
   color: string;
   textUnder?: string;
+  difficulty?: Difficulty;
 }
 
 export interface AttentionBoxProps extends StyleableComponent<ViewStyle> {

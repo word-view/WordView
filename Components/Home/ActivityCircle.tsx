@@ -5,6 +5,7 @@ import { ActivitySquareProps } from "../types";
 import PlayIcon from "../SVGComponents/PlayIcon";
 import globalStyles from "../../globalStyles";
 import { animateTiming, Speed } from "@wordview/animator";
+import DifficultyLabel from "./DifficultyLabel";
 
 const RAISE_ANIMATION_START_LOCATION = 10;
 
@@ -14,6 +15,7 @@ export default function ActivitySquare({
   isDesktop,
   textUnder,
   pressAction,
+  difficulty,
 }: ActivitySquareProps) {
   const opacity = useRef(new Animated.Value(0)).current;
   const translateY = useRef(
@@ -78,6 +80,7 @@ export default function ActivitySquare({
           {textUnder}
         </Text>
       )}
+      {difficulty != undefined && <DifficultyLabel difficulty={difficulty} />}
     </View>
   );
 }
@@ -91,6 +94,19 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontSize: 15,
     fontWeight: "700",
+  },
+  difficultyLabel: {
+    alignSelf: "center",
+    textAlign: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 5,
+    fontSize: 12.5,
+    fontWeight: "600",
+    backgroundColor: "#60CC57",
+    paddingHorizontal: 15,
+    borderRadius: 20,
+    opacity: 0.8,
   },
   playIconView: {
     width: "15%",

@@ -57,10 +57,11 @@ function RecommendedSection({ isDesktop }: ReactiveComponent) {
             color="#63FF72"
             style={{ marginLeft: 15 }}
             textUnder={lesson.title}
-            {...{ isDesktop }}
+            difficulty={lesson.difficulty}
             pressAction={() => {
               console.log(lesson.id);
             }}
+            {...{ isDesktop }}
           >
             <Image
               style={{

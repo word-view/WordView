@@ -3,20 +3,16 @@ import { View, Text, StyleSheet, Animated } from "react-native";
 import { ContinueProgressBarProps } from "../types";
 import globalStyles from "../../globalStyles";
 
-export default function ContinueProgressBar({
-  percentage,
-  style,
-  isDesktop,
-}: ContinueProgressBarProps) {
+export default function ContinueProgressBar(props: ContinueProgressBarProps) {
   const animatedWidth = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     Animated.timing(animatedWidth, {
-      toValue: percentage,
+      toValue: props.percentage,
       duration: 1000,
       useNativeDriver: false,
     }).start();
-  }, [percentage]);
+  }, [props.percentage]);
 
   const barWidth = animatedWidth.interpolate({
     inputRange: [0, 100],
@@ -30,11 +26,11 @@ export default function ContinueProgressBar({
         style={[
           styles.bar,
           {
-            width: isDesktop ? 400 : "130%",
-            marginTop: isDesktop ? 15 : 30,
+            width: props.isDesktop ? 400 : "130%",
+            marginTop: props.isDesktop ? 15 : 30,
           },
-          isDesktop && { marginLeft: 15 },
-          style,
+          props.isDesktop && { marginLeft: 15 },
+          props.style,
         ]}
       >
         <Animated.View
@@ -50,10 +46,10 @@ export default function ContinueProgressBar({
         style={[
           globalStyles.regularUIText,
           styles.percentageLabel,
-          isDesktop && { marginLeft: 15 },
+          props.isDesktop && { marginLeft: 15 },
         ]}
       >
-        {`${percentage}% Completo`}
+        {`${props.percentage}% Completo`}
       </Text>
     </>
   );

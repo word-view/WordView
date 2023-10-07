@@ -2,13 +2,10 @@ import globalStyles from "../../globalStyles";
 import { DifficultyLabelProps } from "../types";
 import { Text, StyleSheet } from "react-native";
 
-export default function DifficultyLabel({
-  style,
-  difficulty,
-}: DifficultyLabelProps) {
+export default function DifficultyLabel(props: DifficultyLabelProps) {
   return (
     <Text style={[globalStyles.regularUIText, styles.difficultyLabel]}>
-      {difficulty}
+      {props.difficulty}
     </Text>
   );
 }

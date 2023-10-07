@@ -9,14 +9,7 @@ import DifficultyLabel from "./DifficultyLabel";
 
 const RAISE_ANIMATION_START_LOCATION = 10;
 
-export default function ActivitySquare({
-  children,
-  style,
-  isDesktop,
-  textUnder,
-  pressAction,
-  difficulty,
-}: ActivitySquareProps) {
+export default function ActivitySquare(props: ActivitySquareProps) {
   const opacity = useRef(new Animated.Value(0)).current;
   const translateY = useRef(
     new Animated.Value(RAISE_ANIMATION_START_LOCATION)
@@ -42,22 +35,22 @@ export default function ActivitySquare({
   const scale = animation.interpolate({ inputRange, outputRange });
 
   return (
-    <View style={style}>
+    <View style={props.style}>
       <Animated.View style={{ transform: [{ scale }] }}>
         <Pressable
           onHoverIn={onHoverIn}
           onHoverOut={onHoverOut}
-          onPress={pressAction}
+          onPress={props.pressAction}
           style={[
             styles.pressableCircle,
             {
-              width: isDesktop ? hp(19) : hp(15),
-              height: isDesktop ? hp(19) : hp(15),
+              width: props.isDesktop ? hp(19) : hp(15),
+              height: props.isDesktop ? hp(19) : hp(15),
             },
           ]}
         >
-          {children}
-          {isDesktop && showingPlay && (
+          {props.children}
+          {props.isDesktop && showingPlay && (
             <Animated.View
               style={[
                 styles.playIconView,
@@ -69,18 +62,20 @@ export default function ActivitySquare({
           )}
         </Pressable>
       </Animated.View>
-      {textUnder != undefined && (
+      {props.textUnder != undefined && (
         <Text
           style={[
             globalStyles.regularUIText,
             styles.textUnder,
-            { width: isDesktop ? hp(19) : hp(15) },
+            { width: props.isDesktop ? hp(19) : hp(15) },
           ]}
         >
-          {textUnder}
+          {props.textUnder}
         </Text>
       )}
-      {difficulty != undefined && <DifficultyLabel difficulty={difficulty} />}
+      {props.difficulty != undefined && (
+        <DifficultyLabel difficulty={props.difficulty} />
+      )}
     </View>
   );
 }

@@ -3,30 +3,22 @@ import { Input } from "react-native-elements";
 import { CredentialsInputProps } from "../types";
 import { useState } from "react";
 
-export default function CredentialsInput({
-  placeholder,
-  placeholderTextColor,
-  label,
-  labelColor,
-  secure = false,
-  style,
-  onChangeText,
-}: CredentialsInputProps) {
+export default function CredentialsInput(props: CredentialsInputProps) {
   return (
-    <View style={style}>
+    <View style={props.style}>
       <Input
         style={[styles.input]}
-        placeholderTextColor={placeholderTextColor}
+        placeholderTextColor={props.placeholderTextColor}
         containerStyle={styles.inputContainer}
         inputContainerStyle={{ borderBottomWidth: 0 }}
-        placeholder={placeholder}
-        label={label}
+        placeholder={props.placeholder}
+        label={props.label}
         labelStyle={[
           styles.inputLabel,
-          { color: labelColor, marginBottom: 10 },
+          { color: props.labelColor, marginBottom: 10 },
         ]}
-        secureTextEntry={secure}
-        onChangeText={onChangeText}
+        secureTextEntry={props.secure}
+        onChangeText={props.onChangeText}
       />
     </View>
   );

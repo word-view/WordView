@@ -6,6 +6,7 @@ import {
   Text,
 } from "react-native";
 
+// unused
 export default function LanguageBar({
   text,
   pressAction,

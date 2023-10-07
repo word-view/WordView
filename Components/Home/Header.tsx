@@ -1,13 +1,12 @@
 import { View, StyleSheet, StatusBar } from "react-native";
 import { ChildrenableComponent, ReactiveComponent } from "../types";
 
-export default function Header({
-  isDesktop = false,
-  children,
-}: ReactiveComponent & ChildrenableComponent) {
+export default function Header(
+  props: ReactiveComponent & ChildrenableComponent
+) {
   return (
     <>
-      {!isDesktop && (
+      {!props.isDesktop && (
         <View
           style={{
             paddingTop: StatusBar.currentHeight,
@@ -15,8 +14,8 @@ export default function Header({
           }}
         />
       )}
-      <View style={[styles.header, isDesktop && { height: 60 }]}>
-        {children}
+      <View style={[styles.header, props.isDesktop && { height: 60 }]}>
+        {props.children}
       </View>
     </>
   );

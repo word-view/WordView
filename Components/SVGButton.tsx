@@ -7,12 +7,7 @@ function wait(ms: number) {
   return new Promise((res) => setTimeout(res, ms));
 }
 
-export default function SVGButton({
-  pressAction,
-  children,
-  style,
-  isDesktop = false,
-}: SVGButtonProps) {
+export default function SVGButton(props: SVGButtonProps) {
   const maxOpacity = 0.12;
   const scaleValue = useRef(new Animated.Value(0.01)).current;
   const opacityValue = useRef(new Animated.Value(maxOpacity)).current;
@@ -38,13 +33,17 @@ export default function SVGButton({
       <Pressable
         onPressIn={onPressIn}
         onPressOut={onPressOut}
-        style={[styles.button, !isDesktop && { width: 32, height: 32 }, style]}
+        style={[
+          styles.button,
+          !props.isDesktop && { width: 32, height: 32 },
+          props.style,
+        ]}
         onPress={async () => {
           await wait(Speed.Fastest);
-          pressAction?.();
+          props.pressAction?.();
         }}
       >
-        {children}
+        {props.children}
 
         <Animated.View
           style={[

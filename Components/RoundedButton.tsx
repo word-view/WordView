@@ -1,31 +1,26 @@
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import { RoundedButtonProps } from "./types";
 
-export default function RoundedButton({
-  text,
-  color,
-  textColor,
-  pressAction,
-  isDesktop = false,
-  style,
-}: RoundedButtonProps) {
+export default function RoundedButton(props: RoundedButtonProps) {
   return (
     <TouchableOpacity
       style={[
         styles.button,
-        style,
+        props.style,
         {
-          backgroundColor: color,
+          backgroundColor: props.color,
         },
-        isDesktop
+        props.isDesktop
           ? {
               height: 50,
             }
           : {},
       ]}
-      onPress={pressAction}
+      onPress={props.pressAction}
     >
-      <Text style={[styles.buttonText, { color: textColor }]}>{text}</Text>
+      <Text style={[styles.buttonText, { color: props.textColor }]}>
+        {props.text}
+      </Text>
     </TouchableOpacity>
   );
 }

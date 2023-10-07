@@ -1,14 +1,10 @@
 import { View } from "react-native";
 import { AttentionBoxProps } from "../types";
 
-export default function AttentionBox({
-  children,
-  level,
-  style,
-}: AttentionBoxProps) {
+export default function AttentionBox(props: AttentionBoxProps) {
   let color;
 
-  switch (level) {
+  switch (props.level) {
     case 1:
       color = "#292929";
       break;
@@ -25,10 +21,10 @@ export default function AttentionBox({
           alignItems: "center",
           position: "absolute",
         },
-        style,
+        props.style,
       ]}
     >
-      {children}
+      {props.children}
     </View>
   );
 }

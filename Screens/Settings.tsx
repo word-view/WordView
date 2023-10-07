@@ -28,7 +28,7 @@ export default function Settings({ navigation, testing }: ScreenProps) {
           <SVGButton
             style={{ alignSelf: "flex-start", marginLeft: 15 }}
             onHoverAnimationDirection="left"
-            pressAction={() => {
+            onPress={() => {
               navigation.goBack();
             }}
             {...{ isDesktop }}

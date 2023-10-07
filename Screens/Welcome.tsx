@@ -20,14 +20,14 @@ export default function Welcome({
         text="Começar"
         color="#8951FF"
         textColor="white"
-        pressAction={() => navigation.navigate("Register")}
+        onPress={() => navigation.navigate("Register")}
         style={{ marginTop: hp(15) }}
       />
       <Button
         text="Já tenho uma conta"
         color="white"
         textColor="black"
-        pressAction={() => navigation.navigate("Login")}
+        onPress={() => navigation.navigate("Login")}
         style={{ marginTop: hp(2) }}
       />
     </View>

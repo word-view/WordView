@@ -23,7 +23,7 @@ export default function Button(props: ButtonProps) {
           backgroundColor: props.color,
         },
       ]}
-      onPress={props.pressAction}
+      onPress={props.onPress}
     >
       <Text style={[styles.buttonText, { color: props.textColor }]}>
         {props.text}

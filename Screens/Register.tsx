@@ -58,7 +58,7 @@ function InputContainer({
         text="Entre na sua conta"
         pressableAlign="center"
         style={{ marginTop: 25 }}
-        pressAction={() => navigation.navigate("Login")}
+        onPress={() => navigation.navigate("Login")}
       />
     </View>
   );

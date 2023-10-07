@@ -13,7 +13,7 @@ export interface TextableComponent {
 }
 
 export interface PressableComponent {
-  pressAction?: () => void;
+  onPress?: () => void;
 }
 
 export interface StyleableComponent<T1> {

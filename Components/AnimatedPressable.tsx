@@ -35,7 +35,7 @@ export default function AnimatedPressable(props: AnimatedPressableProps) {
       <Pressable
         onHoverIn={props.onHoverIn}
         onHoverOut={props.onHoverOut}
-        onPress={props.pressAction}
+        onPress={props.onPress}
         style={props.pressableStyle}
       >
         {props.children}

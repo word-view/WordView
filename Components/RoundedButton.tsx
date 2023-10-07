@@ -30,7 +30,7 @@ export default function RoundedButton(props: RoundedButtonProps) {
             }
           : {},
       ]}
-      onPress={props.pressAction}
+      onPress={props.onPress}
     >
       <Text style={[styles.buttonText, { color: props.textColor }]}>
         {props.text}

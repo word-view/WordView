@@ -59,7 +59,7 @@ export default function SVGButton(props: SVGButtonProps) {
         ]}
         onPress={async () => {
           await wait(Speed.Fastest);
-          props.pressAction?.();
+          props.onPress?.();
         }}
       >
         {props.children}

@@ -58,7 +58,7 @@ function RecommendedSection({ isDesktop }: ReactiveComponent) {
             style={{ marginLeft: 15 }}
             textUnder={lesson.title}
             difficulty={lesson.difficulty}
-            pressAction={() => {
+            onPress={() => {
               console.log(lesson.id);
             }}
             {...{ isDesktop }}
@@ -187,7 +187,7 @@ export default function Home({ navigation, testing = false }: ScreenProps) {
         <SVGButton
           style={{ alignSelf: "flex-end", marginHorizontal: 15 }}
           onHoverAnimationDirection="top"
-          pressAction={() => {
+          onPress={() => {
             navigation.navigate("Settings");
           }}
           {...{ isDesktop }}

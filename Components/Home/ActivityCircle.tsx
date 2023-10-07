@@ -70,7 +70,7 @@ export default function ActivityCircle(props: ActivityCircleProps) {
         ]}
         onHoverIn={onHoverIn}
         onHoverOut={onHoverOut}
-        pressAction={props.pressAction}
+        onPress={props.onPress}
       >
         {props.children}
         {props.isDesktop && showingPlay && (

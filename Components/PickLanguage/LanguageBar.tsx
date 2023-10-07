@@ -9,10 +9,10 @@ import {
 // unused
 export default function LanguageBar({
   text,
-  pressAction,
+  onPress,
 }: {
   text: string;
-  pressAction?: () => void;
+  onPress?: () => void;
 }) {
   const animation = new Animated.Value(0);
   const inputRange = [0, 1];

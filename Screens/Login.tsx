@@ -62,7 +62,7 @@ function InputContainer({
       <UnderlineTextButton
         text="Esqueceu sua senha?"
         pressableAlign="flex-end"
-        pressAction={() => navigation.navigate("Home")}
+        onPress={() => navigation.navigate("Home")}
         {...{ isDesktop }}
       />
       <Button
@@ -72,12 +72,12 @@ function InputContainer({
         style={{
           marginTop: isDesktop ? hp(7.5) : hp(4),
         }}
-        pressAction={confirmLogin}
+        onPress={confirmLogin}
       />
       <UnderlineTextButton
         text="Crie sua conta"
         pressableAlign="center"
-        pressAction={() => navigation.navigate("Register")}
+        onPress={() => navigation.navigate("Register")}
         style={{
           marginTop: isDesktop ? hp(2) : hp(3),
         }}

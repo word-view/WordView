@@ -19,7 +19,7 @@ export default function UnderlineTextButton(props: UnderlineTextButtonProps) {
     <View style={[styles.container, props.style]}>
       <Pressable
         style={{ alignSelf: props.pressableAlign }}
-        onPress={props.pressAction}
+        onPress={props.onPress}
       >
         <Text
           style={[styles.linkText, { fontSize: props.isDesktop ? 12 : 15 }]}

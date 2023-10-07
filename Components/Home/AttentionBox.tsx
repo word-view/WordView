@@ -1,5 +1,10 @@
-import { View } from "react-native";
-import { AttentionBoxProps } from "../types";
+import { View, ViewStyle } from "react-native";
+import { StyleableComponent } from "../types";
+
+export interface AttentionBoxProps extends StyleableComponent<ViewStyle> {
+  children?: any;
+  level: 1 | 2;
+}
 
 export default function AttentionBox(props: AttentionBoxProps) {
   let color;

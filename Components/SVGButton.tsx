@@ -1,10 +1,29 @@
-import { Animated, Easing, Pressable, StyleSheet } from "react-native";
-import { SVGButtonProps } from "./types";
+import {
+  Animated,
+  Easing,
+  Pressable,
+  StyleSheet,
+  ViewStyle,
+} from "react-native";
 import { useRef } from "react";
 import { Speed, animateTiming } from "@wordview/animator";
+import {
+  ChildrenableComponent,
+  PressableComponent,
+  ReactiveComponent,
+  StyleableComponent,
+} from "./types";
 
 function wait(ms: number) {
   return new Promise((res) => setTimeout(res, ms));
+}
+
+export interface SVGButtonProps
+  extends PressableComponent,
+    ChildrenableComponent,
+    StyleableComponent<ViewStyle>,
+    ReactiveComponent {
+  onHoverAnimationDirection?: "top" | "left";
 }
 
 export default function SVGButton(props: SVGButtonProps) {

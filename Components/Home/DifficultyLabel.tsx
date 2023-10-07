@@ -1,6 +1,11 @@
+import { Difficulty } from "@wordview/api";
 import globalStyles from "../../globalStyles";
-import { DifficultyLabelProps } from "../types";
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, ViewStyle } from "react-native";
+import { StyleableComponent } from "../types";
+
+export interface DifficultyLabelProps extends StyleableComponent<ViewStyle> {
+  difficulty: Difficulty;
+}
 
 export default function DifficultyLabel(props: DifficultyLabelProps) {
   return (

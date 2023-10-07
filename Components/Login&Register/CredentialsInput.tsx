@@ -1,7 +1,16 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ViewStyle } from "react-native";
 import { Input } from "react-native-elements";
-import { CredentialsInputProps } from "../types";
+import { StyleableComponent } from "../types";
 import { useState } from "react";
+
+export interface CredentialsInputProps extends StyleableComponent<ViewStyle> {
+  placeholder: string;
+  placeholderTextColor: string;
+  label: string;
+  labelColor: string;
+  secure?: boolean;
+  onChangeText?: (value: string) => void;
+}
 
 export default function CredentialsInput(props: CredentialsInputProps) {
   return (

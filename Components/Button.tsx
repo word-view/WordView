@@ -1,5 +1,17 @@
-import { Text, StyleSheet, TouchableOpacity } from "react-native";
-import { ButtonProps } from "./types";
+import { Text, StyleSheet, TouchableOpacity, ViewStyle } from "react-native";
+import {
+  PressableComponent,
+  StyleableComponent,
+  TextableComponent,
+} from "./types";
+
+export interface ButtonProps
+  extends StyleableComponent<ViewStyle>,
+    PressableComponent,
+    TextableComponent {
+  color: string;
+  textColor: string;
+}
 
 export default function Button(props: ButtonProps) {
   return (

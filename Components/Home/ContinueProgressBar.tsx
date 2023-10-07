@@ -1,7 +1,13 @@
 import React, { useEffect, useRef } from "react";
-import { View, Text, StyleSheet, Animated } from "react-native";
-import { ContinueProgressBarProps } from "../types";
+import { View, Text, StyleSheet, Animated, ViewStyle } from "react-native";
 import globalStyles from "../../globalStyles";
+import { ReactiveComponent, StyleableComponent } from "../types";
+
+export interface ContinueProgressBarProps
+  extends StyleableComponent<ViewStyle>,
+    ReactiveComponent {
+  percentage: number;
+}
 
 export default function ContinueProgressBar(props: ContinueProgressBarProps) {
   const animatedWidth = useRef(new Animated.Value(0)).current;

@@ -1,5 +1,18 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import { LinkButtonProps } from "../types";
+import { Pressable, StyleSheet, Text, View, ViewStyle } from "react-native";
+import {
+  PressableComponent,
+  ReactiveComponent,
+  StyleableComponent,
+  TextableComponent,
+} from "../types";
+
+export interface LinkButtonProps
+  extends StyleableComponent<ViewStyle>,
+    PressableComponent,
+    TextableComponent,
+    ReactiveComponent {
+  pressableAlign: "flex-start" | "center" | "flex-end";
+}
 
 export default function UnderlineTextButton(props: LinkButtonProps) {
   return (

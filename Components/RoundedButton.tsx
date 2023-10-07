@@ -1,5 +1,19 @@
-import { Text, StyleSheet, TouchableOpacity } from "react-native";
-import { RoundedButtonProps } from "./types";
+import { Text, StyleSheet, TouchableOpacity, ViewStyle } from "react-native";
+import {
+  PressableComponent,
+  ReactiveComponent,
+  StyleableComponent,
+  TextableComponent,
+} from "./types";
+
+export interface RoundedButtonProps
+  extends StyleableComponent<ViewStyle>,
+    PressableComponent,
+    TextableComponent,
+    ReactiveComponent {
+  color: string;
+  textColor: string;
+}
 
 export default function RoundedButton(props: RoundedButtonProps) {
   return (

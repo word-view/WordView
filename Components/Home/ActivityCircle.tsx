@@ -1,13 +1,35 @@
 import React, { useRef, useState } from "react";
-import { Animated, Pressable, Text, View, StyleSheet } from "react-native";
+import {
+  Animated,
+  Pressable,
+  Text,
+  View,
+  StyleSheet,
+  ViewStyle,
+} from "react-native";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
-import { ActivitySquareProps } from "../types";
+import {
+  PressableComponent,
+  ReactiveComponent,
+  StyleableComponent,
+} from "../types";
 import PlayIcon from "../SVGComponents/PlayIcon";
 import globalStyles from "../../globalStyles";
 import { animateTiming, Speed } from "@wordview/animator";
 import DifficultyLabel from "./DifficultyLabel";
+import { Difficulty } from "@wordview/api";
 
 const RAISE_ANIMATION_START_LOCATION = 10;
+
+export interface ActivitySquareProps
+  extends StyleableComponent<ViewStyle>,
+    ReactiveComponent,
+    PressableComponent {
+  children?: any;
+  color: string;
+  textUnder?: string;
+  difficulty?: Difficulty;
+}
 
 export default function ActivitySquare(props: ActivitySquareProps) {
   const opacity = useRef(new Animated.Value(0)).current;

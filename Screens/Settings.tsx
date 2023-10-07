@@ -7,7 +7,7 @@ import globalStyles from "../globalStyles";
 import ResponsiveChecker from "../Components/Backend/ResponsiveChecker";
 import { ScreenProps } from "./types";
 import SVGButton from "../Components/SVGButton";
-import BackArrowIcon from "../Components/SVGComponents/BackArrowIcon";
+import BackArrowIcon from "../Components/SVG/BackArrowIcon";
 
 export default function Settings({ navigation, testing }: ScreenProps) {
   const isDesktop = testing ? true : ResponsiveChecker().isDesktop;

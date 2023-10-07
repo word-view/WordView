@@ -13,7 +13,7 @@ import {
   ReactiveComponent,
   StyleableComponent,
 } from "../types";
-import PlayIcon from "../SVGComponents/PlayIcon";
+import PlayIcon from "../SVG/PlayIcon";
 import globalStyles from "../../globalStyles";
 import { animateTiming, Speed } from "@wordview/animator";
 import DifficultyLabel from "./DifficultyLabel";

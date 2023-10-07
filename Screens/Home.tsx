@@ -13,7 +13,7 @@ import { ReactiveComponent } from "../Components/types";
 import ContinueProgressBar from "../Components/Home/ContinueProgressBar";
 import images from "../images";
 import SVGButton from "../Components/SVGButton";
-import SettingsIcon from "../Components/SVGComponents/SettingsIcon";
+import SettingsIcon from "../Components/SVG/SettingsIcon";
 import { Lesson, getLessons } from "@wordview/api";
 
 function RecommendedSection({ isDesktop }: ReactiveComponent) {

@@ -6,7 +6,7 @@ import {
   TextableComponent,
 } from "../types";
 
-export interface LinkButtonProps
+export interface UnderlineTextButtonProps
   extends StyleableComponent<ViewStyle>,
     PressableComponent,
     TextableComponent,
@@ -14,7 +14,7 @@ export interface LinkButtonProps
   pressableAlign: "flex-start" | "center" | "flex-end";
 }
 
-export default function UnderlineTextButton(props: LinkButtonProps) {
+export default function UnderlineTextButton(props: UnderlineTextButtonProps) {
   return (
     <View style={[styles.container, props.style]}>
       <Pressable

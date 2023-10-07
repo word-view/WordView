@@ -21,7 +21,7 @@ import { Difficulty } from "@wordview/api";
 
 const RAISE_ANIMATION_START_LOCATION = 10;
 
-export interface ActivitySquareProps
+export interface ActivityCircleProps
   extends StyleableComponent<ViewStyle>,
     ReactiveComponent,
     PressableComponent {
@@ -31,7 +31,7 @@ export interface ActivitySquareProps
   difficulty?: Difficulty;
 }
 
-export default function ActivitySquare(props: ActivitySquareProps) {
+export default function ActivityCircle(props: ActivityCircleProps) {
   const opacity = useRef(new Animated.Value(0)).current;
   const translateY = useRef(
     new Animated.Value(RAISE_ANIMATION_START_LOCATION)

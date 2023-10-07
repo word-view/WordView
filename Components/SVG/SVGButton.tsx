@@ -12,7 +12,7 @@ import {
   PressableComponent,
   ReactiveComponent,
   StyleableComponent,
-} from "./types";
+} from "../types";
 
 function wait(ms: number) {
   return new Promise((res) => setTimeout(res, ms));

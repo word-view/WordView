@@ -6,7 +6,7 @@ import Header from "../Components/Home/Header";
 import globalStyles from "../globalStyles";
 import ResponsiveChecker from "../Components/Backend/ResponsiveChecker";
 import { ScreenProps } from "./types";
-import SVGButton from "../Components/SVGButton";
+import SVGButton from "../Components/SVG/SVGButton";
 import BackArrowIcon from "../Components/SVG/BackArrowIcon";
 
 export default function Settings({ navigation, testing }: ScreenProps) {

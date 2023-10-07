@@ -12,7 +12,7 @@ import { ScreenProps } from "./types";
 import { ReactiveComponent } from "../Components/types";
 import ContinueProgressBar from "../Components/Home/ContinueProgressBar";
 import images from "../images";
-import SVGButton from "../Components/SVGButton";
+import SVGButton from "../Components/SVG/SVGButton";
 import SettingsIcon from "../Components/SVG/SettingsIcon";
 import { Lesson, getLessons } from "@wordview/api";
 

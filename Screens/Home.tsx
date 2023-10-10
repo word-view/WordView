@@ -16,7 +16,10 @@ import SVGButton from "../Components/SVG/SVGButton";
 import SettingsIcon from "../Components/SVG/SettingsIcon";
 import { Lesson, getLessons } from "@wordview/api";
 
-function RecommendedSection({ isDesktop }: ReactiveComponent) {
+function RecommendedSection({
+  isDesktop,
+  navigation,
+}: ReactiveComponent & { navigation: any }) {
   const [lessons, setLessons] = useState([] as Lesson[]);
 
   getLessons("starter").then(({ data }) => setLessons(data));
@@ -59,7 +62,7 @@ function RecommendedSection({ isDesktop }: ReactiveComponent) {
             textUnder={lesson.title}
             difficulty={lesson.difficulty}
             onPress={() => {
-              console.log(lesson.id);
+              navigation.navigate("Lesson");
             }}
             {...{ isDesktop }}
           >
@@ -217,7 +220,9 @@ export default function Home({ navigation, testing = false }: ScreenProps) {
           )}
 
           {hasUndoneActivities && <ContinueSection {...{ isDesktop }} />}
-          {isNewUser && <RecommendedSection {...{ isDesktop }} />}
+          {isNewUser && (
+            <RecommendedSection {...{ isDesktop }} navigation={navigation} />
+          )}
         </ScrollView>
       </View>
     </>

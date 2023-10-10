@@ -10,6 +10,7 @@ import Home from "./Screens/Home";
 import FontLoader from "./Components/Backend/FontLoader";
 import { StatusBar } from "expo-status-bar";
 import Settings from "./Screens/Settings";
+import Lesson from "./Screens/Lesson";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -60,6 +61,11 @@ export default function App() {
             name="Settings"
             component={Settings}
             options={{ title: "Configurações" }}
+          />
+          <Screen
+            name="Lesson"
+            component={Lesson}
+            options={{ title: "Lesson" }}
           />
         </Navigator>
       </NavigationContainer>

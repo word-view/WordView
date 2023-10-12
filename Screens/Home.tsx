@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { ScrollView } from "react-native-gesture-handler";
-import Header from "../Components/Home/Header";
+import { Header } from "../Components/Home/Header";
 import ActivityCircle from "../Components/Home/ActivityCircle";
 import RoundedButton from "../Components/RoundedButton";
 import AttentionBox from "../Components/Home/AttentionBox";
@@ -15,13 +15,13 @@ import images from "../images";
 import SVGButton from "../Components/SVG/SVGButton";
 import SettingsIcon from "../Components/SVG/SettingsIcon";
 import { Lesson, getLessons } from "../modules/api";
+import { currentLesson } from "../store/lesson";
 
 function RecommendedSection({
   isDesktop,
   navigation,
 }: ReactiveComponent & { navigation: any }) {
   const [lessons, setLessons] = useState([] as Lesson[]);
-
   getLessons("starter").then((data) => setLessons(data));
 
   return (
@@ -63,6 +63,7 @@ function RecommendedSection({
             difficulty={lesson.difficulty}
             key={i}
             onPress={() => {
+              currentLesson.set(lesson);
               navigation.navigate("Lesson");
             }}
             isDesktop={isDesktop}
@@ -180,7 +181,7 @@ export default function Home({ navigation, testing = false }: ScreenProps) {
 
   return (
     <>
-      <Header isDesktop={isDesktop}>
+      <Header isDesktop={isDesktop} color="#353535">
         <View style={styles.wvTitleHolder}>
           <Image style={styles.wvIcon} source={images.wvIcon} />
           {isDesktop && (

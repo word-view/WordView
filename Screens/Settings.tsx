@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { ScrollView } from "react-native-gesture-handler";
-import Header from "../Components/Home/Header";
+import { Header } from "../Components/Home/Header";
 import globalStyles from "../globalStyles";
 import ResponsiveChecker from "../Components/Backend/ResponsiveChecker";
 import { ScreenProps } from "./types";
@@ -14,17 +14,8 @@ export default function Settings({ navigation, testing }: ScreenProps) {
 
   return (
     <>
-      <Header isDesktop={isDesktop}>
-        <View
-          style={{
-            flexDirection: "row",
-            alignSelf: "flex-start",
-            alignItems: "center",
-            justifyContent: "center",
-            alignContent: "center",
-            position: "absolute",
-          }}
-        >
+      <Header isDesktop={isDesktop} color="#353535">
+        <View style={styles.headerControlsView}>
           <SVGButton
             style={{ alignSelf: "flex-start", marginLeft: 15 }}
             onHoverAnimationDirection="left"
@@ -67,6 +58,14 @@ export default function Settings({ navigation, testing }: ScreenProps) {
 }
 
 const styles = StyleSheet.create({
+  headerControlsView: {
+    flexDirection: "row",
+    alignSelf: "flex-start",
+    alignItems: "center",
+    justifyContent: "center",
+    alignContent: "center",
+    position: "absolute",
+  },
   container: {
     flex: 1,
     backgroundColor: "#353535",

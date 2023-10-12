@@ -1,8 +1,8 @@
 import { View, StyleSheet, StatusBar } from "react-native";
 import { ChildrenableComponent, ReactiveComponent } from "../types";
 
-export default function Header(
-  props: ReactiveComponent & ChildrenableComponent
+export function Header(
+  props: ReactiveComponent & ChildrenableComponent & { color?: string }
 ) {
   return (
     <>
@@ -10,11 +10,17 @@ export default function Header(
         <View
           style={{
             paddingTop: StatusBar.currentHeight,
-            backgroundColor: "#353535",
+            backgroundColor: props.color,
           }}
         />
       )}
-      <View style={[styles.header, props.isDesktop && { height: 60 }]}>
+      <View
+        style={[
+          styles.header,
+          { backgroundColor: props.color },
+          props.isDesktop && { height: 60 },
+        ]}
+      >
         {props.children}
       </View>
     </>
@@ -23,7 +29,6 @@ export default function Header(
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: "#353535",
     justifyContent: "center",
     flexDirection: "column",
     height: 50,

@@ -10,6 +10,32 @@ import { ScreenProps } from "./types";
 import ResponsiveChecker from "../Components/Backend/ResponsiveChecker";
 import { ReactiveComponent } from "../Components/types";
 
+export default function Register({ navigation, testing }: ScreenProps) {
+  const isDesktop = testing ? true : ResponsiveChecker().isDesktop;
+
+  return (
+    <View
+      style={[
+        styles.background,
+        { flexDirection: isDesktop ? "row" : "column" },
+      ]}
+    >
+      <View
+        style={[
+          globalStyles.container,
+          { width: isDesktop ? "50%" : "100%" },
+          isDesktop ? desktopStyles.logoContainer : mobileStyles.logoContainer,
+        ]}
+      >
+        <Image style={globalStyles.wvIcon} source={images.wvIcon} />
+        <Image style={globalStyles.wvTitle} source={images.wvTitle} />
+      </View>
+
+      <InputContainer {...{ isDesktop, navigation }} />
+    </View>
+  );
+}
+
 function InputContainer({
   isDesktop,
   navigation,
@@ -60,32 +86,6 @@ function InputContainer({
         style={{ marginTop: 25 }}
         onPress={() => navigation.navigate("Login")}
       />
-    </View>
-  );
-}
-
-export default function Register({ navigation, testing }: ScreenProps) {
-  const isDesktop = testing ? true : ResponsiveChecker().isDesktop;
-
-  return (
-    <View
-      style={[
-        styles.background,
-        { flexDirection: isDesktop ? "row" : "column" },
-      ]}
-    >
-      <View
-        style={[
-          globalStyles.container,
-          { width: isDesktop ? "50%" : "100%" },
-          isDesktop ? desktopStyles.logoContainer : mobileStyles.logoContainer,
-        ]}
-      >
-        <Image style={globalStyles.wvIcon} source={images.wvIcon} />
-        <Image style={globalStyles.wvTitle} source={images.wvTitle} />
-      </View>
-
-      <InputContainer {...{ isDesktop, navigation }} />
     </View>
   );
 }

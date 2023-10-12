@@ -17,6 +17,64 @@ import SettingsIcon from "../Components/SVG/SettingsIcon";
 import { Lesson, getLessons } from "../modules/api";
 import { currentLesson } from "../store/lesson";
 
+export default function Home({ navigation, testing = false }: ScreenProps) {
+  const isDesktop = testing ? true : ResponsiveChecker().isDesktop;
+
+  const hasUndoneActivities = false;
+  const isNewUser = true;
+
+  return (
+    <>
+      <Header isDesktop={isDesktop} color="#353535">
+        <View style={styles.wvTitleHolder}>
+          <Image style={styles.wvIcon} source={images.wvIcon} />
+          {isDesktop && (
+            <Image style={styles.wvTitle} source={images.wvTitle} />
+          )}
+        </View>
+
+        <SVGButton
+          style={{ alignSelf: "flex-end", marginHorizontal: 15 }}
+          onHoverAnimationDirection="top"
+          onPress={() => {
+            navigation.navigate("Settings");
+          }}
+          isDesktop={isDesktop}
+        >
+          <SettingsIcon />
+        </SVGButton>
+      </Header>
+      <View style={styles.container}>
+        <ScrollView
+          style={[styles.scrollView, isDesktop && { paddingHorizontal: 15 }]}
+        >
+          {!isDesktop && (
+            <Text
+              style={[
+                globalStyles.mediumUIText,
+                styles.sectionLabel,
+                {
+                  width: "100%",
+                  textAlign: "center",
+                  fontSize: 22,
+                  marginBottom: 25,
+                },
+              ]}
+            >
+              Bem-vindo ao WordView!
+            </Text>
+          )}
+
+          {hasUndoneActivities && <ContinueSection isDesktop={isDesktop} />}
+          {isNewUser && (
+            <RecommendedSection isDesktop={isDesktop} navigation={navigation} />
+          )}
+        </ScrollView>
+      </View>
+    </>
+  );
+}
+
 function RecommendedSection({
   isDesktop,
   navigation,
@@ -168,64 +226,6 @@ function ContinueSection({ isDesktop }: ReactiveComponent) {
             Em progresso
           </Text>
         </AttentionBox>
-      </View>
-    </>
-  );
-}
-
-export default function Home({ navigation, testing = false }: ScreenProps) {
-  const isDesktop = testing ? true : ResponsiveChecker().isDesktop;
-
-  const hasUndoneActivities = false;
-  const isNewUser = true;
-
-  return (
-    <>
-      <Header isDesktop={isDesktop} color="#353535">
-        <View style={styles.wvTitleHolder}>
-          <Image style={styles.wvIcon} source={images.wvIcon} />
-          {isDesktop && (
-            <Image style={styles.wvTitle} source={images.wvTitle} />
-          )}
-        </View>
-
-        <SVGButton
-          style={{ alignSelf: "flex-end", marginHorizontal: 15 }}
-          onHoverAnimationDirection="top"
-          onPress={() => {
-            navigation.navigate("Settings");
-          }}
-          isDesktop={isDesktop}
-        >
-          <SettingsIcon />
-        </SVGButton>
-      </Header>
-      <View style={styles.container}>
-        <ScrollView
-          style={[styles.scrollView, isDesktop && { paddingHorizontal: 15 }]}
-        >
-          {!isDesktop && (
-            <Text
-              style={[
-                globalStyles.mediumUIText,
-                styles.sectionLabel,
-                {
-                  width: "100%",
-                  textAlign: "center",
-                  fontSize: 22,
-                  marginBottom: 25,
-                },
-              ]}
-            >
-              Bem-vindo ao WordView!
-            </Text>
-          )}
-
-          {hasUndoneActivities && <ContinueSection isDesktop={isDesktop} />}
-          {isNewUser && (
-            <RecommendedSection isDesktop={isDesktop} navigation={navigation} />
-          )}
-        </ScrollView>
       </View>
     </>
   );

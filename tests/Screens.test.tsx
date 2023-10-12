@@ -6,6 +6,7 @@ import PickLanguage from "../Screens/PickLanguage";
 import Register from "../Screens/Register";
 import Settings from "../Screens/Settings";
 import Welcome from "../Screens/Welcome";
+import Lesson from "../Screens/Lesson";
 
 it(`Home renders`, () => {
   const tree = renderer
@@ -56,6 +57,14 @@ it(`Welcome renders`, () => {
         testing={true}
       />
     )
+    .toJSON();
+
+  expect(tree).toBeDefined();
+});
+
+it(`Lesson renders`, () => {
+  const tree = renderer
+    .create(<Lesson navigation={undefined} testing={true} />)
     .toJSON();
 
   expect(tree).toBeDefined();

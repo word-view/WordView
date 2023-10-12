@@ -20,7 +20,7 @@ export default function Lesson({ navigation, testing = false }: ScreenProps) {
   let lesson = currentLesson.get();
 
   useEffect(() => {
-    navigation.setOptions({ title: lesson.title });
+    if (!testing) navigation.setOptions({ title: lesson.title });
   });
 
   return (

@@ -65,7 +65,7 @@ function RecommendedSection({
             onPress={() => {
               navigation.navigate("Lesson");
             }}
-            {...{ isDesktop }}
+            isDesktop={isDesktop}
           >
             <Image
               style={{
@@ -119,7 +119,7 @@ function ContinueSection({ isDesktop }: ReactiveComponent) {
             <ActivityCircle
               color="#63A1FF"
               style={styles.borderAvoider}
-              {...{ isDesktop }}
+              isDesktop={isDesktop}
             />
 
             <View style={styles.borderAvoider}>
@@ -128,13 +128,13 @@ function ContinueSection({ isDesktop }: ReactiveComponent) {
               </Text>
 
               {!isDesktop && (
-                <ContinueProgressBar percentage={64} {...{ isDesktop }} />
+                <ContinueProgressBar percentage={64} isDesktop={isDesktop} />
               )}
             </View>
           </View>
 
           {isDesktop && (
-            <ContinueProgressBar percentage={64} {...{ isDesktop }} />
+            <ContinueProgressBar percentage={64} isDesktop={isDesktop} />
           )}
 
           <RoundedButton
@@ -146,7 +146,7 @@ function ContinueSection({ isDesktop }: ReactiveComponent) {
               !isDesktop && { alignSelf: "center" },
               isDesktop && { alignSelf: "flex-start", marginLeft: 15 },
             ]}
-            {...{ isDesktop }}
+            isDesktop={isDesktop}
           />
         </AttentionBox>
 
@@ -180,7 +180,7 @@ export default function Home({ navigation, testing = false }: ScreenProps) {
 
   return (
     <>
-      <Header {...{ isDesktop }}>
+      <Header isDesktop={isDesktop}>
         <View style={styles.wvTitleHolder}>
           <Image style={styles.wvIcon} source={images.wvIcon} />
           {isDesktop && (
@@ -194,7 +194,7 @@ export default function Home({ navigation, testing = false }: ScreenProps) {
           onPress={() => {
             navigation.navigate("Settings");
           }}
-          {...{ isDesktop }}
+          isDesktop={isDesktop}
         >
           <SettingsIcon />
         </SVGButton>
@@ -220,9 +220,9 @@ export default function Home({ navigation, testing = false }: ScreenProps) {
             </Text>
           )}
 
-          {hasUndoneActivities && <ContinueSection {...{ isDesktop }} />}
+          {hasUndoneActivities && <ContinueSection isDesktop={isDesktop} />}
           {isNewUser && (
-            <RecommendedSection {...{ isDesktop }} navigation={navigation} />
+            <RecommendedSection isDesktop={isDesktop} navigation={navigation} />
           )}
         </ScrollView>
       </View>

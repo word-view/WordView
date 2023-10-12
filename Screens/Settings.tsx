@@ -14,7 +14,7 @@ export default function Settings({ navigation, testing }: ScreenProps) {
 
   return (
     <>
-      <Header {...{ isDesktop }}>
+      <Header isDesktop={isDesktop}>
         <View
           style={{
             flexDirection: "row",
@@ -31,7 +31,7 @@ export default function Settings({ navigation, testing }: ScreenProps) {
             onPress={() => {
               navigation.goBack();
             }}
-            {...{ isDesktop }}
+            isDesktop={isDesktop}
           >
             <BackArrowIcon />
           </SVGButton>

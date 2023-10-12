@@ -63,7 +63,7 @@ function InputContainer({
         text="Esqueceu sua senha?"
         pressableAlign="flex-end"
         onPress={() => navigation.navigate("Home")}
-        {...{ isDesktop }}
+        isDesktop={isDesktop}
       />
       <Button
         text="Entrar"
@@ -81,7 +81,7 @@ function InputContainer({
         style={{
           marginTop: isDesktop ? hp(2) : hp(3),
         }}
-        {...{ isDesktop }}
+        isDesktop={isDesktop}
       />
     </View>
   );

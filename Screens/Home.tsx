@@ -14,7 +14,7 @@ import ContinueProgressBar from "../Components/Home/ContinueProgressBar";
 import images from "../images";
 import SVGButton from "../Components/SVG/SVGButton";
 import SettingsIcon from "../Components/SVG/SettingsIcon";
-import { Lesson, getLessons } from "@wordview/api";
+import { Lesson, getLessons } from "../modules/api";
 
 function RecommendedSection({
   isDesktop,
@@ -22,7 +22,7 @@ function RecommendedSection({
 }: ReactiveComponent & { navigation: any }) {
   const [lessons, setLessons] = useState([] as Lesson[]);
 
-  getLessons("starter").then(({ data }) => setLessons(data));
+  getLessons("starter").then((data) => setLessons(data));
 
   return (
     <>
@@ -55,12 +55,13 @@ function RecommendedSection({
           marginTop: 10,
         }}
       >
-        {lessons.map((lesson, i) => (
+        {lessons?.map((lesson, i) => (
           <ActivityCircle
             color="#63FF72"
             style={{ marginLeft: 15 }}
             textUnder={lesson.title}
             difficulty={lesson.difficulty}
+            key={i}
             onPress={() => {
               navigation.navigate("Lesson");
             }}

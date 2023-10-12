@@ -9,7 +9,7 @@ import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { ScreenProps } from "./types";
 import ResponsiveChecker from "../Components/Backend/ResponsiveChecker";
 import { ReactiveComponent } from "../Components/types";
-import { login } from "@wordview/api";
+import { login } from "../modules/api";
 
 function InputContainer({
   isDesktop,

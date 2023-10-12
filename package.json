@@ -18,7 +18,6 @@
     "@react-navigation/stack": "^6.3.17",
     "@testing-library/react-native": "^12.3.0",
     "@wordview/animator": "file:libs/animator",
-    "@wordview/api": "file:libs/api",
     "axios": "^1.5.1",
     "babel-plugin-inline-import": "^3.0.0",
     "expo": "~49.0.8",

@@ -1,4 +1,4 @@
-import { Difficulty } from "@wordview/api";
+import { Difficulty } from "../modules/api";
 import globalStyles from "../../globalStyles";
 import { Text, StyleSheet, ViewStyle } from "react-native";
 import { StyleableComponent } from "../types";

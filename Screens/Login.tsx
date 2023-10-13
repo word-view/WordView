@@ -12,7 +12,7 @@ import { ReactiveComponent } from "../Components/types";
 import { login } from "../modules/api";
 import { testing } from "../store/state";
 
-export default function Login({ navigation }: ScreenProps) {
+export default function Login(scrProps: ScreenProps) {
   const isDesktop = ResponsiveChecker().isDesktop;
 
   return (
@@ -34,7 +34,7 @@ export default function Login({ navigation }: ScreenProps) {
         <Image style={globalStyles.wvTitle} source={images.wvTitle} />
       </View>
 
-      <InputContainer {...{ isDesktop, navigation }} />
+      <InputContainer isDesktop={isDesktop} navigation={scrProps.navigation} />
     </View>
   );
 }

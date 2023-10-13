@@ -9,14 +9,14 @@ import globalStyles from "../globalStyles";
 import { currentLesson } from "../store/lesson";
 import { testing } from "../store/state";
 
-export default function Lesson({ navigation }: ScreenProps) {
+export default function Lesson(scrProps: ScreenProps) {
   const rColor = randomColor();
   const isDesktop = ResponsiveChecker().isDesktop;
 
   let lesson = currentLesson.get();
 
   useEffect(() => {
-    if (!testing.get()) setPageTitle(lesson.title, navigation);
+    if (!testing.get()) setPageTitle(lesson.title, scrProps.navigation);
   });
 
   return (
@@ -27,7 +27,7 @@ export default function Lesson({ navigation }: ScreenProps) {
             style={{ alignSelf: "flex-start", marginLeft: 15 }}
             onHoverAnimationDirection="left"
             onPress={() => {
-              navigation.goBack();
+              scrProps.navigation.goBack();
             }}
             isDesktop={isDesktop}
           >

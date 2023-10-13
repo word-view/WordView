@@ -10,7 +10,7 @@ import { ScreenProps } from "./types";
 import ResponsiveChecker from "../Components/Backend/ResponsiveChecker";
 import { ReactiveComponent } from "../Components/types";
 
-export default function Register({ navigation }: ScreenProps) {
+export default function Register(scrProps: ScreenProps) {
   const isDesktop = ResponsiveChecker().isDesktop;
 
   return (
@@ -31,7 +31,7 @@ export default function Register({ navigation }: ScreenProps) {
         <Image style={globalStyles.wvTitle} source={images.wvTitle} />
       </View>
 
-      <InputContainer {...{ isDesktop, navigation }} />
+      <InputContainer isDesktop={isDesktop} navigation={scrProps.navigation} />
     </View>
   );
 }

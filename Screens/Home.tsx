@@ -17,7 +17,7 @@ import SettingsIcon from "../Components/SVG/SettingsIcon";
 import { Lesson, getLessons } from "../modules/api";
 import { currentLesson } from "../store/lesson";
 
-export default function Home({ navigation }: ScreenProps) {
+export default function Home(scrProps: ScreenProps) {
   const isDesktop = ResponsiveChecker().isDesktop;
 
   const hasUndoneActivities = false;
@@ -37,7 +37,7 @@ export default function Home({ navigation }: ScreenProps) {
           style={{ alignSelf: "flex-end", marginHorizontal: 15 }}
           onHoverAnimationDirection="top"
           onPress={() => {
-            navigation.navigate("Settings");
+            scrProps.navigation.navigate("Settings");
           }}
           isDesktop={isDesktop}
         >
@@ -67,7 +67,10 @@ export default function Home({ navigation }: ScreenProps) {
 
           {hasUndoneActivities && <ContinueSection isDesktop={isDesktop} />}
           {isNewUser && (
-            <RecommendedSection isDesktop={isDesktop} navigation={navigation} />
+            <RecommendedSection
+              isDesktop={isDesktop}
+              navigation={scrProps.navigation}
+            />
           )}
         </ScrollView>
       </View>

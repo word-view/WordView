@@ -10,9 +10,10 @@ import { ScreenProps } from "./types";
 import ResponsiveChecker from "../Components/Backend/ResponsiveChecker";
 import { ReactiveComponent } from "../Components/types";
 import { login } from "../modules/api";
+import { testing } from "../store/state";
 
-export default function Login({ navigation, testing }: ScreenProps) {
-  const isDesktop = testing ? true : ResponsiveChecker().isDesktop;
+export default function Login({ navigation }: ScreenProps) {
+  const isDesktop = ResponsiveChecker().isDesktop;
 
   return (
     <View

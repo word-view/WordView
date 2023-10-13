@@ -2,6 +2,9 @@ import { render, fireEvent } from "@testing-library/react-native";
 import * as React from "react";
 import renderer from "react-test-renderer";
 import UnderlineTextButton from "../../Components/Login&Register/UnderlineTextButton";
+import { testing } from "../../store/state";
+
+beforeEach(() => testing.set(true));
 
 it(`UnderlineTextButton renders`, () => {
   const tree = renderer

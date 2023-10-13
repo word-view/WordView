@@ -9,8 +9,8 @@ import { ScreenProps } from "./types";
 import SVGButton from "../Components/SVG/SVGButton";
 import BackArrowIcon from "../Components/SVG/BackArrowIcon";
 
-export default function Settings({ navigation, testing }: ScreenProps) {
-  const isDesktop = testing ? true : ResponsiveChecker().isDesktop;
+export default function Settings({ navigation }: ScreenProps) {
+  const isDesktop = ResponsiveChecker().isDesktop;
 
   return (
     <>

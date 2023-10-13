@@ -1,6 +1,9 @@
 import * as React from "react";
 import renderer from "react-test-renderer";
 import DifficultyLabel from "../../Components/Home/DifficultyLabel";
+import { testing } from "../../store/state";
+
+beforeEach(() => testing.set(true));
 
 it(`DifficultyLabel > starter renders`, () => {
   const tree = renderer

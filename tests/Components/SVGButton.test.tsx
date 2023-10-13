@@ -4,6 +4,9 @@ import renderer from "react-test-renderer";
 import SVGButton from "../../Components/SVG/SVGButton";
 import { Speed } from "@wordview/animator";
 import { wait } from "./util";
+import { testing } from "../../store/state";
+
+beforeEach(() => testing.set(true));
 
 it(`UnderlineTextButton renders`, () => {
   const tree = renderer.create(<SVGButton />).toJSON();

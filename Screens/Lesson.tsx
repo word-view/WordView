@@ -7,15 +7,16 @@ import SVGButton from "../Components/SVG/SVGButton";
 import BackArrowIcon from "../Components/SVG/BackArrowIcon";
 import globalStyles from "../globalStyles";
 import { currentLesson } from "../store/lesson";
+import { testing } from "../store/state";
 
-export default function Lesson({ navigation, testing = false }: ScreenProps) {
+export default function Lesson({ navigation }: ScreenProps) {
   const rColor = randomColor();
-  const isDesktop = testing ? true : ResponsiveChecker().isDesktop;
+  const isDesktop = ResponsiveChecker().isDesktop;
 
   let lesson = currentLesson.get();
 
   useEffect(() => {
-    if (!testing) setPageTitle(lesson.title, navigation);
+    if (!testing.get()) setPageTitle(lesson.title, navigation);
   });
 
   return (

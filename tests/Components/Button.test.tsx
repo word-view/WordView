@@ -2,6 +2,9 @@ import { render, fireEvent } from "@testing-library/react-native";
 import * as React from "react";
 import renderer from "react-test-renderer";
 import Button from "../../Components/Button";
+import { testing } from "../../store/state";
+
+beforeEach(() => testing.set(true));
 
 it(`Button renders`, () => {
   const tree = renderer

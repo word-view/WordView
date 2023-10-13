@@ -1,6 +1,9 @@
 import * as React from "react";
 import renderer from "react-test-renderer";
 import { Header } from "../../Components/Home/Header";
+import { testing } from "../../store/state";
+
+beforeEach(() => testing.set(true));
 
 it(`Header renders`, () => {
   const tree = renderer.create(<Header color="#242424" />).toJSON();

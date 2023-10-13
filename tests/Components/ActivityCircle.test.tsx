@@ -2,6 +2,9 @@ import { render, fireEvent } from "@testing-library/react-native";
 import * as React from "react";
 import renderer from "react-test-renderer";
 import ActivityCircle from "../../Components/Home/ActivityCircle";
+import { testing } from "../../store/state";
+
+beforeEach(() => testing.set(true));
 
 it(`ActivityCircle renders`, () => {
   const tree = renderer

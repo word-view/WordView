@@ -19,6 +19,10 @@ export default function Lesson(scrProps: ScreenProps) {
     if (!testing.get()) setPageTitle(lesson.title, scrProps.navigation);
   });
 
+  function goBack() {
+    scrProps.navigation.goBack();
+  }
+
   return (
     <View style={[styles.container, { backgroundColor: rColor }]}>
       <Header isDesktop={isDesktop} color={rColor}>
@@ -26,27 +30,14 @@ export default function Lesson(scrProps: ScreenProps) {
           <SVGButton
             style={{ alignSelf: "flex-start", marginLeft: 15 }}
             onHoverAnimationDirection="left"
-            onPress={() => {
-              scrProps.navigation.goBack();
-            }}
+            onPress={goBack}
             isDesktop={isDesktop}
           >
             <BackArrowIcon />
           </SVGButton>
         </View>
         <View style={[styles.headerControlsView, { alignSelf: "flex-end" }]}>
-          <Text
-            style={[
-              globalStyles.mediumUIText,
-              {
-                fontWeight: "600",
-                marginHorizontal: 15,
-                alignSelf: "center",
-              },
-            ]}
-          >
-            5:00
-          </Text>
+          <Text style={[globalStyles.mediumUIText, styles.timer]}>5:00</Text>
         </View>
       </Header>
     </View>
@@ -63,6 +54,11 @@ function setPageTitle(title: string, nav: any) {
 }
 
 const styles = StyleSheet.create({
+  timer: {
+    fontWeight: "600",
+    marginHorizontal: 15,
+    alignSelf: "center",
+  },
   headerControlsView: {
     flexDirection: "row",
     position: "absolute",

@@ -12,6 +12,10 @@ import BackArrowIcon from "../Components/SVG/BackArrowIcon";
 export default function Settings(scrProps: ScreenProps) {
   const isDesktop = ResponsiveChecker().isDesktop;
 
+  function goBack() {
+    scrProps.navigation.goBack();
+  }
+
   return (
     <>
       <Header isDesktop={isDesktop} color="#353535">
@@ -19,9 +23,7 @@ export default function Settings(scrProps: ScreenProps) {
           <SVGButton
             style={{ alignSelf: "flex-start", marginLeft: 15 }}
             onHoverAnimationDirection="left"
-            onPress={() => {
-              scrProps.navigation.goBack();
-            }}
+            onPress={goBack}
             isDesktop={isDesktop}
           >
             <BackArrowIcon />

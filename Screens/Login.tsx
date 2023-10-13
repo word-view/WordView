@@ -10,7 +10,6 @@ import { ScreenProps } from "./types";
 import ResponsiveChecker from "../Components/Backend/ResponsiveChecker";
 import { ReactiveComponent } from "../Components/types";
 import { login } from "../modules/api";
-import { testing } from "../store/state";
 
 export default function Login(scrProps: ScreenProps) {
   const isDesktop = ResponsiveChecker().isDesktop;
@@ -59,6 +58,13 @@ function InputContainer({
     }
   }
 
+  function goHome() {
+    navigation.navigate("Home");
+  }
+  function goRegister() {
+    navigation.navigate("Register");
+  }
+
   function showError(message: string) {}
 
   return (
@@ -90,7 +96,7 @@ function InputContainer({
       <UnderlineTextButton
         text="Esqueceu sua senha?"
         pressableAlign="flex-end"
-        onPress={() => navigation.navigate("Home")}
+        onPress={goHome} // debug
         isDesktop={isDesktop}
       />
       <Button
@@ -105,7 +111,7 @@ function InputContainer({
       <UnderlineTextButton
         text="Crie sua conta"
         pressableAlign="center"
-        onPress={() => navigation.navigate("Register")}
+        onPress={goRegister}
         style={{
           marginTop: isDesktop ? hp(2) : hp(3),
         }}

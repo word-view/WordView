@@ -40,6 +40,10 @@ function InputContainer({
   isDesktop,
   navigation,
 }: ReactiveComponent & { navigation: any }) {
+  function goLogin() {
+    navigation.navigate("Login");
+  }
+
   return (
     <View
       style={[
@@ -84,7 +88,7 @@ function InputContainer({
         text="Entre na sua conta"
         pressableAlign="center"
         style={{ marginTop: 25 }}
-        onPress={() => navigation.navigate("Login")}
+        onPress={goLogin}
       />
     </View>
   );

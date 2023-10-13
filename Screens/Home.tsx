@@ -23,6 +23,10 @@ export default function Home(scrProps: ScreenProps) {
   const hasUndoneActivities = false;
   const isNewUser = true;
 
+  function settingsButtonPress() {
+    scrProps.navigation.navigate("Settings");
+  }
+
   return (
     <>
       <Header isDesktop={isDesktop} color="#353535">
@@ -36,9 +40,7 @@ export default function Home(scrProps: ScreenProps) {
         <SVGButton
           style={{ alignSelf: "flex-end", marginHorizontal: 15 }}
           onHoverAnimationDirection="top"
-          onPress={() => {
-            scrProps.navigation.navigate("Settings");
-          }}
+          onPress={settingsButtonPress}
           isDesktop={isDesktop}
         >
           <SettingsIcon />
@@ -85,6 +87,11 @@ function RecommendedSection({
   const [lessons, setLessons] = useState([] as Lesson[]);
   getLessons("starter").then((data) => setLessons(data));
 
+  function activityCirclePress(lesson: Lesson, index?: number) {
+    currentLesson.set(lesson);
+    navigation.navigate("Lesson");
+  }
+
   return (
     <>
       <Text
@@ -123,10 +130,7 @@ function RecommendedSection({
             textUnder={lesson.title}
             difficulty={lesson.difficulty}
             key={i}
-            onPress={() => {
-              currentLesson.set(lesson);
-              navigation.navigate("Lesson");
-            }}
+            onPress={() => activityCirclePress(lesson, i)}
             isDesktop={isDesktop}
           >
             <Image

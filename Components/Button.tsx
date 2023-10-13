@@ -16,6 +16,7 @@ export interface ButtonProps
 export default function Button(props: ButtonProps) {
   return (
     <TouchableOpacity
+      accessibilityHint="ButtonPressable"
       style={[
         styles.button,
         props.style,

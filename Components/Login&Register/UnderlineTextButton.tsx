@@ -20,6 +20,7 @@ export default function UnderlineTextButton(props: UnderlineTextButtonProps) {
       <Pressable
         style={{ alignSelf: props.pressableAlign }}
         onPress={props.onPress}
+        accessibilityHint="UnderlineTextButtonPressable"
       >
         <Text
           style={[styles.linkText, { fontSize: props.isDesktop ? 12 : 15 }]}

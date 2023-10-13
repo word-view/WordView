@@ -52,6 +52,7 @@ export default function SVGButton(props: SVGButtonProps) {
       <Pressable
         onPressIn={onPressIn}
         onPressOut={onPressOut}
+        accessibilityHint="SVGButtonPressable"
         style={[
           styles.button,
           !props.isDesktop && { width: 32, height: 32 },

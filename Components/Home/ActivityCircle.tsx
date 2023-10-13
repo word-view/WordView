@@ -60,6 +60,7 @@ export default function ActivityCircle(props: ActivityCircleProps) {
   return (
     <View style={props.style}>
       <AnimatedPressable
+        accessibilityHint="PressableCircle"
         animatedViewStyle={{ transform: [{ scale }] }}
         pressableStyle={[
           styles.pressableCircle,

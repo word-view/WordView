@@ -7,7 +7,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "jest --detectOpenHandles"
+    "test": "jest --detectOpenHandles ./tests"
   },
   "jest": {
     "preset": "jest-expo"
@@ -17,7 +17,6 @@
     "@propero/easy-store": "^2.0.0",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/stack": "^6.3.17",
-    "@testing-library/react-native": "^12.3.0",
     "@wordview/animator": "file:libs/animator",
     "axios": "^1.5.1",
     "babel-plugin-inline-import": "^3.0.0",
@@ -47,6 +46,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@testing-library/react-native": "^12.3.0",
     "@types/jest": "^29.5.5",
     "@types/react": "~18.2.14",
     "@types/react-test-renderer": "^18.0.2",

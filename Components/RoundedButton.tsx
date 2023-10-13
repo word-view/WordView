@@ -18,6 +18,7 @@ export interface RoundedButtonProps
 export default function RoundedButton(props: RoundedButtonProps) {
   return (
     <TouchableOpacity
+      accessibilityHint="ButtonPressable"
       style={[
         styles.button,
         props.style,

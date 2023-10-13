@@ -27,12 +27,15 @@ interface AnimatedPressableProps
 
   onHoverIn: () => void;
   onHoverOut: () => void;
+
+  accessibilityHint: string;
 }
 
 export default function AnimatedPressable(props: AnimatedPressableProps) {
   return (
     <Animated.View style={props.animatedViewStyle}>
       <Pressable
+        accessibilityHint={props.accessibilityHint}
         onHoverIn={props.onHoverIn}
         onHoverOut={props.onHoverOut}
         onPress={props.onPress}

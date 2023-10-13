@@ -30,7 +30,6 @@ export function Header(
 const styles = StyleSheet.create({
   header: {
     justifyContent: "center",
-    flexDirection: "column",
     height: 50,
     width: "100%",
   },

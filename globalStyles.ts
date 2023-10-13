@@ -32,6 +32,10 @@ const globalStyles = StyleSheet.create({
     fontWeight: "400",
     letterSpacing: 0.25,
   },
+  full: {
+    width: "100%",
+    height: "100%",
+  },
 });
 
 export default globalStyles;

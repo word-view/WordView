@@ -8,6 +8,7 @@ import ResponsiveChecker from "../Components/Backend/ResponsiveChecker";
 import { ScreenProps } from "./types";
 import SVGButton from "../Components/SVG/SVGButton";
 import BackArrowIcon from "../Components/SVG/BackArrowIcon";
+import HeaderText from "../Components/Text/HeaderText";
 
 export default function Settings(scrProps: ScreenProps) {
   const isDesktop = ResponsiveChecker().isDesktop;
@@ -21,18 +22,11 @@ export default function Settings(scrProps: ScreenProps) {
       <Header isDesktop={isDesktop} color="#353535">
         <View style={styles.headerControlsView}>
           <SVGButton
-            style={{ alignSelf: "flex-start", marginLeft: 15 }}
+            style={{ marginLeft: 15 }}
             onPress={goBack}
             icon={<BackArrowIcon />}
           />
-          <Text
-            style={[
-              globalStyles.mediumUIText,
-              { fontWeight: "800", marginHorizontal: 15 },
-            ]}
-          >
-            Configurações
-          </Text>
+          <HeaderText></HeaderText>
         </View>
       </Header>
 
@@ -70,36 +64,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#353535",
     position: "relative",
   },
-  borderAvoider: {
-    marginTop: 20,
-    marginLeft: 20,
-  },
-  attentionBox1: {
-    width: "100%",
-    alignItems: "center",
-    zIndex: 20,
-    position: "absolute",
-  },
-  continueButton: {
-    alignSelf: "flex-start",
-    marginLeft: 15,
-  },
   scrollView: {
     width: "100%",
     marginTop: hp(2.5),
     alignSelf: "center",
-  },
-  sectionLabel: {
-    fontWeight: "600",
-  },
-  sectionLabelDetails: {
-    fontWeight: "400",
-    color: "#CCCCCC",
-    fontSize: 12,
-    marginBottom: 10,
-  },
-  inProgressLabel: {
-    marginLeft: 20,
-    alignSelf: "flex-start",
   },
 });

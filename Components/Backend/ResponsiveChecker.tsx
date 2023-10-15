@@ -3,15 +3,15 @@ import { Dimensions } from "react-native";
 import { testing } from "../../store/state";
 
 export default function DesktopChecker() {
+  if (testing.get()) {
+    let isDesktop = true;
+    return { isDesktop };
+  }
+
   const [windowWidth, setWindowWidth] = useState(
     Dimensions.get("window").width
   );
   const [isDesktop, setIsDesktop] = useState(windowWidth >= 900);
-
-  if (testing.get()) {
-    setIsDesktop(true);
-    return { isDesktop };
-  }
 
   useEffect(() => {
     const updateDimensions = () => {

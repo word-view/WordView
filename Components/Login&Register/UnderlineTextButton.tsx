@@ -5,16 +5,18 @@ import {
   StyleableComponent,
   TextableComponent,
 } from "../types";
+import ResponsiveChecker from "../Backend/ResponsiveChecker";
 
 export interface UnderlineTextButtonProps
   extends StyleableComponent<ViewStyle>,
     PressableComponent,
-    TextableComponent,
-    ReactiveComponent {
+    TextableComponent {
   pressableAlign: "flex-start" | "center" | "flex-end";
 }
 
 export default function UnderlineTextButton(props: UnderlineTextButtonProps) {
+  const { isDesktop } = ResponsiveChecker();
+
   return (
     <View style={[styles.container, props.style]}>
       <Pressable
@@ -22,9 +24,7 @@ export default function UnderlineTextButton(props: UnderlineTextButtonProps) {
         onPress={props.onPress}
         accessibilityHint="UnderlineTextButtonPressable"
       >
-        <Text
-          style={[styles.linkText, { fontSize: props.isDesktop ? 12 : 15 }]}
-        >
+        <Text style={[styles.linkText, { fontSize: isDesktop ? 12 : 15 }]}>
           {props.text}
         </Text>
       </Pressable>

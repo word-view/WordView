@@ -16,11 +16,10 @@ export default function Login(scrProps: ScreenProps) {
 
   return (
     <View
-      style={{
-        height: "100%",
-        flexDirection: isDesktop ? "row" : "column",
-        backgroundColor: "#353535",
-      }}
+      style={[
+        { flexDirection: isDesktop ? "row" : "column" },
+        styles.container,
+      ]}
     >
       <View
         style={[
@@ -97,7 +96,6 @@ function InputContainer({
         text="Esqueceu sua senha?"
         pressableAlign="flex-end"
         onPress={goHome} // debug
-        isDesktop={isDesktop}
       />
       <Button
         text="Entrar"
@@ -115,11 +113,17 @@ function InputContainer({
         style={{
           marginTop: isDesktop ? hp(2) : hp(3),
         }}
-        isDesktop={isDesktop}
       />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    height: "100%",
+    backgroundColor: "#353535",
+  },
+});
 
 const desktopStyles = StyleSheet.create({
   logoContainer: {

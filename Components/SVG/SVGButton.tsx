@@ -26,7 +26,7 @@ export interface SVGButtonProps
 }
 
 export default function SVGButton(props: SVGButtonProps) {
-  const isDesktop = testing.get() ? true : ResponsiveChecker().isDesktop;
+  const { isDesktop } = ResponsiveChecker();
 
   const maxOpacity = 0.12;
   const scaleValue = useRef(new Animated.Value(0.01)).current;

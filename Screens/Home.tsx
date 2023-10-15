@@ -31,7 +31,6 @@ export default function Home(scrProps: ScreenProps) {
 
         <SVGButton
           style={{ alignSelf: "flex-end", marginHorizontal: 15 }}
-          onHoverAnimationDirection="top"
           onPress={settingsButtonPress}
           isDesktop={isDesktop}
         >

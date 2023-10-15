@@ -22,9 +22,7 @@ export interface SVGButtonProps
   extends PressableComponent,
     ChildrenableComponent,
     StyleableComponent<ViewStyle>,
-    ReactiveComponent {
-  onHoverAnimationDirection?: "top" | "left";
-}
+    ReactiveComponent {}
 
 export default function SVGButton(props: SVGButtonProps) {
   const maxOpacity = 0.12;

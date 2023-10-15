@@ -29,7 +29,6 @@ export default function Lesson(scrProps: ScreenProps) {
         <View style={[styles.headerControlsView, { alignSelf: "flex-start" }]}>
           <SVGButton
             style={{ alignSelf: "flex-start", marginLeft: 15 }}
-            onHoverAnimationDirection="left"
             onPress={goBack}
             isDesktop={isDesktop}
           >

@@ -30,9 +30,8 @@ export default function Lesson(scrProps: ScreenProps) {
           <SVGButton
             style={{ alignSelf: "flex-start", marginLeft: 15 }}
             onPress={goBack}
-          >
-            <BackArrowIcon />
-          </SVGButton>
+            icon={<BackArrowIcon />}
+          />
         </View>
         <View style={[styles.headerControlsView, { alignSelf: "flex-end" }]}>
           <Text style={[globalStyles.mediumUIText, styles.timer]}>5:00</Text>

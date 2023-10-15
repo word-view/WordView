@@ -10,10 +10,10 @@ import { Speed, animateTiming } from "@wordview/animator";
 import {
   ChildrenableComponent,
   PressableComponent,
-  ReactiveComponent,
   StyleableComponent,
 } from "../types";
 import ResponsiveChecker from "../Backend/ResponsiveChecker";
+import { testing } from "../../store/state";
 
 function wait(ms: number) {
   return new Promise((res) => setTimeout(res, ms));
@@ -21,11 +21,12 @@ function wait(ms: number) {
 
 export interface SVGButtonProps
   extends PressableComponent,
-    ChildrenableComponent,
-    StyleableComponent<ViewStyle> {}
+    StyleableComponent<ViewStyle> {
+  icon?: React.JSX.Element;
+}
 
 export default function SVGButton(props: SVGButtonProps) {
-  const isDesktop = ResponsiveChecker().isDesktop;
+  const isDesktop = testing.get() ? true : ResponsiveChecker().isDesktop;
 
   const maxOpacity = 0.12;
   const scaleValue = useRef(new Animated.Value(0.01)).current;
@@ -63,7 +64,7 @@ export default function SVGButton(props: SVGButtonProps) {
           props.onPress?.();
         }}
       >
-        {props.children}
+        {props.icon}
 
         <Animated.View
           style={[

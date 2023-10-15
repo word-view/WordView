@@ -26,7 +26,7 @@ export default function Settings(scrProps: ScreenProps) {
             onPress={goBack}
             icon={<BackArrowIcon />}
           />
-          <HeaderText></HeaderText>
+          <HeaderText>Configurações</HeaderText>
         </View>
       </Header>
 

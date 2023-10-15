@@ -13,6 +13,7 @@ import {
   ReactiveComponent,
   StyleableComponent,
 } from "../types";
+import ResponsiveChecker from "../Backend/ResponsiveChecker";
 
 function wait(ms: number) {
   return new Promise((res) => setTimeout(res, ms));
@@ -21,10 +22,11 @@ function wait(ms: number) {
 export interface SVGButtonProps
   extends PressableComponent,
     ChildrenableComponent,
-    StyleableComponent<ViewStyle>,
-    ReactiveComponent {}
+    StyleableComponent<ViewStyle> {}
 
 export default function SVGButton(props: SVGButtonProps) {
+  const isDesktop = ResponsiveChecker().isDesktop;
+
   const maxOpacity = 0.12;
   const scaleValue = useRef(new Animated.Value(0.01)).current;
   const opacityValue = useRef(new Animated.Value(maxOpacity)).current;
@@ -53,7 +55,7 @@ export default function SVGButton(props: SVGButtonProps) {
         accessibilityHint="SVGButtonPressable"
         style={[
           styles.button,
-          !props.isDesktop && { width: 32, height: 32 },
+          !isDesktop && { width: 32, height: 32 },
           props.style,
         ]}
         onPress={async () => {

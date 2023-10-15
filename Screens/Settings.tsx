@@ -23,7 +23,6 @@ export default function Settings(scrProps: ScreenProps) {
           <SVGButton
             style={{ alignSelf: "flex-start", marginLeft: 15 }}
             onPress={goBack}
-            isDesktop={isDesktop}
           >
             <BackArrowIcon />
           </SVGButton>

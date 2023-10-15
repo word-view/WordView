@@ -32,7 +32,6 @@ export default function Home(scrProps: ScreenProps) {
         <SVGButton
           style={{ alignSelf: "flex-end", marginHorizontal: 15 }}
           onPress={settingsButtonPress}
-          isDesktop={isDesktop}
         >
           <SettingsIcon />
         </SVGButton>

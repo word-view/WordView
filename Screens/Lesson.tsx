@@ -16,7 +16,7 @@ export default function Lesson(scrProps: ScreenProps) {
   let lesson = currentLesson.get();
 
   useEffect(() => {
-    if (!testing.get()) setPageTitle(lesson.title, scrProps.navigation);
+    setPageTitle(lesson.title, scrProps.navigation);
   });
 
   function goBack() {
@@ -50,6 +50,7 @@ function randomColor() {
 }
 
 function setPageTitle(title: string, nav: any) {
+  if (testing.get()) return;
   nav.setOptions({ title: title });
 }
 

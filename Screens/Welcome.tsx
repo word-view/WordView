@@ -7,7 +7,7 @@ import {
 } from "react-native-responsive-screen";
 import { WelcomeScreenProps } from "./types";
 import ResponsiveChecker from "../Components/Backend/ResponsiveChecker";
-import { Button } from "react-native-paper";
+import Button from "../Components/Buttons/Button";
 
 export default function Welcome({
   navigation,
@@ -23,51 +23,29 @@ export default function Welcome({
     <View style={styles.container} onLayout={onLayoutRootView}>
       <Image style={styles.wvIcon} source={images.wvIcon} />
       <Image style={styles.wvTitle} source={images.wvTitle} />
+
       <Text style={styles.wvText}>
         A maneira inteligente de {"\n"} aprender idiomas
       </Text>
 
       <Button
-        mode="elevated"
-        textColor="white"
-        buttonColor="#8951FF"
+        color={{ text: "white", button: "#8951FF" }}
         onPress={() => navigation.navigate("PickLanguage")}
-        style={{ marginTop: hp(15), borderRadius: 5 }}
-        labelStyle={isDesktop && { fontSize: 16 }}
-        contentStyle={[
-          styles.button,
-          isDesktop ? desktopStyles.button : mobileStyles.button,
-        ]}
+        marginTop={15}
       >
         Começar
       </Button>
-
       <Button
-        mode="elevated"
-        buttonColor="#5171ff"
-        textColor="white"
+        color={{ text: "white", button: "#5171ff" }}
         onPress={() => navigation.navigate("PickLanguage")}
-        style={{ marginTop: hp(2), borderRadius: 5 }}
-        labelStyle={isDesktop && { fontSize: 16 }}
-        contentStyle={[
-          styles.button,
-          isDesktop ? desktopStyles.button : mobileStyles.button,
-        ]}
+        marginTop={2}
       >
         Testar sem uma conta
       </Button>
-
       <Button
-        mode="elevated"
-        buttonColor="white"
-        textColor="black"
+        color={{ text: "black", button: "white" }}
         onPress={() => navigation.navigate("Login")}
-        style={{ marginTop: hp(2), borderRadius: 5 }}
-        labelStyle={isDesktop && { fontSize: 16 }}
-        contentStyle={[
-          styles.button,
-          isDesktop ? desktopStyles.button : mobileStyles.button,
-        ]}
+        marginTop={2}
       >
         Já tenho uma conta
       </Button>

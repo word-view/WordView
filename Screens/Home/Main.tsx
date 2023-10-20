@@ -3,14 +3,7 @@ import { StyleSheet, View } from "react-native";
 import ResponsiveChecker from "../../Components/Backend/ResponsiveChecker";
 import { ScreenProps } from "../types";
 import { ScrollView } from "react-native-gesture-handler";
-import {
-  Appbar,
-  Avatar,
-  Button,
-  IconButton,
-  Text,
-  TouchableRipple,
-} from "react-native-paper";
+import { Appbar, Avatar, Text, TouchableRipple } from "react-native-paper";
 import globalStyles from "../../globalStyles";
 import {
   widthPercentageToDP as wp,

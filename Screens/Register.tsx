@@ -2,8 +2,6 @@ import { View, Image, StyleSheet } from "react-native";
 import React, { useEffect } from "react";
 import images from "../images";
 import globalStyles from "../globalStyles";
-import UnderlineTextButton from "../Components/Login&Register/UnderlineTextButton";
-import CredentialsInput from "../Components/Login&Register/CredentialsInput";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { ScreenProps } from "./types";
 import ResponsiveChecker from "../Components/Backend/ResponsiveChecker";

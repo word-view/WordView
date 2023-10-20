@@ -1,11 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import React, { useEffect } from "react";
-import { Header } from "../../Components/Home/Header";
 import { ScreenProps } from "../types";
 import ResponsiveChecker from "../../Components/Backend/ResponsiveChecker";
-import SVGButton from "../../Components/SVG/SVGButton";
-import BackArrowIcon from "../../Components/SVG/BackArrowIcon";
-import globalStyles from "../../globalStyles";
 import { currentLesson } from "../../store/lesson";
 import { testing } from "../../store/state";
 import { Icon, Text } from "react-native-paper";
@@ -54,25 +50,6 @@ function setPageTitle(title: string, nav: any) {
 }
 
 const styles = StyleSheet.create({
-  timer: {
-    fontWeight: "600",
-    marginHorizontal: 15,
-    alignSelf: "center",
-  },
-  headerControlsView: {
-    flexDirection: "row",
-    position: "absolute",
-    flex: 1,
-  },
-  goBackButton: {
-    alignSelf: "center",
-    marginLeft: 15,
-  },
-  timeText: {
-    fontWeight: "500",
-    alignSelf: "center",
-    marginRight: 15,
-  },
   container: {
     flex: 1,
     position: "relative",

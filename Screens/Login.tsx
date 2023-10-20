@@ -1,6 +1,5 @@
-import { View, Image, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
-import images from "../images";
 import globalStyles from "../globalStyles";
 import { Button, TextInput } from "react-native-paper";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";

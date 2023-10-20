@@ -2,7 +2,7 @@ import { StyleSheet, View } from "react-native";
 import { ScreenProps } from "./types";
 import Main from "./Home/Main";
 import Settings from "./Home/Settings";
-import WVLogo from "../Components/Home/WVLogo";
+import WVLogo from "../Components/WVLogo";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { CombinedDarkTheme } from "../theme";

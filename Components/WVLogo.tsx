@@ -1,5 +1,5 @@
-import images from "../../images";
-import ResponsiveChecker from "../Backend/ResponsiveChecker";
+import images from "../images";
+import ResponsiveChecker from "./Backend/ResponsiveChecker";
 import { Image, StyleSheet } from "react-native";
 
 export default function WVLogo() {

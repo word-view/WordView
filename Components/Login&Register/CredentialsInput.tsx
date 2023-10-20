@@ -1,7 +1,11 @@
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Input } from "react-native-elements";
 import { StyleableComponent } from "../types";
-import { useState } from "react";
+import {
+  widthPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from "react-native-responsive-screen";
+import DesktopChecker from "../Backend/ResponsiveChecker";
 
 export interface CredentialsInputProps extends StyleableComponent<ViewStyle> {
   placeholder: string;
@@ -13,12 +17,13 @@ export interface CredentialsInputProps extends StyleableComponent<ViewStyle> {
 }
 
 export default function CredentialsInput(props: CredentialsInputProps) {
+  const { isDesktop } = DesktopChecker();
   return (
     <View style={props.style}>
       <Input
         style={[styles.input]}
         placeholderTextColor={props.placeholderTextColor}
-        containerStyle={styles.inputContainer}
+        containerStyle={{ width: isDesktop ? wp(30) : wp(100) }}
         inputContainerStyle={{ borderBottomWidth: 0 }}
         placeholder={props.placeholder}
         label={props.label}
@@ -47,9 +52,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-  },
-  inputContainer: {
-    width: 420,
   },
   inputLabel: {
     fontSize: 18,

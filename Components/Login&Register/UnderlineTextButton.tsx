@@ -1,11 +1,11 @@
 import { Pressable, StyleSheet, Text, View, ViewStyle } from "react-native";
 import {
   PressableComponent,
-  ReactiveComponent,
   StyleableComponent,
   TextableComponent,
 } from "../types";
 import ResponsiveChecker from "../Backend/ResponsiveChecker";
+import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 
 export interface UnderlineTextButtonProps
   extends StyleableComponent<ViewStyle>,
@@ -16,9 +16,14 @@ export interface UnderlineTextButtonProps
 
 export default function UnderlineTextButton(props: UnderlineTextButtonProps) {
   const { isDesktop } = ResponsiveChecker();
-
   return (
-    <View style={[styles.container, props.style]}>
+    <View
+      style={[
+        styles.container,
+        { width: isDesktop ? wp(30) : wp(100) },
+        props.style,
+      ]}
+    >
       <Pressable
         style={{ alignSelf: props.pressableAlign }}
         onPress={props.onPress}
@@ -34,7 +39,6 @@ export default function UnderlineTextButton(props: UnderlineTextButtonProps) {
 
 const styles = StyleSheet.create({
   container: {
-    width: 400,
     alignSelf: "center",
   },
   linkText: {

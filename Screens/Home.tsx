@@ -1,58 +1,63 @@
-import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
-import { Header } from "../Components/Home/Header";
-import ResponsiveChecker from "../Components/Backend/ResponsiveChecker";
+import { StyleSheet, View } from "react-native";
 import { ScreenProps } from "./types";
-import SVGButton from "../Components/SVG/SVGButton";
-import SettingsIcon from "../Components/SVG/SettingsIcon";
-import { Lesson, getLessons } from "../modules/api";
-import SectionLabel from "../Components/Text/SectionLabel";
-import SectionText from "../Components/Text/SectionText";
-import LessonsScroll from "../Components/Home/LessonsScroll";
-import ScreenScroll from "../Components/Home/ScreenScroll";
+import Main from "./Home/Main";
+import Settings from "./Home/Settings";
 import WVLogo from "../Components/Home/WVLogo";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import { CombinedDarkTheme } from "../theme";
+import { useEffect } from "react";
+import Lesson from "./Home/Lesson";
+
+const Navigator = createStackNavigator().Navigator;
+const Screen = createStackNavigator().Screen;
 
 export default function Home(scrProps: ScreenProps) {
-  const isDesktop = ResponsiveChecker().isDesktop;
+  useEffect(() => {
+    scrProps.navigation.addListener(
+      "beforeRemove",
+      (e: any) => e.preventDefault() // ask to close the app
+    );
+  });
 
-  const [suggestedLessons, setSuggestedLessons] = useState([] as Lesson[]);
-  getLessons("starter").then((data) => setSuggestedLessons(data));
-
-  function settingsButtonPress() {
-    scrProps.navigation.navigate("Settings");
-  }
+  // const [suggestedLessons, setSuggestedLessons] = useState([] as Lesson[]);
+  // getLessons("starter").then((data) => setSuggestedLessons(data));
 
   return (
-    <>
-      <Header isDesktop={isDesktop} color="#353535">
-        <View style={styles.wvTitleHolder}>
-          <WVLogo />
-        </View>
-
-        <SVGButton
-          style={{ alignSelf: "flex-end", marginHorizontal: 15 }}
-          onPress={settingsButtonPress}
-          icon={<SettingsIcon />}
+    <NavigationContainer independent={true} theme={CombinedDarkTheme}>
+      <Navigator
+        initialRouteName="Welcome"
+        screenOptions={{
+          animationEnabled: true,
+          headerStyle: {
+            borderBottomColor: "#2C2831",
+            shadowColor: "#2C2831",
+          },
+          headerTitleStyle: {
+            fontFamily: "OpenSansSBold",
+          },
+        }}
+      >
+        <Screen
+          options={{
+            title: "",
+            headerLeft: () => (
+              <View style={styles.wvTitleHolder}>
+                <WVLogo />
+              </View>
+            ),
+          }}
+          name="Home"
+          component={Main}
         />
-      </Header>
-      <ScreenScroll>
-        <SectionLabel>Aulas sugeridas</SectionLabel>
-        <SectionText>
-          Aulas simples para você entender como o app funciona
-        </SectionText>
-
-        <LessonsScroll lessons={suggestedLessons} nav={scrProps.navigation} />
-      </ScreenScroll>
-    </>
+        <Screen name="Settings" component={Settings} />
+        <Screen name="Lesson" options={{ title: "" }} component={Lesson} />
+      </Navigator>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#353535",
-    position: "relative",
-  },
   wvTitleHolder: {
     flexDirection: "row",
     alignSelf: "flex-start",

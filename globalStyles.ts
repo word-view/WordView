@@ -1,9 +1,10 @@
 import { StyleSheet } from "react-native";
+import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 
 const globalStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#353535",
+    backgroundColor: "#2C2831",
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",

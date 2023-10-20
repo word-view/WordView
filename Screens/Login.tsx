@@ -1,39 +1,77 @@
-import { View, Image, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import { View, Image, StyleSheet, ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
 import images from "../images";
 import globalStyles from "../globalStyles";
-import UnderlineTextButton from "../Components/Login&Register/UnderlineTextButton";
-import Button from "../Components/Button";
-import CredentialsInput from "../Components/Login&Register/CredentialsInput";
+import { Button, TextInput } from "react-native-paper";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { ScreenProps } from "./types";
 import ResponsiveChecker from "../Components/Backend/ResponsiveChecker";
 import { ReactiveComponent } from "../Components/types";
 import { login } from "../modules/api";
+import { widthPercentageToDP as wp } from "react-native-responsive-screen";
+import { Text } from "react-native-paper";
 
 export default function Login(scrProps: ScreenProps) {
   const isDesktop = ResponsiveChecker().isDesktop;
 
+  useEffect(() => {
+    scrProps.navigation.setOptions({ title: "" });
+  });
+
   return (
-    <View
-      style={[
-        { flexDirection: isDesktop ? "row" : "column" },
-        styles.container,
-      ]}
-    >
+    <ScrollView contentContainerStyle={{ alignItems: "center" }}>
       <View
         style={[
           globalStyles.container,
-          { width: isDesktop ? "50%" : "100%" },
-          isDesktop ? desktopStyles.logoContainer : mobileStyles.logoContainer,
+          { marginBottom: hp(10), marginTop: hp(2.5) },
         ]}
       >
-        <Image style={globalStyles.wvIcon} source={images.wvIcon} />
-        <Image style={globalStyles.wvTitle} source={images.wvTitle} />
+        <Text variant="displaySmall">Bem vindo de volta!</Text>
       </View>
 
-      <InputContainer isDesktop={isDesktop} navigation={scrProps.navigation} />
-    </View>
+      <View
+        style={[globalStyles.container, { width: isDesktop ? wp(25) : wp(90) }]}
+      >
+        <Button
+          icon="email"
+          mode="elevated"
+          buttonColor="#8951FF"
+          textColor="white"
+          style={{
+            width: "90%",
+            alignSelf: "center",
+            marginBottom: hp(2),
+          }}
+          onPress={() => console.log("Pressed")}
+        >
+          Login usando o email
+        </Button>
+        <Button
+          icon="google"
+          mode="elevated"
+          buttonColor="white"
+          textColor="black"
+          style={{
+            width: "90%",
+            alignSelf: "center",
+          }}
+          onPress={() => console.log("Pressed")}
+        >
+          Login com o Google
+        </Button>
+
+        <Button
+          mode="text"
+          onPress={() => {}}
+          style={{
+            marginTop: isDesktop ? hp(2) : hp(3),
+            alignSelf: "center",
+          }}
+        >
+          Ou crie sua conta
+        </Button>
+      </View>
+    </ScrollView>
   );
 }
 
@@ -52,8 +90,6 @@ function InputContainer({
 
     if (response.status == 201) {
       navigation.navigate("Home");
-    } else {
-      showError(response.data);
     }
   }
 
@@ -63,57 +99,67 @@ function InputContainer({
   function goRegister() {
     navigation.navigate("Register");
   }
-
-  function showError(message: string) {}
-
   return (
     <View
-      style={[
-        globalStyles.container,
-        { width: isDesktop ? "50%" : "100%" },
-        isDesktop ? desktopStyles.logoContainer : mobileStyles.inputContainer,
-      ]}
+      style={[globalStyles.container, { width: isDesktop ? "50%" : "100%" }]}
     >
-      <CredentialsInput
-        placeholder="email@email.com"
-        placeholderTextColor="#CECECE"
+      <TextInput
         label="Email"
-        labelColor="white"
+        mode="flat"
+        style={{ backgroundColor: "#4C4850" }}
+        contentStyle={[
+          styles.button,
+          isDesktop ? desktopStyles.button : mobileStyles.button,
+        ]}
         onChangeText={handleEmailChange}
       />
-      <CredentialsInput
-        placeholder="********"
-        placeholderTextColor="#CECECE"
+      <TextInput
         label="Senha"
-        labelColor="white"
-        secure={true}
+        mode="flat"
+        secureTextEntry={true}
         style={{
-          marginTop: isDesktop ? hp(5) : hp(1.5),
+          backgroundColor: "#4C4850",
+          marginTop: hp(5),
         }}
+        contentStyle={[
+          styles.button,
+          isDesktop ? desktopStyles.button : mobileStyles.button,
+        ]}
         onChangeText={handlePasswordChange}
       />
-      <UnderlineTextButton
-        text="Esqueceu sua senha?"
-        pressableAlign="flex-end"
-        onPress={goHome} // debug
-      />
+      <View style={isDesktop ? desktopStyles.button : mobileStyles.button}>
+        <Button
+          mode="text"
+          onPress={goHome}
+          style={{ marginTop: hp(2), alignSelf: "flex-end" }}
+        >
+          Esqueceu sua senha?
+        </Button>
+      </View>
+
       <Button
-        text="Entrar"
-        color="#8951FF"
+        mode="elevated"
         textColor="white"
-        style={{
-          marginTop: isDesktop ? hp(7.5) : hp(4),
-        }}
+        buttonColor="#8951FF"
         onPress={confirmLogin}
-      />
-      <UnderlineTextButton
-        text="Crie sua conta"
-        pressableAlign="center"
+        style={{ marginTop: hp(10), borderRadius: 5 }}
+        labelStyle={isDesktop && { fontSize: 16 }}
+        contentStyle={[
+          styles.button,
+          isDesktop ? desktopStyles.button : mobileStyles.button,
+        ]}
+      >
+        Entrar
+      </Button>
+      <Button
+        mode="text"
         onPress={goRegister}
         style={{
           marginTop: isDesktop ? hp(2) : hp(3),
         }}
-      />
+      >
+        Crie sua conta
+      </Button>
     </View>
   );
 }
@@ -121,7 +167,10 @@ function InputContainer({
 const styles = StyleSheet.create({
   container: {
     height: "100%",
-    backgroundColor: "#353535",
+    backgroundColor: "#2C2831",
+  },
+  button: {
+    height: 60,
   },
 });
 
@@ -132,9 +181,15 @@ const desktopStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  button: {
+    width: wp(30),
+  },
 });
 
 const mobileStyles = StyleSheet.create({
+  button: {
+    width: wp(90),
+  },
   logoContainer: {
     position: "absolute",
     height: 150,

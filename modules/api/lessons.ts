@@ -11,7 +11,7 @@ export interface Lesson {
 export async function getLessons(difficulty: Difficulty) {
   try {
     const response = await fetch(
-      `http://192.168.1.100:8080/api/v1/lesson/search?diffi=${difficulty}`
+      `http://192.168.1.101:8080/api/v1/lesson/search?diffi=${difficulty}`
     );
     return await response.json();
   } catch (err) {

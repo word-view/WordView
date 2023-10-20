@@ -1,17 +1,22 @@
 import { View, Image, StyleSheet } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import images from "../images";
 import globalStyles from "../globalStyles";
 import UnderlineTextButton from "../Components/Login&Register/UnderlineTextButton";
-import Button from "../Components/Button";
 import CredentialsInput from "../Components/Login&Register/CredentialsInput";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { ScreenProps } from "./types";
 import ResponsiveChecker from "../Components/Backend/ResponsiveChecker";
 import { ReactiveComponent } from "../Components/types";
+import { Button, TextInput } from "react-native-paper";
+import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 
 export default function Register(scrProps: ScreenProps) {
   const isDesktop = ResponsiveChecker().isDesktop;
+
+  useEffect(() => {
+    scrProps.navigation.setOptions({ title: "" });
+  });
 
   return (
     <View
@@ -52,44 +57,66 @@ function InputContainer({
         isDesktop ? desktopStyles.logoContainer : mobileStyles.inputContainer,
       ]}
     >
-      <CredentialsInput
-        placeholder="email@email.com"
-        placeholderTextColor="#CECECE"
+      <TextInput
         label="Email"
-        labelColor="white"
+        mode="flat"
+        style={{
+          backgroundColor: "#4C4850",
+          marginTop: hp(2.5),
+        }}
+        contentStyle={[
+          styles.button,
+          isDesktop ? desktopStyles.button : mobileStyles.button,
+        ]}
       />
-      <CredentialsInput
-        placeholder="********"
-        placeholderTextColor="#CECECE"
+      <TextInput
         label="Senha"
-        labelColor="white"
-        secure={true}
+        mode="flat"
+        secureTextEntry={true}
         style={{
-          marginTop: isDesktop ? hp(5) : hp(1.5),
+          backgroundColor: "#4C4850",
+          marginTop: hp(2.5),
         }}
+        contentStyle={[
+          styles.button,
+          isDesktop ? desktopStyles.button : mobileStyles.button,
+        ]}
       />
-      <CredentialsInput
-        placeholder="********"
-        placeholderTextColor="#CECECE"
+      <TextInput
         label="Repita a senha"
-        labelColor="white"
-        secure={true}
+        mode="flat"
+        secureTextEntry={true}
         style={{
-          marginTop: isDesktop ? hp(5) : hp(1.5),
+          backgroundColor: "#4C4850",
+          marginTop: hp(2.5),
         }}
+        contentStyle={[
+          styles.button,
+          isDesktop ? desktopStyles.button : mobileStyles.button,
+        ]}
       />
       <Button
-        text="Criar"
-        color="#8951FF"
+        mode="elevated"
         textColor="white"
-        style={{ marginTop: 50 }}
-      />
-      <UnderlineTextButton
-        text="Entre na sua conta"
-        pressableAlign="center"
-        style={{ marginTop: 25 }}
+        buttonColor="#8951FF"
+        style={{ marginTop: hp(10), borderRadius: 5 }}
+        labelStyle={isDesktop && { fontSize: 16 }}
+        contentStyle={[
+          styles.button,
+          isDesktop ? desktopStyles.button : mobileStyles.button,
+        ]}
+      >
+        Entrar
+      </Button>
+      <Button
+        mode="text"
         onPress={goLogin}
-      />
+        style={{
+          marginTop: isDesktop ? hp(2) : hp(3),
+        }}
+      >
+        Entre na sua conta
+      </Button>
     </View>
   );
 }
@@ -97,7 +124,10 @@ function InputContainer({
 const styles = StyleSheet.create({
   background: {
     height: "100%",
-    backgroundColor: "#353535",
+    backgroundColor: "#2C2831",
+  },
+  button: {
+    height: 60,
   },
 });
 
@@ -107,6 +137,9 @@ const desktopStyles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
+  },
+  button: {
+    width: wp(30),
   },
 });
 
@@ -120,5 +153,8 @@ const mobileStyles = StyleSheet.create({
   inputContainer: {
     position: "absolute",
     paddingTop: hp(32.5),
+  },
+  button: {
+    width: wp(90),
   },
 });

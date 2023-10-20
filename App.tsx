@@ -1,6 +1,5 @@
 import React from "react";
 import * as SplashScreen from "expo-splash-screen";
-import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Welcome from "./Screens/Welcome";
 import Login from "./Screens/Login";
@@ -9,8 +8,10 @@ import PickLanguage from "./Screens/PickLanguage";
 import Home from "./Screens/Home";
 import FontLoader from "./Components/Backend/FontLoader";
 import { StatusBar } from "expo-status-bar";
-import Settings from "./Screens/Settings";
-import Lesson from "./Screens/Lesson";
+import { PaperProvider } from "react-native-paper";
+import { NavigationContainer } from "@react-navigation/native";
+import { StyleSheet } from "react-native";
+import { CombinedDarkTheme } from "./theme";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -23,13 +24,19 @@ export default function App() {
   if (!fontsLoaded) return null;
 
   return (
-    <>
-      <NavigationContainer>
+    <PaperProvider theme={CombinedDarkTheme}>
+      <NavigationContainer theme={CombinedDarkTheme}>
         <Navigator
           initialRouteName="Welcome"
           screenOptions={{
             animationEnabled: true,
-            headerShown: false,
+            headerStyle: {
+              borderBottomColor: "#2C2831",
+              shadowColor: "#2C2831",
+            },
+            headerTitleStyle: {
+              fontFamily: "OpenSansSBold",
+            },
           }}
         >
           <Screen name="Welcome" options={{ title: "Bem vindo ao WordView!" }}>
@@ -50,26 +57,21 @@ export default function App() {
           <Screen
             name="PickLanguage"
             component={PickLanguage}
-            options={{ title: "Que idioma você quer aprender?" }}
+            options={{ title: "Selecione um idioma" }}
           />
           <Screen
             name="Home"
             component={Home}
-            options={{ title: "WordView" }}
-          />
-          <Screen
-            name="Settings"
-            component={Settings}
-            options={{ title: "Configurações" }}
-          />
-          <Screen
-            name="Lesson"
-            component={Lesson}
-            options={{ title: "Lesson" }}
+            options={{
+              headerShown: false,
+              title: "",
+            }}
           />
         </Navigator>
       </NavigationContainer>
       <StatusBar style="light" />
-    </>
+    </PaperProvider>
   );
 }
+
+const styles = StyleSheet.create({});

@@ -30,7 +30,7 @@ export default function Welcome({
 
       <Button
         color={{ text: "white", button: "#8951FF" }}
-        onPress={() => navigation.navigate("PickLanguage")}
+        onPress={() => navigation.navigate("Register")}
         marginTop={15}
       >
         Começar

@@ -20,9 +20,6 @@ export default function Home(scrProps: ScreenProps) {
     );
   });
 
-  // const [suggestedLessons, setSuggestedLessons] = useState([] as Lesson[]);
-  // getLessons("starter").then((data) => setSuggestedLessons(data));
-
   return (
     <NavigationContainer independent={true} theme={CombinedDarkTheme}>
       <Navigator

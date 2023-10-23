@@ -22,9 +22,6 @@ export default function Main(scrProps: ScreenProps) {
     ),
   });
 
-  // const [suggestedLessons, setSuggestedLessons] = useState([] as Lesson[]);
-  // getLessons("starter").then((data) => setSuggestedLessons(data));
-
   return (
     <ScrollView>
       <View style={[globalStyles.container, styles.recomendedSection]}>
@@ -36,7 +33,29 @@ export default function Main(scrProps: ScreenProps) {
         <HorizontalScrollView>
           <Lesson
             img={images.cac}
-            text={"Plants"}
+            text="Plants"
+            style={{ marginTop: hp(1) }}
+            onPress={() => scrProps.navigation.navigate("Lesson")}
+          />
+        </HorizontalScrollView>
+      </View>
+
+      <View
+        style={[
+          {
+            marginTop: hp(3),
+            alignItems: "flex-start",
+            paddingLeft: wp(2.5),
+          },
+        ]}
+      >
+        <Text variant="titleLarge">Natureza</Text>
+
+        <HorizontalScrollView>
+          <Lesson
+            img={images.cac}
+            text="Plants"
+            style={{ marginTop: hp(1) }}
             onPress={() => scrProps.navigation.navigate("Lesson")}
           />
         </HorizontalScrollView>
@@ -51,5 +70,14 @@ const styles = StyleSheet.create({
     padding: 5,
     paddingLeft: wp(2.5),
     marginTop: hp(2.5),
+    backgroundColor: "#2C2831FF",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
 });

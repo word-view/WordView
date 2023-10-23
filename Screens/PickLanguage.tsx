@@ -19,6 +19,16 @@ export default function PickLanguage(scrProps: ScreenProps) {
     if (isDesktop) setPageTitle("", scrProps.navigation);
   });
 
+  useEffect(() => {
+    scrProps.navigation.addListener("beforeRemove", (e: any) =>
+      e.preventDefault()
+    );
+  });
+
+  scrProps.navigation.setOptions({
+    headerLeft: null,
+  });
+
   return (
     <ScrollView style={!isDesktop && { backgroundColor: "#2C2831" }}>
       <View

@@ -12,6 +12,7 @@ import { PaperProvider } from "react-native-paper";
 import { NavigationContainer } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 import { CombinedDarkTheme } from "./theme";
+import PickUsername from "./Screens/PickUsername";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -52,12 +53,17 @@ export default function App() {
           <Screen
             name="Register"
             component={Register}
-            options={{ title: "Criar sua conta" }}
+            options={{ title: "Criar uma conta" }}
           />
           <Screen
             name="PickLanguage"
             component={PickLanguage}
             options={{ title: "Selecione um idioma" }}
+          />
+          <Screen
+            name="PickUsername"
+            component={PickUsername}
+            options={{ title: "Escolha um nome de usuário" }}
           />
           <Screen
             name="Home"

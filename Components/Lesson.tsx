@@ -1,4 +1,10 @@
-import { StyleSheet, View } from "react-native";
+import {
+  PressableStateCallbackType,
+  StyleProp,
+  StyleSheet,
+  View,
+  ViewStyle,
+} from "react-native";
 import { Avatar, TouchableRipple, Text } from "react-native-paper";
 import { AvatarImageSource } from "react-native-paper/lib/typescript/components/Avatar/AvatarImage";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
@@ -6,6 +12,8 @@ import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 interface LessonProps {
   img: AvatarImageSource;
   text: String;
+
+  style?: StyleProp<ViewStyle>;
   onPress: () => void;
 }
 
@@ -15,7 +23,7 @@ export default function Lesson(props: LessonProps) {
       onPress={props.onPress}
       rippleColor="#CAC4D04D"
       borderless={true}
-      style={{ borderRadius: 5, padding: 10, marginTop: hp(2) }}
+      style={[{ borderRadius: 5, padding: 10 }, props.style]}
     >
       <View style={{ alignItems: "center" }}>
         <Avatar.Image

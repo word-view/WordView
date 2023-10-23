@@ -9,6 +9,7 @@ import ResponsiveChecker from "../Backend/ResponsiveChecker";
 interface DefaultButtonProps {
   children: any;
   icon?: string;
+  disabled?: boolean;
   color: {
     text: string;
     button: string;
@@ -24,6 +25,7 @@ export default function DefaultButton(props: DefaultButtonProps) {
   return (
     <Button
       mode="elevated"
+      disabled={props.disabled}
       textColor={props.color.text}
       icon={props.icon}
       buttonColor={props.color.button}

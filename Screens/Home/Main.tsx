@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import { ScreenProps } from "../types";
 import { ScrollView } from "react-native-gesture-handler";
-import { Appbar, Text } from "react-native-paper";
+import { Appbar, Button, Dialog, Portal, Text } from "react-native-paper";
 import globalStyles from "../../globalStyles";
 import {
   widthPercentageToDP as wp,
@@ -15,10 +15,16 @@ import Lesson from "../../Components/Lesson";
 export default function Main(scrProps: ScreenProps) {
   scrProps.navigation.setOptions({
     headerRight: () => (
-      <Appbar.Action
-        icon="cog"
-        onPress={() => scrProps.navigation.navigate("Settings")}
-      />
+      <View style={{ flexDirection: "row" }}>
+        <Appbar.Action
+          icon="account"
+          onPress={() => scrProps.navigation.navigate("AccountSettings")}
+        />
+        <Appbar.Action
+          icon="cog"
+          onPress={() => scrProps.navigation.navigate("Settings")}
+        />
+      </View>
     ),
   });
 

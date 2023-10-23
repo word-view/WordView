@@ -5,7 +5,6 @@ import Welcome from "./Screens/Welcome";
 import Login from "./Screens/Login";
 import Register from "./Screens/Register";
 import PickLanguage from "./Screens/PickLanguage";
-import Home from "./Screens/Home";
 import FontLoader from "./Components/Backend/FontLoader";
 import { StatusBar } from "expo-status-bar";
 import { PaperProvider } from "react-native-paper";
@@ -13,6 +12,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 import { CombinedDarkTheme } from "./theme";
 import PickUsername from "./Screens/PickUsername";
+import Home from "./Screens/Home";
 
 SplashScreen.preventAutoHideAsync();
 

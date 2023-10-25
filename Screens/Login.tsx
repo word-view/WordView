@@ -1,68 +1,71 @@
 import { View, ScrollView, StyleSheet } from "react-native";
-import React, { useEffect } from "react";
+import React from "react";
 import globalStyles from "../globalStyles";
 import { Button, Text } from "react-native-paper";
-import { ScreenProps } from "./types";
-import ResponsiveChecker from "../Components/Backend/ResponsiveChecker";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import AccountLoginButton from "../Components/Buttons/AccountLoginButton";
+import { NavigationScreen } from "./Components/NavigationScreen";
+import { withNavigation } from "react-navigation";
 
-export default function Login(scrProps: ScreenProps) {
-  const isDesktop = ResponsiveChecker().isDesktop;
+class Login extends NavigationScreen {
+  componentDidMount() {
+    this.setTitle("");
+  }
 
-  useEffect(() => {
-    scrProps.navigation.setOptions({ title: "" });
-  });
-
-  return (
-    <ScrollView
-      contentContainerStyle={{ alignItems: "center" }}
-      style={!isDesktop && { backgroundColor: "#2C2831" }}
-    >
-      <View
-        style={[{ marginTop: hp(5) }, isDesktop && styles.buttonsContainer]}
+  render() {
+    return (
+      <ScrollView
+        contentContainerStyle={{ alignItems: "center" }}
+        style={!this.desktop && { backgroundColor: "#2C2831" }}
       >
-        <View style={[globalStyles.container, { marginBottom: hp(10) }]}>
-          <Text variant="displaySmall">Bem vindo de volta!</Text>
-        </View>
-
         <View
           style={[
-            globalStyles.container,
-            { width: isDesktop ? wp(25) : wp(90) },
+            { marginTop: hp(5) },
+            this.desktop && styles.buttonsContainer,
           ]}
         >
-          <AccountLoginButton
-            icon="email"
-            color={{ text: "white", button: "#8951FF" }}
-            onPress={() => {}}
-          >
-            Login por Email
-          </AccountLoginButton>
+          <View style={[globalStyles.container, { marginBottom: hp(10) }]}>
+            <Text variant="displaySmall">Bem vindo de volta!</Text>
+          </View>
 
-          <AccountLoginButton
-            icon="google"
-            color={{ text: "black", button: "white" }}
-            marginTop={2}
-            onPress={() => {}}
+          <View
+            style={[
+              globalStyles.container,
+              { width: this.desktop ? wp(25) : wp(90) },
+            ]}
           >
-            Login com o Google
-          </AccountLoginButton>
+            <AccountLoginButton
+              icon="email"
+              color={{ text: "white", button: "#8951FF" }}
+              onPress={() => {}}
+            >
+              Login por Email
+            </AccountLoginButton>
 
-          <Button
-            mode="text"
-            onPress={() => scrProps.navigation.navigate("PickLanguage")}
-            style={{ marginTop: isDesktop ? hp(2) : hp(3) }}
-          >
-            Ou crie sua conta
-          </Button>
+            <AccountLoginButton
+              icon="google"
+              color={{ text: "black", button: "white" }}
+              marginTop={2}
+              onPress={() => {}}
+            >
+              Login com o Google
+            </AccountLoginButton>
+
+            <Button
+              mode="text"
+              onPress={() => this.navigateTo("PickLanguage")}
+              style={{ marginTop: this.desktop ? hp(2) : hp(3) }}
+            >
+              Ou crie sua conta
+            </Button>
+          </View>
         </View>
-      </View>
-    </ScrollView>
-  );
+      </ScrollView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -82,3 +85,5 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
 });
+
+export default withNavigation(Login);

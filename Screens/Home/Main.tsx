@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import { ScreenProps } from "../types";
 import { ScrollView } from "react-native-gesture-handler";
-import { Appbar, Button, Dialog, Portal, Text } from "react-native-paper";
+import { Appbar, Text } from "react-native-paper";
 import globalStyles from "../../globalStyles";
 import {
   widthPercentageToDP as wp,
@@ -11,63 +11,64 @@ import {
 import images from "../../images";
 import HorizontalScrollView from "../../Components/HorizontalScrollView";
 import Lesson from "../../Components/Lesson";
+import { NavigationScreen } from "../Components/NavigationScreen";
+import { withNavigation } from "react-navigation";
 
-export default function Main(scrProps: ScreenProps) {
-  scrProps.navigation.setOptions({
-    headerRight: () => (
+class Main extends NavigationScreen {
+  componentDidMount() {
+    this.headerRight(
       <View style={{ flexDirection: "row" }}>
         <Appbar.Action
           icon="account"
-          onPress={() => scrProps.navigation.navigate("AccountSettings")}
+          onPress={() => this.navigateTo("AccountSettings")}
         />
-        <Appbar.Action
-          icon="cog"
-          onPress={() => scrProps.navigation.navigate("Settings")}
-        />
+        <Appbar.Action icon="cog" onPress={() => this.navigateTo("Settings")} />
       </View>
-    ),
-  });
+    );
+  }
 
-  return (
-    <ScrollView>
-      <View style={[globalStyles.container, styles.recomendedSection]}>
-        <Text variant="titleLarge">Aulas sugeridas</Text>
-        <Text variant="titleSmall">
-          Aulas simples para você entender como o app funciona
-        </Text>
+  render() {
+    return (
+      <ScrollView>
+        <View style={[globalStyles.container, styles.recomendedSection]}>
+          <Text variant="titleLarge">Aulas sugeridas</Text>
+          <Text variant="titleSmall">
+            Aulas simples para você entender como o app funciona
+          </Text>
 
-        <HorizontalScrollView>
-          <Lesson
-            img={images.cac}
-            text="Plants"
-            style={{ marginTop: hp(1) }}
-            onPress={() => scrProps.navigation.navigate("Lesson")}
-          />
-        </HorizontalScrollView>
-      </View>
+          <HorizontalScrollView>
+            <Lesson
+              img={images.cac}
+              text="Plants"
+              style={{ marginTop: hp(1) }}
+              onPress={() => this.navigateTo("Lesson")}
+            />
+          </HorizontalScrollView>
+        </View>
 
-      <View
-        style={[
-          {
-            marginTop: hp(3),
-            alignItems: "flex-start",
-            paddingLeft: wp(2.5),
-          },
-        ]}
-      >
-        <Text variant="titleLarge">Natureza</Text>
+        <View
+          style={[
+            {
+              marginTop: hp(3),
+              alignItems: "flex-start",
+              paddingLeft: wp(2.5),
+            },
+          ]}
+        >
+          <Text variant="titleLarge">Natureza</Text>
 
-        <HorizontalScrollView>
-          <Lesson
-            img={images.cac}
-            text="Plants"
-            style={{ marginTop: hp(1) }}
-            onPress={() => scrProps.navigation.navigate("Lesson")}
-          />
-        </HorizontalScrollView>
-      </View>
-    </ScrollView>
-  );
+          <HorizontalScrollView>
+            <Lesson
+              img={images.cac}
+              text="Plants"
+              style={{ marginTop: hp(1) }}
+              onPress={() => this.navigateTo("Lesson")}
+            />
+          </HorizontalScrollView>
+        </View>
+      </ScrollView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -87,3 +88,5 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
 });
+
+export default withNavigation(Main);

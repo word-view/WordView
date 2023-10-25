@@ -1,10 +1,12 @@
 import React from "react";
-import { StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { ScreenProps } from "../types";
+import { withNavigation } from "react-navigation";
+import { NavigationScreen } from "../Components/NavigationScreen";
 
-export default function Settings(scrProps: ScreenProps) {
-  return <ScrollView></ScrollView>;
+class Settings extends NavigationScreen {
+  render() {
+    return <ScrollView></ScrollView>;
+  }
 }
 
-const styles = StyleSheet.create({});
+export default withNavigation(Settings);

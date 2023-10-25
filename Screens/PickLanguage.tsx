@@ -1,76 +1,64 @@
 import { StyleSheet, View } from "react-native";
-import React, { useEffect } from "react";
+import React from "react";
 import { ScrollView } from "react-native-gesture-handler";
-import { ScreenProps } from "./types";
-import ResponsiveChecker from "../Components/Backend/ResponsiveChecker";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
 import globalStyles from "../globalStyles";
-import { testing } from "../store/state";
 import { Text } from "react-native-paper";
 import Button from "../Components/Buttons/Button";
+import { NavigationScreen } from "./Components/NavigationScreen";
+import { withNavigation } from "react-navigation";
+import { userRegister } from "../store/register";
 
-export default function PickLanguage(scrProps: ScreenProps) {
-  const isDesktop = ResponsiveChecker().isDesktop;
+class PickLanguage extends NavigationScreen {
+  componentDidMount() {
+    if (this.desktop) this.setTitle("");
+    this.removeBackAction();
 
-  useEffect(() => {
-    if (isDesktop) setPageTitle("", scrProps.navigation);
-  });
+    console.log(userRegister.get());
+  }
 
-  useEffect(() => {
-    scrProps.navigation.addListener("beforeRemove", (e: any) =>
-      e.preventDefault()
-    );
-  });
-
-  scrProps.navigation.setOptions({
-    headerLeft: null,
-  });
-
-  return (
-    <ScrollView style={!isDesktop && { backgroundColor: "#2C2831" }}>
-      <View
-        style={[
-          globalStyles.container,
-          { alignSelf: "center", marginTop: hp(5) },
-          isDesktop ? desktopStyles.buttonsView : { width: wp(150) },
-        ]}
-      >
-        {isDesktop && (
-          <View style={isDesktop ? { width: wp(30) } : { width: "100%" }}>
-            <Text
-              variant="titleMedium"
-              style={{
-                fontFamily: "OpenSansSBold",
-                alignSelf: "flex-start",
-                marginBottom: hp(2.5),
-              }}
-            >
-              Selecione um idioma
-            </Text>
-          </View>
-        )}
-
-        <Button
-          icon="code-json"
-          color={{
-            text: "white",
-            button: "#ff5151",
-          }}
-          onPress={() => scrProps.navigation.navigate("Home")}
+  render() {
+    return (
+      <ScrollView style={!this.desktop && { backgroundColor: "#2C2831" }}>
+        <View
+          style={[
+            globalStyles.container,
+            { alignSelf: "center", marginTop: hp(5) },
+            this.desktop ? desktopStyles.buttonsView : { width: wp(150) },
+          ]}
         >
-          Inglês
-        </Button>
-      </View>
-    </ScrollView>
-  );
-}
+          {this.desktop && (
+            <View style={this.desktop ? { width: wp(30) } : { width: "100%" }}>
+              <Text
+                variant="titleMedium"
+                style={{
+                  fontFamily: "OpenSansSBold",
+                  alignSelf: "flex-start",
+                  marginBottom: hp(2.5),
+                }}
+              >
+                Selecione um idioma
+              </Text>
+            </View>
+          )}
 
-function setPageTitle(title: string, nav: any) {
-  if (testing.get()) return;
-  nav.setOptions({ title: title });
+          <Button
+            icon="code-json"
+            color={{
+              text: "white",
+              button: "#ff5151",
+            }}
+            onPress={() => this.navigateTo("Home")}
+          >
+            Inglês
+          </Button>
+        </View>
+      </ScrollView>
+    );
+  }
 }
 
 const desktopStyles = StyleSheet.create({
@@ -88,3 +76,5 @@ const desktopStyles = StyleSheet.create({
     elevation: 5,
   },
 });
+
+export default withNavigation(PickLanguage);

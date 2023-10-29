@@ -6,6 +6,7 @@ import React from "react";
 import { NavigationScreen } from "./Components/NavigationScreen";
 import { withNavigation } from "react-navigation";
 import { userRegister } from "../store/register";
+import { register } from "../modules/api";
 
 class PickUsername extends NavigationScreen {
   constructor(props: any) {
@@ -21,11 +22,14 @@ class PickUsername extends NavigationScreen {
     this.removeBackAction();
   }
 
-  finishLogin = () => {
+  finishRegister = async () => {
     let user = userRegister.get();
     user.username = (this.state as any).name;
-
     userRegister.set(user);
+
+    if (!user.username) return;
+
+    const response = await register(user.email, user.username, user.password);
 
     this.navigateTo("PickLanguage");
   };
@@ -68,7 +72,7 @@ class PickUsername extends NavigationScreen {
             disabled={nameHasErrors() || nayme == ""}
             color={{ text: "white", button: "#8951FF" }}
             marginTop={1.5}
-            onPress={this.finishLogin}
+            onPress={this.finishRegister}
           >
             Continuar
           </Button>

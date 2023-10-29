@@ -13,6 +13,7 @@ import { StyleSheet } from "react-native";
 import { CombinedDarkTheme } from "./theme";
 import PickUsername from "./Screens/PickUsername";
 import Home from "./Screens/Home";
+import EmailLogin from "./Screens/EmailLogin";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -72,6 +73,11 @@ export default function App() {
               headerShown: false,
               title: "",
             }}
+          />
+          <Screen
+            name="EmailLogin"
+            options={{ title: "Login com email" }}
+            component={EmailLogin}
           />
         </Navigator>
       </NavigationContainer>

@@ -28,6 +28,7 @@ export default function Home(scrProps: ScreenProps) {
       showDialog();
     });
   });
+
   return (
     <>
       <Portal>

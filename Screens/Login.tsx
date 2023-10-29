@@ -40,7 +40,7 @@ class Login extends NavigationScreen {
             <AccountLoginButton
               icon="email"
               color={{ text: "white", button: "#8951FF" }}
-              onPress={() => {}}
+              onPress={() => this.navigateTo("EmailLogin")}
             >
               Login por Email
             </AccountLoginButton>

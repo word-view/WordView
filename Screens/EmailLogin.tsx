@@ -21,11 +21,11 @@ class EmailLogin extends NavigationScreen {
     if (this.desktop) this.setTitle("");
   }
 
-  login = () => {
+  login = async () => {
     let email = (this.state as any).email;
     let password = (this.state as any).password;
 
-    const response = login(email, password);
+    const response = await login(email, password);
 
     this.navigateTo("PickLanguage");
   };

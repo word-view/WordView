@@ -1,4 +1,4 @@
-// import { client } from './client';
+import { ErrorResponse, get } from "./client";
 
 export type Difficulty = "starter" | "intermidiate" | "advanced";
 
@@ -8,13 +8,17 @@ export interface Lesson {
   difficulty: Difficulty;
 }
 
-export async function getLessons(difficulty: Difficulty) {
-  try {
-    const response = await fetch(
-      `http://192.168.1.104:8080/api/v1/lesson/search?diffi=${difficulty}`
-    );
-    return await response.json();
-  } catch (err) {
-    console.error(err);
+export async function lessons(difficulty: Difficulty) {
+  const response = await get(`/lesson/search?diffi=${difficulty}`);
+
+  if (response.status == 200) {
+    return (await response.json()) as Lesson[];
   }
+
+  const responseText = await response.text();
+
+  return {
+    status: response.status,
+    message: responseText,
+  } as ErrorResponse;
 }

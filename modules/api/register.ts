@@ -1,23 +1,28 @@
+import { ErrorResponse, post } from "./client";
+
+interface RegisterResponse {
+  id: number;
+  token: string;
+}
+
 export async function register(
   email: string,
   username: string,
   password: string
 ) {
-  try {
-    const response = await fetch("http://192.168.1.104:8080/api/v1/users", {
-      credentials: "omit",
-      headers: {
-        Accept: "*/*",
-        "Accept-Language": "en-US,en;q=0.5",
-        "Content-Type": "application/json",
-      },
-      body: `{"email": "${email}","username": "${username}","password": "${password}"}`,
-      method: "POST",
-      mode: "cors",
-    });
+  const response = await post(
+    "/users",
+    `{"email": "${email}","username": "${username}","password": "${password}"}`
+  );
 
-    return response;
-  } catch (err) {
-    console.log(err);
+  const responseText = await response.text();
+
+  if (response.status == 201) {
+    return JSON.parse(responseText) as RegisterResponse;
   }
+
+  return {
+    status: response.status,
+    message: responseText,
+  } as ErrorResponse;
 }

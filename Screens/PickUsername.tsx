@@ -7,6 +7,7 @@ import { NavigationScreen } from "./Components/NavigationScreen";
 import { withNavigation } from "react-navigation";
 import { userRegister } from "../store/register";
 import { register } from "../modules/api";
+import { setUserToken } from "../persistance/account";
 
 class PickUsername extends NavigationScreen {
   constructor(props: any) {
@@ -31,7 +32,10 @@ class PickUsername extends NavigationScreen {
 
     const response = await register(user.email, user.username, user.password);
 
-    this.navigateTo("PickLanguage");
+    if ("token" in response) {
+      await setUserToken(response.token);
+      this.navigateTo("PickLanguage");
+    } else console.error(response);
   };
 
   render() {

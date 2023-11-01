@@ -6,6 +6,7 @@ import ContentHolder from "../Components/ContentHolder";
 import { HelperText, TextInput } from "react-native-paper";
 import Button from "../Components/Buttons/Button";
 import { login } from "../modules/api";
+import { setUserToken } from "../persistance/account";
 
 class EmailLogin extends NavigationScreen {
   constructor(props: any) {
@@ -27,7 +28,10 @@ class EmailLogin extends NavigationScreen {
 
     const response = await login(email, password);
 
-    this.navigateTo("PickLanguage");
+    if ("token" in response) {
+      await setUserToken(response.token);
+      this.navigateTo("PickLanguage");
+    } else console.error(response);
   };
 
   render() {

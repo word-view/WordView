@@ -5,7 +5,10 @@ import AdaptableScreen from "./AdaptableScreen";
 export class NavigationScreen extends AdaptableScreen<{
   navigation: any;
 }> {
+  navigation = this.props.navigation;
   navigateTo = this.props.navigation.navigate;
+  goBack = this.props.navigation.goBack;
+
   desktop: boolean = (this.state as any).desktop;
 
   headerLeft(component?: React.JSX.Element) {
@@ -24,6 +27,10 @@ export class NavigationScreen extends AdaptableScreen<{
     });
   }
 
+  focusListener(func: () => void) {
+    this.props.navigation.addListener("focus", func);
+  }
+
   headerStyle(style: Animated.WithAnimatedValue<StyleProp<ViewStyle>>) {
     if (!style) return;
     this.props.navigation.setOptions({ headerStyle: style });
@@ -38,5 +45,9 @@ export class NavigationScreen extends AdaptableScreen<{
     this.props.navigation.addListener("beforeRemove", (e: any) =>
       e.preventDefault()
     );
+  }
+
+  removeBackIcon() {
+    this.headerLeft(<View />);
   }
 }

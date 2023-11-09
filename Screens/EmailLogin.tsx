@@ -7,6 +7,7 @@ import { HelperText, TextInput } from "react-native-paper";
 import Button from "../Components/Buttons/Button";
 import { login } from "../modules/api";
 import { setUserToken } from "../persistance/account";
+import { normalizeError } from "../modules/api/message";
 
 class EmailLogin extends NavigationScreen {
   constructor(props: any) {
@@ -15,6 +16,7 @@ class EmailLogin extends NavigationScreen {
     this.state = {
       email: "",
       password: "",
+      failMessage: "",
     };
   }
 
@@ -31,7 +33,10 @@ class EmailLogin extends NavigationScreen {
     if ("token" in response) {
       await setUserToken(response.token);
       this.navigateTo("PickLanguage");
-    } else console.error(response);
+    } else {
+      this.setState({ failMessage: normalizeError(response.message) });
+      this.forceUpdate();
+    }
   };
 
   render() {
@@ -111,6 +116,13 @@ class EmailLogin extends NavigationScreen {
           >
             Login
           </Button>
+          <HelperText
+            type="error"
+            visible={true}
+            style={{ alignSelf: "flex-start" }}
+          >
+            {(this.state as any).failMessage}
+          </HelperText>
         </ContentHolder>
       </ScrollView>
     );

@@ -7,7 +7,7 @@ import Button from "../Components/Buttons/Button";
 import { Button as RNPButton } from "react-native-paper";
 import { NavigationScreen } from "./Components/NavigationScreen";
 import { withNavigation } from "react-navigation";
-import { userRegister } from "../store/register";
+import { registerFailMessage, userRegister } from "../store/register";
 
 class Register extends NavigationScreen {
   constructor(props: any) {
@@ -17,11 +17,16 @@ class Register extends NavigationScreen {
       email: "",
       password: "",
       confirmPassword: "",
+      failMessage: "",
     };
   }
 
   componentDidMount() {
     if (this.desktop) this.setTitle("");
+
+    this.focusListener(() => {
+      this.setState({ failMessage: registerFailMessage.get() });
+    });
   }
 
   register = () => {
@@ -140,6 +145,13 @@ class Register extends NavigationScreen {
           >
             Criar
           </Button>
+          <HelperText
+            type="error"
+            visible={true}
+            style={{ alignSelf: "flex-start" }}
+          >
+            {(this.state as any).failMessage}
+          </HelperText>
 
           <RNPButton
             mode="text"

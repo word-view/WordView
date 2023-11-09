@@ -7,3 +7,5 @@ export interface User {
 }
 
 export const userRegister = createStore({} as User);
+
+export const registerFailMessage = createStore("");

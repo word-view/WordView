@@ -5,9 +5,10 @@ import Button from "../Components/Buttons/Button";
 import React from "react";
 import { NavigationScreen } from "./Components/NavigationScreen";
 import { withNavigation } from "react-navigation";
-import { userRegister } from "../store/register";
+import { registerFailMessage, userRegister } from "../store/register";
 import { register } from "../modules/api";
 import { setUserToken } from "../persistance/account";
+import { normalizeError } from "../modules/api/message";
 
 class PickUsername extends NavigationScreen {
   constructor(props: any) {
@@ -20,7 +21,7 @@ class PickUsername extends NavigationScreen {
 
   componentDidMount() {
     if (this.desktop) this.setTitle("");
-    this.removeBackAction();
+    this.removeBackIcon();
   }
 
   finishRegister = async () => {
@@ -35,7 +36,10 @@ class PickUsername extends NavigationScreen {
     if ("token" in response) {
       await setUserToken(response.token);
       this.navigateTo("PickLanguage");
-    } else console.error(response);
+    } else {
+      registerFailMessage.set(normalizeError(response.message));
+      this.goBack();
+    }
   };
 
   render() {

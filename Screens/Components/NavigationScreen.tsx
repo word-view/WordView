@@ -27,10 +27,6 @@ export class NavigationScreen extends AdaptableScreen<{
     });
   }
 
-  focusListener(func: () => void) {
-    this.props.navigation.addListener("focus", func);
-  }
-
   headerStyle(style: Animated.WithAnimatedValue<StyleProp<ViewStyle>>) {
     if (!style) return;
     this.props.navigation.setOptions({ headerStyle: style });
@@ -38,6 +34,10 @@ export class NavigationScreen extends AdaptableScreen<{
 
   setTitle(title: string) {
     this.props.navigation.setOptions({ title: title });
+  }
+
+  focusListener(func: () => void) {
+    this.props.navigation.addListener("focus", func);
   }
 
   removeBackAction() {

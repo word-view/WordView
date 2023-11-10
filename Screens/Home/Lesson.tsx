@@ -2,10 +2,11 @@ import { StyleSheet, View } from "react-native";
 import React from "react";
 import { Icon, Text } from "react-native-paper";
 import { NavigationScreen } from "../Components/NavigationScreen";
-import { ScrollView } from "react-native-gesture-handler";
 import { withNavigation } from "react-navigation";
 import { formatTime } from "../../modules/time/time";
 import { timeLeft } from "../../store/lesson";
+import RightCheckMark from "./Lesson/RightCheckMark";
+import WrongCheckMark from "./Lesson/WrongCheckMark";
 
 class Lesson extends NavigationScreen {
   randomColor = randomColor();
@@ -14,6 +15,17 @@ class Lesson extends NavigationScreen {
   timerSaver: NodeJS.Timeout | undefined;
 
   onEndTimer: Function | undefined;
+
+  showingRight = false;
+  showingWrong = false;
+
+  showRight() {
+    this.showingRight = true;
+  }
+
+  showWrong() {
+    this.showingWrong = true;
+  }
 
   startTimer(onEnd?: Function) {
     if (onEnd) this.onEndTimer = onEnd;
@@ -80,9 +92,15 @@ class Lesson extends NavigationScreen {
 
   render() {
     return (
-      <ScrollView
-        style={[styles.container, { backgroundColor: this.randomColor }]}
-      ></ScrollView>
+      <View style={[styles.lessonField, { backgroundColor: this.randomColor }]}>
+        {this.showingRight && (
+          <RightCheckMark onEnd={() => (this.showingRight = false)} />
+        )}
+
+        {this.showingWrong && (
+          <WrongCheckMark onEnd={() => (this.showingWrong = false)} />
+        )}
+      </View>
     );
   }
 }
@@ -101,6 +119,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginRight: 15,
+  },
+  lessonField: {
+    width: "100%",
+    height: "100%",
+    alignItems: "center",
+    alignSelf: "center",
+    justifyContent: "center",
+    position: "absolute",
   },
 });
 

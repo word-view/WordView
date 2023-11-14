@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { StyleSheet, View } from "react-native";
-import { ScreenProps } from "../types";
 import { ScrollView } from "react-native-gesture-handler";
-import { Appbar, Text } from "react-native-paper";
+import { Appbar, Surface, Text } from "react-native-paper";
 import globalStyles from "../../globalStyles";
 import {
   widthPercentageToDP as wp,
@@ -30,7 +29,16 @@ class Main extends NavigationScreen {
   render() {
     return (
       <ScrollView>
-        <View style={[globalStyles.container, styles.recomendedSection]}>
+        <Surface
+          elevation={4}
+          style={[
+            globalStyles.container,
+            styles.suggestedSurface,
+            this.desktop
+              ? desktopStyles.infoContainer
+              : mobileStyles.infoContainer,
+          ]}
+        >
           <Text variant="titleLarge">Aulas sugeridas</Text>
           <Text variant="titleSmall">
             Aulas simples para você entender como o app funciona
@@ -44,7 +52,7 @@ class Main extends NavigationScreen {
               onPress={() => this.navigateTo("Lesson")}
             />
           </HorizontalScrollView>
-        </View>
+        </Surface>
 
         <View
           style={[
@@ -72,20 +80,24 @@ class Main extends NavigationScreen {
 }
 
 const styles = StyleSheet.create({
-  recomendedSection: {
-    alignItems: "flex-start",
-    padding: 5,
-    paddingLeft: wp(2.5),
+  suggestedSurface: {
+    alignSelf: "center",
     marginTop: hp(2.5),
-    backgroundColor: "#2C2831FF",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    padding: 20,
+    borderRadius: 5,
+    alignItems: "flex-start",
+  },
+});
+
+const desktopStyles = StyleSheet.create({
+  infoContainer: {
+    width: wp(75),
+  },
+});
+
+const mobileStyles = StyleSheet.create({
+  infoContainer: {
+    width: wp(96),
   },
 });
 

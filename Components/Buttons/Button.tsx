@@ -30,7 +30,7 @@ export default function DefaultButton(props: DefaultButtonProps) {
       icon={props.icon}
       buttonColor={props.color.button}
       onPress={props.onPress}
-      style={{ marginTop: hp(props.marginTop ?? 0), borderRadius: 5 }}
+      style={{ marginTop: hp(props.marginTop ?? 0), borderRadius: 10 }}
       labelStyle={isDesktop && { fontSize: 16 }}
       contentStyle={[
         styles.button,

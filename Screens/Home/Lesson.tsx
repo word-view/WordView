@@ -31,6 +31,10 @@ class Lesson extends NavigationScreen {
     if (onEnd) this.onEndTimer = onEnd;
 
     this.timer = setInterval(() => {
+      if (timeLeft.get() <= 0) {
+        this.navigateTo("Home");
+      }
+
       const time = timeLeft.get();
       timeLeft.set(time - 1000);
 
@@ -83,6 +87,8 @@ class Lesson extends NavigationScreen {
 
     this.startTimer(() => {
       console.log("Timer finished!");
+      // move lesson information to a store
+      this.navigateTo("Statistics");
     });
   }
 

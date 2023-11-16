@@ -32,12 +32,23 @@ export class NavigationScreen extends AdaptableScreen<{
     this.props.navigation.setOptions({ headerStyle: style });
   }
 
+  hideHeader() {
+    this.props.navigation.setOptions({ headerShown: false });
+  }
+
   setTitle(title: string) {
     this.props.navigation.setOptions({ title: title });
   }
 
   focusListener(func: () => void) {
     this.props.navigation.addListener("focus", func);
+  }
+
+  overrideDefaultBack(func: () => void) {
+    this.props.navigation.addListener("beforeRemove", (e: any) => {
+      e.preventDefault();
+      func?.();
+    });
   }
 
   removeBackAction() {

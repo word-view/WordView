@@ -1,10 +1,7 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React, { useEffect } from "react";
 import images from "../images";
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from "react-native-responsive-screen";
+import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { WelcomeScreenProps } from "./types";
 import ResponsiveChecker from "../Components/Backend/ResponsiveChecker";
 import Button from "../Components/Buttons/Button";
@@ -13,8 +10,6 @@ export default function Welcome({
   navigation,
   onLayoutRootView,
 }: WelcomeScreenProps) {
-  const { isDesktop } = ResponsiveChecker();
-
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
   });
@@ -52,18 +47,6 @@ export default function Welcome({
     </View>
   );
 }
-
-const mobileStyles = StyleSheet.create({
-  button: {
-    width: wp(90),
-  },
-});
-
-const desktopStyles = StyleSheet.create({
-  button: {
-    width: wp(30),
-  },
-});
 
 const styles = StyleSheet.create({
   button: {

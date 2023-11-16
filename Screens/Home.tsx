@@ -11,6 +11,7 @@ import Lesson from "./Home/Lesson";
 import AccountSettings from "./Home/AccountSettings";
 import React from "react";
 import { Dialog, Portal, Text, Button } from "react-native-paper";
+import Statistics from "./Home/Statistics";
 
 const Navigator = createStackNavigator().Navigator;
 const Screen = createStackNavigator().Screen;
@@ -75,6 +76,11 @@ export default function Home(scrProps: ScreenProps) {
             name="AccountSettings"
             options={{ title: "Account Settings" }}
             component={AccountSettings}
+          />
+          <Screen
+            name="Statistics"
+            options={{ title: "" }}
+            component={Statistics}
           />
         </Navigator>
       </NavigationContainer>

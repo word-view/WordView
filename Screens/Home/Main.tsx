@@ -12,6 +12,7 @@ import HorizontalScrollView from "../../Components/HorizontalScrollView";
 import Lesson from "../../Components/Lesson";
 import { NavigationScreen } from "../Components/NavigationScreen";
 import { withNavigation } from "react-navigation";
+import { currentLesson } from "../../store/lesson";
 
 class Main extends NavigationScreen {
   componentDidMount() {
@@ -39,7 +40,9 @@ class Main extends NavigationScreen {
               : mobileStyles.infoContainer,
           ]}
         >
-          <Text variant="titleLarge">Aulas sugeridas</Text>
+          <Text variant="titleLarge" style={{ fontWeight: "600" }}>
+            Aulas sugeridas
+          </Text>
           <Text variant="titleSmall">
             Aulas simples para você entender como o app funciona
           </Text>
@@ -49,7 +52,14 @@ class Main extends NavigationScreen {
               img={images.cac}
               text="Plants"
               style={{ marginTop: hp(1) }}
-              onPress={() => this.navigateTo("Lesson")}
+              onPress={() => {
+                currentLesson.set({
+                  id: 1,
+                  title: "Plants",
+                  difficulty: "starter",
+                });
+                this.navigateTo("Lesson");
+              }}
             />
           </HorizontalScrollView>
         </Surface>
@@ -63,7 +73,9 @@ class Main extends NavigationScreen {
             },
           ]}
         >
-          <Text variant="titleLarge">Natureza</Text>
+          <Text variant="titleLarge" style={{ fontWeight: "600" }}>
+            Natureza
+          </Text>
 
           <HorizontalScrollView>
             <Lesson

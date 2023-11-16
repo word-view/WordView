@@ -14,7 +14,10 @@ import { userRegister } from "../store/register";
 
 class PickLanguage extends NavigationScreen {
   componentDidMount() {
-    if (this.desktop) this.setTitle("");
+    if (this.desktop) {
+      this.setTitle("");
+      this.hideHeader();
+    }
     this.removeBackAction();
 
     console.log(userRegister.get());

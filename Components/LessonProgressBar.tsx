@@ -28,8 +28,8 @@ export default function LessonProgressBar(props: LessonProgressBarProps) {
     Animated.timing(animatedWidth, {
       toValue: props.percentage,
       duration: 1000,
-      easing: Easing.ease,
-      useNativeDriver: true,
+      easing: Easing.cubic,
+      useNativeDriver: false,
     }).start();
   }, [props.percentage, animatedWidth]);
 

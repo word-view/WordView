@@ -1,14 +1,19 @@
 import { Avatar, Surface, Text } from "react-native-paper";
 import images from "../images";
 import { StyleSheet, View } from "react-native";
+import ResponsiveChecker from "./Backend/ResponsiveChecker";
 
 interface WordLearnedCardProps {
   word?: any;
 }
-
 export default function WordLearnedCard(props: WordLearnedCardProps) {
+  const isDesktop = ResponsiveChecker().isDesktop;
+
   return (
-    <Surface elevation={2} style={styles.surface}>
+    <Surface
+      elevation={2}
+      style={[styles.surface, !isDesktop && { backgroundColor: "#4C4850" }]}
+    >
       <Avatar.Image size={75} source={images.cac} style={styles.wordImage} />
       <View style={styles.wordsContainer}>
         <Text variant="bodyLarge" style={{ fontWeight: "bold" }}>

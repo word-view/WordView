@@ -21,18 +21,24 @@ class Statistics extends NavigationScreen {
       this.setTitle(currentLesson.get().title);
       this.hideHeader();
     }
+    this.headerLeft(<View />);
   }
 
   render() {
     return (
-      <>
+      <View
+        style={[
+          { width: "100%", height: "100%" },
+          !this.desktop && { backgroundColor: "#2C2831" },
+        ]}
+      >
         <ScrollView>
           <Surface
-            elevation={4}
+            elevation={this.desktop ? 4 : 0}
             style={[
               globalStyles.container,
               styles.surface,
-              this.desktop ? { width: wp(45) } : {},
+              this.desktop ? { width: wp(45) } : { width: wp(95) },
             ]}
           >
             <Avatar.Image
@@ -54,9 +60,22 @@ class Statistics extends NavigationScreen {
                 type={currentLesson.get().difficulty}
                 style={{ marginBottom: hp(2.5) }}
               />
-              <LessonProgressBar percentage={64} />
+              {this.desktop && <LessonProgressBar percentage={64} />}
             </View>
           </Surface>
+
+          {!this.desktop && (
+            <View
+              style={{
+                width: "100%",
+                alignSelf: "center",
+                alignItems: "center",
+                backgroundColor: "#2C2831",
+              }}
+            >
+              <LessonProgressBar percentage={64} />
+            </View>
+          )}
 
           <View
             style={[
@@ -65,7 +84,7 @@ class Statistics extends NavigationScreen {
             ]}
           >
             <Text
-              variant="headlineSmall"
+              variant="titleMedium"
               style={{
                 marginTop: hp(7.5),
                 marginBottom: hp(2.5),
@@ -97,7 +116,7 @@ class Statistics extends NavigationScreen {
             Concluir
           </Button>
         </View>
-      </>
+      </View>
     );
   }
 }

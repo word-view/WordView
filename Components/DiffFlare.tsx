@@ -1,5 +1,6 @@
 import { StyleProp, View, ViewStyle } from "react-native";
 import { Text } from "react-native-paper";
+import ResponsiveChecker from "./Backend/ResponsiveChecker";
 
 interface DiffFlareProps {
   type: "starter" | "intermidiate" | "advanced";
@@ -7,8 +8,9 @@ interface DiffFlareProps {
 }
 
 export default function DiffFlare(props: DiffFlareProps) {
-  let color;
-  let label;
+  const isDesktop = ResponsiveChecker().isDesktop;
+
+  let color, label;
 
   switch (props.type) {
     case "starter":
@@ -34,10 +36,10 @@ export default function DiffFlare(props: DiffFlareProps) {
           justifyContent: "center",
           borderRadius: 20,
           width: 100,
-          height: 25,
           padding: 5,
         },
         props.style,
+        isDesktop ? { height: 25 } : { height: 30 },
       ]}
     >
       <Text variant="titleSmall" style={{ fontWeight: "bold" }}>

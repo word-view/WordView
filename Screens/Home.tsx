@@ -77,11 +77,7 @@ export default class Home extends NavigationScreen {
               component={Main}
             />
             <Screen name="Settings" component={Settings} />
-            <Screen
-              name="Lesson"
-              options={{ title: "", headerStyle: { position: "absolute" } }}
-              component={Lesson}
-            />
+            <Screen name="Lesson" options={{ title: "" }} component={Lesson} />
             <Screen
               name="AccountSettings"
               options={{ title: "Account Settings" }}

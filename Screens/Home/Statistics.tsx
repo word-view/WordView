@@ -1,6 +1,6 @@
 import { withNavigation } from "react-navigation";
 import { NavigationScreen } from "../Components/NavigationScreen";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView } from "react-native";
 import { Avatar, Surface, Text } from "react-native-paper";
 import globalStyles from "../../globalStyles";
 import { StyleSheet, View } from "react-native";

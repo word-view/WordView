@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView } from "react-native";
 import globalStyles from "../../globalStyles";
 import { Avatar, Banner, Surface, Text } from "react-native-paper";
 import {

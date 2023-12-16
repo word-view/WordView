@@ -1,4 +1,4 @@
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView } from "react-native";
 import ContentHolder from "../Components/ContentHolder";
 import { HelperText, TextInput } from "react-native-paper";
 import Button from "../Components/Buttons/Button";

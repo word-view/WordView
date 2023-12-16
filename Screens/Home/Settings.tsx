@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView } from "react-native";
 import { withNavigation } from "react-navigation";
 import { NavigationScreen } from "../Components/NavigationScreen";
 

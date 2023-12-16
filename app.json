@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "WordView",
-    "slug": "app.wordview.cc",
+    "slug": "app-wordview-cc",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#2C2831"
-      }
+      },
+      "package": "app.wordview.cc"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9082e1e2-bbfa-4a04-b171-b107b91e71c6"
+      }
     }
   }
 }

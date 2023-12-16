@@ -32,8 +32,20 @@ export class NavigationScreen extends AdaptableScreen<{
     this.props.navigation.setOptions({ headerStyle: style });
   }
 
+  setHeaderColor(color: string) {
+    this.headerStyle({
+      backgroundColor: color,
+      borderBottomColor: color,
+      shadowColor: color,
+    });
+  }
+
   hideHeader() {
     this.props.navigation.setOptions({ headerShown: false });
+  }
+
+  showHeader() {
+    this.props.navigation.setOptions({ headerShown: true });
   }
 
   setTitle(title: string) {

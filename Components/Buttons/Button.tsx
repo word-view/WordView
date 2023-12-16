@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleProp, StyleSheet, ViewStyle } from "react-native";
 import { Button } from "react-native-paper";
 import {
   widthPercentageToDP as wp,
@@ -17,6 +17,7 @@ interface DefaultButtonProps {
   /** As heightPercentageToDP */
   marginTop?: number;
   onPress: () => void;
+  style?: StyleProp<ViewStyle>;
 }
 
 export default function DefaultButton(props: DefaultButtonProps) {
@@ -31,10 +32,11 @@ export default function DefaultButton(props: DefaultButtonProps) {
       buttonColor={props.color.button}
       onPress={props.onPress}
       style={{ marginTop: hp(props.marginTop ?? 0), borderRadius: 10 }}
-      labelStyle={isDesktop && { fontSize: 16 }}
+      labelStyle={[{ fontWeight: "600" }, isDesktop && { fontSize: 16 }]}
       contentStyle={[
         styles.button,
         isDesktop ? desktopStyles.button : mobileStyles.button,
+        props.style,
       ]}
     >
       {props.children}

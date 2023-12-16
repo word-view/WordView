@@ -1,4 +1,6 @@
 export function formatTime(ms: number) {
+  if (ms <= 0) return "00:00";
+
   let seconds = Math.floor(ms / 1000);
 
   let hours = Math.floor(seconds / 3600);
@@ -16,4 +18,12 @@ export function formatTime(ms: number) {
     .padStart(2, "0")}`;
 
   return formattedOutput;
+}
+
+export function wait(milliseconds: number): Promise<void> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, milliseconds);
+  });
 }

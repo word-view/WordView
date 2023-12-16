@@ -47,6 +47,14 @@ const globalStyles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 4,
   },
+  textShadow: {
+    textShadowColor: "#00000066",
+    textShadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    textShadowRadius: 2.62,
+  },
 });
 
 export default globalStyles;

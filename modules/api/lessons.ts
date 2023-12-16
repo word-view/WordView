@@ -8,6 +8,12 @@ export interface Lesson {
   difficulty: Difficulty;
 }
 
+export interface Word {
+  name: string;
+  spelling: string[];
+  image: any;
+}
+
 export async function lessons(difficulty: Difficulty) {
   const response = await get(`/lesson/search?diffi=${difficulty}`);
 

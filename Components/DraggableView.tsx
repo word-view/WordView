@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { PanResponder, Animated, Dimensions } from "react-native";
 import ResponsiveChecker from "./Backend/ResponsiveChecker";
+import { Spring } from "@wordview/animator";
 
 export interface DraggableViewProps {
   children: React.ReactNode;
@@ -45,10 +46,7 @@ export default function DraggableView(props: DraggableViewProps) {
           }
         }
 
-        Animated.spring(pan, {
-          toValue: { x: 0, y: 0 },
-          useNativeDriver: false,
-        }).start();
+        Spring({ hook: pan, to: { x: 0, y: 0 } }).start();
       },
     })
   ).current;

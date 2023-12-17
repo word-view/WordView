@@ -35,7 +35,9 @@ export default function App() {
               borderBottomColor: "#2C2831",
               shadowColor: "#2C2831",
             },
-            headerTitleStyle: {},
+            headerTitleStyle: {
+              fontFamily: "OpenSans",
+            },
           }}
         >
           <Screen name="Welcome" options={{ title: "Bem vindo ao WordView!" }}>

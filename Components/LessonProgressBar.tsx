@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { Surface, Text } from "react-native-paper";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
+import { Timing } from "@wordview/animator";
 
 interface LessonProgressBarProps {
   percentage: number;
@@ -25,12 +26,14 @@ export default function LessonProgressBar(props: LessonProgressBarProps) {
   const animatedWidth = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    Animated.timing(animatedWidth, {
-      toValue: props.percentage,
-      duration: 1000,
-      easing: Easing.cubic,
-      useNativeDriver: false,
-    }).start();
+    Timing(
+      {
+        hook: animatedWidth,
+        to: props.percentage,
+        easing: Easing.cubic,
+      },
+      1000
+    ).start();
   }, [props.percentage, animatedWidth]);
 
   return (

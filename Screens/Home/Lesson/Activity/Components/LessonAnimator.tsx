@@ -1,9 +1,6 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import { Animated } from "react-native";
-import {
-  runAnimationsInParallel,
-  Timing,
-} from "../../../../../modules/animator/animator";
+import { runAnimationsInParallel, Timing } from "@wordview/animator";
 
 interface LessonAnimatorProps {
   inDuration: number;

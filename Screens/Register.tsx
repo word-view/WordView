@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { ScrollView } from "react-native";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { HelperText, TextInput } from "react-native-paper";

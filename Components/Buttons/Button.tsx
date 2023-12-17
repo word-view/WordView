@@ -5,6 +5,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import ResponsiveChecker from "../Backend/ResponsiveChecker";
+import { memo } from "react";
 
 interface DefaultButtonProps {
   children: any;
@@ -20,7 +21,7 @@ interface DefaultButtonProps {
   style?: StyleProp<ViewStyle>;
 }
 
-export default function DefaultButton(props: DefaultButtonProps) {
+function DefaultButton(props: DefaultButtonProps) {
   const isDesktop = ResponsiveChecker().isDesktop;
 
   return (
@@ -61,3 +62,5 @@ const styles = StyleSheet.create({
     height: 60,
   },
 });
+
+export default memo(DefaultButton);

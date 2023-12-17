@@ -1,5 +1,9 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import { Animated } from "react-native";
+import {
+  runAnimationsInParallel,
+  Timing,
+} from "../../../../../modules/animator/animator";
 
 interface LessonAnimatorProps {
   inDuration: number;
@@ -12,35 +16,17 @@ const LessonAnimator = forwardRef((props: LessonAnimatorProps, ref) => {
   const fadeValue = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    const scaleAnimation = Animated.timing(scaleValue, {
-      toValue: 1,
-      duration: props.inDuration,
-      useNativeDriver: true,
-    });
-
-    const fadeInAnimation = Animated.timing(fadeValue, {
-      toValue: 1,
-      duration: props.inDuration,
-      useNativeDriver: true,
-    });
-
-    Animated.parallel([scaleAnimation, fadeInAnimation]).start();
+    runAnimationsInParallel([
+      Timing({ hook: scaleValue, to: 1 }, props.inDuration),
+      Timing({ hook: fadeValue, to: 1 }, props.inDuration),
+    ]);
   }, []);
 
   function leaveOut() {
-    const scaleAnimation = Animated.timing(scaleValue, {
-      toValue: 0.25,
-      duration: props.outDuration,
-      useNativeDriver: true,
-    });
-
-    const fadeInAnimation = Animated.timing(fadeValue, {
-      toValue: 0,
-      duration: props.outDuration,
-      useNativeDriver: true,
-    });
-
-    Animated.parallel([scaleAnimation, fadeInAnimation]).start();
+    runAnimationsInParallel([
+      Timing({ hook: scaleValue, to: 0.25 }, props.outDuration),
+      Timing({ hook: fadeValue, to: 0 }, props.outDuration),
+    ]);
   }
 
   useImperativeHandle(ref, () => ({ leaveOut }));

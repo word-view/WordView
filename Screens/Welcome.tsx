@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   wvText: {
-    fontFamily: "OpenSansSBold",
+    fontFamily: "OpenSans",
     fontSize: 20,
     textAlign: "center",
     color: "#B3B3B3",

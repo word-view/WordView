@@ -1,8 +1,9 @@
+import { memo } from "react";
 import images from "../images";
 import ResponsiveChecker from "./Backend/ResponsiveChecker";
 import { Image, StyleSheet } from "react-native";
 
-export default function WVLogo() {
+function WVLogo() {
   const isDesktop = ResponsiveChecker().isDesktop;
 
   return (
@@ -25,3 +26,5 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
 });
+
+export default memo(WVLogo);

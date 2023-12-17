@@ -22,7 +22,6 @@ const Screen = createStackNavigator().Screen;
 
 export default function App() {
   const { fontsLoaded, onLayoutRootView } = FontLoader();
-
   if (!fontsLoaded) return null;
 
   return (
@@ -36,9 +35,7 @@ export default function App() {
               borderBottomColor: "#2C2831",
               shadowColor: "#2C2831",
             },
-            headerTitleStyle: {
-              fontFamily: "OpenSansSBold",
-            },
+            headerTitleStyle: {},
           }}
         >
           <Screen name="Welcome" options={{ title: "Bem vindo ao WordView!" }}>

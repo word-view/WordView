@@ -33,7 +33,6 @@ export default function ContentHolder(props: ContentHolderProps) {
           <Text
             variant="titleMedium"
             style={{
-              fontFamily: "OpenSansSBold",
               alignSelf: "flex-start",
               marginBottom: hp(2.5),
             }}

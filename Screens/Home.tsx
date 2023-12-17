@@ -59,9 +59,7 @@ export default class Home extends NavigationScreen {
                 borderBottomColor: "#2C2831",
                 shadowColor: "#2C2831",
               },
-              headerTitleStyle: {
-                fontFamily: "OpenSansSBold",
-              },
+              headerTitleStyle: {},
             }}
           >
             <Screen

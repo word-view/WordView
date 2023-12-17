@@ -1,3 +1,4 @@
+import { memo } from "react";
 import {
   PressableStateCallbackType,
   StyleProp,
@@ -17,7 +18,7 @@ interface LessonProps {
   onPress: () => void;
 }
 
-export default function Lesson(props: LessonProps) {
+function Lesson(props: LessonProps) {
   return (
     <TouchableRipple
       onPress={props.onPress}
@@ -39,4 +40,4 @@ export default function Lesson(props: LessonProps) {
   );
 }
 
-const styles = StyleSheet.create({});
+export default memo(Lesson);

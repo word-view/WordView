@@ -38,7 +38,6 @@ class PickLanguage extends NavigationScreen {
               <Text
                 variant="titleMedium"
                 style={{
-                  fontFamily: "OpenSansSBold",
                   alignSelf: "flex-start",
                   marginBottom: hp(2.5),
                 }}

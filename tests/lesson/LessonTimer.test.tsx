@@ -1,4 +1,4 @@
-import LessonTimer from "../../Screens/Home/Lesson/LessonTimer";
+import LessonTimer from "../../src/Lesson/LessonTimer";
 
 it(`Start a timer`, (done) => {
   const timer = new LessonTimer(() => done());

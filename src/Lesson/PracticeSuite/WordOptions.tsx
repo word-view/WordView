@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import LessonAnimator from "./Animator";
+import Animator from "./Animator";
 import { View, StyleSheet } from "react-native";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { Word } from "../../../modules/api";
@@ -41,7 +41,7 @@ export default function WordOptions(props: WordOptionsProps) {
   }
 
   return (
-    <LessonAnimator inDuration={500} outDuration={400} ref={leaveOutRef}>
+    <Animator inDuration={500} outDuration={400} ref={leaveOutRef}>
       <View style={[styles.layoutView]}>
         <WordImage
           size={250}
@@ -80,7 +80,7 @@ export default function WordOptions(props: WordOptionsProps) {
           </Button>
         </View>
       </View>
-    </LessonAnimator>
+    </Animator>
   );
 }
 

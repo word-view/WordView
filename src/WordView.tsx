@@ -2,6 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { CombinedDarkTheme } from "../theme";
+import { StyleSheet } from "react-native";
 import Home from "./Home/Home";
 import Login from "./Intro/Auth/Login";
 import Register from "./Intro/Auth/Register";
@@ -24,13 +25,8 @@ export default function WordView(args: WordViewArguments) {
         initialRouteName="Welcome"
         screenOptions={{
           animationEnabled: true,
-          headerStyle: {
-            borderBottomColor: "#2C2831",
-            shadowColor: "#2C2831",
-          },
-          headerTitleStyle: {
-            fontFamily: "OpenSans",
-          },
+          headerStyle: styles.headerStyle,
+          headerTitleStyle: styles.headerTitleStyle,
         }}
       >
         <Screen name="Welcome" options={{ title: "Bem vindo ao WordView!" }}>
@@ -75,3 +71,13 @@ export default function WordView(args: WordViewArguments) {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  headerStyle: {
+    borderBottomColor: "#2C2831",
+    shadowColor: "#2C2831",
+  },
+  headerTitleStyle: {
+    fontFamily: "OpenSans",
+  },
+});

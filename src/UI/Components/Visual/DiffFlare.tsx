@@ -1,6 +1,6 @@
 import { StyleProp, View, ViewStyle } from "react-native";
 import { Text } from "react-native-paper";
-import ResponsiveChecker from "./Backend/ResponsiveChecker";
+import ResponsiveChecker from "../Backend/ResponsiveChecker";
 
 interface DiffFlareProps {
   type: "starter" | "intermidiate" | "advanced";

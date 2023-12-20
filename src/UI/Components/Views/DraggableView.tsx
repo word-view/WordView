@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { PanResponder, Animated, Dimensions } from "react-native";
-import ResponsiveChecker from "./Backend/ResponsiveChecker";
-import { Spring } from "../../../modules/animator";
+import ResponsiveChecker from "../Backend/ResponsiveChecker";
+import { Spring } from "../../../../modules/animator";
 
 export interface DraggableViewProps {
   children: React.ReactNode;

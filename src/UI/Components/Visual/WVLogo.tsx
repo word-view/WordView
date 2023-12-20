@@ -1,7 +1,7 @@
 import { memo } from "react";
-import ResponsiveChecker from "./Backend/ResponsiveChecker";
 import { Image, StyleSheet } from "react-native";
-import images from "../../../images";
+import ResponsiveChecker from "../Backend/ResponsiveChecker";
+import images from "../../../../images";
 
 function WVLogo() {
   const isDesktop = ResponsiveChecker().isDesktop;

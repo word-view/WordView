@@ -3,12 +3,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { CombinedDarkTheme } from "../theme";
 import Home from "./Home/Home";
-import Welcome from "./Intro/Welcome";
 import Login from "./Intro/Auth/Login";
 import Register from "./Intro/Auth/Register";
+import EmailLogin from "./Intro/Auth/EmailLogin";
 import PickLanguage from "./Intro/PickLanguage";
 import PickUsername from "./Intro/PickUsername";
-import EmailLogin from "./Intro/Auth/EmailLogin";
+import Welcome from "./Intro/Welcome";
 
 const Navigator = createStackNavigator().Navigator;
 const Screen = createStackNavigator().Screen;

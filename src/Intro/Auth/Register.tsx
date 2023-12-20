@@ -6,8 +6,8 @@ import { Button as RNPButton } from "react-native-paper";
 import { withNavigation } from "react-navigation";
 import { NavigationScreen } from "../../UI/Screens/NavigationScreen";
 import { registerFailMessage, userRegister } from "../../../store/register";
-import ContentHolder from "../../UI/Components/ContentHolder";
 import Button from "../../UI/Components/Buttons/Button";
+import ContentHolder from "../../UI/Components/Views/ContentHolder";
 
 class Register extends NavigationScreen {
   constructor(props: any) {

@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { Surface, Text } from "react-native-paper";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
-import { Timing } from "../../../modules/animator";
+import { Timing } from "../../../../modules/animator";
 
 interface LessonProgressBarProps {
   percentage: number;

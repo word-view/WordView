@@ -7,8 +7,8 @@ import { registerFailMessage, userRegister } from "../../store/register";
 import { register } from "../../modules/api";
 import { setUserToken } from "../../persistance/account";
 import { normalizeError } from "../../modules/api/message";
-import ContentHolder from "../UI/Components/ContentHolder";
 import Button from "../UI/Components/Buttons/Button";
+import ContentHolder from "../UI/Components/Views/ContentHolder";
 
 class PickUsername extends NavigationScreen {
   constructor(props: any) {

@@ -10,9 +10,10 @@ import { currentLesson } from "../../store/lesson";
 import globalStyles from "../../globalStyles";
 import images from "../../images";
 import { NavigationScreen } from "../UI/Screens/NavigationScreen";
-import DiffFlare from "../UI/Components/DiffFlare";
-import WordLearnedCard from "../UI/Components/WordLearnedCard";
 import Button from "../UI/Components/Buttons/Button";
+import DiffFlare from "../UI/Components/Visual/DiffFlare";
+import LessonProgressBar from "../UI/Components/Interactive/LessonProgressBar";
+import WordLearnedCard from "../UI/Components/Interactive/WordLearnedCard";
 
 class Statistics extends NavigationScreen {
   componentDidMount() {
@@ -59,7 +60,7 @@ class Statistics extends NavigationScreen {
                 type={currentLesson.get().difficulty}
                 style={{ marginBottom: hp(2.5) }}
               />
-              {/* {this.desktop && <LessonProgressBar percentage={64} />} */}
+              {this.desktop && <LessonProgressBar percentage={64} />}
             </View>
           </Surface>
 
@@ -72,7 +73,7 @@ class Statistics extends NavigationScreen {
                 backgroundColor: "#2C2831",
               }}
             >
-              {/* <LessonProgressBar percentage={64} /> */}
+              <LessonProgressBar percentage={64} />
             </View>
           )}
 

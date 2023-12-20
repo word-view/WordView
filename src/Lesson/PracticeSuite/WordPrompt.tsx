@@ -8,7 +8,7 @@ import { wait } from "../../../modules/time/time";
 import WordImage from "./Components/WordImage";
 import images from "../../../images";
 import ResponsiveChecker from "../../UI/Components/Backend/ResponsiveChecker";
-import DraggableView from "../../UI/Components/DraggableView";
+import DraggableView from "../../UI/Components/Views/DraggableView";
 
 interface WordPromptProps {
   onSkip: Function;

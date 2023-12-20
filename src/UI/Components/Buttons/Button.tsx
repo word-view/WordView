@@ -4,8 +4,8 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import ResponsiveChecker from "../Backend/ResponsiveChecker";
 import { memo } from "react";
+import ResponsiveChecker from "../Backend/ResponsiveChecker";
 
 interface DefaultButtonProps {
   children: any;

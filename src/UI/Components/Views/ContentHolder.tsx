@@ -3,9 +3,9 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
-import ResponsiveChecker from "./Backend/ResponsiveChecker";
 import { Text } from "react-native-paper";
-import globalStyles from "../../../globalStyles";
+import ResponsiveChecker from "../Backend/ResponsiveChecker";
+import globalStyles from "../../../../globalStyles";
 
 interface ContentHolderProps {
   title: string;

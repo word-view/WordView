@@ -9,7 +9,7 @@ import { Word } from "../../modules/api";
 import images from "../../images";
 import OutcomeNotifier from "./OutcomeNotifier/OutcomeNotifier";
 import { NavigationScreen } from "../UI/Screens/NavigationScreen";
-import Timer from "../UI/Components/Timer";
+import Timer from "../UI/Components/Visual/Timer";
 
 function randomColor() {
   const colors = ["#46C3D3"];

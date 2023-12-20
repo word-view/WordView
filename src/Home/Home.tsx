@@ -9,7 +9,7 @@ import AccountSettings from "./AccountSettings";
 import Statistics from "./Statistics";
 import Lesson from "../Lesson/Lesson";
 import { NavigationScreen } from "../UI/Screens/NavigationScreen";
-import WVLogo from "../UI/Components/WVLogo";
+import WVLogo from "../UI/Components/Visual/WVLogo";
 
 const Navigator = createStackNavigator().Navigator;
 const Screen = createStackNavigator().Screen;

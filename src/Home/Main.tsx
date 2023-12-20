@@ -11,8 +11,8 @@ import {
 import { currentLesson } from "../../store/lesson";
 import { withNavigation } from "react-navigation";
 import { NavigationScreen } from "../UI/Screens/NavigationScreen";
-import HorizontalScrollView from "../UI/Components/HorizontalScrollView";
-import Lesson from "../UI/Components/Lesson";
+import Lesson from "../UI/Components/Interactive/Lesson";
+import HorizontalScrollView from "../UI/Components/Views/HorizontalScrollView";
 
 class Main extends NavigationScreen {
   componentDidMount() {

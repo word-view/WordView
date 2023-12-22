@@ -23,7 +23,7 @@ function Lesson(props: LessonProps) {
       <View style={{ alignItems: "center" }}>
         <Avatar.Image
           size={124}
-          style={{ backgroundColor: "#D0BCFF66" }}
+          style={{ backgroundColor: "#A9A8AA" }}
           source={props.img}
         />
         <Text variant="labelLarge" style={{ marginTop: hp(1) }}>

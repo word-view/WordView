@@ -21,9 +21,12 @@ interface WordPromptProps {
 export default function WordPrompt(props: WordPromptProps) {
   const isDesktop = ResponsiveChecker().isDesktop;
 
+  let leaving = false;
+
   let leaveOutRef = useRef(null);
 
   function finishLesson() {
+    leaving = true;
     if (leaveOutRef.current) {
       (leaveOutRef.current as any).leaveOut();
     }
@@ -43,11 +46,13 @@ export default function WordPrompt(props: WordPromptProps) {
 
         <DraggableView
           onDragLeft={async () => {
+            if (leaving) return;
             finishLesson();
             await wait(500);
             props.onSkip();
           }}
           onDragRight={async () => {
+            if (leaving) return;
             finishLesson();
             await wait(500);
             props.onMemorize();

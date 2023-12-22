@@ -79,5 +79,6 @@ const styles = StyleSheet.create({
   },
   headerTitleStyle: {
     fontFamily: "OpenSans",
+    fontWeight: "600",
   },
 });

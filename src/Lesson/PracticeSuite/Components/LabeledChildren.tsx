@@ -1,6 +1,5 @@
 import { View, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import { Text } from "react-native-paper";
-import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import globalStyles from "../../../../globalStyles";
 import { memo } from "react";
 
@@ -32,7 +31,7 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
   },
-  caption: { marginTop: hp(2.5), fontWeight: "600" },
+  caption: { fontWeight: "700" },
 });
 
 export default memo(LabeledChildren);

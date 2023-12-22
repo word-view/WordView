@@ -8,11 +8,11 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
-import { currentLesson } from "../../store/lesson";
 import { withNavigation } from "react-navigation";
 import { NavigationScreen } from "../UI/Screens/NavigationScreen";
 import Lesson from "../UI/Components/Interactive/Lesson";
 import HorizontalScrollView from "../UI/Components/Views/HorizontalScrollView";
+import Section from "./Components/Section";
 
 class Main extends NavigationScreen {
   componentDidMount() {
@@ -30,53 +30,7 @@ class Main extends NavigationScreen {
   render() {
     return (
       <ScrollView>
-        <Surface
-          elevation={4}
-          style={[
-            globalStyles.container,
-            styles.suggestedSurface,
-            this.desktop
-              ? desktopStyles.infoContainer
-              : mobileStyles.infoContainer,
-          ]}
-        >
-          <Text variant="titleLarge" style={{ fontWeight: "600" }}>
-            Aulas sugeridas
-          </Text>
-          <Text variant="titleSmall">
-            Aulas simples para você entender como o app funciona
-          </Text>
-
-          <HorizontalScrollView>
-            <Lesson
-              img={images.cac}
-              text="Plants"
-              style={{ marginTop: hp(1) }}
-              onPress={() => {
-                currentLesson.set({
-                  id: 1,
-                  title: "Plants",
-                  difficulty: "starter",
-                });
-                this.navigateTo("Lesson");
-              }}
-            />
-          </HorizontalScrollView>
-        </Surface>
-
-        <View
-          style={[
-            {
-              marginTop: hp(3),
-              alignItems: "flex-start",
-              paddingLeft: wp(2.5),
-            },
-          ]}
-        >
-          <Text variant="titleLarge" style={{ fontWeight: "600" }}>
-            Natureza
-          </Text>
-
+        <Section title="Natureza" fill={true} style={{ marginTop: hp(2.5) }}>
           <HorizontalScrollView>
             <Lesson
               img={images.cac}
@@ -85,7 +39,7 @@ class Main extends NavigationScreen {
               onPress={() => this.navigateTo("Lesson")}
             />
           </HorizontalScrollView>
-        </View>
+        </Section>
       </ScrollView>
     );
   }

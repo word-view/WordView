@@ -44,7 +44,7 @@ const globalStyles = StyleSheet.create({
       height: 2,
     },
     shadowOpacity: 0.23,
-    shadowRadius: 2.62,
+    shadowRadius: 1,
     elevation: 4,
   },
   textShadow: {
@@ -53,7 +53,7 @@ const globalStyles = StyleSheet.create({
       width: 0,
       height: 2,
     },
-    textShadowRadius: 2.62,
+    textShadowRadius: 1,
   },
 });
 

@@ -40,6 +40,8 @@ export default function WordSpelling(props: WordSpellingProps) {
   const [syllableCount, setSyllableCount] = useState(0);
   const [correctSyllableCount, setCorrectSyllableCount] = useState(0);
 
+  const [soletration, setSoletration] = useState<string>("");
+
   useEffect(() => {
     setWord(WordManager.getCurrentWord());
 
@@ -50,6 +52,14 @@ export default function WordSpelling(props: WordSpellingProps) {
     setMiddle(shuffledOrder[1]);
     setRight(shuffledOrder[2]);
   }, [word]);
+
+  function addToSoletration(partOfTheWord: string) {
+    setSoletration((lastSyllable) => {
+      if (word.spelling[correctSyllableCount] == partOfTheWord) {
+        return lastSyllable + partOfTheWord;
+      } else return lastSyllable;
+    });
+  }
 
   function finishLesson() {
     if (leaveOutRef.current) {
@@ -85,12 +95,15 @@ export default function WordSpelling(props: WordSpellingProps) {
       switch (location) {
         case "left":
           setLeftCorrect(true);
+          addToSoletration(syllable);
           break;
         case "middle":
           setMiddleCorrect(true);
+          addToSoletration(syllable);
           break;
         case "right":
           setRightCorrect(true);
+          addToSoletration(syllable);
           break;
       }
 
@@ -119,7 +132,7 @@ export default function WordSpelling(props: WordSpellingProps) {
   return (
     <Animator inDuration={500} outDuration={400} ref={leaveOutRef}>
       <View style={styles.layoutView}>
-        <LabeledChildren text="______">
+        <LabeledChildren text={soletration ?? ""}>
           <WordImage size={200} source={images.cac} />
         </LabeledChildren>
 

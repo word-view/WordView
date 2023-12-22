@@ -5,8 +5,10 @@ import { PaperProvider } from "react-native-paper";
 import { CombinedDarkTheme } from "./theme";
 import FontLoader from "./src/UI/Components/Backend/FontLoader";
 import WordView from "./src/WordView";
+import * as NavigationBar from "expo-navigation-bar";
 
 SplashScreen.preventAutoHideAsync();
+NavigationBar.setBackgroundColorAsync("#2C2831");
 
 export default function App() {
   const { fontsLoaded, onLayoutRootView } = FontLoader();
@@ -15,7 +17,7 @@ export default function App() {
   return (
     <PaperProvider theme={CombinedDarkTheme}>
       <WordView hideSplashCallback={onLayoutRootView} />
-      <StatusBar style="light" />
+      <StatusBar style="light" translucent={true} />
     </PaperProvider>
   );
 }

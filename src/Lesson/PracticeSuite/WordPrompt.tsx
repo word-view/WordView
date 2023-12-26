@@ -6,7 +6,7 @@ import Animator from "./Animator";
 import LabeledChildren from "./Components/LabeledChildren";
 import { wait } from "../../../modules/time/time";
 import WordImage from "./Components/WordImage";
-import images from "../../../images";
+import images from "../../images";
 import ResponsiveChecker from "../../UI/Components/Backend/ResponsiveChecker";
 import DraggableView from "../../UI/Components/Views/DraggableView";
 

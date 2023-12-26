@@ -7,8 +7,8 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { currentLesson } from "../../store/lesson";
-import globalStyles from "../../globalStyles";
-import images from "../../images";
+import globalStyles from "../globalStyles";
+import images from "../images";
 import { NavigationScreen } from "../UI/Screens/NavigationScreen";
 import Button from "../UI/Components/Buttons/Button";
 import DiffFlare from "../UI/Components/Visual/DiffFlare";

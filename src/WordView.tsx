@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { CombinedDarkTheme } from "../theme";
+import { CombinedDarkTheme } from "./theme";
 import { StyleSheet, View } from "react-native";
 import Home from "./Home/Home";
 import Login from "./Intro/Auth/Login";
@@ -13,6 +13,7 @@ import Welcome from "./Intro/Welcome";
 import WVLogo from "./UI/Components/Visual/WVLogo";
 import Settings from "./Home/Settings";
 import Lesson from "./Lesson/Lesson";
+import Statistics from "./Home/Statistics";
 
 const Navigator = createStackNavigator().Navigator;
 const Screen = createStackNavigator().Screen;
@@ -81,6 +82,7 @@ export default function WordView(args: WordViewArguments) {
           component={Lesson}
           options={{ title: "", headerTransparent: true }}
         />
+        <Screen name="Statistics" component={Statistics} />
       </Navigator>
     </NavigationContainer>
   );

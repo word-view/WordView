@@ -5,7 +5,7 @@ import {
 } from "react-native-responsive-screen";
 import { Text } from "react-native-paper";
 import ResponsiveChecker from "../Backend/ResponsiveChecker";
-import globalStyles from "../../../../globalStyles";
+import globalStyles from "../../../globalStyles";
 
 interface ContentHolderProps {
   title: string;

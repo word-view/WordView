@@ -7,7 +7,7 @@ import { shuffleArray } from "../../../modules/xtensions/array";
 import Animator from "./Animator";
 import LabeledChildren from "./Components/LabeledChildren";
 import WordImage from "./Components/WordImage";
-import images from "../../../images";
+import images from "../../images";
 import SyllableButton from "./Components/SyllableButton";
 import ResponsiveChecker from "../../UI/Components/Backend/ResponsiveChecker";
 

@@ -9,7 +9,7 @@ import { Text } from "react-native-paper";
 import { withNavigation } from "react-navigation";
 import { NavigationScreen } from "../UI/Screens/NavigationScreen";
 import { userRegister } from "../../store/register";
-import globalStyles from "../../globalStyles";
+import globalStyles from "../globalStyles";
 import Button from "../UI/Components/Buttons/Button";
 
 class PickLanguage extends NavigationScreen {

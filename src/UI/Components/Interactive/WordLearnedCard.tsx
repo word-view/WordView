@@ -1,7 +1,7 @@
 import { Avatar, Surface, Text } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
 import ResponsiveChecker from "../Backend/ResponsiveChecker";
-import images from "../../../../images";
+import images from "../../../images";
 
 interface WordLearnedCardProps {
   word?: any;

@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { ScrollView } from "react-native";
 import { Appbar } from "react-native-paper";
-import images from "../../images";
+import images from "../images";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,

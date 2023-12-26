@@ -4,7 +4,7 @@ import Animator from "./Animator";
 import { View, StyleSheet } from "react-native";
 import LabeledChildren from "./Components/LabeledChildren";
 import WordImage from "./Components/WordImage";
-import images from "../../../images";
+import images from "../../images";
 
 /**
  * Shows after a activity to reinforce the meaning of the word

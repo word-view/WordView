@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React, { useEffect } from "react";
-import images from "../../images";
+import images from "../images";
 import { WelcomeScreenProps } from "./types";
 import Button from "../UI/Components/Buttons/Button";
 

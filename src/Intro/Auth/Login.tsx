@@ -7,7 +7,7 @@ import {
 } from "react-native-responsive-screen";
 import { withNavigation } from "react-navigation";
 import { NavigationScreen } from "../../UI/Screens/NavigationScreen";
-import globalStyles from "../../../globalStyles";
+import globalStyles from "../../globalStyles";
 import AccountLoginButton from "../../UI/Components/Buttons/AccountLoginButton";
 
 class Login extends NavigationScreen {

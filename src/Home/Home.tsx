@@ -1,5 +1,4 @@
 import { BackHandler, View } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
 import {
   Appbar,
   BottomNavigation,
@@ -9,7 +8,7 @@ import {
   Text,
 } from "react-native-paper";
 import Main from "./Main";
-import AccountSettings from "./AccountSettings";
+import AccountSettings from "./Progress";
 import { useEffect, useState } from "react";
 import DesktopChecker from "../UI/Components/Backend/ResponsiveChecker";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
@@ -82,10 +81,12 @@ export default function Home(props: HomeProps) {
         >
           <Dialog.Title>Alert</Dialog.Title>
           <Dialog.Content>
-            <Text variant="bodyMedium">Are you sure you want to leave?</Text>
+            <Text variant="bodyMedium">
+              Tem certeza que quer fechar o aplicativo?
+            </Text>
           </Dialog.Content>
           <Dialog.Actions>
-            <Button onPress={leaveApp}>Leave</Button>
+            <Button onPress={leaveApp}>Fechar</Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>

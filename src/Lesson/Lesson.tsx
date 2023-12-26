@@ -10,6 +10,7 @@ import images from "../../images";
 import OutcomeNotifier from "./OutcomeNotifier/OutcomeNotifier";
 import { NavigationScreen } from "../UI/Screens/NavigationScreen";
 import Timer from "../UI/Components/Visual/Timer";
+import { LinearGradient } from "expo-linear-gradient";
 
 function randomColor() {
   const colors = ["#46C3D3"];
@@ -39,7 +40,7 @@ class Lesson extends NavigationScreen {
 
   setupHeader() {
     this.headerRight(<Timer time={formatTime(300000)} />);
-    this.setHeaderColor(this.pageColor);
+    this.setHeaderColor("#00000000");
   }
 
   initializeFSManager() {
@@ -121,10 +122,14 @@ class Lesson extends NavigationScreen {
 
   render() {
     return (
-      <View style={[styles.rootView, { backgroundColor: this.pageColor }]}>
+      <LinearGradient
+        colors={[this.pageColor, "#68E7F9"]}
+        start={{ x: 10, y: 20 }}
+        style={styles.rootView}
+      >
         {OutcomeNotifier.getResult()}
         {ScreenManager.getCurrentScreen()}
-      </View>
+      </LinearGradient>
     );
   }
 }

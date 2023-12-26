@@ -76,7 +76,11 @@ export default function WordView(args: WordViewArguments) {
           options={{ title: "Login com email" }}
           component={EmailLogin}
         />
-        <Screen name="Lesson" component={Lesson} options={{ title: "" }} />
+        <Screen
+          name="Lesson"
+          component={Lesson}
+          options={{ title: "", headerTransparent: true }}
+        />
       </Navigator>
     </NavigationContainer>
   );

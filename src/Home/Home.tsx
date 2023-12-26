@@ -1,104 +1,101 @@
-import { BackHandler, StyleSheet, View } from "react-native";
+import { BackHandler, View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
-import { Button, Dialog, Portal, Text } from "react-native-paper";
-import { CombinedDarkTheme } from "../../theme";
+import {
+  Appbar,
+  BottomNavigation,
+  Button,
+  Dialog,
+  Portal,
+  Text,
+} from "react-native-paper";
 import Main from "./Main";
-import Settings from "./Settings";
 import AccountSettings from "./AccountSettings";
-import Statistics from "./Statistics";
-import Lesson from "../Lesson/Lesson";
-import { NavigationScreen } from "../UI/Screens/NavigationScreen";
-import WVLogo from "../UI/Components/Visual/WVLogo";
+import { useEffect, useState } from "react";
+import DesktopChecker from "../UI/Components/Backend/ResponsiveChecker";
+import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 
-const Navigator = createStackNavigator().Navigator;
-const Screen = createStackNavigator().Screen;
-
-export default class Home extends NavigationScreen {
-  constructor(args: any) {
-    super(args);
-
-    this.state = {
-      dialogVisible: false,
-    };
-  }
-
-  private showDialog = () => this.setState({ dialogVisible: true });
-  private hideDialog = () => this.setState({ dialogVisible: false });
-  private leaveApp = () => BackHandler.exitApp();
-
-  componentDidMount() {
-    this.overrideDefaultBack(this.showDialog);
-  }
-
-  render() {
-    return (
-      <>
-        <Portal>
-          <Dialog
-            visible={(this.state as any).dialogVisible}
-            onDismiss={this.hideDialog}
-          >
-            <Dialog.Title>Alert</Dialog.Title>
-            <Dialog.Content>
-              <Text variant="bodyMedium">Are you sure you want to leave?</Text>
-            </Dialog.Content>
-            <Dialog.Actions>
-              <Button onPress={this.leaveApp}>Leave</Button>
-            </Dialog.Actions>
-          </Dialog>
-        </Portal>
-
-        <NavigationContainer independent={true} theme={CombinedDarkTheme}>
-          <Navigator
-            initialRouteName="Welcome"
-            screenOptions={{
-              animationEnabled: true,
-              headerStyle: {
-                borderBottomColor: "#2C2831",
-                shadowColor: "#2C2831",
-              },
-              headerTitleStyle: {},
-            }}
-          >
-            <Screen
-              options={{
-                title: "",
-                headerLeft: () => (
-                  <View style={styles.wvTitleHolder}>
-                    <WVLogo />
-                  </View>
-                ),
-              }}
-              name="Home"
-              component={Main}
-            />
-            <Screen name="Settings" component={Settings} />
-            <Screen name="Lesson" options={{ title: "" }} component={Lesson} />
-            <Screen
-              name="AccountSettings"
-              options={{ title: "Account Settings" }}
-              component={AccountSettings}
-            />
-            <Screen
-              name="Statistics"
-              options={{ title: "" }}
-              component={Statistics}
-            />
-          </Navigator>
-        </NavigationContainer>
-      </>
-    );
-  }
+interface HomeProps {
+  navigation: any;
 }
 
-const styles = StyleSheet.create({
-  wvTitleHolder: {
-    flexDirection: "row",
-    alignSelf: "flex-start",
-    alignItems: "center",
-    justifyContent: "center",
-    alignContent: "center",
-    position: "absolute",
-  },
-});
+export default function Home(props: HomeProps) {
+  const [dialogVisible, setDialogVisible] = useState(false);
+  const leaveApp = () => BackHandler.exitApp();
+
+  const isDesktop = DesktopChecker().isDesktop;
+
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([
+    {
+      key: "learn",
+      title: "Learn",
+      focusedIcon: "home",
+      unfocusedIcon: "home-outline",
+    },
+    {
+      key: "progress",
+      title: "Your Progress",
+      focusedIcon: "road-variant",
+      unfocusedIcon: "road-variant",
+    },
+  ]);
+
+  const renderScene = BottomNavigation.SceneMap({
+    learn: () => <Main nav={props.navigation} />,
+    progress: () => <AccountSettings nav={props.navigation} />,
+  });
+
+  useEffect(() => {
+    props.navigation.addListener("beforeRemove", (e: any) => {
+      e.preventDefault();
+      setDialogVisible(true);
+    });
+
+    props.navigation.setOptions({
+      headerRight: () => (
+        <View style={{ flexDirection: "row" }}>
+          {isDesktop && (
+            <>
+              <Appbar.Action icon="home" onPress={() => setIndex(0)} />
+              <Appbar.Action
+                icon="road-variant"
+                style={{ marginRight: wp(42.5) }}
+                onPress={() => setIndex(1)}
+              />
+            </>
+          )}
+          <Appbar.Action
+            icon="cog"
+            onPress={() => props.navigation.navigate("Settings")}
+          />
+        </View>
+      ),
+    });
+  }, []);
+
+  return (
+    <>
+      <Portal>
+        <Dialog
+          visible={dialogVisible}
+          onDismiss={() => setDialogVisible(false)}
+        >
+          <Dialog.Title>Alert</Dialog.Title>
+          <Dialog.Content>
+            <Text variant="bodyMedium">Are you sure you want to leave?</Text>
+          </Dialog.Content>
+          <Dialog.Actions>
+            <Button onPress={leaveApp}>Leave</Button>
+          </Dialog.Actions>
+        </Dialog>
+      </Portal>
+      <BottomNavigation
+        navigationState={{ index, routes }}
+        onIndexChange={setIndex}
+        renderScene={renderScene}
+        sceneAnimationEnabled={true}
+        barStyle={isDesktop && { height: 0 }}
+      />
+    </>
+  );
+}

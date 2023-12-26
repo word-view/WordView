@@ -1,8 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { ScrollView } from "react-native";
-import { Appbar, Surface, Text } from "react-native-paper";
-import globalStyles from "../../globalStyles";
+import { Appbar } from "react-native-paper";
 import images from "../../images";
 import {
   heightPercentageToDP as hp,
@@ -14,57 +13,25 @@ import Lesson from "../UI/Components/Interactive/Lesson";
 import HorizontalScrollView from "../UI/Components/Views/HorizontalScrollView";
 import Section from "./Components/Section";
 
-class Main extends NavigationScreen {
-  componentDidMount() {
-    this.headerRight(
-      <View style={{ flexDirection: "row" }}>
-        <Appbar.Action
-          icon="account"
-          onPress={() => this.navigateTo("AccountSettings")}
-        />
-        <Appbar.Action icon="cog" onPress={() => this.navigateTo("Settings")} />
-      </View>
-    );
-  }
-
-  render() {
-    return (
-      <ScrollView>
-        <Section title="Natureza" fill={true} style={{ marginTop: hp(2.5) }}>
-          <HorizontalScrollView>
-            <Lesson
-              img={images.cac}
-              text="Plants"
-              style={{ marginTop: hp(1) }}
-              onPress={() => this.navigateTo("Lesson")}
-            />
-          </HorizontalScrollView>
-        </Section>
-      </ScrollView>
-    );
-  }
+interface MainScreenProps {
+  nav: any;
 }
 
-const styles = StyleSheet.create({
-  suggestedSurface: {
-    alignSelf: "center",
-    marginTop: hp(2.5),
-    padding: 20,
-    borderRadius: 5,
-    alignItems: "flex-start",
-  },
-});
+function Main(props: MainScreenProps) {
+  return (
+    <ScrollView>
+      <Section title="Natureza" fill={true} style={{ marginTop: hp(2.5) }}>
+        <HorizontalScrollView>
+          <Lesson
+            img={images.cac}
+            text="Plants"
+            style={{ marginTop: hp(1) }}
+            onPress={() => props.nav.navigate("Lesson")}
+          />
+        </HorizontalScrollView>
+      </Section>
+    </ScrollView>
+  );
+}
 
-const desktopStyles = StyleSheet.create({
-  infoContainer: {
-    width: wp(75),
-  },
-});
-
-const mobileStyles = StyleSheet.create({
-  infoContainer: {
-    width: wp(96),
-  },
-});
-
-export default withNavigation(Main);
+export default memo(Main);

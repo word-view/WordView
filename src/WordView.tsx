@@ -2,7 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { CombinedDarkTheme } from "../theme";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Home from "./Home/Home";
 import Login from "./Intro/Auth/Login";
 import Register from "./Intro/Auth/Register";
@@ -10,6 +10,9 @@ import EmailLogin from "./Intro/Auth/EmailLogin";
 import PickLanguage from "./Intro/PickLanguage";
 import PickUsername from "./Intro/PickUsername";
 import Welcome from "./Intro/Welcome";
+import WVLogo from "./UI/Components/Visual/WVLogo";
+import Settings from "./Home/Settings";
+import Lesson from "./Lesson/Lesson";
 
 const Navigator = createStackNavigator().Navigator;
 const Screen = createStackNavigator().Screen;
@@ -58,15 +61,22 @@ export default function WordView(args: WordViewArguments) {
           name="Home"
           component={Home}
           options={{
-            headerShown: false,
+            headerShown: true,
+            headerLeft: () => (
+              <View style={styles.wvTitleHolder}>
+                <WVLogo />
+              </View>
+            ),
             title: "",
           }}
         />
+        <Screen name="Settings" component={Settings} />
         <Screen
           name="EmailLogin"
           options={{ title: "Login com email" }}
           component={EmailLogin}
         />
+        <Screen name="Lesson" component={Lesson} options={{ title: "" }} />
       </Navigator>
     </NavigationContainer>
   );
@@ -80,5 +90,13 @@ const styles = StyleSheet.create({
   headerTitleStyle: {
     fontFamily: "OpenSans",
     fontWeight: "600",
+  },
+  wvTitleHolder: {
+    flexDirection: "row",
+    alignSelf: "flex-start",
+    alignItems: "center",
+    justifyContent: "center",
+    alignContent: "center",
+    position: "absolute",
   },
 });

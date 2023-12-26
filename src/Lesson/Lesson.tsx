@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { withNavigation } from "react-navigation";
 import React from "react";
 import { formatTime, wait } from "../../modules/time/time";

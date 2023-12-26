@@ -16,7 +16,10 @@ export default function Timer(props: TimerProps) {
         justifyContent: "center",
       }}
     >
-      <Text variant="titleMedium" style={{ marginRight: 5, fontWeight: "600" }}>
+      <Text
+        variant="titleMedium"
+        style={{ marginRight: 5, fontWeight: "600", color: "#fff" }}
+      >
         {props.time ?? "00:00"}
       </Text>
       <ClockIcon />

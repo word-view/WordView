@@ -1,23 +1,23 @@
-import React from "react";
-import * as SplashScreen from "expo-splash-screen";
-import { StatusBar } from "expo-status-bar";
-import { PaperProvider } from "react-native-paper";
-import { CombinedDarkTheme } from "./src/theme";
-import FontLoader from "./src/UI/Components/Backend/FontLoader";
-import WordView from "./src/WordView";
-import * as NavigationBar from "expo-navigation-bar";
+import React from 'react'
+import * as SplashScreen from 'expo-splash-screen'
+import { StatusBar } from 'expo-status-bar'
+import { PaperProvider } from 'react-native-paper'
+import * as NavigationBar from 'expo-navigation-bar'
+import AppNavigation from './navigation/AppNavigation'
+import { FontLoader } from './components'
+import { CombinedDarkTheme } from './theme'
 
-SplashScreen.preventAutoHideAsync();
-NavigationBar.setBackgroundColorAsync("#2C2831");
+SplashScreen.preventAutoHideAsync()
+NavigationBar.setBackgroundColorAsync('#2C2831')
 
 export default function App() {
-  const { fontsLoaded, onLayoutRootView } = FontLoader();
-  if (!fontsLoaded) return null;
+  const { fontsLoaded, onLayoutRootView } = FontLoader()
+  if (!fontsLoaded) return null
 
   return (
     <PaperProvider theme={CombinedDarkTheme}>
-      <WordView hideSplashCallback={onLayoutRootView} />
-      <StatusBar style="light" translucent={true} />
+      <AppNavigation hideSplashCallback={onLayoutRootView} />
+      <StatusBar style='light' translucent={true} />
     </PaperProvider>
-  );
+  )
 }

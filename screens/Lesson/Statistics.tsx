@@ -7,15 +7,15 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen'
 import { currentLesson } from '../../store/lesson'
-import globalStyles from '../globalStyles'
-import images from '../images'
-import { NavigationScreen } from '../UI/Screens/NavigationScreen'
 import {
   Button,
   DiffFlare,
   LessonProgressBar,
   WordLearnedCard,
 } from '../../components'
+import { NavigationScreen } from '../NavigationScreen'
+import globalStyles from '../../global-styles'
+import images from '../../images'
 
 class Statistics extends NavigationScreen {
   componentDidMount() {
@@ -114,9 +114,8 @@ class Statistics extends NavigationScreen {
             color={{ text: 'white', button: '#55D962' }}
             onPress={() => this.navigateTo('Home')}
             marginTop={15}
-          >
-            Concluir
-          </Button>
+            text='Concluir'
+          />
         </View>
       </View>
     )

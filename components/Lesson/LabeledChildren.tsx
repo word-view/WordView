@@ -1,7 +1,7 @@
 import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native'
 import { Text } from 'react-native-paper'
 import { memo } from 'react'
-import globalStyles from '../../globalStyles'
+import globalStyles from '../../global-styles'
 
 interface LabeledChildrenProps {
   text: string

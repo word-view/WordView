@@ -1,13 +1,12 @@
-import { StyleSheet } from "react-native";
-import { widthPercentageToDP as wp } from "react-native-responsive-screen";
+import { StyleSheet } from 'react-native'
 
 const globalStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#2C2831",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "column",
+    backgroundColor: '#2C2831',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
   },
   wvIcon: {
     height: 82,
@@ -20,25 +19,25 @@ const globalStyles = StyleSheet.create({
     marginBottom: 15,
   },
   regularUIText: {
-    color: "white",
+    color: 'white',
     fontSize: 16,
     lineHeight: 21,
-    fontWeight: "400",
+    fontWeight: '400',
     letterSpacing: 0.25,
   },
   mediumUIText: {
-    color: "white",
+    color: 'white',
     fontSize: 18,
     lineHeight: 21,
-    fontWeight: "400",
+    fontWeight: '400',
     letterSpacing: 0.25,
   },
   full: {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
   },
   shadow: {
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -48,13 +47,13 @@ const globalStyles = StyleSheet.create({
     elevation: 4,
   },
   textShadow: {
-    textShadowColor: "#00000066",
+    textShadowColor: '#00000066',
     textShadowOffset: {
       width: 0,
       height: 2,
     },
     textShadowRadius: 1,
   },
-});
+})
 
-export default globalStyles;
+export default globalStyles

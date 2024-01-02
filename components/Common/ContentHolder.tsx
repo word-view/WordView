@@ -5,7 +5,7 @@ import {
 } from 'react-native-responsive-screen'
 import { Text } from 'react-native-paper'
 import { ResponsiveLayout } from '../Backend/'
-import globalStyles from '../../globalStyles'
+import globalStyles from '../../global-styles'
 
 interface ContentHolderProps {
   title: string

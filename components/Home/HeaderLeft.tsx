@@ -28,14 +28,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   wvIcon: {
-    height: 34,
-    width: 42,
+    height: 29.92,
+    width: 36.96,
     marginLeft: 15,
   },
   wvTitle: {
-    height: 20,
-    width: 120,
-    marginLeft: 15,
+    height: 17.6,
+    width: 105.6,
+    marginLeft: 12,
   },
 })
 

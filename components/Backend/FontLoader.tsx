@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
 import { useFonts } from 'expo-font'
-import { testing } from '../../store/state'
+import { testing } from '../../storage/store/state'
 
 export function FontLoader() {
   if (testing.get()) return testingMode()

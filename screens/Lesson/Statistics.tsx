@@ -6,7 +6,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen'
-import { currentLesson } from '../../store/lesson'
+import { currentLesson } from '../../storage/store/lesson'
 import {
   Button,
   DiffFlare,

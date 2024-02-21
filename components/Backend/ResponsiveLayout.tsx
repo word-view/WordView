@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Dimensions } from 'react-native'
-import { testing } from '../../store/state'
+import { testing } from '../../storage/store/state'
 import {
   widthPercentageToDP,
   heightPercentageToDP,

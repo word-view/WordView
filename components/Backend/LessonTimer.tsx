@@ -1,5 +1,5 @@
 import { formatTime } from '../../modules/time/time'
-import { globalLessonTime } from '../../store/lesson'
+import { globalLessonTime } from '../../storage/store/lesson'
 
 export class LessonTimer {
   private timer?: NodeJS.Timeout

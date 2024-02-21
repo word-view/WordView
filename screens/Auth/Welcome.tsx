@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import React, { useEffect } from 'react'
 import { Button } from '../../components'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import images from '../../images'
+import images from '../../config/images'
 
 interface Props {
   appNavigation: any

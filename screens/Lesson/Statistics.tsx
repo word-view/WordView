@@ -14,8 +14,8 @@ import {
   WordLearnedCard,
 } from '../../components'
 import { NavigationScreen } from '../NavigationScreen'
-import globalStyles from '../../global-styles'
-import images from '../../images'
+import globalStyles from '../../config/global-styles'
+import images from '../../config/images'
 
 class Statistics extends NavigationScreen {
   componentDidMount() {

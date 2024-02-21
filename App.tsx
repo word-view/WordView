@@ -5,7 +5,7 @@ import { PaperProvider } from 'react-native-paper'
 import * as NavigationBar from 'expo-navigation-bar'
 import AppNavigation from './navigation/AppNavigation'
 import { FontLoader } from './components'
-import { CombinedDarkTheme } from './theme'
+import { CombinedDarkTheme } from './config/theme'
 
 SplashScreen.preventAutoHideAsync()
 NavigationBar.setBackgroundColorAsync('#2C2831')

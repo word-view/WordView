@@ -1,7 +1,7 @@
 import { Avatar, Surface, Text } from 'react-native-paper'
 import { StyleSheet, View } from 'react-native'
 import { ResponsiveLayout } from '../Backend'
-import images from '../../images'
+import images from '../../config/images'
 
 interface WordLearnedCardProps {
   word?: any

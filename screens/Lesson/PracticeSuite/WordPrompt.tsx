@@ -10,7 +10,7 @@ import {
   LabeledChildren,
   WordImage,
 } from '../../../components'
-import images from '../../../images'
+import images from '../../../config/images'
 
 interface WordPromptProps {
   onSkip: Function

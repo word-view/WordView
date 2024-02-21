@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { View, StyleSheet, Image } from 'react-native'
 import { ResponsiveLayout } from '../Backend'
-import images from '../../images'
+import images from '../../config/images'
 
 interface HeaderLeftProps {
   onPressMenu?: () => void

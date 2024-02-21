@@ -1,7 +1,7 @@
 import { View } from 'react-native'
 import { Text } from 'react-native-paper'
 import React from 'react'
-import globalStyles from '../../global-styles'
+import globalStyles from '../../config/global-styles'
 
 interface TextBubbleProps {
   text?: string

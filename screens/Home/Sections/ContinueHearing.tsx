@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import { HorizontalScrollView, Song, Section } from '../../../components'
-import images from '../../../images'
+import images from '../../../config/images'
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,

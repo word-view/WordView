@@ -9,7 +9,7 @@ import OutcomeNotifier from './OutcomeNotifier/OutcomeNotifier'
 import { ScreenManager } from './ScreenManager'
 import { LessonWord, WordManager } from './WordManager'
 import { NavigationScreen } from '../NavigationScreen'
-import images from '../../images'
+import images from '../../config/images'
 
 function randomColor() {
   const colors = ['#46C3D3']

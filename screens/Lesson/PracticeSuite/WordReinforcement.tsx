@@ -3,7 +3,7 @@ import { wait } from '../../../modules/time/time'
 import Animator from './Animator'
 import { View, StyleSheet } from 'react-native'
 import { LabeledChildren, WordImage } from '../../../components'
-import images from '../../../images'
+import images from '../../../config/images'
 /**
  * Shows after a activity to reinforce the meaning of the word
  */

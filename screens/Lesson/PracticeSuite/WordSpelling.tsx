@@ -11,7 +11,7 @@ import {
 } from '../../../components'
 import SyllableButton from '../../../components/Lesson/SyllableButton'
 import { WordManager } from '../WordManager'
-import images from '../../../images'
+import images from '../../../config/images'
 
 interface WordSpellingProps {
   onFinish?: Function

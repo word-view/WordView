@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native'
 
 export const navStyles = StyleSheet.create({
   headerStyle: {
-    borderBottomColor: '#2C2831',
+    borderBottomColor: '#322D38',
     shadowColor: '#2C2831',
   },
   headerTitleStyle: {

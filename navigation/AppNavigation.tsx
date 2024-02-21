@@ -3,6 +3,7 @@ import { CombinedDarkTheme } from './theme'
 import { createStackNavigator } from '@react-navigation/stack'
 import AuthNavigation from './AuthNavigation'
 import HomeNavigation from './HomeNavigation'
+import PlayerNavigation from './PlayerNavigation'
 
 const Navigator = createStackNavigator().Navigator
 const Screen = createStackNavigator().Screen
@@ -30,6 +31,7 @@ function AppNavigation(props: Props) {
           )}
         </Screen>
         <Screen name='home' component={HomeNavigation} />
+        <Screen name='player' component={PlayerNavigation} />
       </Navigator>
     </NavigationContainer>
   )

@@ -14,7 +14,7 @@ interface ContinueHearingProps {
 function $ContinueHearing(props: ContinueHearingProps) {
   function openPlayer(id: string) {
     // set song id
-    props.appNav.navigate('MusicPlayer')
+    props.appNav.navigate('player')
   }
 
   return (

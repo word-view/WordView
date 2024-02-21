@@ -1,7 +1,6 @@
-import { View, StyleSheet } from 'react-native'
-import { Appbar, BottomNavigation } from 'react-native-paper'
+import { BottomNavigation } from 'react-native-paper'
 import { useEffect, useState } from 'react'
-import { ResponsiveLayout, WVLogo } from '../../components'
+import { HeaderLeft, HeaderRight, ResponsiveLayout } from '../../components'
 import { SideNavigation } from '../../components/Home/SideNavigation'
 import Main from './Main'
 import Progress from './Progress'
@@ -17,18 +16,9 @@ function Home(props: Props) {
   useEffect(() => {
     props.navigation.setOptions({
       title: '',
-      headerLeft: () => (
-        <View style={styles.wvTitleHolder}>
-          <WVLogo />
-        </View>
-      ),
+      headerLeft: () => <HeaderLeft />,
       headerRight: () => (
-        <View style={{ flexDirection: 'row' }}>
-          <Appbar.Action
-            icon='cog'
-            onPress={() => props.navigation.navigate('Settings')}
-          />
-        </View>
+        <HeaderRight onPressCog={() => props.navigation.navigate('Settings')} />
       ),
     })
   }, [])
@@ -40,28 +30,27 @@ function Home(props: Props) {
       title: 'Learn',
       focusedIcon: 'home',
       unfocusedIcon: 'home-outline',
+      component: () => (
+        <Main marginLeft={isDesktop ? 8 : 0} appNav={props.appNavigation} />
+      ),
     },
     {
       key: 'progress',
       title: 'Your Progress',
       focusedIcon: 'road-variant',
       unfocusedIcon: 'road-variant',
+      component: () => <Progress nav={props.navigation} />,
     },
   ])
 
   const renderScene = BottomNavigation.SceneMap({
-    learn: () => <Main nav={props.navigation} />,
-    progress: () => <Progress nav={props.navigation} />,
+    learn: routes[0].component,
+    progress: routes[1].component,
   })
 
   return (
     <>
-      {isDesktop && (
-        <SideNavigation
-          onPressHome={() => setIndex(0)}
-          onPressProgress={() => setIndex(1)}
-        />
-      )}
+      {isDesktop && <SideNavigation routes={routes} setIndex={setIndex} />}
       <BottomNavigation
         navigationState={{ index, routes }}
         onIndexChange={setIndex}
@@ -73,16 +62,5 @@ function Home(props: Props) {
     </>
   )
 }
-
-const styles = StyleSheet.create({
-  wvTitleHolder: {
-    flexDirection: 'row',
-    alignSelf: 'flex-start',
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignContent: 'center',
-    position: 'absolute',
-  },
-})
 
 export default Home

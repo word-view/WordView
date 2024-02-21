@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   sidebar: {
     backgroundColor: '#2C2831',
     height: '100%',
-    width: wp(4),
+    width: wp(5),
     alignItems: 'center',
     justifyContent: 'flex-start',
     zIndex: 10,

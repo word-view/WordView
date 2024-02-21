@@ -1,10 +1,7 @@
 import { memo } from 'react'
 import { View, StyleSheet, ViewStyle, StyleProp } from 'react-native'
 import { Text } from 'react-native-paper'
-import {
-  heightPercentageToDP,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen'
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import { ResponsiveLayout } from '../Backend/'
 import { ScrollView } from 'react-native-gesture-handler'
 
@@ -46,7 +43,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   childrenView: {
-    marginTop: 10,
+    marginTop: 2.5,
     flexDirection: 'column',
   },
 })

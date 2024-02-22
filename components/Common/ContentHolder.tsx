@@ -1,11 +1,7 @@
 import { StyleSheet, View } from 'react-native'
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen'
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import { Text } from 'react-native-paper'
 import { ResponsiveLayout } from '../Backend/'
-import globalStyles from '../../config/global-styles'
 
 interface ContentHolderProps {
   title: string
@@ -23,7 +19,7 @@ export function ContentHolder(props: ContentHolderProps) {
   return (
     <View
       style={[
-        globalStyles.container,
+        styles.container,
         { alignSelf: 'center', marginTop: hp(5) },
         isDesktop ? styles.contentHolder : { width: wp(150) },
       ]}
@@ -46,9 +42,7 @@ export function ContentHolder(props: ContentHolderProps) {
 
       <View
         style={[
-          isDesktop
-            ? desktopStyles.childrenHolder
-            : mobileStyles.childrenHolder,
+          isDesktop ? desktopStyles.childrenHolder : mobileStyles.childrenHolder,
           {
             alignSelf: 'center',
             alignItems: 'center',
@@ -74,6 +68,13 @@ const desktopStyles = StyleSheet.create({
 })
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#2C2831',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
   contentHolder: {
     marginTop: hp(5),
     padding: 20,

@@ -1,7 +1,6 @@
 import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native'
 import { Text } from 'react-native-paper'
 import { memo } from 'react'
-import globalStyles from '../../config/global-styles'
 
 interface LabeledChildrenProps {
   text: string
@@ -13,11 +12,7 @@ function $LabeledChildren(props: LabeledChildrenProps) {
   return (
     <View style={[styles.view, { zIndex: -1 }, props.style]}>
       {props.children}
-      <Text
-        variant='titleMedium'
-        selectable={false}
-        style={[globalStyles.textShadow, styles.caption, { color: '#fff' }]}
-      >
+      <Text variant='titleMedium' selectable={false} style={[styles.textShadow, styles.caption, { color: '#fff' }]}>
         {props.text}
       </Text>
     </View>
@@ -25,6 +20,14 @@ function $LabeledChildren(props: LabeledChildrenProps) {
 }
 
 const styles = StyleSheet.create({
+  textShadow: {
+    textShadowColor: '#00000066',
+    textShadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    textShadowRadius: 1,
+  },
   view: {
     justifyContent: 'center',
     alignItems: 'center',

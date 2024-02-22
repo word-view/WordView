@@ -2,19 +2,10 @@ import { withNavigation } from 'react-navigation'
 import { ScrollView } from 'react-native'
 import { Avatar, Surface, Text } from 'react-native-paper'
 import { StyleSheet, View } from 'react-native'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { currentLesson } from '../../storage/store/lesson'
-import {
-  Button,
-  DiffFlare,
-  LessonProgressBar,
-  WordLearnedCard,
-} from '../../components'
+import { Button, DiffFlare, LessonProgressBar, WordLearnedCard } from '../../components'
 import { NavigationScreen } from '../NavigationScreen'
-import globalStyles from '../../config/global-styles'
 import images from '../../config/images'
 
 class Statistics extends NavigationScreen {
@@ -28,26 +19,13 @@ class Statistics extends NavigationScreen {
 
   render() {
     return (
-      <View
-        style={[
-          { width: '100%', height: '100%' },
-          !this.desktop && { backgroundColor: '#2C2831' },
-        ]}
-      >
+      <View style={[{ width: '100%', height: '100%' }, !this.desktop && { backgroundColor: '#2C2831' }]}>
         <ScrollView>
           <Surface
             elevation={this.desktop ? 4 : 0}
-            style={[
-              globalStyles.container,
-              styles.surface,
-              this.desktop ? { width: wp(45) } : { width: wp(95) },
-            ]}
+            style={[styles.container, styles.surface, this.desktop ? { width: wp(45) } : { width: wp(95) }]}
           >
-            <Avatar.Image
-              size={124}
-              style={[globalStyles.shadow, { backgroundColor: '#D0BCFF66' }]}
-              source={images.cac}
-            />
+            <Avatar.Image size={124} style={[styles.shadow, { backgroundColor: '#D0BCFF66' }]} source={images.cac} />
             <View
               style={{
                 marginLeft: wp(2.5),
@@ -58,10 +36,7 @@ class Statistics extends NavigationScreen {
               }}
             >
               <Text variant='titleLarge'>{currentLesson.get().title}</Text>
-              <DiffFlare
-                type={currentLesson.get().difficulty}
-                style={{ marginBottom: hp(2.5) }}
-              />
+              <DiffFlare type={currentLesson.get().difficulty} style={{ marginBottom: hp(2.5) }} />
               {this.desktop && <LessonProgressBar percentage={64} />}
             </View>
           </Surface>
@@ -79,12 +54,7 @@ class Statistics extends NavigationScreen {
             </View>
           )}
 
-          <View
-            style={[
-              { alignSelf: 'center' },
-              this.desktop ? { width: wp(45) } : { width: wp(90) },
-            ]}
-          >
+          <View style={[{ alignSelf: 'center' }, this.desktop ? { width: wp(45) } : { width: wp(90) }]}>
             <Text
               variant='titleMedium'
               style={{
@@ -125,6 +95,23 @@ class Statistics extends NavigationScreen {
 export default withNavigation(Statistics)
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#2C2831',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
+  shadow: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 1,
+    elevation: 4,
+  },
   surface: {
     alignSelf: 'center',
     marginTop: hp(2.5),

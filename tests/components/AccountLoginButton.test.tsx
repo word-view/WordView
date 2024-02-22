@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react-native'
 import { testing } from '../../storage/store/state'
 import renderer from 'react-test-renderer'
-import { AccountLoginButton, Button } from '../../components'
+import { AccountLoginButton } from '../../components'
 
 beforeEach(() => testing.set(true))
 

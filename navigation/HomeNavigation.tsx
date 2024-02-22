@@ -24,15 +24,9 @@ function HomeNavigation(props: Props) {
           headerTitleStyle: navStyles.headerTitleStyle,
         }}
       >
-        <Screen name='Home'>
-          {$props => <Home {...$props} appNavigation={props.navigation} />}
-        </Screen>
+        <Screen name='Home'>{$props => <Home {...$props} appNavigation={props.navigation} />}</Screen>
         <Screen name='Settings' component={Settings} />
-        <Screen
-          name='Lesson'
-          component={Lesson}
-          options={{ headerTransparent: true, title: '' }}
-        />
+        <Screen name='Lesson' component={Lesson} options={{ headerTransparent: true, title: '' }} />
       </Navigator>
     </NavigationContainer>
   )

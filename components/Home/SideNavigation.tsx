@@ -1,16 +1,14 @@
 import React, { forwardRef, memo } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Appbar } from 'react-native-paper'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
-interface Route {
+export interface Route {
   key: string
   title: string
   focusedIcon: string
   unfocusedIcon: string
+  mobileOnly: boolean
   component: () => React.JSX.Element
 }
 
@@ -21,6 +19,8 @@ interface Props {
 
 const $SideNavigation = forwardRef((props: Props, ref) => {
   function routeToAction(route: Route) {
+    if (route.mobileOnly) return
+
     const routeIndex = props.routes.indexOf(route)
     return (
       <Appbar.Action

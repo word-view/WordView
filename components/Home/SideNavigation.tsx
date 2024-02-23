@@ -1,7 +1,7 @@
 import React, { forwardRef, memo } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Appbar } from 'react-native-paper'
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
+import { SidebarItem } from './SidebarItem'
 
 export interface Route {
   key: string
@@ -22,13 +22,9 @@ const $SideNavigation = forwardRef((props: Props, ref) => {
     if (route.mobileOnly) return
 
     const routeIndex = props.routes.indexOf(route)
-    return (
-      <Appbar.Action
-        icon={route.focusedIcon}
-        onPress={() => props.setIndex(routeIndex)}
-        style={routeIndex != 0 && { marginTop: hp(2) }}
-      />
-    )
+    const setIndex = () => props.setIndex(routeIndex)
+
+    return <SidebarItem route={route} onPress={setIndex} />
   }
 
   function mapActions() {

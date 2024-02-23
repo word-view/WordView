@@ -42,9 +42,9 @@ function Home(props: Props) {
     },
     {
       key: 'progress',
-      title: 'Your Progress',
-      focusedIcon: 'road-variant',
-      unfocusedIcon: 'road-variant',
+      title: 'Progress',
+      focusedIcon: 'timeline-text',
+      unfocusedIcon: 'timeline-text-outline',
       mobileOnly: false,
       component: () => <Progress nav={props.navigation} />,
     },
@@ -63,7 +63,7 @@ function Home(props: Props) {
         onIndexChange={setIndex}
         renderScene={BottomNavigation.SceneMap(sceneMap)}
         sceneAnimationEnabled={true}
-        shifting={true}
+        shifting={false}
         barStyle={isDesktop && { height: 0 }}
       />
     </>

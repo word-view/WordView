@@ -1,6 +1,7 @@
 import { StyleProp, View, ViewStyle } from 'react-native'
 import { Text } from 'react-native-paper'
-import { ResponsiveLayout } from '../Backend'
+import { useContext } from 'react'
+import { DesktopModeProvider } from '../Provider'
 
 interface DiffFlareProps {
   type: 'starter' | 'intermidiate' | 'advanced'
@@ -8,7 +9,7 @@ interface DiffFlareProps {
 }
 
 export function DiffFlare(props: DiffFlareProps) {
-  const isDesktop = ResponsiveLayout().isDesktop
+  const desktop = useContext(DesktopModeProvider)
 
   let color, label
 
@@ -39,7 +40,7 @@ export function DiffFlare(props: DiffFlareProps) {
           padding: 5,
         },
         props.style,
-        isDesktop ? { height: 25 } : { height: 30 },
+        desktop ? { height: 25 } : { height: 30 },
       ]}
     >
       <Text variant='titleSmall' style={{ fontWeight: 'bold' }}>

@@ -1,4 +1,4 @@
-import React, { forwardRef, memo, useImperativeHandle } from 'react'
+import React, { forwardRef, memo, useContext, useImperativeHandle } from 'react'
 import { StyleProp, ViewStyle } from 'react-native'
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import Animated, {
@@ -9,8 +9,8 @@ import Animated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated'
-import { ResponsiveLayout } from '../Backend'
 import { Button } from '../Common'
+import { DesktopModeProvider } from '../Provider'
 
 interface SyllableButtonProps {
   text: string
@@ -20,7 +20,7 @@ interface SyllableButtonProps {
 }
 
 const SyllableButton = forwardRef((props: SyllableButtonProps, ref) => {
-  const isDesktop = ResponsiveLayout().isDesktop
+  const desktop = useContext(DesktopModeProvider)
 
   const shakeValue = useSharedValue(0)
 
@@ -68,7 +68,7 @@ const SyllableButton = forwardRef((props: SyllableButtonProps, ref) => {
         pressable={pressable}
         color={{ text: textColor, button: buttonColor }}
         onPress={props.onPress}
-        style={[{ width: wp(25) }, isDesktop && { width: wp(10) }]}
+        style={[{ width: wp(25) }, desktop && { width: wp(10) }]}
         text={props.text}
       />
     </Animated.View>

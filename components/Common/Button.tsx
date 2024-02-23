@@ -1,11 +1,8 @@
 import { StyleProp, StyleSheet, ViewStyle } from 'react-native'
 import { Button as RNPButton } from 'react-native-paper'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import { memo } from 'react'
-import { ResponsiveLayout } from '../Backend'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import { memo, useContext } from 'react'
+import { DesktopModeProvider } from '../Provider'
 
 interface ButtonProps {
   text: string
@@ -23,7 +20,7 @@ interface ButtonProps {
 }
 
 function $Button(props: ButtonProps) {
-  const isDesktop = ResponsiveLayout().isDesktop
+  const desktop = useContext(DesktopModeProvider)
 
   return (
     <RNPButton
@@ -36,12 +33,8 @@ function $Button(props: ButtonProps) {
         if (props.pressable || props.pressable == undefined) props.onPress()
       }}
       style={{ marginTop: hp(props.marginTop ?? 0), borderRadius: 10 }}
-      labelStyle={[{ fontWeight: '600' }, isDesktop && { fontSize: 16 }]}
-      contentStyle={[
-        styles.button,
-        isDesktop ? desktopStyles.button : mobileStyles.button,
-        props.style,
-      ]}
+      labelStyle={[{ fontWeight: '600' }, desktop && { fontSize: 16 }]}
+      contentStyle={[styles.button, desktop ? desktopStyles.button : mobileStyles.button, props.style]}
     >
       {props.text}
     </RNPButton>

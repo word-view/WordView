@@ -1,8 +1,8 @@
-import { memo, useState } from 'react'
+import { memo, useContext, useState } from 'react'
 import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native'
-import { ResponsiveLayout } from '../Backend/'
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import { Switch, Text } from 'react-native-paper'
+import { DesktopModeProvider } from '../Provider'
 
 interface SettingEntryProps {
   title: string
@@ -14,7 +14,7 @@ interface SettingEntryProps {
 }
 
 function $SettingEntry(props: SettingEntryProps) {
-  const isDesktop = ResponsiveLayout().isDesktop
+  const desktop = useContext(DesktopModeProvider)
 
   const [isSwitchOn, setIsSwitchOn] = useState(false)
   const onToggleSwitch = () => {
@@ -26,7 +26,7 @@ function $SettingEntry(props: SettingEntryProps) {
     <View
       style={[
         styles.background,
-        isDesktop ? { width: wp(45) } : { width: wp(95) },
+        desktop ? { width: wp(45) } : { width: wp(95) },
         props.style,
         !props.description && { height: 50 },
         props.disabled && styles.disabled,
@@ -44,11 +44,7 @@ function $SettingEntry(props: SettingEntryProps) {
       </View>
 
       <View style={[styles.settingActivationArea]}>
-        <Switch
-          style={{ alignSelf: 'flex-end' }}
-          value={isSwitchOn}
-          onValueChange={onToggleSwitch}
-        />
+        <Switch style={{ alignSelf: 'flex-end' }} value={isSwitchOn} onValueChange={onToggleSwitch} />
       </View>
     </View>
   )

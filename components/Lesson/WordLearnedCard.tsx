@@ -1,19 +1,17 @@
 import { Avatar, Surface, Text } from 'react-native-paper'
 import { StyleSheet, View } from 'react-native'
-import { ResponsiveLayout } from '../Backend'
 import images from '../../config/images'
+import { useContext } from 'react'
+import { DesktopModeProvider } from '../Provider'
 
 interface WordLearnedCardProps {
   word?: any
 }
 export function WordLearnedCard(props: WordLearnedCardProps) {
-  const isDesktop = ResponsiveLayout().isDesktop
+  const desktop = useContext(DesktopModeProvider)
 
   return (
-    <Surface
-      elevation={2}
-      style={[styles.surface, !isDesktop && { backgroundColor: '#4C4850' }]}
-    >
+    <Surface elevation={2} style={[styles.surface, !desktop && { backgroundColor: '#4C4850' }]}>
       <Avatar.Image size={75} source={images.cac} style={styles.wordImage} />
       <View style={styles.wordsContainer}>
         <Text variant='bodyLarge' style={{ fontWeight: 'bold' }}>

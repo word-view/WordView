@@ -1,14 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { Word } from '../../../modules/api'
 import { shuffleArray } from '../../../modules/xtensions/array'
 import Animator from './Animator'
-import {
-  ResponsiveLayout,
-  LabeledChildren,
-  WordImage,
-} from '../../../components'
+import { LabeledChildren, WordImage, DesktopModeProvider } from '../../../components'
 import SyllableButton from '../../../components/Lesson/SyllableButton'
 import { WordManager } from '../WordManager'
 import images from '../../../config/images'
@@ -21,7 +17,7 @@ interface WordSpellingProps {
  * A simple word spelling exercise
  */
 export default function WordSpelling(props: WordSpellingProps) {
-  const isDesktop = ResponsiveLayout().isDesktop
+  const desktop = useContext(DesktopModeProvider)
 
   const leaveOutRef = useRef(null)
 
@@ -87,10 +83,7 @@ export default function WordSpelling(props: WordSpellingProps) {
     }
   }
 
-  function guessSyllable(
-    syllable: string,
-    location: 'left' | 'middle' | 'right',
-  ) {
+  function guessSyllable(syllable: string, location: 'left' | 'middle' | 'right') {
     if (word.spelling[correctSyllableCount] == syllable) {
       setCorrectSyllableCount(correctSyllableCount + 1)
 
@@ -138,7 +131,7 @@ export default function WordSpelling(props: WordSpellingProps) {
           <WordImage size={200} source={images.cac} />
         </LabeledChildren>
 
-        <View style={[styles.alternativesView, isDesktop && { width: '50%' }]}>
+        <View style={[styles.alternativesView, desktop && { width: '50%' }]}>
           <SyllableButton
             onPress={() => guessSyllable(left, 'left')}
             correct={leftCorrect}

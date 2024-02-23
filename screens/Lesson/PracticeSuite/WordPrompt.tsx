@@ -1,15 +1,10 @@
-import { useRef } from 'react'
+import { useContext, useRef } from 'react'
 import { Icon } from 'react-native-paper'
 import { View, StyleSheet } from 'react-native'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import Animator from './Animator'
 import { wait } from '../../../modules/time/time'
-import {
-  ResponsiveLayout,
-  DraggableView,
-  LabeledChildren,
-  WordImage,
-} from '../../../components'
+import { DraggableView, LabeledChildren, WordImage, DesktopModeProvider } from '../../../components'
 import images from '../../../config/images'
 
 interface WordPromptProps {
@@ -21,7 +16,7 @@ interface WordPromptProps {
  * Presents the word asking if the user wants to memorize it or skip
  */
 export default function WordPrompt(props: WordPromptProps) {
-  const isDesktop = ResponsiveLayout().isDesktop
+  const desktop = useContext(DesktopModeProvider)
 
   let leaving = false
 
@@ -36,12 +31,7 @@ export default function WordPrompt(props: WordPromptProps) {
 
   return (
     <Animator inDuration={500} outDuration={400} ref={leaveOutRef}>
-      <View
-        style={[
-          styles.layoutView,
-          isDesktop ? desktopStyles.layoutView : mobileStyles.layoutView,
-        ]}
-      >
+      <View style={[styles.layoutView, desktop ? desktopStyles.layoutView : mobileStyles.layoutView]}>
         <LabeledChildren text='Skip'>
           <Icon source='eye-off' color='#fff' size={64} />
         </LabeledChildren>

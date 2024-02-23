@@ -1,6 +1,6 @@
 import { BottomNavigation } from 'react-native-paper'
-import { useEffect, useState } from 'react'
-import { HeaderLeft, HeaderRight, ResponsiveLayout } from '../../components'
+import { useContext, useEffect, useState } from 'react'
+import { DesktopModeProvider, HeaderLeft, HeaderRight } from '../../components'
 import { Route, SideNavigation } from '../../components/Home/SideNavigation'
 import Main from './Main'
 import Progress from './Progress'
@@ -11,7 +11,7 @@ interface Props {
 }
 
 function Home(props: Props) {
-  const { isDesktop } = ResponsiveLayout()
+  const desktop = useContext(DesktopModeProvider)
 
   useEffect(() => {
     props.navigation.setOptions({
@@ -30,7 +30,7 @@ function Home(props: Props) {
       focusedIcon: 'home',
       unfocusedIcon: 'home-outline',
       mobileOnly: false,
-      component: () => <Main marginLeft={isDesktop ? 8 : 0} appNav={props.appNavigation} />,
+      component: () => <Main marginLeft={desktop ? 8 : 0} appNav={props.appNavigation} />,
     },
     {
       key: 'explore',
@@ -57,14 +57,14 @@ function Home(props: Props) {
 
   return (
     <>
-      {isDesktop && <SideNavigation routes={routes} setIndex={setIndex} />}
+      {desktop && <SideNavigation routes={routes} setIndex={setIndex} />}
       <BottomNavigation
         navigationState={{ index, routes }}
         onIndexChange={setIndex}
         renderScene={BottomNavigation.SceneMap(sceneMap)}
         sceneAnimationEnabled={true}
         shifting={false}
-        barStyle={isDesktop && { height: 0 }}
+        barStyle={desktop && { height: 0 }}
       />
     </>
   )

@@ -1,7 +1,7 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import { PanResponder, Animated, Dimensions } from 'react-native'
 import { Spring } from '../../modules/animator'
-import { ResponsiveLayout } from '../Backend'
+import { DesktopModeProvider } from '../Provider'
 
 export interface DraggableViewProps {
   children: React.ReactNode
@@ -11,7 +11,8 @@ export interface DraggableViewProps {
 }
 
 export function DraggableView(props: DraggableViewProps) {
-  const isDesktop = ResponsiveLayout().isDesktop
+  const desktop = useContext(DesktopModeProvider)
+
   let pan: Animated.ValueXY | Animated.Value
 
   if (props.pan) {
@@ -28,7 +29,7 @@ export function DraggableView(props: DraggableViewProps) {
         const { width, height } = Dimensions.get('window')
         const [x, y] = [gesture.moveX, gesture.moveY]
 
-        if (isDesktop) {
+        if (desktop) {
           if (x < width / 2 - 200) {
             props.onDragLeft?.()
           }

@@ -1,7 +1,8 @@
 import { StyleSheet, View } from 'react-native'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import { Text } from 'react-native-paper'
-import { ResponsiveLayout } from '../Backend/'
+import { useContext } from 'react'
+import { DesktopModeProvider } from '../Provider'
 
 interface ContentHolderProps {
   title: string
@@ -14,18 +15,18 @@ interface ContentHolderProps {
  * @param props
  */
 export function ContentHolder(props: ContentHolderProps) {
-  const isDesktop = ResponsiveLayout().isDesktop
+  const desktop = useContext(DesktopModeProvider)
 
   return (
     <View
       style={[
         styles.container,
         { alignSelf: 'center', marginTop: hp(5) },
-        isDesktop ? styles.contentHolder : { width: wp(150) },
+        desktop ? styles.contentHolder : { width: wp(150) },
       ]}
     >
-      {isDesktop && (
-        <View style={isDesktop ? { width: wp(30) } : { width: '100%' }}>
+      {desktop && (
+        <View style={desktop ? { width: wp(30) } : { width: '100%' }}>
           <Text
             variant='titleMedium'
             style={{
@@ -42,7 +43,7 @@ export function ContentHolder(props: ContentHolderProps) {
 
       <View
         style={[
-          isDesktop ? desktopStyles.childrenHolder : mobileStyles.childrenHolder,
+          desktop ? desktopStyles.childrenHolder : mobileStyles.childrenHolder,
           {
             alignSelf: 'center',
             alignItems: 'center',

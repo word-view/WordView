@@ -1,19 +1,16 @@
-import { memo } from 'react'
+import { memo, useContext } from 'react'
 import { View, StyleSheet, Image } from 'react-native'
-import { ResponsiveLayout } from '../Backend'
 import images from '../../config/images'
+import { DesktopModeProvider } from '../Provider'
 
-interface HeaderLeftProps {
-  onPressMenu?: () => void
-}
+interface HeaderLeftProps {}
 
-export function $HeaderLeft(props: HeaderLeftProps) {
-  const { isDesktop } = ResponsiveLayout()
-
+export function $HeaderLeft() {
+  const desktop = useContext(DesktopModeProvider)
   return (
     <View style={styles.wvTitleHolder}>
       <Image style={styles.wvIcon} source={images.wvIcon} />
-      {isDesktop && <Image style={styles.wvTitle} source={images.wvTitle} />}
+      {desktop && <Image style={styles.wvTitle} source={images.wvTitle} />}
     </View>
   )
 }

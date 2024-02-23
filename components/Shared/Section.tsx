@@ -1,9 +1,9 @@
-import { memo } from 'react'
+import { memo, useContext } from 'react'
 import { View, StyleSheet, ViewStyle, StyleProp } from 'react-native'
 import { Text } from 'react-native-paper'
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
-import { ResponsiveLayout } from '../Backend/'
 import { ScrollView } from 'react-native-gesture-handler'
+import { DesktopModeProvider } from '../Provider'
 
 interface SectionProps {
   title: string
@@ -14,13 +14,13 @@ interface SectionProps {
 }
 
 function $Section(props: SectionProps) {
-  const isDesktop = ResponsiveLayout().isDesktop
+  const desktop = useContext(DesktopModeProvider)
 
   return (
     <View
       style={[
         styles.root,
-        isDesktop ? { width: wp(45) } : { width: wp(95) },
+        desktop ? { width: wp(45) } : { width: wp(95) },
         props.fill && { width: wp(95) },
         props.style,
       ]}
@@ -28,9 +28,7 @@ function $Section(props: SectionProps) {
       <Text variant='titleLarge' style={{ fontWeight: '700' }}>
         {props.title}
       </Text>
-      {props.description && (
-        <Text variant='titleSmall'>{props.description}</Text>
-      )}
+      {props.description && <Text variant='titleSmall'>{props.description}</Text>}
 
       <ScrollView style={styles.childrenView}>{props.children}</ScrollView>
     </View>

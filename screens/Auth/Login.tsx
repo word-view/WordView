@@ -1,12 +1,8 @@
 import { ScrollView } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Button } from 'react-native-paper'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import {
-  AccountLoginButton,
-  ContentHolder,
-  ResponsiveLayout,
-} from '../../components'
+import { AccountLoginButton, ContentHolder, DesktopModeProvider } from '../../components'
 
 interface Props {
   appNavigation: any
@@ -14,16 +10,16 @@ interface Props {
 }
 
 function Login(props: Props) {
-  const { isDesktop } = ResponsiveLayout()
+  const desktop = useContext(DesktopModeProvider)
 
   useEffect(() => {
     props.navigation.setOptions({ title: 'Bem vindo de volta!' })
 
-    if (isDesktop) props.navigation.setOptions({ title: '' })
+    if (desktop) props.navigation.setOptions({ title: '' })
   }, [])
 
   return (
-    <ScrollView style={!isDesktop && { backgroundColor: '#2C2831' }}>
+    <ScrollView style={!desktop && { backgroundColor: '#2C2831' }}>
       <ContentHolder title='Bem vindo de volta!'>
         <AccountLoginButton
           icon='email'
@@ -32,11 +28,7 @@ function Login(props: Props) {
           onPress={() => props.navigation.navigate('EmailLogin')}
         />
 
-        <Button
-          mode='text'
-          onPress={() => props.navigation.navigate('Register')}
-          style={{ marginTop: hp(2) }}
-        >
+        <Button mode='text' onPress={() => props.navigation.navigate('Register')} style={{ marginTop: hp(2) }}>
           Ou crie sua conta
         </Button>
       </ContentHolder>

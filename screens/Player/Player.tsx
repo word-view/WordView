@@ -9,13 +9,8 @@ interface Props {
 
 function Player(props: Props) {
   props.navigation.setOptions({
-    title: '',
-    headerLeft: () => (
-      <Appbar.Action
-        icon='arrow-left'
-        onPress={() => props.appNavigation.navigate('home')}
-      />
-    ),
+    headerTitle: '',
+    headerLeft: () => <Appbar.Action icon='arrow-left' onPress={() => props.appNavigation.navigate('home')} />,
   })
 
   return <View style={styles.root}></View>

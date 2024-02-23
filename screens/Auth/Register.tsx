@@ -14,7 +14,7 @@ function Register(props: Props) {
 
   useEffect(() => {
     props.navigation.setOptions({ title: 'Criar uma conta' })
-    if (desktop) props.navigation.setOptions({ title: '' })
+    if (desktop) props.navigation.setOptions({ headerTitle: '' })
   }, [])
 
   return (

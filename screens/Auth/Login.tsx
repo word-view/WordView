@@ -15,7 +15,7 @@ function Login(props: Props) {
   useEffect(() => {
     props.navigation.setOptions({ title: 'Bem vindo de volta!' })
 
-    if (desktop) props.navigation.setOptions({ title: '' })
+    if (desktop) props.navigation.setOptions({ headerTitle: '' })
   }, [])
 
   return (

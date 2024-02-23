@@ -12,7 +12,7 @@ function LanguagePicker(props: Props) {
 
   useEffect(() => {
     props.navigation.setOptions({ title: 'Selecione um idioma' })
-    if (desktop) props.navigation.setOptions({ title: '' })
+    if (desktop) props.navigation.setOptions({ headerTitle: '' })
   }, [])
 
   function saveLanguageChoiceAndProceed() {

@@ -12,7 +12,7 @@ function EmailLogin(props: Props) {
 
   useEffect(() => {
     props.navigation.setOptions({ title: 'Login por email' })
-    if (desktop) props.navigation.setOptions({ title: '' })
+    if (desktop) props.navigation.setOptions({ headerTitle: '' })
   }, [])
 
   return (

@@ -1,9 +1,6 @@
 import { fireEvent, render } from '@testing-library/react-native'
-import { testing } from '../../storage/store/state'
 import renderer from 'react-test-renderer'
 import { AccountLoginButton } from '../../components'
-
-beforeEach(() => testing.set(true))
 
 it(`AccountLoginButton renders`, () => {
   const tree = renderer

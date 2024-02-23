@@ -3,8 +3,6 @@ import { testing } from '../../storage/store/state'
 import renderer from 'react-test-renderer'
 import { Button } from '../../components'
 
-beforeEach(() => testing.set(true))
-
 it(`Button renders`, () => {
   const tree = renderer
     .create(

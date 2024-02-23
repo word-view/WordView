@@ -6,9 +6,13 @@ import * as NavigationBar from 'expo-navigation-bar'
 import AppNavigation from './navigation/AppNavigation'
 import { DesktopModeProvider, FontLoader, ResponsiveLayout } from './components'
 import { CombinedDarkTheme } from './config/theme'
+import { testing } from './storage/store/state'
 
 SplashScreen.preventAutoHideAsync()
+const warn = console.warn
+if (testing) console.warn = () => {}
 NavigationBar.setBackgroundColorAsync('#2C2831')
+console.warn = warn
 
 export default function App() {
   const { isDesktop } = ResponsiveLayout()

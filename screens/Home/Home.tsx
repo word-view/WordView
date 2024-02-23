@@ -15,7 +15,7 @@ function Home(props: Props) {
 
   useEffect(() => {
     props.navigation.setOptions({
-      title: 'Home - WordView',
+      title: 'Learn - WordView',
       headerTitle: '',
       headerLeft: () => <HeaderLeft />,
       headerRight: () => <HeaderRight onPressCog={() => props.navigation.navigate('Settings')} />,
@@ -29,7 +29,6 @@ function Home(props: Props) {
       title: 'Learn',
       focusedIcon: 'home',
       unfocusedIcon: 'home-outline',
-      mobileOnly: false,
       component: () => <Main marginLeft={desktop ? 8 : 0} appNav={props.appNavigation} />,
     },
     {
@@ -37,15 +36,13 @@ function Home(props: Props) {
       title: 'Explore',
       focusedIcon: 'compass',
       unfocusedIcon: 'compass-outline',
-      mobileOnly: true,
       component: () => <></>,
     },
     {
       key: 'progress',
       title: 'Progress',
-      focusedIcon: 'timeline-text',
-      unfocusedIcon: 'timeline-text-outline',
-      mobileOnly: false,
+      focusedIcon: 'chart-line',
+      unfocusedIcon: 'chart-line-stacked',
       component: () => <Progress nav={props.navigation} />,
     },
   ]

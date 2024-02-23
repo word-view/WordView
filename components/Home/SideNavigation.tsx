@@ -8,7 +8,6 @@ export interface Route {
   title: string
   focusedIcon: string
   unfocusedIcon: string
-  mobileOnly: boolean
   component: () => React.JSX.Element
 }
 
@@ -19,8 +18,6 @@ interface Props {
 
 const $SideNavigation = forwardRef((props: Props, ref) => {
   function routeToAction(route: Route) {
-    if (route.mobileOnly) return
-
     const routeIndex = props.routes.indexOf(route)
     const setIndex = () => props.setIndex(routeIndex)
 

@@ -22,9 +22,9 @@ function $SidebarItem(props: SidebarItemProps) {
 
 const styles = StyleSheet.create({
   touchable: {
-    borderRadius: 2.5,
+    borderRadius: 5,
     padding: 10,
-    marginTop: hp(2),
+    marginTop: hp(1),
     alignItems: 'center',
     justifyContent: 'center',
     width: 58,

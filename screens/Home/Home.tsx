@@ -16,7 +16,7 @@ function Home(props: Props) {
 
   useEffect(() => {
     props.navigation.setOptions({
-      title: 'Learn - WordView',
+      title: '- WordView',
       headerTitle: '',
       headerLeft: () => <HeaderLeft />,
       headerRight: () => (
@@ -63,6 +63,11 @@ function Home(props: Props) {
     map[route.key] = route.component
     return map
   }, {})
+
+  useEffect(() => {
+    const pickedRoute = routes[index]
+    props.navigation.setOptions({ title: `${pickedRoute.title} - WordView` })
+  }, [index])
 
   return (
     <>

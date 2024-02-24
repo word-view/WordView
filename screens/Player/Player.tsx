@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Appbar } from 'react-native-paper'
+import { tutorialing } from '../../storage/store/player'
 
 interface Props {
   appNavigation: any
@@ -8,10 +9,23 @@ interface Props {
 }
 
 function Player(props: Props) {
-  props.navigation.setOptions({
-    headerTitle: '',
-    headerLeft: () => <Appbar.Action icon='arrow-left' onPress={() => props.appNavigation.navigate('home')} />,
-  })
+  const tutorial = tutorialing.get()
+
+  useEffect(() => {
+    console.log(`Doing tutorial? ${tutorial}`)
+    props.navigation.setOptions({
+      headerTitle: '',
+      headerLeft: () => (
+        <Appbar.Action
+          icon='arrow-left'
+          onPress={() => {
+            if (tutorial) tutorialing.set(false)
+            props.appNavigation.navigate('home')
+          }}
+        />
+      ),
+    })
+  }, [])
 
   return <View style={styles.root}></View>
 }

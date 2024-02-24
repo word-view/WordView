@@ -4,6 +4,7 @@ import { DesktopModeProvider, HeaderLeft, HeaderRight } from '../../components'
 import { Route, SideNavigation } from '../../components/Home/SideNavigation'
 import Main from './Main'
 import Progress from './Progress'
+import Explore from './Explore'
 
 interface Props {
   appNavigation: any
@@ -18,7 +19,12 @@ function Home(props: Props) {
       title: 'Learn - WordView',
       headerTitle: '',
       headerLeft: () => <HeaderLeft />,
-      headerRight: () => <HeaderRight onPressCog={() => props.navigation.navigate('Settings')} />,
+      headerRight: () => (
+        <HeaderRight
+          onPressMag={() => setIndex(1)}
+          onPressCog={() => props.navigation.navigate('Settings')}
+        />
+      ),
     })
   }, [])
 
@@ -29,21 +35,27 @@ function Home(props: Props) {
       title: 'Learn',
       focusedIcon: 'home',
       unfocusedIcon: 'home-outline',
-      component: () => <Main marginLeft={desktop ? 8 : 0} appNav={props.appNavigation} />,
+      component: () => (
+        <Main marginTop={2} marginLeft={desktop ? 8 : 0} appNav={props.appNavigation} />
+      ),
     },
     {
       key: 'explore',
       title: 'Explore',
       focusedIcon: 'compass',
       unfocusedIcon: 'compass-outline',
-      component: () => <></>,
+      component: () => (
+        <Explore marginTop={2} marginLeft={desktop ? 8 : 0} nav={props.navigation} />
+      ),
     },
     {
       key: 'progress',
       title: 'Progress',
       focusedIcon: 'chart-line',
       unfocusedIcon: 'chart-line-stacked',
-      component: () => <Progress nav={props.navigation} />,
+      component: () => (
+        <Progress marginTop={2} marginLeft={desktop ? 8 : 0} nav={props.navigation} />
+      ),
     },
   ]
 

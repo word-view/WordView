@@ -4,18 +4,23 @@ import { ContinueHearing, Welcome } from './Sections'
 
 interface MainScreenProps {
   marginLeft?: number
+  marginTop?: number
   appNav: any
 }
 
 function Main(props: MainScreenProps) {
-  const isFirstLaunch = false
+  const isFirstLaunch = true
 
   return (
     <ScrollView>
       {isFirstLaunch ? (
-        <Welcome marginLeft={props.marginLeft} />
+        <Welcome marginTop={props.marginTop} marginLeft={props.marginLeft} appNav={props.appNav} />
       ) : (
-        <ContinueHearing marginLeft={props.marginLeft} appNav={props.appNav} />
+        <ContinueHearing
+          marginTop={props.marginTop}
+          marginLeft={props.marginLeft}
+          appNav={props.appNav}
+        />
       )}
     </ScrollView>
   )

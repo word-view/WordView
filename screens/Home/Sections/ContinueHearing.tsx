@@ -2,12 +2,13 @@ import { memo } from 'react'
 import { HorizontalScrollView, Song, Section } from '../../../components'
 import images from '../../../config/images'
 import {
-  widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
 } from 'react-native-responsive-screen'
 
 interface ContinueHearingProps {
   marginLeft?: number
+  marginTop?: number
   appNav: any
 }
 
@@ -21,7 +22,7 @@ function $ContinueHearing(props: ContinueHearingProps) {
     <Section
       title='Ouvir novamente'
       fill={true}
-      style={{ marginTop: hp(2.5), marginLeft: wp(props.marginLeft ?? 0) }}
+      style={{ marginTop: hp(props.marginTop ?? 0), marginLeft: wp(props.marginLeft ?? 0) }}
     >
       <HorizontalScrollView>
         <Song

@@ -1,10 +1,10 @@
 import React, { memo } from 'react'
-import { View } from 'react-native'
 import { Section } from '../../components'
 import { Text } from 'react-native-paper'
+import { ScrollView } from 'react-native-gesture-handler'
 import {
-  widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
 } from 'react-native-responsive-screen'
 
 interface ProgressProps {
@@ -15,11 +15,15 @@ interface ProgressProps {
 
 function Progress(props: ProgressProps) {
   return (
-    <View style={{ marginTop: hp(props.marginTop ?? 0), marginLeft: wp(props.marginLeft ?? 0) }}>
-      <Section title='Ouvir novamente' fill={true}>
+    <ScrollView>
+      <Section
+        title='Explore tab'
+        fill={true}
+        style={{ marginTop: hp(props.marginTop ?? 0), marginLeft: wp(props.marginLeft ?? 0) }}
+      >
         <Text variant='titleSmall'>Hello World</Text>
       </Section>
-    </View>
+    </ScrollView>
   )
 }
 

@@ -5,6 +5,8 @@ import { navStyles } from './nav-styles'
 import React from 'react'
 import Player from '../screens/Player/Player'
 import { StyleSheet } from 'react-native'
+import TutorialWelcome from '../screens/Player/Tutorial/TutorialWelcome'
+import TutorialFinish from '../screens/Player/Tutorial/TutorialFinish'
 
 const Navigator = createStackNavigator().Navigator
 const Screen = createStackNavigator().Screen
@@ -26,6 +28,12 @@ function PlayerNavigation(props: Props) {
       >
         <Screen name='Player'>
           {$props => <Player {...$props} appNavigation={props.navigation} />}
+        </Screen>
+        <Screen name='TutorialWelcome'>
+          {$props => <TutorialWelcome {...$props} appNavigation={props.navigation} />}
+        </Screen>
+        <Screen name='TutorialFinish'>
+          {$props => <TutorialFinish {...$props} appNavigation={props.navigation} />}
         </Screen>
       </Navigator>
     </NavigationContainer>

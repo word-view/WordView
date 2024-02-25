@@ -12,9 +12,9 @@ function Player(props: Props) {
   const tutorial = tutorialing.get()
 
   useEffect(() => {
-    console.log(`Doing tutorial? ${tutorial}`)
+    if (tutorial) props.navigation.navigate('TutorialWelcome')
+
     props.navigation.setOptions({
-      headerTitle: '',
       headerLeft: () => (
         <Appbar.Action
           icon='arrow-left'

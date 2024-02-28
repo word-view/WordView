@@ -2,5 +2,8 @@
     "[typescriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "copyrightInserter.holder": "WordView",
+    "copyrightInserter.license": "gpl3",
+    "copyrightInserter.year": "2024"
 }

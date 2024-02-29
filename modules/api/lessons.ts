@@ -1,30 +1,30 @@
-import { ErrorResponse, get } from "./client";
+import { ErrorResponse, get } from './client'
 
-export type Difficulty = "starter" | "intermidiate" | "advanced";
+export type Difficulty = 'starter' | 'intermidiate' | 'advanced'
 
 export interface Lesson {
-  id: number;
-  title: string;
-  difficulty: Difficulty;
+  id: number
+  title: string
+  difficulty: Difficulty
 }
 
 export interface Word {
-  name: string;
-  spelling: string[];
-  image: any;
+  name: string
+  spelling: string[]
+  image: any
 }
 
 export async function lessons(difficulty: Difficulty) {
-  const response = await get(`/lesson/search?diffi=${difficulty}`);
+  const response = await get(`/lesson/search?diffi=${difficulty}`)
 
   if (response.status == 200) {
-    return (await response.json()) as Lesson[];
+    return (await response.json()) as Lesson[]
   }
 
-  const responseText = await response.text();
+  const responseText = await response.text()
 
   return {
     status: response.status,
     message: responseText,
-  } as ErrorResponse;
+  } as ErrorResponse
 }

@@ -1,10 +1,11 @@
-import { memo } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { HorizontalScrollView, Song, Section } from '../../../components'
-import images from '../../../config/images'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen'
+import { Song as SongType, song } from '../../../storage/store/player'
+import { getHistory } from '../../../modules/api/song'
 
 interface ContinueHearingProps {
   marginLeft?: number
@@ -13,10 +14,18 @@ interface ContinueHearingProps {
 }
 
 function $ContinueHearing(props: ContinueHearingProps) {
-  function openPlayer(id: string) {
-    // set song id
+  function openPlayer(songue: SongType) {
+    song.set(songue)
     props.appNav.navigate('player')
   }
+
+  const [histor, setHistor] = useState<SongType>({} as SongType)
+
+  useEffect(() => {
+    ;(async function aaa() {
+      setHistor((await getHistory()) ?? ({} as SongType))
+    })()
+  }, [])
 
   return (
     <Section
@@ -26,22 +35,17 @@ function $ContinueHearing(props: ContinueHearingProps) {
     >
       <HorizontalScrollView>
         <Song
-          img={images.yoruNiCover}
-          title='夜に駆ける'
-          artist='YOASOBI'
-          onPress={() => openPlayer('mJ1N7-HyH1A')}
-        />
-        <Song
-          img={images.mirrorCover}
-          title='Englishman in New York'
-          artist='majiko'
-          onPress={() => openPlayer('cdas=-231')}
-        />
-        <Song
-          img={images.kataomoiCover}
-          title='Kataomoi'
-          artist='Aimer'
-          onPress={() => openPlayer('a-=-=12')}
+          img={histor.cover}
+          title={histor.title}
+          artist={histor.artist}
+          onPress={() =>
+            openPlayer({
+              id: histor.id,
+              title: histor.title,
+              artist: histor.artist,
+              cover: histor.cover,
+            })
+          }
         />
       </HorizontalScrollView>
     </Section>

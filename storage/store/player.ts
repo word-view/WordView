@@ -1,9 +1,10 @@
 import { createStore } from '@propero/easy-store'
 
 export interface Song {
+  id?: string
   title: string
   artist: string
-  image: any
+  cover: any
 }
 
 export const tutorialing = createStore(false)

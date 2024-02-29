@@ -1,6 +1,8 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { ScrollView } from 'react-native'
 import { ContinueHearing, Welcome } from './Sections'
+import { getHistory } from '../../modules/api/song'
+import { Song } from '../../storage/store/player'
 
 interface MainScreenProps {
   marginLeft?: number
@@ -9,7 +11,7 @@ interface MainScreenProps {
 }
 
 function Main(props: MainScreenProps) {
-  const isFirstLaunch = true
+  const isFirstLaunch = false
 
   return (
     <ScrollView>

@@ -17,6 +17,10 @@ interface SongProps {
  * @returns
  */
 function $Song(props: SongProps) {
+  if (!props.title) return
+  if (!props.artist) return
+  if (!props.img) return
+
   return (
     <TouchableRipple
       onPress={props.onPress}
@@ -29,10 +33,7 @@ function $Song(props: SongProps) {
       ]}
     >
       <View style={{ alignItems: 'center' }}>
-        <Image
-          style={{ height: 128, width: 128, borderRadius: 10 }}
-          source={props.img}
-        />
+        <Image style={{ height: 128, width: 128, borderRadius: 10 }} source={props.img ?? ''} />
         <Text
           variant='labelLarge'
           style={{

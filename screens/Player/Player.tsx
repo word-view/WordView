@@ -1,8 +1,14 @@
-import { useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { StyleSheet, View, Image } from 'react-native'
-import { Appbar, Text } from 'react-native-paper'
+import { ActivityIndicator, Appbar, Dialog, List, Portal, Text } from 'react-native-paper'
 import { song, tutorialing } from '../../storage/store/player'
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen'
+import { DesktopModeProvider } from '../../components'
+import { Subtitle, getAvailableSubtitles, getLyrics } from '../../modules/api/song'
+const { WebVTTParser } = require('webvtt-parser')
 
 interface Props {
   appNavigation: any
@@ -11,10 +17,23 @@ interface Props {
 
 function Player(props: Props) {
   const tutorial = tutorialing.get()
+  const desktop = useContext(DesktopModeProvider)
   const choosenSong = song.get()
+
+  const [visible, setVisible] = useState(false)
+  const [subtitles, setSubtitles] = useState<Subtitle[]>([])
+  const [lyrics, setLyrics] = useState('')
+
+  const showDialog = () => setVisible(true)
+  const hideDialog = () => setVisible(false)
 
   useEffect(() => {
     if (tutorial) props.navigation.navigate('TutorialWelcome')
+
+    showDialog()
+    ;(async function fetch() {
+      setSubtitles((await getAvailableSubtitles(choosenSong.id)) ?? [])
+    })()
 
     props.navigation.setOptions({
       headerLeft: () => (
@@ -29,19 +48,72 @@ function Player(props: Props) {
     })
   }, [])
 
+  function subtitleList() {
+    const subtitlesList = []
+
+    for (const subtitle of subtitles) {
+      subtitlesList.push(
+        <List.Item
+          title={subtitle.name}
+          description={subtitle.language}
+          style={{ marginBottom: hp(1) }}
+          onPress={() => fetchLyrics(subtitle.language)}
+        />,
+      )
+    }
+
+    return subtitlesList
+  }
+
+  async function fetchLyrics(lang: string) {
+    hideDialog()
+
+    const lyric = []
+
+    const lyrics = await getLyrics(choosenSong.id, lang)
+
+    const parser = new WebVTTParser()
+
+    const tree = parser.parse(lyrics, 'metadata')
+
+    for (const cue of tree.cues) {
+      lyric.push(cue.text)
+    }
+
+    setLyrics(lyric.join('\n'))
+  }
+
   return (
-    <View style={styles.root}>
-      <View style={styles.lyricsViewer}></View>
-      <View style={styles.musicInfo}>
-        <View style={{ alignSelf: 'flex-start', flexDirection: 'row' }}>
-          <Image style={{ height: 75, width: 75, borderRadius: 10 }} source={choosenSong.cover} />
-          <View style={{ height: '100%', justifyContent: 'center', marginLeft: 10 }}>
-            <Text variant='labelLarge'>{choosenSong.title}</Text>
-            <Text variant='labelSmall'>{choosenSong.artist}</Text>
+    <>
+      <Portal>
+        <Dialog
+          visible={visible}
+          dismissable={false}
+          style={[desktop && { width: wp(25), alignSelf: 'center' }, styles.subtitlePickerModal]}
+        >
+          <Dialog.Title>Choose a subtitle</Dialog.Title>
+          <Dialog.Content>
+            {subtitles.length == 0 ? (
+              <ActivityIndicator animating={true} color='#DDD8DD' size={'large'} />
+            ) : (
+              subtitleList()
+            )}
+          </Dialog.Content>
+        </Dialog>
+      </Portal>
+      <View style={styles.root}>
+        <View style={styles.lyricsViewer}>{lyrics}</View>
+        <View style={styles.musicInfo}>
+          <View style={{ alignSelf: 'flex-start', flexDirection: 'row' }}>
+            <Image style={{ height: 75, width: 75, borderRadius: 10 }} source={choosenSong.cover} />
+            <View style={{ height: '100%', justifyContent: 'center', marginLeft: 10 }}>
+              <Text variant='labelLarge'>{choosenSong.title}</Text>
+              <Text variant='labelSmall'>{choosenSong.artist}</Text>
+            </View>
           </View>
         </View>
       </View>
-    </View>
+    </>
   )
 }
 
@@ -64,6 +136,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     height: hp(14),
+  },
+  subtitlePickerModal: {
+    overflow: 'scroll',
+    maxHeight: hp(40),
   },
 })
 

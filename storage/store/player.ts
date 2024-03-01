@@ -1,7 +1,7 @@
 import { createStore } from '@propero/easy-store'
 
 export interface Song {
-  id?: string
+  id: string
   title: string
   artist: string
   cover: any

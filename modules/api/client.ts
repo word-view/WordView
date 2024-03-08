@@ -23,3 +23,7 @@ export async function post(url: string, body: string) {
 export async function get(url: string) {
   return await fetch(API_URL_DEV + url)
 }
+
+export function url(path: string) {
+  return API_URL_DEV + path
+}

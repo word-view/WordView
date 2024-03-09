@@ -51,6 +51,8 @@ function Player(props: Props) {
     })()
 
     props.navigation.setOptions({
+      title: `${choosenSong.title} - WordView`,
+      headerTitle: '',
       headerLeft: () => (
         <Appbar.Action
           icon='arrow-left'
@@ -67,12 +69,12 @@ function Player(props: Props) {
     let pooler: NodeJS.Timeout
 
     const updateAudioPosition = async () => {
-      const position = await getCurrentTime()
-      console.log('Current time is being: ', position)
+      if (!audioPlaying) return
 
-      if (position !== undefined || position !== 0) {
-        setAudioPosition(position)
-      }
+      const position = await getCurrentTime()
+
+      if (position) setAudioPosition(position)
+      console.log('Audio progress: ', position)
     }
 
     pooler = setInterval(updateAudioPosition, 250)
@@ -80,7 +82,7 @@ function Player(props: Props) {
     return () => {
       clearInterval(pooler)
     }
-  }, [audio])
+  }, [audioPlaying])
 
   function subtitleList() {
     const subtitlesList = []
@@ -117,14 +119,19 @@ function Player(props: Props) {
     setLyrics(lyric.join('\n'))
   }
 
-  async function getCurrentTime() {
+  async function getAudioInfo() {
     const playbackInfo = await audio?.getStatusAsync()
     if (!playbackInfo || !playbackInfo.isLoaded) {
       console.warn('Playblack is not loaded!')
-      return 0
+      return
     }
 
-    return playbackInfo.positionMillis
+    return playbackInfo
+  }
+
+  async function getCurrentTime() {
+    const playbackInfo = await getAudioInfo()
+    return playbackInfo?.positionMillis
   }
 
   function play() {
@@ -137,8 +144,37 @@ function Player(props: Props) {
     setAudioPlaying(false)
   }
 
-  function skipBack() {}
-  function skipForward() {}
+  async function skipBack() {
+    const playbackInfo = await getAudioInfo()
+    if (!playbackInfo) return
+
+    let skipped = playbackInfo.positionMillis - 5000
+
+    if (playbackInfo.durationMillis && skipped < 0) {
+      console.warn(
+        'Avoiding a backward skip because the estimated skipped time is less than the audio start',
+      )
+    } else {
+      audio?.playFromPositionAsync(skipped)
+      setAudioPlaying(true)
+    }
+  }
+
+  async function skipForward() {
+    const playbackInfo = await getAudioInfo()
+    if (!playbackInfo) return
+
+    let skipped = playbackInfo.positionMillis + 5000
+
+    if (playbackInfo.durationMillis && skipped > playbackInfo.durationMillis) {
+      console.warn(
+        "Avoiding a forward skip because the estimated skipped time is greater than the audio's duration",
+      )
+    } else {
+      audio?.playFromPositionAsync(skipped)
+      setAudioPlaying(true)
+    }
+  }
 
   return (
     <>

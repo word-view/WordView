@@ -144,13 +144,12 @@ function Player(props: Props) {
     let skipped = playbackInfo.positionMillis - 5000
 
     if (playbackInfo.durationMillis && skipped < 0) {
-      console.warn(
-        'Avoiding a backward skip because the estimated skipped time is less than the audio start',
-      )
+      audio?.playFromPositionAsync(0)
     } else {
       audio?.playFromPositionAsync(skipped)
-      setAudioPlaying(true)
     }
+
+    setAudioPlaying(true)
   }
 
   async function skipForward() {
@@ -160,13 +159,12 @@ function Player(props: Props) {
     let skipped = playbackInfo.positionMillis + 5000
 
     if (playbackInfo.durationMillis && skipped > playbackInfo.durationMillis) {
-      console.warn(
-        "Avoiding a forward skip because the estimated skipped time is greater than the audio's duration",
-      )
+      audio?.playFromPositionAsync(playbackInfo.durationMillis)
     } else {
       audio?.playFromPositionAsync(skipped)
-      setAudioPlaying(true)
     }
+
+    setAudioPlaying(true)
   }
 
   return (

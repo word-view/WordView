@@ -6,3 +6,4 @@ export * from './Lesson'
 export * from './Auth'
 export * from './Login'
 export * from './Provider'
+export * from "./Player"

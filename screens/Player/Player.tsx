@@ -1,16 +1,17 @@
 import { useContext, useEffect, useState } from 'react'
 import { StyleSheet, View, Image } from 'react-native'
-import { ActivityIndicator, Appbar, Dialog, List, Portal, Text } from 'react-native-paper'
+import { Appbar, Dialog, List, Portal, Text } from 'react-native-paper'
 import { song, tutorialing } from '../../storage/store/player'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen'
-import { DesktopModeProvider } from '../../components'
+import { DesktopModeProvider, Loader } from '../../components'
 import { Subtitle, getAvailableSubtitles, getLyrics } from '../../modules/api/song'
 import { Audio } from 'expo-av'
 import { url } from '../../modules/api/client'
 import { formatTime } from '../../modules/time/time'
+import { MusicInfo, PlayButton } from '../../components/Player'
 const { WebVTTParser } = require('webvtt-parser')
 
 interface Props {
@@ -36,8 +37,6 @@ function Player(props: Props) {
 
   useEffect(() => {
     if (tutorial) props.navigation.navigate('TutorialWelcome')
-
-    let isMounted = true
 
     showDialog()
     ;(async function fetch() {
@@ -68,20 +67,14 @@ function Player(props: Props) {
   useEffect(() => {
     let pooler: NodeJS.Timeout
 
-    const updateAudioPosition = async () => {
+    pooler = setInterval(async () => {
       if (!audioPlaying) return
 
       const position = await getCurrentTime()
-
       if (position) setAudioPosition(position)
-      console.log('Audio progress: ', position)
-    }
+    }, 250)
 
-    pooler = setInterval(updateAudioPosition, 250)
-
-    return () => {
-      clearInterval(pooler)
-    }
+    return () => clearInterval(pooler)
   }, [audioPlaying])
 
   function subtitleList() {
@@ -186,32 +179,18 @@ function Player(props: Props) {
         >
           <Dialog.Title>Choose a subtitle</Dialog.Title>
           <Dialog.Content>
-            {subtitles.length == 0 ? (
-              <ActivityIndicator animating={true} color='#DDD8DD' size={'large'} />
-            ) : (
-              subtitleList()
-            )}
+            <Loader loading={subtitles.length == 0} children={subtitleList()} />
           </Dialog.Content>
         </Dialog>
       </Portal>
       <View style={styles.root}>
         <View style={styles.lyricsViewer}>{lyrics}</View>
         <View style={styles.musicInfo}>
-          <View style={{ alignSelf: 'flex-start', flexDirection: 'row' }}>
-            <Image style={{ height: 75, width: 75, borderRadius: 10 }} source={choosenSong.cover} />
-            <View style={{ height: '100%', justifyContent: 'center', marginLeft: 10 }}>
-              <Text variant='labelLarge'>{choosenSong.title}</Text>
-              <Text variant='labelSmall'>{choosenSong.artist}</Text>
-            </View>
-          </View>
+          <MusicInfo song={choosenSong} />
           <View style={styles.playerBarCenter}>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View style={styles.playerControlsContainer}>
               <Appbar.Action icon='skip-backward' size={20} onPress={skipBack} />
-              {audioPlaying ? (
-                <Appbar.Action icon='pause' size={32} onPress={pause} />
-              ) : (
-                <Appbar.Action icon='play' size={32} onPress={play} />
-              )}
+              <PlayButton isAudioPlaying={audioPlaying} onPlay={play} onPause={pause} />
               <Appbar.Action icon='skip-forward' size={20} onPress={skipForward} />
             </View>
             <Text variant='bodySmall'>{formatTime(audioPosition)}</Text>
@@ -254,6 +233,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     height: '100%',
   },
+  playerControlsContainer: { flexDirection: 'row', alignItems: 'center' },
 })
 
 export default Player

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { StyleSheet, View, Image } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { Appbar, Dialog, List, Portal, Text } from 'react-native-paper'
 import { song, tutorialing } from '../../storage/store/player'
 import {
@@ -11,7 +11,8 @@ import { Subtitle, getAvailableSubtitles, getLyrics } from '../../modules/api/so
 import { Audio } from 'expo-av'
 import { url } from '../../modules/api/client'
 import { formatTime } from '../../modules/time/time'
-import { MusicInfo, PlayButton } from '../../components/Player'
+import { LyricsViewer, MusicInfo, PlayButton } from '../../components/Player'
+import { Cue } from '../../components/Player/types'
 const { WebVTTParser } = require('webvtt-parser')
 
 interface Props {
@@ -26,7 +27,7 @@ function Player(props: Props) {
 
   const [visible, setVisible] = useState(false)
   const [subtitles, setSubtitles] = useState<Subtitle[]>([])
-  const [lyrics, setLyrics] = useState('')
+  const [cues, setCues] = useState<Cue[]>([])
 
   const [audio, setAudio] = useState<Audio.Sound>()
   const [audioPlaying, setAudioPlaying] = useState(false)
@@ -71,8 +72,8 @@ function Player(props: Props) {
       if (!audioPlaying) return
 
       const position = await getCurrentTime()
-      if (position) setAudioPosition(position)
-    }, 250)
+      if (position) setAudioPosition(Math.round(position))
+    }, 20)
 
     return () => clearInterval(pooler)
   }, [audioPlaying])
@@ -97,7 +98,7 @@ function Player(props: Props) {
   async function fetchLyrics(lang: string) {
     hideDialog()
 
-    const lyric = []
+    const cues: Cue[] = []
 
     const lyrics = await getLyrics(choosenSong.id, lang)
 
@@ -106,10 +107,10 @@ function Player(props: Props) {
     const tree = parser.parse(lyrics, 'metadata')
 
     for (const cue of tree.cues) {
-      lyric.push(cue.text)
+      cues.push(cue as Cue)
     }
 
-    setLyrics(lyric.join('\n'))
+    setCues(cues)
   }
 
   async function getAudioInfo() {
@@ -182,7 +183,7 @@ function Player(props: Props) {
         </Dialog>
       </Portal>
       <View style={styles.root}>
-        <View style={styles.lyricsViewer}>{lyrics}</View>
+        <LyricsViewer cues={cues} audioPosition={audioPosition} />
         <View style={styles.musicInfo}>
           <MusicInfo song={choosenSong} />
           <View style={styles.playerBarCenter}>

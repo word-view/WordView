@@ -1,6 +1,7 @@
 import { memo, useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Cue } from './types'
+import { Cue } from '../../modules/webvtt/types'
+import { Text } from 'react-native-paper'
 
 interface LyricsViewerProps {
   cues: Cue[]
@@ -40,7 +41,11 @@ function $LyricsViewer(props: LyricsViewerProps) {
     }
   }, [props.audioPosition, props.cues])
 
-  return <View style={styles.lyricsViewer}>{caption?.text}</View>
+  return (
+    <View style={styles.lyricsViewer}>
+      <Text variant='bodyLarge'>{caption?.text}</Text>
+    </View>
+  )
 }
 
 export const LyricsViewer = memo($LyricsViewer)

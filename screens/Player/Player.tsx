@@ -12,8 +12,8 @@ import { Audio } from 'expo-av'
 import { url } from '../../modules/api/client'
 import { formatTime } from '../../modules/time/time'
 import { LyricsViewer, MusicInfo, PlayButton } from '../../components/Player'
-import { Cue } from '../../components/Player/types'
-const { WebVTTParser } = require('webvtt-parser')
+import { Cue } from '../../modules/webvtt/types'
+import { parseWebVTT } from '../../modules/webvtt/parse'
 
 interface Props {
   appNavigation: any
@@ -63,53 +63,49 @@ function Player(props: Props) {
         />
       ),
     })
+
+    return () => {
+      audio?.pauseAsync().then(() => {
+        console.log('Audio paused!')
+        setAudio(undefined)
+      })
+    }
   }, [])
 
   useEffect(() => {
-    let pooler: NodeJS.Timeout
+    const updateAudioPosition = async () => {
+      if (audioPlaying) {
+        const position = await getCurrentTime()
+        if (position) {
+          setAudioPosition(Math.round(position))
+        }
+      }
+    }
 
-    pooler = setInterval(async () => {
-      if (!audioPlaying) return
+    const interval = setInterval(updateAudioPosition, 20)
 
-      const position = await getCurrentTime()
-      if (position) setAudioPosition(Math.round(position))
-    }, 20)
-
-    return () => clearInterval(pooler)
+    return () => clearInterval(interval)
   }, [audioPlaying])
 
   function subtitleList() {
-    const subtitlesList = []
-
-    for (const subtitle of subtitles) {
-      subtitlesList.push(
-        <List.Item
-          title={subtitle.name}
-          description={subtitle.language}
-          style={{ marginBottom: hp(1) }}
-          onPress={() => fetchLyrics(subtitle.language)}
-        />,
-      )
-    }
-
-    return subtitlesList
+    return subtitles.map(subtitle => (
+      <List.Item
+        title={subtitle.name}
+        description={subtitle.language}
+        style={{ marginBottom: hp(1) }}
+        onPress={() => {
+          hideDialog()
+          fetchLyrics(subtitle.language)
+        }}
+      />
+    ))
   }
 
   async function fetchLyrics(lang: string) {
-    hideDialog()
-
-    const cues: Cue[] = []
-
     const lyrics = await getLyrics(choosenSong.id, lang)
+    if (!lyrics) return
 
-    const parser = new WebVTTParser()
-
-    const tree = parser.parse(lyrics, 'metadata')
-
-    for (const cue of tree.cues) {
-      cues.push(cue as Cue)
-    }
-
+    const cues = parseWebVTT(lyrics)
     setCues(cues)
   }
 
@@ -138,6 +134,11 @@ function Player(props: Props) {
     setAudioPlaying(false)
   }
 
+  function goto(position: number) {
+    audio?.playFromPositionAsync(position)
+    setAudioPlaying(true)
+  }
+
   async function skipBack() {
     const playbackInfo = await getAudioInfo()
     if (!playbackInfo) return
@@ -145,12 +146,10 @@ function Player(props: Props) {
     let skipped = playbackInfo.positionMillis - 5000
 
     if (playbackInfo.durationMillis && skipped < 0) {
-      audio?.playFromPositionAsync(0)
+      goto(0)
     } else {
-      audio?.playFromPositionAsync(skipped)
+      goto(skipped)
     }
-
-    setAudioPlaying(true)
   }
 
   async function skipForward() {
@@ -160,12 +159,10 @@ function Player(props: Props) {
     let skipped = playbackInfo.positionMillis + 5000
 
     if (playbackInfo.durationMillis && skipped > playbackInfo.durationMillis) {
-      audio?.playFromPositionAsync(playbackInfo.durationMillis)
+      goto(playbackInfo.durationMillis)
     } else {
-      audio?.playFromPositionAsync(skipped)
+      goto(skipped)
     }
-
-    setAudioPlaying(true)
   }
 
   return (

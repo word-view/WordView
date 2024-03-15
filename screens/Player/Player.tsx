@@ -65,6 +65,7 @@ function Player(props: Props) {
     })
 
     return () => {
+      console.log('Pausing audio...')
       audio?.pauseAsync().then(() => {
         console.log('Audio paused!')
         setAudio(undefined)

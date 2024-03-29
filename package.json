@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "jest --detectOpenHandles ./tests"
+    "test": "jest --detectOpenHandles ./tests",
+    "playwright": "npx playwright test"
   },
   "jest": {
     "preset": "jest-expo",
@@ -70,11 +71,14 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@playwright/test": "^1.42.1",
     "@testing-library/react-native": "^12.3.0",
     "@types/jest": "^29.5.5",
+    "@types/node": "^20.11.30",
     "@types/react": "~18.2.14",
     "@types/react-test-renderer": "^18.0.2",
     "@types/uuid": "^9.0.4",
+    "concurrently": "^8.2.2",
     "react-native-svg-transformer": "^1.1.0",
     "typescript": "^5.1.3"
   },

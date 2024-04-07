@@ -1,15 +1,13 @@
 import { test, expect } from '@playwright/test'
-
-const pageURL = 'http://localhost:19006'
+import { PAGE_URL } from './consts'
 
 test('Has title', async ({ page }) => {
-  await page.goto(pageURL)
-
+  await page.goto(PAGE_URL)
   await expect(page).toHaveTitle(/WordView/)
 })
 
 test('Enter register and leave', async ({ page }) => {
-  await page.goto(pageURL)
+  await page.goto(PAGE_URL)
   await page.getByRole('button', { name: 'Começar' }).click()
 
   await expect(page).toHaveTitle(/conta/)
@@ -20,7 +18,7 @@ test('Enter register and leave', async ({ page }) => {
 })
 
 test('Enter login and leave', async ({ page }) => {
-  await page.goto(pageURL)
+  await page.goto(PAGE_URL)
   await page.getByRole('button', { name: 'Já tenho uma conta' }).click()
 
   await expect(page).toHaveTitle(/Bem vindo/)

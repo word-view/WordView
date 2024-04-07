@@ -21,9 +21,7 @@ export default function Welcome(props: Props) {
         <Image style={styles.wvIcon} source={images.wvIcon} />
         <Image style={styles.wvTitle} source={images.wvTitle} />
 
-        <Text style={styles.wvText}>
-          A maneira inteligente de {'\n'} aprender idiomas
-        </Text>
+        <Text style={styles.wvText}>A maneira inteligente de {'\n'} aprender idiomas</Text>
       </View>
 
       <Button

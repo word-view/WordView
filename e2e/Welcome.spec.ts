@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { PAGE_URL } from './consts'
+import { PAGE_URL } from './locations'
 
 test('Has title', async ({ page }) => {
   await page.goto(PAGE_URL)

@@ -2,11 +2,11 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { CombinedDarkTheme } from './theme'
 import { navStyles } from './nav-styles'
-import Login from '../Screens/Auth/Login'
-import Welcome from '../Screens/Auth/Welcome'
-import Register from '../Screens/Auth/Register'
-import EmailLogin from '../Screens/Auth/EmailLogin'
-import LanguagePicker from '../Screens/Auth/LanguagePicker'
+import Login from '../Screens/Start/Login'
+import Welcome from '../Screens/Start/Welcome'
+import Register from '../Screens/Start/Register'
+import EmailLogin from '../Screens/Start/EmailLogin'
+import LanguagePicker from '../Screens/Start/LanguagePicker'
 
 const Navigator = createStackNavigator().Navigator
 const Screen = createStackNavigator().Screen

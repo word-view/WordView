@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native'
 import { CombinedDarkTheme } from './theme'
 import { createStackNavigator } from '@react-navigation/stack'
-import AuthNavigation from './AuthNavigation'
+import StartNavigation from './StartNavigation'
 import HomeNavigation from './HomeNavigation'
 import PlayerNavigation from './PlayerNavigation'
 
@@ -16,19 +16,14 @@ function AppNavigation(props: Props) {
   return (
     <NavigationContainer theme={CombinedDarkTheme}>
       <Navigator
-        initialRouteName='auth'
+        initialRouteName='start'
         screenOptions={{
           animationEnabled: true,
           headerShown: false,
         }}
       >
-        <Screen name='auth'>
-          {$props => (
-            <AuthNavigation
-              {...$props}
-              hideSplashCallback={props.hideSplashCallback}
-            />
-          )}
+        <Screen name='start'>
+          {$props => <StartNavigation {...$props} hideSplashCallback={props.hideSplashCallback} />}
         </Screen>
         <Screen name='home' component={HomeNavigation} />
         <Screen name='player' component={PlayerNavigation} />

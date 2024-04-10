@@ -1,4 +1,4 @@
-import { testing } from '../storage/store/state'
+import { testing } from '../App/Storage/store/state'
 
 beforeEach(() => {
   testing.set(true)

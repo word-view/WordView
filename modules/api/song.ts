@@ -1,4 +1,4 @@
-import { Song } from '../../storage/store/player'
+import { Song } from '../../App/Storage/store/player'
 import { get } from './client'
 
 export interface Subtitle {

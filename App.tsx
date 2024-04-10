@@ -20,10 +20,10 @@ import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
 import { PaperProvider } from 'react-native-paper'
 import * as NavigationBar from 'expo-navigation-bar'
-import AppNavigation from './navigation/AppNavigation'
-import { DesktopModeProvider, FontLoader, ResponsiveLayout } from './components'
-import { CombinedDarkTheme } from './config/theme'
-import { testing } from './storage/store/state'
+import AppNavigation from './App/Navigation/AppNavigation'
+import { DesktopModeProvider, FontLoader, ResponsiveLayout } from './App/Components'
+import { CombinedDarkTheme } from './App/Loaders/theme'
+import { testing } from './App/Storage/store/state'
 
 SplashScreen.preventAutoHideAsync()
 const warn = console.warn

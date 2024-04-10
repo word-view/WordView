@@ -4,7 +4,7 @@ import { Appbar, Text } from 'react-native-paper'
 import { song, tutorialing } from '../../../Storage/store/player'
 import { Input, Song } from '../../../Components'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import images from '../../../Loaders/images'
+import images from '../../../images'
 
 interface Props {
   appNavigation: any

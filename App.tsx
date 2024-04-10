@@ -22,7 +22,7 @@ import { PaperProvider } from 'react-native-paper'
 import * as NavigationBar from 'expo-navigation-bar'
 import AppNavigation from './App/Navigation/AppNavigation'
 import { DesktopModeProvider, FontLoader, ResponsiveLayout } from './App/Components'
-import { CombinedDarkTheme } from './App/Loaders/theme'
+import { CombinedDarkTheme } from './App/theme'
 import { testing } from './App/Storage/store/state'
 
 SplashScreen.preventAutoHideAsync()

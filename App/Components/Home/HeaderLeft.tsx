@@ -1,6 +1,6 @@
 import { memo, useContext } from 'react'
 import { View, StyleSheet, Image } from 'react-native'
-import images from '../../Loaders/images'
+import images from '../../images'
 import { DesktopModeProvider } from '../Provider'
 
 interface HeaderLeftProps {}

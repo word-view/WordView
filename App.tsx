@@ -21,9 +21,10 @@ import { StatusBar } from 'expo-status-bar'
 import { PaperProvider } from 'react-native-paper'
 import * as NavigationBar from 'expo-navigation-bar'
 import AppNavigation from './App/Navigation/AppNavigation'
-import { DesktopModeProvider, FontLoader, ResponsiveLayout } from './App/Components'
+import { DesktopModeProvider, FontLoader, ResponsiveLayout, onMountAsync } from './App/Components'
 import { CombinedDarkTheme } from './App/theme'
-import { testing } from './App/Storage/store/state'
+import { apiAvailable, testing } from './App/Storage/store/state'
+import { checkAPIAvailable } from './App/API/check'
 
 SplashScreen.preventAutoHideAsync()
 const warn = console.warn
@@ -33,6 +34,14 @@ console.warn = warn
 
 export default function App() {
   const { isDesktop } = ResponsiveLayout()
+
+  onMountAsync(async () => {
+    const available = await checkAPIAvailable()
+    apiAvailable.set(available)
+
+    console.log('Is API available? ' + available)
+  })
+
   const { fontsLoaded, onLayoutRootView } = FontLoader()
   if (!fontsLoaded) return null
 

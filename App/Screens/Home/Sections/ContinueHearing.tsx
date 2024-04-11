@@ -5,7 +5,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen'
 import { Song as SongType, song } from '../../../Storage/store/player'
-import { getHistory } from '../../../../modules/api/song'
+import { fetchHistory } from '../../../API/song'
 
 interface ContinueHearingProps {
   marginLeft?: number
@@ -23,7 +23,7 @@ function $ContinueHearing(props: ContinueHearingProps) {
 
   useEffect(() => {
     ;(async function aaa() {
-      setHistor((await getHistory()) ?? ({} as SongType))
+      setHistor((await fetchHistory()) ?? ({} as SongType))
     })()
   }, [])
 

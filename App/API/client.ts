@@ -1,5 +1,5 @@
-const API_URL_DEV = 'http://localhost:8080/api/v1'
-const API_URL_PROD = 'https://wordview.cc/api/v1'
+export const API_URL_DEV = 'http://localhost:8080/api/v1'
+export const API_URL_PROD = 'https://wordview.cc/api/v1'
 
 export async function post(url: string, body: string) {
   return await fetch(API_URL_DEV + url, {
@@ -17,8 +17,4 @@ export async function post(url: string, body: string) {
 
 export async function get(url: string) {
   return await fetch(API_URL_DEV + url)
-}
-
-export function url(path: string) {
-  return API_URL_DEV + path
 }

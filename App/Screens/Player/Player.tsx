@@ -7,13 +7,12 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen'
 import { DesktopModeProvider, Loader } from '../../Components'
-import { Subtitle, getAvailableSubtitles, getLyrics } from '../../../modules/api/song'
 import { Audio } from 'expo-av'
-import { url } from '../../../modules/api/client'
 import { formatTime } from '../../Util/time'
 import { LyricsViewer, MusicInfo, PlayButton } from '../../Components/Player'
 import { Cue } from '../../Util/webvtt/types'
 import { parseWebVTT } from '../../Util/webvtt/parse'
+import { Subtitle, fetchLyrics, fetchSubtitles, songUrl } from '../../API/song'
 
 interface Props {
   appNavigation: any
@@ -41,10 +40,10 @@ function Player(props: Props) {
 
     showDialog()
     ;(async function fetch() {
-      setSubtitles((await getAvailableSubtitles(choosenSong.id)) ?? [])
+      setSubtitles((await fetchSubtitles(choosenSong.id)) ?? [])
 
       const { sound } = await Audio.Sound.createAsync({
-        uri: url(`/music/download?id=${choosenSong.id}`),
+        uri: songUrl(choosenSong.id),
       })
 
       setAudio(sound)
@@ -95,14 +94,14 @@ function Player(props: Props) {
         style={{ marginBottom: hp(1) }}
         onPress={() => {
           hideDialog()
-          fetchLyrics(subtitle.language)
+          getLyrics(subtitle.language)
         }}
       />
     ))
   }
 
-  async function fetchLyrics(lang: string) {
-    const lyrics = await getLyrics(choosenSong.id, lang)
+  async function getLyrics(lang: string) {
+    const lyrics = await fetchLyrics(choosenSong.id, lang)
     if (!lyrics) return
 
     const cues = parseWebVTT(lyrics)

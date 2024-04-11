@@ -39,7 +39,7 @@ export default function App() {
     const available = await checkAPIAvailable()
     apiAvailable.set(available)
 
-    console.log('Is API available? ' + available)
+    console.log('API is available? ' + available)
   })
 
   const { fontsLoaded, onLayoutRootView } = FontLoader()

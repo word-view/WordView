@@ -1,5 +1,5 @@
-import { memo, useEffect, useState } from 'react'
-import { HorizontalScrollView, Song, Section } from '../../../Components'
+import { memo, useState } from 'react'
+import { HorizontalScrollView, Song, Section, onMount, onMountAsync } from '../../../Components'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -21,11 +21,9 @@ function $ContinueHearing(props: ContinueHearingProps) {
 
   const [histor, setHistor] = useState<SongType>({} as SongType)
 
-  useEffect(() => {
-    ;(async function aaa() {
-      setHistor((await fetchHistory()) ?? ({} as SongType))
-    })()
-  }, [])
+  onMountAsync(async () => {
+    setHistor((await fetchHistory()) ?? ({} as SongType))
+  })
 
   return (
     <Section

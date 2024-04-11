@@ -1,8 +1,8 @@
 import { ScrollView } from 'react-native'
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Button } from 'react-native-paper'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import { AccountLoginButton, ContentHolder, DesktopModeProvider } from '../../Components'
+import { AccountLoginButton, ContentHolder, DesktopModeProvider, onMount } from '../../Components'
 
 interface Props {
   appNavigation: any
@@ -12,11 +12,11 @@ interface Props {
 function Login(props: Props) {
   const desktop = useContext(DesktopModeProvider)
 
-  useEffect(() => {
+  onMount(() => {
     props.navigation.setOptions({ title: 'Bem vindo de volta!' })
 
     if (desktop) props.navigation.setOptions({ headerTitle: '' })
-  }, [])
+  })
 
   return (
     <ScrollView style={!desktop && { backgroundColor: '#2C2831' }}>

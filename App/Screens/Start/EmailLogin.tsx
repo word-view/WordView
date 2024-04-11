@@ -1,6 +1,6 @@
 import { ScrollView } from 'react-native'
-import { Button, ContentHolder, AuthInput, DesktopModeProvider } from '../../Components'
-import { useContext, useEffect } from 'react'
+import { Button, ContentHolder, AuthInput, DesktopModeProvider, onMount } from '../../Components'
+import { useContext } from 'react'
 
 interface Props {
   appNavigation: any
@@ -10,10 +10,10 @@ interface Props {
 function EmailLogin(props: Props) {
   const desktop = useContext(DesktopModeProvider)
 
-  useEffect(() => {
+  onMount(() => {
     props.navigation.setOptions({ title: 'Login por email' })
     if (desktop) props.navigation.setOptions({ headerTitle: '' })
-  }, [])
+  })
 
   return (
     <ScrollView style={!desktop && { backgroundColor: '#2C2831' }}>

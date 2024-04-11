@@ -1,8 +1,7 @@
-import { useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Appbar, Text } from 'react-native-paper'
 import { song, tutorialing } from '../../../Storage/store/player'
-import { Input, Song } from '../../../Components'
+import { Input, Song, onMount } from '../../../Components'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import images from '../../../images'
 
@@ -14,7 +13,7 @@ interface Props {
 function TutorialWelcome(props: Props) {
   const tutorial = tutorialing.get()
 
-  useEffect(() => {
+  onMount(() => {
     props.navigation.setOptions({
       headerTitle: '',
       headerLeft: () => (
@@ -26,7 +25,7 @@ function TutorialWelcome(props: Props) {
         />
       ),
     })
-  }, [])
+  })
 
   return (
     <View style={styles.root}>

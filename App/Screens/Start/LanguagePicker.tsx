@@ -1,5 +1,5 @@
-import { useContext, useEffect } from 'react'
-import { Button, ContentHolder, DesktopModeProvider } from '../../Components'
+import { useContext } from 'react'
+import { Button, ContentHolder, DesktopModeProvider, onMount } from '../../Components'
 import { ScrollView } from 'react-native'
 
 interface Props {
@@ -10,10 +10,10 @@ interface Props {
 function LanguagePicker(props: Props) {
   const desktop = useContext(DesktopModeProvider)
 
-  useEffect(() => {
+  onMount(() => {
     props.navigation.setOptions({ title: 'Selecione um idioma' })
     if (desktop) props.navigation.setOptions({ headerTitle: '' })
-  }, [])
+  })
 
   function saveLanguageChoiceAndProceed() {
     props.appNavigation.navigate('home')

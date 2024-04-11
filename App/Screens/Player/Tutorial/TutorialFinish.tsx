@@ -1,7 +1,6 @@
-import { useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Appbar, Text } from 'react-native-paper'
-import { SmallButton, Song } from '../../../Components'
+import { SmallButton, Song, onMount } from '../../../Components'
 import { song } from '../../../Storage/store/player'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
@@ -13,7 +12,7 @@ interface Props {
 function TutorialFinish(props: Props) {
   const choosenSong = song.get()
 
-  useEffect(() => {
+  onMount(() => {
     props.navigation.setOptions({
       headerTitle: '',
       headerLeft: () => (
@@ -25,7 +24,7 @@ function TutorialFinish(props: Props) {
         />
       ),
     })
-  }, [])
+  })
 
   return (
     <View style={styles.root}>

@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo } from 'react'
 import { ScrollView } from 'react-native'
 import { ContinueHearing, Welcome } from './Sections'
 

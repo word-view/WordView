@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { ScrollView } from 'react-native'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { Button as RNPButton } from 'react-native-paper'
-import { AuthInput, Button, ContentHolder, DesktopModeProvider } from '../../Components'
+import { AuthInput, Button, ContentHolder, DesktopModeProvider, onMount } from '../../Components'
 
 interface Props {
   appNavigation: any
@@ -12,10 +12,10 @@ interface Props {
 function Register(props: Props) {
   const desktop = useContext(DesktopModeProvider)
 
-  useEffect(() => {
+  onMount(() => {
     props.navigation.setOptions({ title: 'Criar uma conta' })
     if (desktop) props.navigation.setOptions({ headerTitle: '' })
-  }, [])
+  })
 
   return (
     <ScrollView style={!desktop && { backgroundColor: '#2C2831' }}>

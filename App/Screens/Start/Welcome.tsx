@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
-import React, { useEffect } from 'react'
-import { Button } from '../../Components'
+import React from 'react'
+import { Button, onMount } from '../../Components'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import images from '../../images'
 
@@ -11,9 +11,9 @@ interface Props {
 }
 
 export default function Welcome(props: Props) {
-  useEffect(() => {
+  onMount(() => {
     props.navigation.setOptions({ headerShown: false })
-  }, [])
+  })
 
   return (
     <View style={styles.container} onLayout={props.onLayoutRootView}>

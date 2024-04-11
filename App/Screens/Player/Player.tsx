@@ -6,7 +6,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen'
-import { DesktopModeProvider, Loader } from '../../Components'
+import { DesktopModeProvider, Loader, onMount, onMountAsync } from '../../Components'
 import { Audio } from 'expo-av'
 import { formatTime } from '../../Util/time'
 import { LyricsViewer, MusicInfo, PlayButton } from '../../Components/Player'
@@ -35,19 +35,19 @@ function Player(props: Props) {
   const showDialog = () => setVisible(true)
   const hideDialog = () => setVisible(false)
 
-  useEffect(() => {
+  onMountAsync(async () => {
+    setSubtitles((await fetchSubtitles(choosenSong.id)) ?? [])
+
+    const { sound } = await Audio.Sound.createAsync({
+      uri: songUrl(choosenSong.id),
+    })
+
+    setAudio(sound)
+  })
+
+  onMount(() => {
     if (tutorial) props.navigation.navigate('TutorialWelcome')
-
     showDialog()
-    ;(async function fetch() {
-      setSubtitles((await fetchSubtitles(choosenSong.id)) ?? [])
-
-      const { sound } = await Audio.Sound.createAsync({
-        uri: songUrl(choosenSong.id),
-      })
-
-      setAudio(sound)
-    })()
 
     props.navigation.setOptions({
       title: `${choosenSong.title} - WordView`,
@@ -62,8 +62,9 @@ function Player(props: Props) {
         />
       ),
     })
-  }, [])
+  })
 
+  // TODO: this needs some testing before updating it to a onUpdate hook
   useEffect(
     () => () => {
       audio?.stopAsync()
@@ -71,6 +72,7 @@ function Player(props: Props) {
     [audio],
   )
 
+  // TODO: this as well
   useEffect(() => {
     const updateAudioPosition = async () => {
       if (audioPlaying) {

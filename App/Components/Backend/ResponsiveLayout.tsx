@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Dimensions } from 'react-native'
 import { testing } from '../../Storage/store/state'
 import { widthPercentageToDP, heightPercentageToDP } from 'react-native-responsive-screen'
+import { onMount } from './mount'
 
 export function ResponsiveLayout() {
   if (testing.get()) {
@@ -15,7 +16,7 @@ export function ResponsiveLayout() {
   const [wp, setWp] = useState<(widthPercent: string | number) => number>(widthPercentageToDP)
   const [hp, setHp] = useState<(heightPercent: string | number) => number>(heightPercentageToDP)
 
-  useEffect(() => {
+  onMount(() => {
     const updateDimensions = () => {
       const newWindowWidth = Dimensions.get('window').width
       setWindowWidth(newWindowWidth)
@@ -26,7 +27,7 @@ export function ResponsiveLayout() {
     }
 
     Dimensions.addEventListener('change', updateDimensions)
-  }, [])
+  })
 
   return { isDesktop, wp, hp }
 }

@@ -2,6 +2,8 @@ import { memo, useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Cue } from '../../Util/webvtt/types'
 import { Text } from 'react-native-paper'
+import { onMount } from '../Backend'
+import { onUpdate } from '../Backend/update'
 
 interface LyricsViewerProps {
   cues: Cue[]
@@ -11,7 +13,7 @@ interface LyricsViewerProps {
 function $LyricsViewer(props: LyricsViewerProps) {
   const [caption, setCaption] = useState<Cue>()
 
-  useEffect(() => {
+  onUpdate([props.audioPosition, props.cues], () => {
     let timeoutId: string | number | NodeJS.Timeout | undefined
 
     // Clear previous timeout when audio position changes
@@ -39,7 +41,7 @@ function $LyricsViewer(props: LyricsViewerProps) {
       // Clear timeout when component unmounts or audio position changes
       clearTimeout(timeoutId)
     }
-  }, [props.audioPosition, props.cues])
+  })
 
   return (
     <View style={styles.lyricsViewer}>

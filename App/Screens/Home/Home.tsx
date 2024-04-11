@@ -1,10 +1,11 @@
 import { BottomNavigation } from 'react-native-paper'
 import { useContext, useEffect, useState } from 'react'
-import { DesktopModeProvider, HeaderLeft, HeaderRight } from '../../Components'
+import { DesktopModeProvider, HeaderLeft, HeaderRight, onMount } from '../../Components'
 import { Route, SideNavigation } from '../../Components/Home/SideNavigation'
 import Main from './Main'
 import Progress from './Progress'
 import Explore from './Explore'
+import { onUpdate } from '../../Components/Backend/update'
 
 interface Props {
   appNavigation: any
@@ -14,7 +15,7 @@ interface Props {
 function Home(props: Props) {
   const desktop = useContext(DesktopModeProvider)
 
-  useEffect(() => {
+  onMount(() => {
     props.navigation.setOptions({
       title: '- WordView',
       headerTitle: '',
@@ -26,7 +27,7 @@ function Home(props: Props) {
         />
       ),
     })
-  }, [])
+  })
 
   const [index, setIndex] = useState(0)
   const routes: Route[] = [
@@ -64,10 +65,10 @@ function Home(props: Props) {
     return map
   }, {})
 
-  useEffect(() => {
+  onUpdate([index], () => {
     const pickedRoute = routes[index]
     props.navigation.setOptions({ title: `${pickedRoute.title} - WordView` })
-  }, [index])
+  })
 
   return (
     <>

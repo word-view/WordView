@@ -1,4 +1,4 @@
-import { formatTime } from '../../../modules/time/time'
+import { formatTime } from '../../Util/time'
 import { globalLessonTime } from '../../Storage/store/lesson'
 
 export class LessonTimer {

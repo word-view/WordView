@@ -10,10 +10,10 @@ import { DesktopModeProvider, Loader } from '../../Components'
 import { Subtitle, getAvailableSubtitles, getLyrics } from '../../../modules/api/song'
 import { Audio } from 'expo-av'
 import { url } from '../../../modules/api/client'
-import { formatTime } from '../../../modules/time/time'
+import { formatTime } from '../../Util/time'
 import { LyricsViewer, MusicInfo, PlayButton } from '../../Components/Player'
-import { Cue } from '../../../modules/webvtt/types'
-import { parseWebVTT } from '../../../modules/webvtt/parse'
+import { Cue } from '../../Util/webvtt/types'
+import { parseWebVTT } from '../../Util/webvtt/parse'
 
 interface Props {
   appNavigation: any

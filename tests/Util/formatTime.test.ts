@@ -1,4 +1,4 @@
-import { formatTime } from '../../modules/time/time'
+import { formatTime } from '../../App/Util/time'
 
 it(`Seconds`, () => {
   let time = formatTime(1000)

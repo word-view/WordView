@@ -1,6 +1,6 @@
 import { memo, useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Cue } from '../../../modules/webvtt/types'
+import { Cue } from '../../Util/webvtt/types'
 import { Text } from 'react-native-paper'
 
 interface LyricsViewerProps {

@@ -1,6 +1,6 @@
 import React, { useContext, useRef } from 'react'
 import { PanResponder, Animated, Dimensions } from 'react-native'
-import { Spring } from '../../../modules/animator'
+import { Spring } from '../../Animations'
 import { DesktopModeProvider } from '../Provider'
 
 export interface DraggableViewProps {

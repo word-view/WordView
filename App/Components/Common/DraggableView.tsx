@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from 'react'
 import { PanResponder, Animated, Dimensions } from 'react-native'
-import { Spring } from '../../Animations'
 import { DesktopModeProvider } from '../Provider'
+import { springTo } from '../../Animations'
 
 export interface DraggableViewProps {
   children: React.ReactNode
@@ -47,7 +47,7 @@ export function DraggableView(props: DraggableViewProps) {
           }
         }
 
-        Spring({ hook: pan, to: { x: 0, y: 0 } }).start()
+        springTo({ x: 0, y: 0 }, pan).start()
       },
     }),
   ).current

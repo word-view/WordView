@@ -3,6 +3,7 @@ import { ScrollView } from 'react-native'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { Button as RNPButton } from 'react-native-paper'
 import { AuthInput, Button, ContentHolder, DesktopModeProvider, onMount } from '../../Components'
+import { Navigation } from '../../Navigation/Navigation'
 
 interface Props {
   appNavigation: any
@@ -11,10 +12,11 @@ interface Props {
 
 function Register(props: Props) {
   const desktop = useContext(DesktopModeProvider)
+  const navigation = new Navigation(props.navigation)
 
   onMount(() => {
-    props.navigation.setOptions({ title: 'Criar uma conta' })
-    if (desktop) props.navigation.setOptions({ headerTitle: '' })
+    navigation.setTitle('Criar uma conta')
+    if (desktop) navigation.emptyHeaderTitle()
   })
 
   return (
@@ -57,7 +59,7 @@ function Register(props: Props) {
 
         <RNPButton
           mode='text'
-          onPress={() => props.navigation.navigate('LanguagePicker')}
+          onPress={() => navigation.go('LanguagePicker')}
           style={{ marginTop: hp(1) }}
         >
           Ou entre na sua conta

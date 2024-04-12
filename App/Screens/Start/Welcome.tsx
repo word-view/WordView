@@ -3,6 +3,7 @@ import React from 'react'
 import { Button, onMount } from '../../Components'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import images from '../../images'
+import { Navigation } from '../../Navigation/Navigation'
 
 interface Props {
   appNavigation: any
@@ -11,9 +12,9 @@ interface Props {
 }
 
 export default function Welcome(props: Props) {
-  onMount(() => {
-    props.navigation.setOptions({ headerShown: false })
-  })
+  const navigation = new Navigation(props.navigation)
+
+  onMount(() => navigation.hideHeader())
 
   return (
     <View style={styles.container} onLayout={props.onLayoutRootView}>
@@ -27,13 +28,13 @@ export default function Welcome(props: Props) {
       <Button
         text='Começar'
         color={{ text: 'white', button: '#8951FF' }}
-        onPress={() => props.navigation.navigate('Register')}
+        onPress={() => navigation.go('Register')}
         marginTop={20}
       />
       <Button
         text='Já tenho uma conta'
         color={{ text: 'black', button: 'white' }}
-        onPress={() => props.navigation.navigate('Login')}
+        onPress={() => navigation.go('Login')}
         marginTop={2.5}
       />
     </View>

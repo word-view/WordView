@@ -1,6 +1,7 @@
 import { ScrollView } from 'react-native'
 import { Button, ContentHolder, AuthInput, DesktopModeProvider, onMount } from '../../Components'
 import { useContext } from 'react'
+import { Navigation } from '../../Navigation/Navigation'
 
 interface Props {
   appNavigation: any
@@ -9,10 +10,11 @@ interface Props {
 
 function EmailLogin(props: Props) {
   const desktop = useContext(DesktopModeProvider)
+  const navigation = new Navigation(props.navigation)
 
   onMount(() => {
-    props.navigation.setOptions({ title: 'Login por email' })
-    if (desktop) props.navigation.setOptions({ headerTitle: '' })
+    navigation.setTitle('Login por email')
+    if (desktop) navigation.emptyHeaderTitle()
   })
 
   return (

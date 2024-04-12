@@ -1,11 +1,12 @@
 import { BottomNavigation } from 'react-native-paper'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { DesktopModeProvider, HeaderLeft, HeaderRight, onMount } from '../../Components'
 import { Route, SideNavigation } from '../../Components/Home/SideNavigation'
 import Main from './Main'
 import Progress from './Progress'
 import Explore from './Explore'
 import { onUpdate } from '../../Components/Backend/update'
+import { Navigation } from '../../Navigation/Navigation'
 
 interface Props {
   appNavigation: any
@@ -14,19 +15,15 @@ interface Props {
 
 function Home(props: Props) {
   const desktop = useContext(DesktopModeProvider)
+  const navigation = new Navigation(props.navigation)
 
   onMount(() => {
-    props.navigation.setOptions({
-      title: '- WordView',
-      headerTitle: '',
-      headerLeft: () => <HeaderLeft />,
-      headerRight: () => (
-        <HeaderRight
-          onPressMag={() => setIndex(1)}
-          onPressCog={() => props.navigation.navigate('Settings')}
-        />
-      ),
-    })
+    navigation.setTitle('Learn - WordView')
+    navigation.emptyHeaderTitle()
+    navigation.setHeaderLeft(<HeaderLeft />)
+    navigation.setHeaderRight(
+      <HeaderRight onPressMag={() => setIndex(1)} onPressCog={() => navigation.go('Settings')} />,
+    )
   })
 
   const [index, setIndex] = useState(0)
@@ -67,7 +64,7 @@ function Home(props: Props) {
 
   onUpdate([index], () => {
     const pickedRoute = routes[index]
-    props.navigation.setOptions({ title: `${pickedRoute.title} - WordView` })
+    navigation.setTitle(`${pickedRoute.title} - WordView`)
   })
 
   return (

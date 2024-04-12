@@ -13,6 +13,7 @@ import { LyricsViewer, MusicInfo, PlayButton } from '../../Components/Player'
 import { Cue } from '../../Util/webvtt/types'
 import { parseWebVTT } from '../../Util/webvtt/parse'
 import { Subtitle, fetchLyrics, fetchSubtitles, songUrl } from '../../API/song'
+import { Navigation } from '../../Navigation/Navigation'
 
 interface Props {
   appNavigation: any
@@ -22,6 +23,9 @@ interface Props {
 function Player(props: Props) {
   const tutorial = tutorialing.get()
   const desktop = useContext(DesktopModeProvider)
+  const navigation = new Navigation(props.navigation)
+  const appNavigation = new Navigation(props.appNavigation)
+
   const choosenSong = song.get()
 
   const [visible, setVisible] = useState(false)
@@ -46,22 +50,21 @@ function Player(props: Props) {
   })
 
   onMount(() => {
-    if (tutorial) props.navigation.navigate('TutorialWelcome')
+    if (tutorial) navigation.go('TutorialWelcome')
+
     showDialog()
 
-    props.navigation.setOptions({
-      title: `${choosenSong.title} - WordView`,
-      headerTitle: '',
-      headerLeft: () => (
-        <Appbar.Action
-          icon='arrow-left'
-          onPress={() => {
-            if (tutorial) tutorialing.set(false)
-            props.appNavigation.navigate('home')
-          }}
-        />
-      ),
-    })
+    navigation.setTitle(`${choosenSong.title} - WordView`)
+    navigation.emptyHeaderTitle()
+    navigation.setHeaderLeft(
+      <Appbar.Action
+        icon='arrow-left'
+        onPress={() => {
+          if (tutorial) tutorialing.set(false)
+          appNavigation.go('home')
+        }}
+      />,
+    )
   })
 
   // TODO: this needs some testing before updating it to a onUpdate hook

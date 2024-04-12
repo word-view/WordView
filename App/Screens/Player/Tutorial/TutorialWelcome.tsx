@@ -4,6 +4,7 @@ import { song, tutorialing } from '../../../Storage/store/player'
 import { Input, Song, onMount } from '../../../Components'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import images from '../../../images'
+import { Navigation } from '../../../Navigation/Navigation'
 
 interface Props {
   appNavigation: any
@@ -12,19 +13,18 @@ interface Props {
 
 function TutorialWelcome(props: Props) {
   const tutorial = tutorialing.get()
+  const navigation = new Navigation(props.navigation)
 
   onMount(() => {
-    props.navigation.setOptions({
-      headerTitle: '',
-      headerLeft: () => (
-        <Appbar.Action
-          icon='arrow-left'
-          onPress={() => {
-            props.appNavigation.navigate('home')
-          }}
-        />
-      ),
-    })
+    navigation.emptyHeaderTitle()
+    navigation.setHeaderLeft(
+      <Appbar.Action
+        icon='arrow-left'
+        onPress={() => {
+          props.appNavigation.navigate('home')
+        }}
+      />,
+    )
   })
 
   return (

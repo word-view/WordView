@@ -3,6 +3,7 @@ import React, { useContext } from 'react'
 import { Button } from 'react-native-paper'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { AccountLoginButton, ContentHolder, DesktopModeProvider, onMount } from '../../Components'
+import { Navigation } from '../../Navigation/Navigation'
 
 interface Props {
   appNavigation: any
@@ -11,11 +12,11 @@ interface Props {
 
 function Login(props: Props) {
   const desktop = useContext(DesktopModeProvider)
+  const navigation = new Navigation(props.navigation)
 
   onMount(() => {
-    props.navigation.setOptions({ title: 'Bem vindo de volta!' })
-
-    if (desktop) props.navigation.setOptions({ headerTitle: '' })
+    navigation.setTitle('Bem vindo de volta!')
+    if (desktop) navigation.emptyHeaderTitle()
   })
 
   return (
@@ -25,14 +26,10 @@ function Login(props: Props) {
           icon='email'
           text='Login por email'
           color={{ text: 'white', button: '#8951FF' }}
-          onPress={() => props.navigation.navigate('EmailLogin')}
+          onPress={() => navigation.go('EmailLogin')}
         />
 
-        <Button
-          mode='text'
-          onPress={() => props.navigation.navigate('Register')}
-          style={{ marginTop: hp(2) }}
-        >
+        <Button mode='text' onPress={() => navigation.go('Register')} style={{ marginTop: hp(2) }}>
           Ou crie sua conta
         </Button>
       </ContentHolder>

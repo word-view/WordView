@@ -3,6 +3,7 @@ import { Appbar, Text } from 'react-native-paper'
 import { SmallButton, Song, onMount } from '../../../Components'
 import { song } from '../../../Storage/store/player'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import { Navigation } from '../../../Navigation/Navigation'
 
 interface Props {
   appNavigation: any
@@ -11,19 +12,18 @@ interface Props {
 
 function TutorialFinish(props: Props) {
   const choosenSong = song.get()
+  const navigation = new Navigation(props.navigation)
 
   onMount(() => {
-    props.navigation.setOptions({
-      headerTitle: '',
-      headerLeft: () => (
-        <Appbar.Action
-          icon='arrow-left'
-          onPress={() => {
-            props.appNavigation.navigate('home')
-          }}
-        />
-      ),
-    })
+    navigation.emptyHeaderTitle()
+    navigation.setHeaderLeft(
+      <Appbar.Action
+        icon='arrow-left'
+        onPress={() => {
+          props.appNavigation.navigate('home')
+        }}
+      />,
+    )
   })
 
   return (
@@ -53,7 +53,7 @@ function TutorialFinish(props: Props) {
           button: '#8951FF',
         }}
         style={{ marginTop: hp(6) }}
-        onPress={() => props.navigation.navigate('Player')}
+        onPress={() => navigation.go('Player')}
       />
     </View>
   )

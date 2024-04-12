@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Appbar, Dialog, List, Portal, Text } from 'react-native-paper'
+import { Appbar, Dialog, List, Portal } from 'react-native-paper'
 import { song, tutorialing } from '../../Storage/store/player'
 import {
   heightPercentageToDP as hp,
@@ -8,12 +8,12 @@ import {
 } from 'react-native-responsive-screen'
 import { DesktopModeProvider, Loader, onMount, onMountAsync } from '../../Components'
 import { Audio } from 'expo-av'
-import { formatTime } from '../../Util/time'
 import { LyricsViewer, MusicInfo, PlayButton } from '../../Components/Player'
 import { Cue } from '../../Util/webvtt/types'
 import { parseWebVTT } from '../../Util/webvtt/parse'
 import { Subtitle, fetchLyrics, fetchSubtitles, songUrl } from '../../API/song'
 import { Navigation } from '../../Navigation/Navigation'
+import { ProgressBar } from '../../Components/Player/ProgressBar'
 
 interface Props {
   appNavigation: any
@@ -95,6 +95,7 @@ function Player(props: Props) {
     return subtitles.map(subtitle => (
       <List.Item
         title={subtitle.name}
+        key={subtitle.language}
         description={subtitle.language}
         style={{ marginBottom: hp(1) }}
         onPress={() => {
@@ -193,7 +194,7 @@ function Player(props: Props) {
               <PlayButton isAudioPlaying={audioPlaying} onPlay={play} onPause={pause} />
               <Appbar.Action icon='skip-forward' size={20} onPress={skipForward} />
             </View>
-            <Text variant='bodySmall'>{formatTime(audioPosition)}</Text>
+            <ProgressBar audioPosition={audioPosition} getAudioInfo={getAudioInfo} />
           </View>
         </View>
       </View>

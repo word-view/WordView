@@ -1,9 +1,9 @@
-import { memo, useEffect, useState } from 'react'
+import { memo, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Cue } from '../../Util/webvtt/types'
 import { Text } from 'react-native-paper'
-import { onMount } from '../Backend'
 import { onUpdate } from '../Backend/update'
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 interface LyricsViewerProps {
   cues: Cue[]
@@ -45,7 +45,9 @@ function $LyricsViewer(props: LyricsViewerProps) {
 
   return (
     <View style={styles.lyricsViewer}>
-      <Text variant='bodyLarge'>{caption?.text}</Text>
+      <Text variant='titleLarge' key={caption?.id} style={styles.cue}>
+        {caption?.text}
+      </Text>
     </View>
   )
 }
@@ -54,11 +56,17 @@ export const LyricsViewer = memo($LyricsViewer)
 
 const styles = StyleSheet.create({
   lyricsViewer: {
-    width: '98%',
+    width: '94%',
     height: '84%',
     alignSelf: 'center',
     borderRadius: 10,
     backgroundColor: '#CB495E',
     overflow: 'scroll',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+  cue: {
+    fontWeight: '800',
+    marginBottom: hp(8),
   },
 })

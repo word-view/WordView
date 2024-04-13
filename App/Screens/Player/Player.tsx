@@ -218,8 +218,11 @@ const styles = StyleSheet.create({
     overflow: 'scroll',
   },
   musicInfo: {
-    width: '98%',
+    width: '100%',
+    backgroundColor: '#2C2831',
     alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
     height: hp(14),
   },
   subtitlePickerModal: {
@@ -234,7 +237,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     height: '100%',
   },
-  playerControlsContainer: { flexDirection: 'row', alignItems: 'center' },
+  playerControlsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 })
 
 export default Player

@@ -8,8 +8,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen'
 import { AVPlaybackStatusSuccess } from 'expo-av'
-import { onMountAsync } from '../Backend'
-import { onUpdate, onUpdateAsync } from '../Backend/update'
+import { onUpdateAsync } from '../Backend/update'
 
 interface ProgressBarProps {
   audioPosition: number
@@ -33,12 +32,6 @@ export function ProgressBar(props: ProgressBarProps) {
 
   return (
     <View style={styles.progressBarRoot}>
-      <View style={styles.timeContainer}>
-        <Text variant='bodySmall'>{formatTime(props.audioPosition)}</Text>
-        <Text variant='bodySmall'>
-          {formatTime((audioInfo?.durationMillis ?? 0) - props.audioPosition)}
-        </Text>
-      </View>
       <View style={styles.progressBar}>
         <View
           style={[
@@ -46,6 +39,12 @@ export function ProgressBar(props: ProgressBarProps) {
             { width: `${percentage(props.audioPosition, audioInfo?.durationMillis ?? Infinity)}%` },
           ]}
         />
+      </View>
+      <View style={styles.timeContainer}>
+        <Text variant='bodySmall'>{formatTime(props.audioPosition)}</Text>
+        <Text variant='bodySmall'>
+          {formatTime((audioInfo?.durationMillis ?? 0) - props.audioPosition)}
+        </Text>
       </View>
     </View>
   )
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
   progressBarRoot: {
     height: 30,
     width: wp(50),
-    marginBottom: 2,
+    marginBottom: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -67,12 +66,13 @@ const styles = StyleSheet.create({
 
   progressBar: {
     width: wp(50),
-    height: hp(0.9),
+    height: hp(0.8),
+    marginBottom: 4,
     borderRadius: 20,
     backgroundColor: '#4C4850',
   },
   songPositionBar: {
-    height: hp(0.9),
+    height: hp(0.8),
     borderRadius: 20,
     backgroundColor: '#9563FF',
   },

@@ -22,7 +22,11 @@ function $MusicInfo(props: MusicInfoProps) {
 const styles = StyleSheet.create({
   coverImage: { height: 75, width: 75, borderRadius: 10 },
   informationArea: { height: '100%', justifyContent: 'center', marginLeft: 10 },
-  musicInfoContainer: { alignSelf: 'flex-start', flexDirection: 'row' },
+  musicInfoContainer: {
+    alignSelf: 'flex-start',
+    flexDirection: 'row',
+    marginLeft: 10,
+  },
 })
 
 export const MusicInfo = memo($MusicInfo)

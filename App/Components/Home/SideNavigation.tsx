@@ -21,7 +21,7 @@ const $SideNavigation = forwardRef((props: Props, ref) => {
     const routeIndex = props.routes.indexOf(route)
     const setIndex = () => props.setIndex(routeIndex)
 
-    return <SidebarItem route={route} onPress={setIndex} />
+    return <SidebarItem key={route.key} route={route} onPress={setIndex} />
   }
 
   function mapActions() {

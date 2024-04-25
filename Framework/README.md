@@ -1,0 +1,2 @@
+# View Framework
+Anything that should be abstracted away from the App's scope should be included in this folder and later moved into its own project, the framework's objective is to work around some problems i find with React and Expo, making the code more readable and efficient things like screen scale handling, font and image loading, a easier syntax for `useEffect`, easier syntax for navigating through app screens and other things that might be helpful for other projects shall be included here.

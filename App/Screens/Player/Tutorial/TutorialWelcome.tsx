@@ -3,9 +3,9 @@ import { Appbar, Text } from 'react-native-paper'
 import { song, tutorialing } from '../../../Storage/store/player'
 import { Input, Song } from '../../../Components'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import images from '../../../images'
 import { Navigation } from '../../../Navigation/Navigation'
 import { onMount } from '../../../../Framework/Component/Actions'
+import { getImageJpeg } from '../../../../Framework/Resources/image'
 
 interface Props {
   appNavigation: any
@@ -45,16 +45,21 @@ function TutorialWelcome(props: Props) {
 
       <View style={{ flexDirection: 'row', marginTop: hp(2) }}>
         <Song
-          img={images.yoruNiCover}
+          img={getImageJpeg('builtin/YoruNi_Cover')}
           title='夜に駆ける'
           artist='YOASOBI'
           onPress={() => {
-            song.set({ id: '1', title: '夜に駆ける', artist: 'YOASOBI', cover: images.yoruNiCover })
+            song.set({
+              id: '1',
+              title: '夜に駆ける',
+              artist: 'YOASOBI',
+              cover: getImageJpeg('builtin/YoruNi_Cover'),
+            })
             props.navigation.navigate('TutorialFinish')
           }}
         />
         <Song
-          img={images.mirrorCover}
+          img={getImageJpeg('bultin/Mirror_Cover')}
           title='Englishman in New York'
           artist='majiko'
           onPress={() => {
@@ -62,13 +67,13 @@ function TutorialWelcome(props: Props) {
               id: '2',
               title: 'Englishman in New York',
               artist: 'majiko',
-              cover: images.mirrorCover,
+              cover: getImageJpeg('bultin/Mirror_Cover'),
             })
             props.navigation.navigate('TutorialFinish')
           }}
         />
         <Song
-          img={images.kataomoiCover}
+          img={getImageJpeg('bultin/Kataomoi_Cover')}
           title='Kataomoi'
           artist='Aimer'
           onPress={() => {
@@ -76,7 +81,7 @@ function TutorialWelcome(props: Props) {
               id: '3',
               title: 'Kataomoi',
               artist: 'Aimer',
-              cover: images.kataomoiCover,
+              cover: getImageJpeg('bultin/Kataomoi_Cover'),
             })
             props.navigation.navigate('TutorialFinish')
           }}

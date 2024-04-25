@@ -2,9 +2,9 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import { Button } from '../../Components'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import images from '../../images'
 import { Navigation } from '../../Navigation/Navigation'
 import { onMount } from '../../../Framework/Component/Actions'
+import { getImage } from '../../../Framework/Resources/image'
 
 interface Props {
   appNavigation: any
@@ -20,8 +20,8 @@ export default function Welcome(props: Props) {
   return (
     <View style={styles.container} onLayout={props.onLayoutRootView}>
       <View style={styles.wvLogoHolder}>
-        <Image style={styles.wvIcon} source={images.wvIcon} />
-        <Image style={styles.wvTitle} source={images.wvTitle} />
+        <Image style={styles.wvIcon} source={getImage('wvicon')} />
+        <Image style={styles.wvTitle} source={getImage('wvtitle')} />
 
         <Text style={styles.wvText}>A maneira inteligente de {'\n'} aprender idiomas</Text>
       </View>

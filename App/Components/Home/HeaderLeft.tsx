@@ -1,7 +1,7 @@
 import { memo, useContext } from 'react'
 import { View, StyleSheet, Image } from 'react-native'
-import images from '../../images'
 import { DesktopModeProvider } from '../Provider'
+import { getImage } from '../../../Framework/Resources/image'
 
 interface HeaderLeftProps {}
 
@@ -9,8 +9,8 @@ export function $HeaderLeft() {
   const desktop = useContext(DesktopModeProvider)
   return (
     <View style={styles.wvTitleHolder}>
-      <Image style={styles.wvIcon} source={images.wvIcon} />
-      {desktop && <Image style={styles.wvTitle} source={images.wvTitle} />}
+      <Image style={styles.wvIcon} source={getImage('wvicon')} />
+      {desktop && <Image style={styles.wvTitle} source={getImage('wvtitle')} />}
     </View>
   )
 }

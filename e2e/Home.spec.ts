@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { goHome } from './locations'
+import { checkAPIAvailable } from '../App/API/check'
 
 test('Home opened through register', async ({ page }) => {
   await goHome(page)
@@ -7,6 +8,11 @@ test('Home opened through register', async ({ page }) => {
 })
 
 test('Home click first history song', async ({ page }) => {
+  if (!(await checkAPIAvailable())) {
+    console.log('API is unavailable this test will be skipped.')
+    return
+  }
+
   await goHome(page)
 
   await page.getByText('Kutsu no hanabi').click()

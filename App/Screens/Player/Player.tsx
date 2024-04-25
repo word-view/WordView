@@ -6,7 +6,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen'
-import { DesktopModeProvider, Loader, onMount, onMountAsync } from '../../Components'
+import { DesktopModeProvider, Loader } from '../../Components'
 import { Audio } from 'expo-av'
 import { LyricsViewer, MusicInfo, PlayButton } from '../../Components/Player'
 import { Cue } from '../../Util/webvtt/types'
@@ -14,6 +14,7 @@ import { parseWebVTT } from '../../Util/webvtt/parse'
 import { Subtitle, fetchLyrics, fetchSubtitles, songUrl } from '../../API/song'
 import { Navigation } from '../../Navigation/Navigation'
 import { ProgressBar } from '../../Components/Player/ProgressBar'
+import { onMount, onMountAsync } from '../../../Framework/Component/Actions'
 
 interface Props {
   appNavigation: any

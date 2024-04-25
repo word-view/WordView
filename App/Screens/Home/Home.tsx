@@ -1,11 +1,11 @@
 import { BottomNavigation } from 'react-native-paper'
 import { useContext, useState } from 'react'
-import { DesktopModeProvider, HeaderLeft, HeaderRight, onMount } from '../../Components'
+import { DesktopModeProvider, HeaderLeft, HeaderRight } from '../../Components'
 import { Route, SideNavigation } from '../../Components/Home/SideNavigation'
 import Main from './Main'
 import Progress from './Progress'
 import Explore from './Explore'
-import { onUpdate } from '../../Components/Backend/update'
+import { onUpdate, onMount } from '../../../Framework/Component/Actions'
 import { Navigation } from '../../Navigation/Navigation'
 
 interface Props {

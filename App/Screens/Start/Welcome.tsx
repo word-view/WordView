@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
-import { Button, onMount } from '../../Components'
+import { Button } from '../../Components'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import images from '../../images'
 import { Navigation } from '../../Navigation/Navigation'
+import { onMount } from '../../../Framework/Component/Actions'
 
 interface Props {
   appNavigation: any

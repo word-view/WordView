@@ -1,9 +1,10 @@
 import { StyleSheet, View } from 'react-native'
 import { Appbar, Text } from 'react-native-paper'
-import { SmallButton, Song, onMount } from '../../../Components'
+import { SmallButton, Song } from '../../../Components'
 import { song } from '../../../Storage/store/player'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { Navigation } from '../../../Navigation/Navigation'
+import { onMount } from '../../../../Framework/Component/Actions'
 
 interface Props {
   appNavigation: any

@@ -2,8 +2,9 @@ import { ScrollView } from 'react-native'
 import React, { useContext } from 'react'
 import { Button } from 'react-native-paper'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import { AccountLoginButton, ContentHolder, DesktopModeProvider, onMount } from '../../Components'
+import { AccountLoginButton, ContentHolder, DesktopModeProvider } from '../../Components'
 import { Navigation } from '../../Navigation/Navigation'
+import { onMount } from '../../../Framework/Component/Actions'
 
 interface Props {
   appNavigation: any

@@ -21,10 +21,11 @@ import { StatusBar } from 'expo-status-bar'
 import { PaperProvider } from 'react-native-paper'
 import * as NavigationBar from 'expo-navigation-bar'
 import AppNavigation from './App/Navigation/AppNavigation'
-import { DesktopModeProvider, FontLoader, ResponsiveLayout, onMountAsync } from './App/Components'
+import { DesktopModeProvider, FontLoader, ResponsiveLayout } from './App/Components'
 import { CombinedDarkTheme } from './App/theme'
 import { apiAvailable, testing } from './App/Storage/store/state'
 import { checkAPIAvailable } from './App/API/check'
+import { onMountAsync } from './Framework/Component/Actions'
 
 SplashScreen.preventAutoHideAsync()
 const warn = console.warn

@@ -1,11 +1,12 @@
 import { memo, useState } from 'react'
-import { HorizontalScrollView, Song, Section, onMount, onMountAsync } from '../../../Components'
+import { HorizontalScrollView, Song, Section } from '../../../Components'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen'
 import { Song as SongType, song } from '../../../Storage/store/player'
 import { fetchHistory } from '../../../API/song'
+import { onMount, onMountAsync } from '../../../../Framework/Component/Actions'
 
 interface ContinueHearingProps {
   marginLeft?: number

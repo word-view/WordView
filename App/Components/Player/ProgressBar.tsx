@@ -8,7 +8,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen'
 import { AVPlaybackStatusSuccess } from 'expo-av'
-import { onUpdateAsync } from '../Backend/update'
+import { onUpdateAsync } from '../../../Framework/Component/Actions/update'
 
 interface ProgressBarProps {
   audioPosition: number

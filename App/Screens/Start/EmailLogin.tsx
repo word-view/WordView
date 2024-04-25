@@ -1,7 +1,8 @@
 import { ScrollView } from 'react-native'
-import { Button, ContentHolder, AuthInput, DesktopModeProvider, onMount } from '../../Components'
+import { Button, ContentHolder, AuthInput, DesktopModeProvider } from '../../Components'
 import { useContext } from 'react'
 import { Navigation } from '../../Navigation/Navigation'
+import { onMount } from '../../../Framework/Component/Actions'
 
 interface Props {
   appNavigation: any

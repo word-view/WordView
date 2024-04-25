@@ -1,10 +1,11 @@
 import { StyleSheet, View } from 'react-native'
 import { Appbar, Text } from 'react-native-paper'
 import { song, tutorialing } from '../../../Storage/store/player'
-import { Input, Song, onMount } from '../../../Components'
+import { Input, Song } from '../../../Components'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import images from '../../../images'
 import { Navigation } from '../../../Navigation/Navigation'
+import { onMount } from '../../../../Framework/Component/Actions'
 
 interface Props {
   appNavigation: any

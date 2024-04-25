@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Dimensions } from 'react-native'
 import { testing } from '../../Storage/store/state'
 import { widthPercentageToDP, heightPercentageToDP } from 'react-native-responsive-screen'
-import { onMount } from './mount'
+import { onMount } from '../../../Framework/Component/Actions'
 
 export function ResponsiveLayout() {
   if (testing.get()) {

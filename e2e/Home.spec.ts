@@ -9,8 +9,8 @@ test('Home opened through register', async ({ page }) => {
 test('Home click first history song', async ({ page }) => {
   await goHome(page)
 
-  await page.getByText('YOASOBI「あの夢をなぞって」 Official').click()
-  await expect(page).toHaveTitle(/YOASOBI「あの夢をなぞって」 Official/)
+  await page.getByText('Kutsu no hanabi').click()
+  await expect(page).toHaveTitle(/Kutsu no hanabi/)
 })
 
 test('Home navigate to explore tab', async ({ page }) => {

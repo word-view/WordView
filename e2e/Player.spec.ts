@@ -3,5 +3,5 @@ import { goPlayer } from './locations'
 
 test('Has title', async ({ page }) => {
   await goPlayer(page)
-  await expect(page).toHaveTitle(/YOASOBI「あの夢をなぞって」 Official/)
+  await expect(page).toHaveTitle(/Kutsu no hanabi/)
 })

@@ -20,5 +20,5 @@ export async function goPlayer(page: Page) {
   await page.getByRole('button', { name: 'Ou entre na sua conta' }).click()
   await page.getByRole('button', { name: 'Inglês' }).click()
 
-  await page.getByText('YOASOBI「あの夢をなぞって」 Official').click()
+  await page.getByText('Kutsu no hanabi').click()
 }

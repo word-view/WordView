@@ -13,8 +13,6 @@ export async function goHome(page: Page) {
 }
 
 export async function goPlayer(page: Page) {
-  if (process.env.CI) return
-
   await page.goto(PAGE_URL)
   await page.getByRole('button', { name: 'Começar' }).click()
 

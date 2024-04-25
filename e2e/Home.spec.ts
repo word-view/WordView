@@ -2,15 +2,11 @@ import { test, expect } from '@playwright/test'
 import { goHome } from './locations'
 
 test('Home opened through register', async ({ page }) => {
-  if (process.env.CI) return
-
   await goHome(page)
   await expect(page).toHaveTitle('Learn - WordView')
 })
 
 test('Home click first history song', async ({ page }) => {
-  if (process.env.CI) return
-
   await goHome(page)
 
   await page.getByText('Kutsu no hanabi').click()
@@ -18,8 +14,6 @@ test('Home click first history song', async ({ page }) => {
 })
 
 test('Home navigate to explore tab', async ({ page }) => {
-  if (process.env.CI) return
-
   await goHome(page)
 
   await page.getByText('󰆋Explore').click()
@@ -27,8 +21,6 @@ test('Home navigate to explore tab', async ({ page }) => {
 })
 
 test('Home navigate to progress tab', async ({ page }) => {
-  if (process.env.CI) return
-
   await goHome(page)
 
   await page.getByText('󰄪Progress').click()

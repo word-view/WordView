@@ -2,15 +2,11 @@ import { test, expect } from '@playwright/test'
 import { PAGE_URL } from './locations'
 
 test('Has title', async ({ page }) => {
-  if (process.env.CI) return
-
   await page.goto(PAGE_URL)
   await expect(page).toHaveTitle(/WordView/)
 })
 
 test('Enter register and leave', async ({ page }) => {
-  if (process.env.CI) return
-
   await page.goto(PAGE_URL)
   await page.getByRole('button', { name: 'Começar' }).click()
 
@@ -22,8 +18,6 @@ test('Enter register and leave', async ({ page }) => {
 })
 
 test('Enter login and leave', async ({ page }) => {
-  if (process.env.CI) return
-
   await page.goto(PAGE_URL)
   await page.getByRole('button', { name: 'Já tenho uma conta' }).click()
 

@@ -23,9 +23,9 @@ export function DraggableView(props: DraggableViewProps) {
 
   const panResponder = useRef(
     PanResponder.create({
-      onStartShouldSetPanResponder: (e, gesture) => true,
+      onStartShouldSetPanResponder: () => true,
       onPanResponderMove: Animated.event([null, { dx: pan.x, dy: pan.y }]),
-      onPanResponderRelease: (e, gesture) => {
+      onPanResponderRelease: (_, gesture) => {
         const { width, height } = Dimensions.get('window');
         const [x, y] = [gesture.moveX, gesture.moveY];
 

@@ -6,7 +6,7 @@ import { onMount } from '../../../Framework/Component/Actions'
 
 export function ResponsiveLayout() {
   if (testing.get()) {
-    let isDesktop = true
+    const isDesktop = true
     return { isDesktop }
   }
 

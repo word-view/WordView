@@ -19,7 +19,7 @@ export function FontLoader(testing: boolean = false) {
 }
 
 function testingMode() {
-  let fontsLoaded = true
+  const fontsLoaded = true
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) await SplashScreen.hideAsync()

@@ -20,8 +20,8 @@ function $LyricsViewer(props: LyricsViewerProps) {
     clearTimeout(timeoutId)
 
     for (const cue of props.cues) {
-      let startTimeMs = Math.floor(cue.startTime * 1000)
-      let endTimeMs = Math.floor(cue.endTime * 1000)
+      const startTimeMs = Math.floor(cue.startTime * 1000)
+      const endTimeMs = Math.floor(cue.endTime * 1000)
 
       if (props.audioPosition >= startTimeMs && props.audioPosition < endTimeMs) {
         // Display caption if audio position is within cue's time range

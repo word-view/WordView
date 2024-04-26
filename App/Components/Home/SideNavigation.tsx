@@ -27,7 +27,7 @@ const $SideNavigation = forwardRef((props: Props, ref) => {
   function mapActions() {
     if (!props.routes) console.warn('No routes specified!')
 
-    let actions = []
+    const actions = []
 
     for (const route of props.routes) {
       actions.push(routeToAction(route))

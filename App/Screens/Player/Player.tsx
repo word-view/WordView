@@ -149,7 +149,7 @@ function Player(props: Props) {
     const playbackInfo = await getAudioInfo()
     if (!playbackInfo) return
 
-    let skipped = playbackInfo.positionMillis - 5000
+    const skipped = playbackInfo.positionMillis - 5000
 
     if (playbackInfo.durationMillis && skipped < 0) {
       goto(0)
@@ -162,7 +162,7 @@ function Player(props: Props) {
     const playbackInfo = await getAudioInfo()
     if (!playbackInfo) return
 
-    let skipped = playbackInfo.positionMillis + 5000
+    const skipped = playbackInfo.positionMillis + 5000
 
     if (playbackInfo.durationMillis && skipped > playbackInfo.durationMillis) {
       goto(playbackInfo.durationMillis)

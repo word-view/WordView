@@ -1,5 +1,5 @@
 export function shuffleArray(array: any[]) {
-  var currentIndex = array.length,
+  let currentIndex = array.length,
     temporaryValue,
     randomIndex;
 

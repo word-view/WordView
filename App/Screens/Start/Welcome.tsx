@@ -4,7 +4,7 @@ import { Button } from '../../Components'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { Navigation } from '../../Navigation/Navigation'
 import { onMount } from '../../../Framework/Component/Actions'
-import { getImage } from '../../../Framework/Resources/image'
+import images from '../../image'
 
 interface Props {
   appNavigation: any
@@ -20,8 +20,8 @@ export default function Welcome(props: Props) {
   return (
     <View style={styles.container} onLayout={props.onLayoutRootView}>
       <View style={styles.wvLogoHolder}>
-        <Image style={styles.wvIcon} source={getImage('wvicon')} />
-        <Image style={styles.wvTitle} source={getImage('wvtitle')} />
+        <Image style={styles.wvIcon} source={images.wvIcon} />
+        <Image style={styles.wvTitle} source={images.wvTitle} />
 
         <Text style={styles.wvText}>A maneira inteligente de {'\n'} aprender idiomas</Text>
       </View>

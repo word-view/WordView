@@ -5,7 +5,8 @@ import { Input, Song } from '../../../Components'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { Navigation } from '../../../Navigation/Navigation'
 import { onMount } from '../../../../Framework/Component/Actions'
-import { getImageJpeg } from '../../../../Framework/Resources/image'
+import React from 'react'
+import images from '../../../image'
 
 interface Props {
   appNavigation: any
@@ -45,7 +46,7 @@ function TutorialWelcome(props: Props) {
 
       <View style={{ flexDirection: 'row', marginTop: hp(2) }}>
         <Song
-          img={getImageJpeg('builtin/YoruNi_Cover')}
+          img={images.yoruNiCover}
           title='夜に駆ける'
           artist='YOASOBI'
           onPress={() => {
@@ -53,13 +54,13 @@ function TutorialWelcome(props: Props) {
               id: '1',
               title: '夜に駆ける',
               artist: 'YOASOBI',
-              cover: getImageJpeg('builtin/YoruNi_Cover'),
+              cover: images.yoruNiCover,
             })
             props.navigation.navigate('TutorialFinish')
           }}
         />
         <Song
-          img={getImageJpeg('bultin/Mirror_Cover')}
+          img={images.mirrorCover}
           title='Englishman in New York'
           artist='majiko'
           onPress={() => {
@@ -67,13 +68,13 @@ function TutorialWelcome(props: Props) {
               id: '2',
               title: 'Englishman in New York',
               artist: 'majiko',
-              cover: getImageJpeg('bultin/Mirror_Cover'),
+              cover: images.mirrorCover,
             })
             props.navigation.navigate('TutorialFinish')
           }}
         />
         <Song
-          img={getImageJpeg('bultin/Kataomoi_Cover')}
+          img={images.kataomoiCover}
           title='Kataomoi'
           artist='Aimer'
           onPress={() => {
@@ -81,7 +82,7 @@ function TutorialWelcome(props: Props) {
               id: '3',
               title: 'Kataomoi',
               artist: 'Aimer',
-              cover: getImageJpeg('bultin/Kataomoi_Cover'),
+              cover: images.kataomoiCover,
             })
             props.navigation.navigate('TutorialFinish')
           }}

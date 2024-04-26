@@ -1,96 +1,96 @@
-import { useContext, useEffect, useState } from 'react'
-import { StyleSheet, View } from 'react-native'
-import { Appbar, Dialog, List, Portal } from 'react-native-paper'
-import { song, tutorialing } from '../../Storage/store/player'
+import { useContext, useEffect, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { Appbar, Dialog, List, Portal } from 'react-native-paper';
+import { song, tutorialing } from '../../Storage/store/player';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
-} from 'react-native-responsive-screen'
-import { DesktopModeProvider, Loader } from '../../Components'
-import { Audio } from 'expo-av'
-import { LyricsViewer, MusicInfo, PlayButton } from '../../Components/Player'
-import { Cue } from '../../Util/webvtt/types'
-import { parseWebVTT } from '../../Util/webvtt/parse'
-import { Subtitle, fetchLyrics, fetchSubtitles, songUrl } from '../../API/song'
-import { Navigation } from '../../Navigation/Navigation'
-import { ProgressBar } from '../../Components/Player/ProgressBar'
-import { onMount, onMountAsync } from '../../../Framework/Component/Actions'
+} from 'react-native-responsive-screen';
+import { DesktopModeProvider, Loader } from '../../Components';
+import { Audio } from 'expo-av';
+import { LyricsViewer, MusicInfo, PlayButton } from '../../Components/Player';
+import { Cue } from '../../Util/webvtt/types';
+import { parseWebVTT } from '../../Util/webvtt/parse';
+import { Subtitle, fetchLyrics, fetchSubtitles, songUrl } from '../../API/song';
+import { Navigation } from '../../Navigation/Navigation';
+import { ProgressBar } from '../../Components/Player/ProgressBar';
+import { onMount, onMountAsync } from '../../../Framework/Component/Actions';
 
 interface Props {
-  appNavigation: any
-  navigation: any
+  appNavigation: any;
+  navigation: any;
 }
 
 function Player(props: Props) {
-  const tutorial = tutorialing.get()
-  const desktop = useContext(DesktopModeProvider)
-  const navigation = new Navigation(props.navigation)
-  const appNavigation = new Navigation(props.appNavigation)
+  const tutorial = tutorialing.get();
+  const desktop = useContext(DesktopModeProvider);
+  const navigation = new Navigation(props.navigation);
+  const appNavigation = new Navigation(props.appNavigation);
 
-  const choosenSong = song.get()
+  const choosenSong = song.get();
 
-  const [visible, setVisible] = useState(false)
-  const [subtitles, setSubtitles] = useState<Subtitle[]>([])
-  const [cues, setCues] = useState<Cue[]>([])
+  const [visible, setVisible] = useState(false);
+  const [subtitles, setSubtitles] = useState<Subtitle[]>([]);
+  const [cues, setCues] = useState<Cue[]>([]);
 
-  const [audio, setAudio] = useState<Audio.Sound>()
-  const [audioPlaying, setAudioPlaying] = useState(false)
-  const [audioPosition, setAudioPosition] = useState(0)
+  const [audio, setAudio] = useState<Audio.Sound>();
+  const [audioPlaying, setAudioPlaying] = useState(false);
+  const [audioPosition, setAudioPosition] = useState(0);
 
-  const showDialog = () => setVisible(true)
-  const hideDialog = () => setVisible(false)
+  const showDialog = () => setVisible(true);
+  const hideDialog = () => setVisible(false);
 
   onMountAsync(async () => {
-    setSubtitles((await fetchSubtitles(choosenSong.id)) ?? [])
+    setSubtitles((await fetchSubtitles(choosenSong.id)) ?? []);
 
     const { sound } = await Audio.Sound.createAsync({
       uri: songUrl(choosenSong.id),
-    })
+    });
 
-    setAudio(sound)
-  })
+    setAudio(sound);
+  });
 
   onMount(() => {
-    if (tutorial) navigation.go('TutorialWelcome')
+    if (tutorial) navigation.go('TutorialWelcome');
 
-    showDialog()
+    showDialog();
 
-    navigation.setTitle(`${choosenSong.title} - WordView`)
-    navigation.emptyHeaderTitle()
+    navigation.setTitle(`${choosenSong.title} - WordView`);
+    navigation.emptyHeaderTitle();
     navigation.setHeaderLeft(
       <Appbar.Action
         icon='arrow-left'
         onPress={() => {
-          if (tutorial) tutorialing.set(false)
-          appNavigation.go('home')
+          if (tutorial) tutorialing.set(false);
+          appNavigation.go('home');
         }}
       />,
-    )
-  })
+    );
+  });
 
   // TODO: this needs some testing before updating it to a onUpdate hook
   useEffect(
     () => () => {
-      audio?.stopAsync()
+      audio?.stopAsync();
     },
     [audio],
-  )
+  );
 
   // TODO: this as well
   useEffect(() => {
     const updateAudioPosition = async () => {
       if (audioPlaying) {
-        const position = await getCurrentTime()
+        const position = await getCurrentTime();
         if (position) {
-          setAudioPosition(Math.round(position))
+          setAudioPosition(Math.round(position));
         }
       }
-    }
+    };
 
-    const interval = setInterval(updateAudioPosition, 20)
+    const interval = setInterval(updateAudioPosition, 20);
 
-    return () => clearInterval(interval)
-  }, [audioPlaying])
+    return () => clearInterval(interval);
+  }, [audioPlaying]);
 
   function subtitleList() {
     return subtitles.map(subtitle => (
@@ -100,74 +100,74 @@ function Player(props: Props) {
         description={subtitle.language}
         style={{ marginBottom: hp(1) }}
         onPress={() => {
-          hideDialog()
-          getLyrics(subtitle.language)
+          hideDialog();
+          getLyrics(subtitle.language);
         }}
       />
-    ))
+    ));
   }
 
   async function getLyrics(lang: string) {
-    const lyrics = await fetchLyrics(choosenSong.id, lang)
-    if (!lyrics) return
+    const lyrics = await fetchLyrics(choosenSong.id, lang);
+    if (!lyrics) return;
 
-    const cues = parseWebVTT(lyrics)
-    setCues(cues)
+    const cues = parseWebVTT(lyrics);
+    setCues(cues);
   }
 
   async function getAudioInfo() {
-    const playbackInfo = await audio?.getStatusAsync()
+    const playbackInfo = await audio?.getStatusAsync();
     if (!playbackInfo || !playbackInfo.isLoaded) {
-      console.warn('Playblack is not loaded!')
-      return
+      console.warn('Playblack is not loaded!');
+      return;
     }
 
-    return playbackInfo
+    return playbackInfo;
   }
 
   async function getCurrentTime() {
-    const playbackInfo = await getAudioInfo()
-    return playbackInfo?.positionMillis
+    const playbackInfo = await getAudioInfo();
+    return playbackInfo?.positionMillis;
   }
 
   function play() {
-    audio?.playAsync()
-    setAudioPlaying(true)
+    audio?.playAsync();
+    setAudioPlaying(true);
   }
 
   function pause() {
-    audio?.pauseAsync()
-    setAudioPlaying(false)
+    audio?.pauseAsync();
+    setAudioPlaying(false);
   }
 
   function goto(position: number) {
-    audio?.playFromPositionAsync(position)
-    setAudioPlaying(true)
+    audio?.playFromPositionAsync(position);
+    setAudioPlaying(true);
   }
 
   async function skipBack() {
-    const playbackInfo = await getAudioInfo()
-    if (!playbackInfo) return
+    const playbackInfo = await getAudioInfo();
+    if (!playbackInfo) return;
 
-    const skipped = playbackInfo.positionMillis - 5000
+    const skipped = playbackInfo.positionMillis - 5000;
 
     if (playbackInfo.durationMillis && skipped < 0) {
-      goto(0)
+      goto(0);
     } else {
-      goto(skipped)
+      goto(skipped);
     }
   }
 
   async function skipForward() {
-    const playbackInfo = await getAudioInfo()
-    if (!playbackInfo) return
+    const playbackInfo = await getAudioInfo();
+    if (!playbackInfo) return;
 
-    const skipped = playbackInfo.positionMillis + 5000
+    const skipped = playbackInfo.positionMillis + 5000;
 
     if (playbackInfo.durationMillis && skipped > playbackInfo.durationMillis) {
-      goto(playbackInfo.durationMillis)
+      goto(playbackInfo.durationMillis);
     } else {
-      goto(skipped)
+      goto(skipped);
     }
   }
 
@@ -200,7 +200,7 @@ function Player(props: Props) {
         </View>
       </View>
     </>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -242,6 +242,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-})
+});
 
-export default Player
+export default Player;

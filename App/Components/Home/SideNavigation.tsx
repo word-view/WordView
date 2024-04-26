@@ -1,43 +1,43 @@
-import React, { forwardRef, memo } from 'react'
-import { StyleSheet, View } from 'react-native'
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
-import { SidebarItem } from './SidebarItem'
+import React, { forwardRef, memo } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { SidebarItem } from './SidebarItem';
 
 export interface Route {
-  key: string
-  title: string
-  focusedIcon: string
-  unfocusedIcon: string
-  component: () => React.JSX.Element
+  key: string;
+  title: string;
+  focusedIcon: string;
+  unfocusedIcon: string;
+  component: () => React.JSX.Element;
 }
 
 interface Props {
-  routes: Route[]
-  setIndex: (index: number) => void
+  routes: Route[];
+  setIndex: (index: number) => void;
 }
 
 const $SideNavigation = forwardRef((props: Props, ref) => {
   function routeToAction(route: Route) {
-    const routeIndex = props.routes.indexOf(route)
-    const setIndex = () => props.setIndex(routeIndex)
+    const routeIndex = props.routes.indexOf(route);
+    const setIndex = () => props.setIndex(routeIndex);
 
-    return <SidebarItem key={route.key} route={route} onPress={setIndex} />
+    return <SidebarItem key={route.key} route={route} onPress={setIndex} />;
   }
 
   function mapActions() {
-    if (!props.routes) console.warn('No routes specified!')
+    if (!props.routes) console.warn('No routes specified!');
 
-    const actions = []
+    const actions = [];
 
     for (const route of props.routes) {
-      actions.push(routeToAction(route))
+      actions.push(routeToAction(route));
     }
 
-    return actions
+    return actions;
   }
 
-  return <View style={styles.sidebar}>{mapActions()}</View>
-})
+  return <View style={styles.sidebar}>{mapActions()}</View>;
+});
 
 const styles = StyleSheet.create({
   sidebar: {
@@ -50,6 +50,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
   },
-})
+});
 
-export const SideNavigation = memo($SideNavigation)
+export const SideNavigation = memo($SideNavigation);

@@ -1,17 +1,17 @@
-import { memo } from 'react'
-import { ActivityIndicator } from 'react-native-paper'
+import { memo } from 'react';
+import { ActivityIndicator } from 'react-native-paper';
 
 interface LoaderProps {
-  loading: boolean
-  children: any
+  loading: boolean;
+  children: any;
 }
 
 function $Loader(props: LoaderProps) {
   if (props.loading) {
-    return <ActivityIndicator animating={true} color='#DDD8DD' size={'large'} />
+    return <ActivityIndicator animating={true} color='#DDD8DD' size={'large'} />;
   } else {
-    return props.children
+    return props.children;
   }
 }
 
-export const Loader = memo($Loader)
+export const Loader = memo($Loader);

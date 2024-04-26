@@ -1,31 +1,31 @@
-import { StyleProp, View, ViewStyle } from 'react-native'
-import { Text } from 'react-native-paper'
-import { useContext } from 'react'
-import { DesktopModeProvider } from '../Provider'
+import { StyleProp, View, ViewStyle } from 'react-native';
+import { Text } from 'react-native-paper';
+import { useContext } from 'react';
+import { DesktopModeProvider } from '../Provider';
 
 interface DiffFlareProps {
-  type: 'starter' | 'intermidiate' | 'advanced'
-  style?: StyleProp<ViewStyle>
+  type: 'starter' | 'intermidiate' | 'advanced';
+  style?: StyleProp<ViewStyle>;
 }
 
 export function DiffFlare(props: DiffFlareProps) {
-  const desktop = useContext(DesktopModeProvider)
+  const desktop = useContext(DesktopModeProvider);
 
-  let color, label
+  let color, label;
 
   switch (props.type) {
     case 'starter':
-      color = '#5EC956'
-      label = 'Iniciante'
-      break
+      color = '#5EC956';
+      label = 'Iniciante';
+      break;
     case 'intermidiate':
-      color = '#CABD56'
-      label = 'Intermediário'
-      break
+      color = '#CABD56';
+      label = 'Intermediário';
+      break;
     case 'advanced':
-      color = '#C95456'
-      label = 'Avançado'
-      break
+      color = '#C95456';
+      label = 'Avançado';
+      break;
   }
 
   return (
@@ -47,5 +47,5 @@ export function DiffFlare(props: DiffFlareProps) {
         {label}
       </Text>
     </View>
-  )
+  );
 }

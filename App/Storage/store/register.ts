@@ -1,4 +1,4 @@
-import createStore from "@propero/easy-store";
+import createStore from '@propero/easy-store';
 
 export interface User {
   username?: string;
@@ -8,4 +8,4 @@ export interface User {
 
 export const userRegister = createStore({} as User);
 
-export const registerFailMessage = createStore("");
+export const registerFailMessage = createStore('');

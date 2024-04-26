@@ -1,1 +1,1 @@
-export * from './DesktopModeProvider'
+export * from './DesktopModeProvider';

@@ -1,10 +1,11 @@
-import { memo } from 'react'
-import { Song } from '../../Storage/store/player'
-import { View, Image, StyleSheet } from 'react-native'
-import { Text } from 'react-native-paper'
+import { memo } from 'react';
+import { Song } from '../../Storage/store/player';
+import { View, Image, StyleSheet } from 'react-native';
+import { Text } from 'react-native-paper';
+import React from 'react';
 
 interface MusicInfoProps {
-  song: Song
+  song: Song;
 }
 
 function $MusicInfo(props: MusicInfoProps) {
@@ -16,7 +17,7 @@ function $MusicInfo(props: MusicInfoProps) {
         <Text variant='labelSmall'>{props.song.artist}</Text>
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -27,6 +28,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginLeft: 10,
   },
-})
+});
 
-export const MusicInfo = memo($MusicInfo)
+export const MusicInfo = memo($MusicInfo);

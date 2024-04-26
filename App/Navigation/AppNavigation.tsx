@@ -1,15 +1,15 @@
-import { NavigationContainer } from '@react-navigation/native'
-import { CombinedDarkTheme } from './theme'
-import { createStackNavigator } from '@react-navigation/stack'
-import StartNavigation from './StartNavigation'
-import HomeNavigation from './HomeNavigation'
-import PlayerNavigation from './PlayerNavigation'
+import { NavigationContainer } from '@react-navigation/native';
+import { CombinedDarkTheme } from './theme';
+import { createStackNavigator } from '@react-navigation/stack';
+import StartNavigation from './StartNavigation';
+import HomeNavigation from './HomeNavigation';
+import PlayerNavigation from './PlayerNavigation';
 
-const Navigator = createStackNavigator().Navigator
-const Screen = createStackNavigator().Screen
+const Navigator = createStackNavigator().Navigator;
+const Screen = createStackNavigator().Screen;
 
 interface Props {
-  hideSplashCallback?: any
+  hideSplashCallback?: any;
 }
 
 function AppNavigation(props: Props) {
@@ -29,7 +29,7 @@ function AppNavigation(props: Props) {
         <Screen name='player' component={PlayerNavigation} />
       </Navigator>
     </NavigationContainer>
-  )
+  );
 }
 
-export default AppNavigation
+export default AppNavigation;

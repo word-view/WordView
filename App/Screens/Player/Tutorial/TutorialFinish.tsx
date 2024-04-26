@@ -1,31 +1,32 @@
-import { StyleSheet, View } from 'react-native'
-import { Appbar, Text } from 'react-native-paper'
-import { SmallButton, Song } from '../../../Components'
-import { song } from '../../../Storage/store/player'
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import { Navigation } from '../../../Navigation/Navigation'
-import { onMount } from '../../../../Framework/Component/Actions'
+import { StyleSheet, View } from 'react-native';
+import { Appbar, Text } from 'react-native-paper';
+import { SmallButton, Song } from '../../../Components';
+import { song } from '../../../Storage/store/player';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { Navigation } from '../../../Navigation/Navigation';
+import { onMount } from '../../../../Framework/Component/Actions';
+import React from 'react';
 
 interface Props {
-  appNavigation: any
-  navigation: any
+  appNavigation: any;
+  navigation: any;
 }
 
 function TutorialFinish(props: Props) {
-  const choosenSong = song.get()
-  const navigation = new Navigation(props.navigation)
+  const choosenSong = song.get();
+  const navigation = new Navigation(props.navigation);
 
   onMount(() => {
-    navigation.emptyHeaderTitle()
+    navigation.emptyHeaderTitle();
     navigation.setHeaderLeft(
       <Appbar.Action
         icon='arrow-left'
         onPress={() => {
-          props.appNavigation.navigate('home')
+          props.appNavigation.navigate('home');
         }}
       />,
-    )
-  })
+    );
+  });
 
   return (
     <View style={styles.root}>
@@ -57,7 +58,7 @@ function TutorialFinish(props: Props) {
         onPress={() => navigation.go('Player')}
       />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -66,6 +67,6 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
   },
-})
+});
 
-export default TutorialFinish
+export default TutorialFinish;

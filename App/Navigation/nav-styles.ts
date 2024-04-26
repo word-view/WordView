@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
 export const navStyles = StyleSheet.create({
   headerStyle: {
@@ -17,4 +17,4 @@ export const navStyles = StyleSheet.create({
     alignContent: 'center',
     position: 'absolute',
   },
-})
+});

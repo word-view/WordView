@@ -1,2 +1,2 @@
-export * from './mount'
-export * from './update'
+export * from './mount';
+export * from './update';

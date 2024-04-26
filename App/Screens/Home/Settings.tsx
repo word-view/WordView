@@ -1,9 +1,9 @@
-import React from 'react'
-import { ScrollView, StyleSheet } from 'react-native'
-import { Section, SettingEntry } from '../../Components'
+import React from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
+import { Section, SettingEntry } from '../../Components';
 
 interface Props {
-  navigation: any
+  navigation: any;
 }
 
 function Settings() {
@@ -19,13 +19,13 @@ function Settings() {
         />
       </Section>
     </ScrollView>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   root: {
     width: '100%',
   },
-})
+});
 
-export default Settings
+export default Settings;

@@ -1,6 +1,6 @@
-import { createContext } from 'react'
+import { createContext } from 'react';
 
 /**
  * Stores if the App is running in desktop mode or not
  */
-export const DesktopModeProvider = createContext(false)
+export const DesktopModeProvider = createContext(false);

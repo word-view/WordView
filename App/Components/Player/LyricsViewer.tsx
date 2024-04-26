@@ -1,47 +1,47 @@
-import { memo, useState } from 'react'
-import { StyleSheet, View } from 'react-native'
-import { Cue } from '../../Util/webvtt/types'
-import { Text } from 'react-native-paper'
-import { onUpdate } from '../../../Framework/Component/Actions/update'
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import { memo, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { Cue } from '../../Util/webvtt/types';
+import { Text } from 'react-native-paper';
+import { onUpdate } from '../../../Framework/Component/Actions/update';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 interface LyricsViewerProps {
-  cues: Cue[]
-  audioPosition: number
+  cues: Cue[];
+  audioPosition: number;
 }
 
 function $LyricsViewer(props: LyricsViewerProps) {
-  const [caption, setCaption] = useState<Cue>()
+  const [caption, setCaption] = useState<Cue>();
 
   onUpdate([props.audioPosition, props.cues], () => {
-    let timeoutId: string | number | NodeJS.Timeout | undefined
+    let timeoutId: string | number | NodeJS.Timeout | undefined;
 
     // Clear previous timeout when audio position changes
-    clearTimeout(timeoutId)
+    clearTimeout(timeoutId);
 
     for (const cue of props.cues) {
-      const startTimeMs = Math.floor(cue.startTime * 1000)
-      const endTimeMs = Math.floor(cue.endTime * 1000)
+      const startTimeMs = Math.floor(cue.startTime * 1000);
+      const endTimeMs = Math.floor(cue.endTime * 1000);
 
       if (props.audioPosition >= startTimeMs && props.audioPosition < endTimeMs) {
         // Display caption if audio position is within cue's time range
-        setCaption(cue)
+        setCaption(cue);
 
         // Set timeout to hide caption
-        const duration = endTimeMs - props.audioPosition
+        const duration = endTimeMs - props.audioPosition;
         timeoutId = setTimeout(() => {
-          setCaption(undefined) // Hide caption
-        }, duration)
+          setCaption(undefined); // Hide caption
+        }, duration);
 
-        break // Exit loop after finding the current cue
+        break; // Exit loop after finding the current cue
       }
     }
 
     return () => {
       // Clear timeout when component unmounts or audio position changes
-      clearTimeout(timeoutId)
-    }
-  })
+      clearTimeout(timeoutId);
+    };
+  });
 
   return (
     <View style={styles.lyricsViewer}>
@@ -49,10 +49,10 @@ function $LyricsViewer(props: LyricsViewerProps) {
         {caption?.text}
       </Text>
     </View>
-  )
+  );
 }
 
-export const LyricsViewer = memo($LyricsViewer)
+export const LyricsViewer = memo($LyricsViewer);
 
 const styles = StyleSheet.create({
   lyricsViewer: {
@@ -69,4 +69,4 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     marginBottom: hp(8),
   },
-})
+});

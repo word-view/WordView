@@ -1,32 +1,32 @@
-import { BottomNavigation } from 'react-native-paper'
-import { useContext, useState } from 'react'
-import { DesktopModeProvider, HeaderLeft, HeaderRight } from '../../Components'
-import { Route, SideNavigation } from '../../Components/Home/SideNavigation'
-import Main from './Main'
-import Progress from './Progress'
-import Explore from './Explore'
-import { onUpdate, onMount } from '../../../Framework/Component/Actions'
-import { Navigation } from '../../Navigation/Navigation'
+import { BottomNavigation } from 'react-native-paper';
+import { useContext, useState } from 'react';
+import { DesktopModeProvider, HeaderLeft, HeaderRight } from '../../Components';
+import { Route, SideNavigation } from '../../Components/Home/SideNavigation';
+import Main from './Main';
+import Progress from './Progress';
+import Explore from './Explore';
+import { onUpdate, onMount } from '../../../Framework/Component/Actions';
+import { Navigation } from '../../Navigation/Navigation';
 
 interface Props {
-  appNavigation: any
-  navigation: any
+  appNavigation: any;
+  navigation: any;
 }
 
 function Home(props: Props) {
-  const desktop = useContext(DesktopModeProvider)
-  const navigation = new Navigation(props.navigation)
+  const desktop = useContext(DesktopModeProvider);
+  const navigation = new Navigation(props.navigation);
 
   onMount(() => {
-    navigation.setTitle('Learn - WordView')
-    navigation.emptyHeaderTitle()
-    navigation.setHeaderLeft(<HeaderLeft />)
+    navigation.setTitle('Learn - WordView');
+    navigation.emptyHeaderTitle();
+    navigation.setHeaderLeft(<HeaderLeft />);
     navigation.setHeaderRight(
       <HeaderRight onPressMag={() => setIndex(1)} onPressCog={() => navigation.go('Settings')} />,
-    )
-  })
+    );
+  });
 
-  const [index, setIndex] = useState(0)
+  const [index, setIndex] = useState(0);
   const routes: Route[] = [
     {
       key: 'learn',
@@ -55,17 +55,17 @@ function Home(props: Props) {
         <Progress marginTop={2} marginLeft={desktop ? 8 : 0} nav={props.navigation} />
       ),
     },
-  ]
+  ];
 
   const sceneMap = routes.reduce((map: any, route) => {
-    map[route.key] = route.component
-    return map
-  }, {})
+    map[route.key] = route.component;
+    return map;
+  }, {});
 
   onUpdate([index], () => {
-    const pickedRoute = routes[index]
-    navigation.setTitle(`${pickedRoute.title} - WordView`)
-  })
+    const pickedRoute = routes[index];
+    navigation.setTitle(`${pickedRoute.title} - WordView`);
+  });
 
   return (
     <>
@@ -79,7 +79,7 @@ function Home(props: Props) {
         barStyle={desktop && { height: 0 }}
       />
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;

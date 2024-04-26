@@ -1,19 +1,19 @@
-import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
-import { CombinedDarkTheme } from './theme'
-import { navStyles } from './nav-styles'
-import Login from '../Screens/Start/Login'
-import Welcome from '../Screens/Start/Welcome'
-import Register from '../Screens/Start/Register'
-import EmailLogin from '../Screens/Start/EmailLogin'
-import LanguagePicker from '../Screens/Start/LanguagePicker'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { CombinedDarkTheme } from './theme';
+import { navStyles } from './nav-styles';
+import Login from '../Screens/Start/Login';
+import Welcome from '../Screens/Start/Welcome';
+import Register from '../Screens/Start/Register';
+import EmailLogin from '../Screens/Start/EmailLogin';
+import LanguagePicker from '../Screens/Start/LanguagePicker';
 
-const Navigator = createStackNavigator().Navigator
-const Screen = createStackNavigator().Screen
+const Navigator = createStackNavigator().Navigator;
+const Screen = createStackNavigator().Screen;
 
 interface Props {
-  navigation: any
-  hideSplashCallback?: any
+  navigation: any;
+  hideSplashCallback?: any;
 }
 
 function AuthNavigation(props: Props) {
@@ -50,7 +50,7 @@ function AuthNavigation(props: Props) {
         </Screen>
       </Navigator>
     </NavigationContainer>
-  )
+  );
 }
 
-export default AuthNavigation
+export default AuthNavigation;

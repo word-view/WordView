@@ -1,24 +1,24 @@
-import { ScrollView } from 'react-native'
-import React, { useContext } from 'react'
-import { Button } from 'react-native-paper'
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import { AccountLoginButton, ContentHolder, DesktopModeProvider } from '../../Components'
-import { Navigation } from '../../Navigation/Navigation'
-import { onMount } from '../../../Framework/Component/Actions'
+import { ScrollView } from 'react-native';
+import React, { useContext } from 'react';
+import { Button } from 'react-native-paper';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { AccountLoginButton, ContentHolder, DesktopModeProvider } from '../../Components';
+import { Navigation } from '../../Navigation/Navigation';
+import { onMount } from '../../../Framework/Component/Actions';
 
 interface Props {
-  appNavigation: any
-  navigation: any
+  appNavigation: any;
+  navigation: any;
 }
 
 function Login(props: Props) {
-  const desktop = useContext(DesktopModeProvider)
-  const navigation = new Navigation(props.navigation)
+  const desktop = useContext(DesktopModeProvider);
+  const navigation = new Navigation(props.navigation);
 
   onMount(() => {
-    navigation.setTitle('Bem vindo de volta!')
-    if (desktop) navigation.emptyHeaderTitle()
-  })
+    navigation.setTitle('Bem vindo de volta!');
+    if (desktop) navigation.emptyHeaderTitle();
+  });
 
   return (
     <ScrollView style={!desktop && { backgroundColor: '#2C2831' }}>
@@ -35,7 +35,7 @@ function Login(props: Props) {
         </Button>
       </ContentHolder>
     </ScrollView>
-  )
+  );
 }
 
-export default Login
+export default Login;

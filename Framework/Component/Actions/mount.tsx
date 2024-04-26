@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect } from 'react';
 
 /**
  * Calls the provided callback function when the component mounts.
@@ -6,8 +6,8 @@ import { useEffect } from 'react'
  */
 export function onMount(callback: Function) {
   useEffect(() => {
-    callback()
-  }, [])
+    callback();
+  }, []);
 }
 
 /**
@@ -16,8 +16,8 @@ export function onMount(callback: Function) {
  */
 export function onMountAsync(callback: Function) {
   useEffect(() => {
-    ;(async function onMount() {
-      await callback()
-    })()
-  }, [])
+    (async function onMount() {
+      await callback();
+    })();
+  }, []);
 }

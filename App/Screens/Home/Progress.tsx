@@ -1,16 +1,16 @@
-import React, { memo } from 'react'
-import { View } from 'react-native'
-import { Section } from '../../Components'
-import { Text } from 'react-native-paper'
+import React, { memo } from 'react';
+import { View } from 'react-native';
+import { Section } from '../../Components';
+import { Text } from 'react-native-paper';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
+} from 'react-native-responsive-screen';
 
 interface ProgressProps {
-  marginTop?: number
-  marginLeft?: number
-  nav: any
+  marginTop?: number;
+  marginLeft?: number;
+  nav: any;
 }
 
 function Progress(props: ProgressProps) {
@@ -20,7 +20,7 @@ function Progress(props: ProgressProps) {
         <Text variant='titleSmall'>Hello World</Text>
       </Section>
     </View>
-  )
+  );
 }
 
-export default memo(Progress)
+export default memo(Progress);

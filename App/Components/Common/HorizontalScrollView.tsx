@@ -1,9 +1,9 @@
-import { ScrollView, StyleProp, ViewStyle } from 'react-native'
+import { ScrollView, StyleProp, ViewStyle } from 'react-native';
 
 interface HorizontalScrollViewProps {
-  children: any
-  style?: StyleProp<ViewStyle>
-  contentContainerStyle?: StyleProp<ViewStyle>
+  children: any;
+  style?: StyleProp<ViewStyle>;
+  contentContainerStyle?: StyleProp<ViewStyle>;
 }
 
 export function HorizontalScrollView(props: HorizontalScrollViewProps) {
@@ -16,5 +16,5 @@ export function HorizontalScrollView(props: HorizontalScrollViewProps) {
     >
       {props.children}
     </ScrollView>
-  )
+  );
 }

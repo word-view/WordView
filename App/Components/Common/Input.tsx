@@ -1,13 +1,13 @@
-import { memo } from 'react'
-import { StyleProp, TextStyle } from 'react-native'
-import { TextInput } from 'react-native-paper'
+import { memo } from 'react';
+import { StyleProp, TextStyle } from 'react-native';
+import { TextInput } from 'react-native-paper';
 
 interface Props {
-  mode?: 'outlined' | 'flat' | undefined
-  label: string
-  style?: StyleProp<TextStyle>
-  secure?: boolean
-  onChangeText?: ((text: string) => void) & Function
+  mode?: 'outlined' | 'flat' | undefined;
+  label: string;
+  style?: StyleProp<TextStyle>;
+  secure?: boolean;
+  onChangeText?: ((text: string) => void) & Function;
 }
 
 function $Input(props: Props) {
@@ -31,7 +31,7 @@ function $Input(props: Props) {
       activeOutlineColor='#D0BCFFFF'
       onChangeText={props.onChangeText}
     />
-  )
+  );
 }
 
-export const Input = memo($Input)
+export const Input = memo($Input);

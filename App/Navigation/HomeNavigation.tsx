@@ -1,15 +1,15 @@
-import { NavigationContainer } from '@react-navigation/native'
-import { CombinedDarkTheme } from './theme'
-import { createStackNavigator } from '@react-navigation/stack'
-import { navStyles } from './nav-styles'
-import Home from '../Screens/Home/Home'
-import Settings from '../Screens/Home/Settings'
+import { NavigationContainer } from '@react-navigation/native';
+import { CombinedDarkTheme } from './theme';
+import { createStackNavigator } from '@react-navigation/stack';
+import { navStyles } from './nav-styles';
+import Home from '../Screens/Home/Home';
+import Settings from '../Screens/Home/Settings';
 
-const Navigator = createStackNavigator().Navigator
-const Screen = createStackNavigator().Screen
+const Navigator = createStackNavigator().Navigator;
+const Screen = createStackNavigator().Screen;
 
 interface Props {
-  navigation: any
+  navigation: any;
 }
 
 function HomeNavigation(props: Props) {
@@ -29,7 +29,7 @@ function HomeNavigation(props: Props) {
         <Screen name='Settings' component={Settings} />
       </Navigator>
     </NavigationContainer>
-  )
+  );
 }
 
-export default HomeNavigation
+export default HomeNavigation;

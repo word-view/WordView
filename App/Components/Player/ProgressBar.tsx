@@ -1,33 +1,34 @@
-import { formatTime } from '../../Util/time'
-import { Text } from 'react-native-paper'
-import { StyleSheet, View } from 'react-native'
-import { useContext, useState } from 'react'
-import { DesktopModeProvider } from '../Provider'
+import { formatTime } from '../../Util/time';
+import { Text } from 'react-native-paper';
+import { StyleSheet, View } from 'react-native';
+import { useContext, useState } from 'react';
+import { DesktopModeProvider } from '../Provider';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
-} from 'react-native-responsive-screen'
-import { AVPlaybackStatusSuccess } from 'expo-av'
-import { onUpdateAsync } from '../../../Framework/Component/Actions/update'
+} from 'react-native-responsive-screen';
+import { AVPlaybackStatusSuccess } from 'expo-av';
+import { onUpdateAsync } from '../../../Framework/Component/Actions/update';
+import React from 'react';
 
 interface ProgressBarProps {
-  audioPosition: number
-  getAudioInfo: () => Promise<AVPlaybackStatusSuccess | undefined>
+  audioPosition: number;
+  getAudioInfo: () => Promise<AVPlaybackStatusSuccess | undefined>;
 }
 
 export function ProgressBar(props: ProgressBarProps) {
-  const desktop = useContext(DesktopModeProvider)
-  const [audioInfo, setAudioInfo] = useState<AVPlaybackStatusSuccess>()
+  const desktop = useContext(DesktopModeProvider);
+  const [audioInfo, setAudioInfo] = useState<AVPlaybackStatusSuccess>();
 
   // ugly workaround to get the audio duration, fix later
   onUpdateAsync([props.getAudioInfo], async () => {
-    const info = await props.getAudioInfo()
-    if (!info) return
-    setAudioInfo(info)
-  })
+    const info = await props.getAudioInfo();
+    if (!info) return;
+    setAudioInfo(info);
+  });
 
   function percentage(numberToGetPercentageOf: number, wholeNumber: number) {
-    return (numberToGetPercentageOf / wholeNumber) * 100
+    return (numberToGetPercentageOf / wholeNumber) * 100;
   }
 
   return (
@@ -47,7 +48,7 @@ export function ProgressBar(props: ProgressBarProps) {
         </Text>
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -76,4 +77,4 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: '#9563FF',
   },
-})
+});

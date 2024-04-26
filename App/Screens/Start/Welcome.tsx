@@ -1,21 +1,21 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
-import { Button } from '../../Components'
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import { Navigation } from '../../Navigation/Navigation'
-import { onMount } from '../../../Framework/Component/Actions'
-import images from '../../image'
+import { StyleSheet, Text, View, Image } from 'react-native';
+import React from 'react';
+import { Button } from '../../Components';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { Navigation } from '../../Navigation/Navigation';
+import { onMount } from '../../../Framework/Component/Actions';
+import images from '../../image';
 
 interface Props {
-  appNavigation: any
-  navigation: any
-  onLayoutRootView: any
+  appNavigation: any;
+  navigation: any;
+  onLayoutRootView: any;
 }
 
 export default function Welcome(props: Props) {
-  const navigation = new Navigation(props.navigation)
+  const navigation = new Navigation(props.navigation);
 
-  onMount(() => navigation.hideHeader())
+  onMount(() => navigation.hideHeader());
 
   return (
     <View style={styles.container} onLayout={props.onLayoutRootView}>
@@ -39,7 +39,7 @@ export default function Welcome(props: Props) {
         marginTop={2.5}
       />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -65,4 +65,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#B3B3B3',
   },
-})
+});

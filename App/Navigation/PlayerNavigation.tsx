@@ -1,18 +1,18 @@
-import { NavigationContainer } from '@react-navigation/native'
-import { CombinedDarkTheme } from './theme'
-import { createStackNavigator } from '@react-navigation/stack'
-import { navStyles } from './nav-styles'
-import React from 'react'
-import Player from '../Screens/Player/Player'
-import { StyleSheet } from 'react-native'
-import TutorialWelcome from '../Screens/Player/Tutorial/TutorialWelcome'
-import TutorialFinish from '../Screens/Player/Tutorial/TutorialFinish'
+import { NavigationContainer } from '@react-navigation/native';
+import { CombinedDarkTheme } from './theme';
+import { createStackNavigator } from '@react-navigation/stack';
+import { navStyles } from './nav-styles';
+import React from 'react';
+import Player from '../Screens/Player/Player';
+import { StyleSheet } from 'react-native';
+import TutorialWelcome from '../Screens/Player/Tutorial/TutorialWelcome';
+import TutorialFinish from '../Screens/Player/Tutorial/TutorialFinish';
 
-const Navigator = createStackNavigator().Navigator
-const Screen = createStackNavigator().Screen
+const Navigator = createStackNavigator().Navigator;
+const Screen = createStackNavigator().Screen;
 
 interface Props {
-  navigation: any
+  navigation: any;
 }
 
 function PlayerNavigation(props: Props) {
@@ -37,7 +37,7 @@ function PlayerNavigation(props: Props) {
         </Screen>
       </Navigator>
     </NavigationContainer>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -46,6 +46,6 @@ const styles = StyleSheet.create({
     shadowColor: '#1C1B1F',
     backgroundColor: '#1C1B1F',
   },
-})
+});
 
-export default PlayerNavigation
+export default PlayerNavigation;

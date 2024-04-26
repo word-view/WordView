@@ -1,17 +1,18 @@
-import { StyleSheet } from 'react-native'
-import { Button } from 'react-native-paper'
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { Button } from 'react-native-paper';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 interface AccountLoginButtonProps {
-  text: string
-  icon: string
+  text: string;
+  icon: string;
   color: {
-    text: string
-    button: string
-  }
+    text: string;
+    button: string;
+  };
   /** As heightPercentageToDP */
-  marginTop?: number
-  onPress: () => void
+  marginTop?: number;
+  onPress: () => void;
 }
 
 export function AccountLoginButton(props: AccountLoginButtonProps) {
@@ -26,7 +27,7 @@ export function AccountLoginButton(props: AccountLoginButtonProps) {
     >
       {props.text}
     </Button>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -34,4 +35,4 @@ const styles = StyleSheet.create({
     width: '100%',
     alignSelf: 'center',
   },
-})
+});

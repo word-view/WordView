@@ -1,33 +1,33 @@
-import { StyleSheet, View } from 'react-native'
-import { Appbar, Text } from 'react-native-paper'
-import { song, tutorialing } from '../../../Storage/store/player'
-import { Input, Song } from '../../../Components'
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import { Navigation } from '../../../Navigation/Navigation'
-import { onMount } from '../../../../Framework/Component/Actions'
-import React from 'react'
-import images from '../../../image'
+import { StyleSheet, View } from 'react-native';
+import { Appbar, Text } from 'react-native-paper';
+import { song, tutorialing } from '../../../Storage/store/player';
+import { Input, Song } from '../../../Components';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { Navigation } from '../../../Navigation/Navigation';
+import { onMount } from '../../../../Framework/Component/Actions';
+import React from 'react';
+import images from '../../../image';
 
 interface Props {
-  appNavigation: any
-  navigation: any
+  appNavigation: any;
+  navigation: any;
 }
 
 function TutorialWelcome(props: Props) {
-  const tutorial = tutorialing.get()
-  const navigation = new Navigation(props.navigation)
+  const tutorial = tutorialing.get();
+  const navigation = new Navigation(props.navigation);
 
   onMount(() => {
-    navigation.emptyHeaderTitle()
+    navigation.emptyHeaderTitle();
     navigation.setHeaderLeft(
       <Appbar.Action
         icon='arrow-left'
         onPress={() => {
-          props.appNavigation.navigate('home')
+          props.appNavigation.navigate('home');
         }}
       />,
-    )
-  })
+    );
+  });
 
   return (
     <View style={styles.root}>
@@ -55,8 +55,8 @@ function TutorialWelcome(props: Props) {
               title: '夜に駆ける',
               artist: 'YOASOBI',
               cover: images.yoruNiCover,
-            })
-            props.navigation.navigate('TutorialFinish')
+            });
+            props.navigation.navigate('TutorialFinish');
           }}
         />
         <Song
@@ -69,8 +69,8 @@ function TutorialWelcome(props: Props) {
               title: 'Englishman in New York',
               artist: 'majiko',
               cover: images.mirrorCover,
-            })
-            props.navigation.navigate('TutorialFinish')
+            });
+            props.navigation.navigate('TutorialFinish');
           }}
         />
         <Song
@@ -83,13 +83,13 @@ function TutorialWelcome(props: Props) {
               title: 'Kataomoi',
               artist: 'Aimer',
               cover: images.kataomoiCover,
-            })
-            props.navigation.navigate('TutorialFinish')
+            });
+            props.navigation.navigate('TutorialFinish');
           }}
         />
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -98,6 +98,6 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
   },
-})
+});
 
-export default TutorialWelcome
+export default TutorialWelcome;

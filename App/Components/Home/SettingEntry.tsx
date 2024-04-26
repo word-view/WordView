@@ -1,26 +1,26 @@
-import { memo, useContext, useState } from 'react'
-import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native'
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
-import { Switch, Text } from 'react-native-paper'
-import { DesktopModeProvider } from '../Provider'
+import { memo, useContext, useState } from 'react';
+import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { Switch, Text } from 'react-native-paper';
+import { DesktopModeProvider } from '../Provider';
 
 interface SettingEntryProps {
-  title: string
-  description?: string
-  type: 'switch'
-  settingDaemonId: string
-  disabled?: boolean
-  style?: StyleProp<ViewStyle>
+  title: string;
+  description?: string;
+  type: 'switch';
+  settingDaemonId: string;
+  disabled?: boolean;
+  style?: StyleProp<ViewStyle>;
 }
 
 function $SettingEntry(props: SettingEntryProps) {
-  const desktop = useContext(DesktopModeProvider)
+  const desktop = useContext(DesktopModeProvider);
 
-  const [isSwitchOn, setIsSwitchOn] = useState(false)
+  const [isSwitchOn, setIsSwitchOn] = useState(false);
   const onToggleSwitch = () => {
-    if (props.disabled) return
-    setIsSwitchOn(!isSwitchOn)
-  }
+    if (props.disabled) return;
+    setIsSwitchOn(!isSwitchOn);
+  };
 
   return (
     <View
@@ -44,10 +44,14 @@ function $SettingEntry(props: SettingEntryProps) {
       </View>
 
       <View style={[styles.settingActivationArea]}>
-        <Switch style={{ alignSelf: 'flex-end' }} value={isSwitchOn} onValueChange={onToggleSwitch} />
+        <Switch
+          style={{ alignSelf: 'flex-end' }}
+          value={isSwitchOn}
+          onValueChange={onToggleSwitch}
+        />
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -80,6 +84,6 @@ const styles = StyleSheet.create({
   description: {
     color: '#A5A3A7',
   },
-})
+});
 
-export const SettingEntry = memo($SettingEntry)
+export const SettingEntry = memo($SettingEntry);

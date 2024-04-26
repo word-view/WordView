@@ -1,13 +1,16 @@
-import { StyleSheet, View } from 'react-native'
-import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
-import { Text } from 'react-native-paper'
-import { useContext } from 'react'
-import { DesktopModeProvider } from '../Provider'
+import { StyleSheet, View } from 'react-native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import { Text } from 'react-native-paper';
+import { useContext } from 'react';
+import { DesktopModeProvider } from '../Provider';
 
 interface ContentHolderProps {
-  title: string
-  children?: any
-  style?: any
+  title: string;
+  children?: any;
+  style?: any;
 }
 
 /**
@@ -15,7 +18,7 @@ interface ContentHolderProps {
  * @param props
  */
 export function ContentHolder(props: ContentHolderProps) {
-  const desktop = useContext(DesktopModeProvider)
+  const desktop = useContext(DesktopModeProvider);
 
   return (
     <View
@@ -53,20 +56,20 @@ export function ContentHolder(props: ContentHolderProps) {
         {props.children}
       </View>
     </View>
-  )
+  );
 }
 
 const mobileStyles = StyleSheet.create({
   childrenHolder: {
     width: wp(90),
   },
-})
+});
 
 const desktopStyles = StyleSheet.create({
   childrenHolder: {
     width: wp(30),
   },
-})
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -89,4 +92,4 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-})
+});

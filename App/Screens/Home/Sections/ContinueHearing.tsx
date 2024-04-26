@@ -1,30 +1,31 @@
-import { memo, useState } from 'react'
-import { HorizontalScrollView, Song, Section } from '../../../Components'
+import { memo, useState } from 'react';
+import { HorizontalScrollView, Song, Section } from '../../../Components';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
-} from 'react-native-responsive-screen'
-import { Song as SongType, song } from '../../../Storage/store/player'
-import { fetchHistory } from '../../../API/song'
-import { onMount, onMountAsync } from '../../../../Framework/Component/Actions'
+} from 'react-native-responsive-screen';
+import { Song as SongType, song } from '../../../Storage/store/player';
+import { fetchHistory } from '../../../API/song';
+import { onMount, onMountAsync } from '../../../../Framework/Component/Actions';
+import React from 'react';
 
 interface ContinueHearingProps {
-  marginLeft?: number
-  marginTop?: number
-  appNav: any
+  marginLeft?: number;
+  marginTop?: number;
+  appNav: any;
 }
 
 function $ContinueHearing(props: ContinueHearingProps) {
   function openPlayer(songue: SongType) {
-    song.set(songue)
-    props.appNav.navigate('player')
+    song.set(songue);
+    props.appNav.navigate('player');
   }
 
-  const [histor, setHistor] = useState<SongType>({} as SongType)
+  const [histor, setHistor] = useState<SongType>({} as SongType);
 
   onMountAsync(async () => {
-    setHistor((await fetchHistory()) ?? ({} as SongType))
-  })
+    setHistor((await fetchHistory()) ?? ({} as SongType));
+  });
 
   return (
     <Section
@@ -48,7 +49,7 @@ function $ContinueHearing(props: ContinueHearingProps) {
         />
       </HorizontalScrollView>
     </Section>
-  )
+  );
 }
 
-export const ContinueHearing = memo($ContinueHearing)
+export const ContinueHearing = memo($ContinueHearing);

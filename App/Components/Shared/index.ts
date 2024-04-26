@@ -1,2 +1,2 @@
-export * from './DiffFlare'
-export * from './Section'
+export * from './DiffFlare';
+export * from './Section';

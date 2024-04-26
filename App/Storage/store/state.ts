@@ -1,4 +1,4 @@
-import createStore from '@propero/easy-store'
+import createStore from '@propero/easy-store';
 
-export const testing = createStore(false)
-export const apiAvailable = createStore(false)
+export const testing = createStore(false);
+export const apiAvailable = createStore(false);

@@ -5,6 +5,6 @@ const images = {
   mirrorCover: require('../assets/builtin/Mirror_Cover.jpg'),
   yoruNiCover: require('../assets/builtin/YoruNi_Cover.jpeg'),
   kataomoiCover: require('../assets/builtin/Kataomoi_Cover.jpeg'),
-}
+};
 
-export default images
+export default images;

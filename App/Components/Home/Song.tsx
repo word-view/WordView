@@ -1,14 +1,14 @@
-import { memo } from 'react'
-import { StyleProp, View, ViewStyle, Image } from 'react-native'
-import { TouchableRipple, Text } from 'react-native-paper'
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import { memo } from 'react';
+import { StyleProp, View, ViewStyle, Image } from 'react-native';
+import { TouchableRipple, Text } from 'react-native-paper';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 interface SongProps {
-  img: any
-  title: String
-  artist: String
-  style?: StyleProp<ViewStyle>
-  onPress: () => void
+  img: any;
+  title: String;
+  artist: String;
+  style?: StyleProp<ViewStyle>;
+  onPress: () => void;
 }
 
 /**
@@ -17,9 +17,9 @@ interface SongProps {
  * @returns
  */
 function $Song(props: SongProps) {
-  if (!props.title) return
-  if (!props.artist) return
-  if (!props.img) return
+  if (!props.title) return;
+  if (!props.artist) return;
+  if (!props.img) return;
 
   return (
     <TouchableRipple
@@ -53,7 +53,7 @@ function $Song(props: SongProps) {
         </Text>
       </View>
     </TouchableRipple>
-  )
+  );
 }
 
-export const Song = memo($Song)
+export const Song = memo($Song);

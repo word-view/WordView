@@ -1,24 +1,24 @@
-import React, { useContext, useRef } from 'react'
-import { PanResponder, Animated, Dimensions } from 'react-native'
-import { DesktopModeProvider } from '../Provider'
-import { springTo } from '../../Animations'
+import React, { useContext, useRef } from 'react';
+import { PanResponder, Animated, Dimensions } from 'react-native';
+import { DesktopModeProvider } from '../Provider';
+import { springTo } from '../../Animations';
 
 export interface DraggableViewProps {
-  children: React.ReactNode
-  pan?: Animated.ValueXY
-  onDragLeft?: Function
-  onDragRight?: Function
+  children: React.ReactNode;
+  pan?: Animated.ValueXY;
+  onDragLeft?: Function;
+  onDragRight?: Function;
 }
 
 export function DraggableView(props: DraggableViewProps) {
-  const desktop = useContext(DesktopModeProvider)
+  const desktop = useContext(DesktopModeProvider);
 
-  let pan: Animated.ValueXY | Animated.Value
+  let pan: Animated.ValueXY | Animated.Value;
 
   if (props.pan) {
-    pan = props.pan
+    pan = props.pan;
   } else {
-    pan = useRef(new Animated.ValueXY()).current
+    pan = useRef(new Animated.ValueXY()).current;
   }
 
   const panResponder = useRef(
@@ -26,39 +26,39 @@ export function DraggableView(props: DraggableViewProps) {
       onStartShouldSetPanResponder: (e, gesture) => true,
       onPanResponderMove: Animated.event([null, { dx: pan.x, dy: pan.y }]),
       onPanResponderRelease: (e, gesture) => {
-        const { width, height } = Dimensions.get('window')
-        const [x, y] = [gesture.moveX, gesture.moveY]
+        const { width, height } = Dimensions.get('window');
+        const [x, y] = [gesture.moveX, gesture.moveY];
 
         if (desktop) {
           if (x < width / 2 - 200) {
-            props.onDragLeft?.()
+            props.onDragLeft?.();
           }
 
           if (x > width / 2 + 200) {
-            props.onDragRight?.()
+            props.onDragRight?.();
           }
         } else {
           if (y < height / 2 - 200) {
-            props.onDragLeft?.()
+            props.onDragLeft?.();
           }
 
           if (y > height / 2 + 200) {
-            props.onDragRight?.()
+            props.onDragRight?.();
           }
         }
 
-        springTo({ x: 0, y: 0 }, pan).start()
+        springTo({ x: 0, y: 0 }, pan).start();
       },
     }),
-  ).current
+  ).current;
 
   const panStyle = {
     transform: pan.getTranslateTransform(),
-  }
+  };
 
   return (
     <Animated.View {...panResponder.panHandlers} style={[panStyle]}>
       {props.children}
     </Animated.View>
-  )
+  );
 }

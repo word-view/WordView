@@ -1,4 +1,4 @@
-import { Animated } from 'react-native'
+import { Animated } from 'react-native';
 
 /**
  * Animates a component's movement using a spring animation.
@@ -16,6 +16,6 @@ export function springTo(
   const animation = Animated.spring(hook, {
     toValue: to,
     useNativeDriver: native ?? true,
-  })
-  return animation
+  });
+  return animation;
 }

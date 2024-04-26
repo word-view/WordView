@@ -1,22 +1,22 @@
-import { memo } from 'react'
-import { Section, SmallButton } from '../../../Components'
+import { memo } from 'react';
+import { Section, SmallButton } from '../../../Components';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
-} from 'react-native-responsive-screen'
-import { StyleSheet } from 'react-native'
-import { tutorialing } from '../../../Storage/store/player'
+} from 'react-native-responsive-screen';
+import { StyleSheet } from 'react-native';
+import { tutorialing } from '../../../Storage/store/player';
 
 interface WelcomeProps {
-  marginLeft?: number
-  marginTop?: number
-  appNav: any
+  marginLeft?: number;
+  marginTop?: number;
+  appNav: any;
 }
 
 function $Welcome(props: WelcomeProps) {
   function beginTutorial() {
-    tutorialing.set(true)
-    props.appNav.navigate('player')
+    tutorialing.set(true);
+    props.appNav.navigate('player');
   }
 
   return (
@@ -37,7 +37,7 @@ function $Welcome(props: WelcomeProps) {
         onPress={beginTutorial}
       />
     </Section>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -45,6 +45,6 @@ const styles = StyleSheet.create({
     height: 68,
     width: 84,
   },
-})
+});
 
-export const Welcome = memo($Welcome)
+export const Welcome = memo($Welcome);

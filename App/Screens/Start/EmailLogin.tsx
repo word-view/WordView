@@ -1,22 +1,22 @@
-import { ScrollView } from 'react-native'
-import { Button, ContentHolder, AuthInput, DesktopModeProvider } from '../../Components'
-import { useContext } from 'react'
-import { Navigation } from '../../Navigation/Navigation'
-import { onMount } from '../../../Framework/Component/Actions'
+import { ScrollView } from 'react-native';
+import { Button, ContentHolder, AuthInput, DesktopModeProvider } from '../../Components';
+import { useContext } from 'react';
+import { Navigation } from '../../Navigation/Navigation';
+import { onMount } from '../../../Framework/Component/Actions';
 
 interface Props {
-  appNavigation: any
-  navigation: any
+  appNavigation: any;
+  navigation: any;
 }
 
 function EmailLogin(props: Props) {
-  const desktop = useContext(DesktopModeProvider)
-  const navigation = new Navigation(props.navigation)
+  const desktop = useContext(DesktopModeProvider);
+  const navigation = new Navigation(props.navigation);
 
   onMount(() => {
-    navigation.setTitle('Login por email')
-    if (desktop) navigation.emptyHeaderTitle()
-  })
+    navigation.setTitle('Login por email');
+    if (desktop) navigation.emptyHeaderTitle();
+  });
 
   return (
     <ScrollView style={!desktop && { backgroundColor: '#2C2831' }}>
@@ -44,7 +44,7 @@ function EmailLogin(props: Props) {
         />
       </ContentHolder>
     </ScrollView>
-  )
+  );
 }
 
-export default EmailLogin
+export default EmailLogin;

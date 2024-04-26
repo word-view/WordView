@@ -1,24 +1,24 @@
-import React, { useContext } from 'react'
-import { ScrollView } from 'react-native'
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import { Button as RNPButton } from 'react-native-paper'
-import { AuthInput, Button, ContentHolder, DesktopModeProvider } from '../../Components'
-import { Navigation } from '../../Navigation/Navigation'
-import { onMount } from '../../../Framework/Component/Actions'
+import React, { useContext } from 'react';
+import { ScrollView } from 'react-native';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { Button as RNPButton } from 'react-native-paper';
+import { AuthInput, Button, ContentHolder, DesktopModeProvider } from '../../Components';
+import { Navigation } from '../../Navigation/Navigation';
+import { onMount } from '../../../Framework/Component/Actions';
 
 interface Props {
-  appNavigation: any
-  navigation: any
+  appNavigation: any;
+  navigation: any;
 }
 
 function Register(props: Props) {
-  const desktop = useContext(DesktopModeProvider)
-  const navigation = new Navigation(props.navigation)
+  const desktop = useContext(DesktopModeProvider);
+  const navigation = new Navigation(props.navigation);
 
   onMount(() => {
-    navigation.setTitle('Criar uma conta')
-    if (desktop) navigation.emptyHeaderTitle()
-  })
+    navigation.setTitle('Criar uma conta');
+    if (desktop) navigation.emptyHeaderTitle();
+  });
 
   return (
     <ScrollView style={!desktop && { backgroundColor: '#2C2831' }}>
@@ -67,7 +67,7 @@ function Register(props: Props) {
         </RNPButton>
       </ContentHolder>
     </ScrollView>
-  )
+  );
 }
 
-export default Register
+export default Register;

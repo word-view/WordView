@@ -1,4 +1,4 @@
-import { Animated } from 'react-native'
+import { Animated } from 'react-native';
 
 /**
  * Animates a component's value over time.
@@ -22,7 +22,7 @@ export function timing(
     duration: duration,
     easing: easing,
     useNativeDriver: native ?? true,
-  })
+  });
 
-  return animation
+  return animation;
 }

@@ -1,15 +1,15 @@
-import React, { memo } from 'react'
-import { ScrollView } from 'react-native'
-import { ContinueHearing, Welcome } from './Sections'
+import React, { memo } from 'react';
+import { ScrollView } from 'react-native';
+import { ContinueHearing, Welcome } from './Sections';
 
 interface MainScreenProps {
-  marginLeft?: number
-  marginTop?: number
-  appNav: any
+  marginLeft?: number;
+  marginTop?: number;
+  appNav: any;
 }
 
 function Main(props: MainScreenProps) {
-  const isFirstLaunch = false
+  const isFirstLaunch = false;
 
   return (
     <ScrollView>
@@ -23,7 +23,7 @@ function Main(props: MainScreenProps) {
         />
       )}
     </ScrollView>
-  )
+  );
 }
 
-export default memo(Main)
+export default memo(Main);

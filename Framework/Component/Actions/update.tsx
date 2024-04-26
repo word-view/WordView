@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect } from 'react';
 
 /**
  * Calls the callback function when the dependencies change.
@@ -7,8 +7,8 @@ import { useEffect } from 'react'
  */
 export function onUpdate(deps: React.DependencyList, callback: Function) {
   useEffect(() => {
-    callback()
-  }, deps)
+    callback();
+  }, deps);
 }
 
 /**
@@ -18,8 +18,8 @@ export function onUpdate(deps: React.DependencyList, callback: Function) {
  */
 export function onUpdateAsync(deps: React.DependencyList, callback: Function) {
   useEffect(() => {
-    ;(async function onUpdate() {
-      await callback()
-    })()
-  }, deps)
+    (async function onUpdate() {
+      await callback();
+    })();
+  }, deps);
 }

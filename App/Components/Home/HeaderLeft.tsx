@@ -1,19 +1,19 @@
-import { memo, useContext } from 'react'
-import { View, StyleSheet, Image } from 'react-native'
-import { DesktopModeProvider } from '../Provider'
-import images from '../../image'
-import React from 'react'
+import { memo, useContext } from 'react';
+import { View, StyleSheet, Image } from 'react-native';
+import { DesktopModeProvider } from '../Provider';
+import images from '../../image';
+import React from 'react';
 
 interface HeaderLeftProps {}
 
 export function $HeaderLeft() {
-  const desktop = useContext(DesktopModeProvider)
+  const desktop = useContext(DesktopModeProvider);
   return (
     <View style={styles.wvTitleHolder}>
       <Image style={styles.wvIcon} source={images.wvIcon} />
       {desktop && <Image style={styles.wvTitle} source={images.wvTitle} />}
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -35,6 +35,6 @@ const styles = StyleSheet.create({
     width: 105.6,
     marginLeft: 12,
   },
-})
+});
 
-export const HeaderLeft = memo($HeaderLeft)
+export const HeaderLeft = memo($HeaderLeft);

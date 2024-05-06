@@ -12,7 +12,7 @@ test('Desktop dimensions are applied', () => {
     <DesktopModeProvider.Provider value={true}>{createButton()}</DesktopModeProvider.Provider>,
   ).getByTestId('framework-button');
 
-  var style = button.props.style[button.props.style.length - 1][0];
+  const style = button.props.style[button.props.style.length - 1][0];
 
   expect(style.width).toBe(400);
   expect(style.height).toBe(55);
@@ -23,7 +23,7 @@ test('Mobile dimensions are applied', () => {
     <DesktopModeProvider.Provider value={false}>{createButton()}</DesktopModeProvider.Provider>,
   ).getByTestId('framework-button');
 
-  var style = button.props.style[button.props.style.length - 1][0];
+  const style = button.props.style[button.props.style.length - 1][0];
 
   expect(style.width).toBe(375);
   expect(style.height).toBe(60);

@@ -19,7 +19,7 @@ test('Desktop dimensions are applied', () => {
 
   act(() => jest.runAllTimers());
 
-  let style = input.props.style[1];
+  const style = input.props.style[1];
   expect(style.height).toBe(55);
 });
 
@@ -32,7 +32,7 @@ test('Mobile dimensions are applied', () => {
 
   act(() => jest.runAllTimers());
 
-  let style = input.props.style[1];
+  const style = input.props.style[1];
   expect(style.height).toBe(60);
 });
 

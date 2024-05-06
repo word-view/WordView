@@ -4,7 +4,7 @@ import { testing } from '../../Storage/store/state';
 import { widthPercentageToDP, heightPercentageToDP } from 'react-native-responsive-screen';
 import { onMount } from '../../../Framework/Components/Actions';
 
-export function ResponsiveLayout() {
+export function appLayout() {
   if (testing.get()) {
     const isDesktop = true;
     return { isDesktop };

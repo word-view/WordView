@@ -1,13 +1,11 @@
 import { useCallback } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
-import { useFonts } from 'expo-font';
+import { FontSource, useFonts } from 'expo-font';
 
-export function FontLoader(testing: boolean = false) {
+export function fontLoader(fonts: Record<string, FontSource>, testing: boolean = false) {
   if (testing) return testingMode();
 
-  const [fontsLoaded, fontsError] = useFonts({
-    OpenSans: require('../../assets/fonts/open-sans/static/OpenSans-SemiBold.ttf'),
-  });
+  const [fontsLoaded, fontsError] = useFonts(fonts);
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded || fontsError) {

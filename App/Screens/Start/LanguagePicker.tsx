@@ -17,8 +17,8 @@ export default function LanguagePicker(props: Props) {
     navigation.setTitle('Pick a language');
   });
 
-  const inputDimensions = { w: 600, h: 60 };
-  const inputMobileDimensions = { w: 375, h: 60 };
+  const dimensions = { w: 600, h: 60 };
+  const mobileDimensions = { w: 375, h: 60 };
 
   return (
     <View style={styles.root}>
@@ -27,8 +27,8 @@ export default function LanguagePicker(props: Props) {
         textColor='white'
         buttonColor='#ff6363'
         style={{ marginTop: hp(5) }}
-        dimensions={inputDimensions}
-        mobileDimensions={inputMobileDimensions}
+        dimensions={dimensions}
+        mobileDimensions={mobileDimensions}
         onPress={() => appNavigation.go('home')}
       />
       <Button
@@ -36,8 +36,8 @@ export default function LanguagePicker(props: Props) {
         textColor='white'
         buttonColor='#6bff63'
         style={{ marginTop: hp(2.5) }}
-        dimensions={inputDimensions}
-        mobileDimensions={inputMobileDimensions}
+        dimensions={dimensions}
+        mobileDimensions={mobileDimensions}
         onPress={() => appNavigation.go('home')}
       />
       <Button
@@ -45,8 +45,8 @@ export default function LanguagePicker(props: Props) {
         textColor='white'
         buttonColor='#63b9ff'
         style={{ marginTop: hp(2.5) }}
-        dimensions={inputDimensions}
-        mobileDimensions={inputMobileDimensions}
+        dimensions={dimensions}
+        mobileDimensions={mobileDimensions}
         onPress={() => appNavigation.go('home')}
       />
     </View>

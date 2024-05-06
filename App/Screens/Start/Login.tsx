@@ -12,8 +12,8 @@ interface Props {
 export default function Login(props: Props) {
   const appNavigation = new Navigation(props.appNavigation);
 
-  const inputDimensions = { w: 400, h: 55 };
-  const inputMobileDimensions = { w: 375, h: 60 };
+  const dimensions = { w: 400, h: 55 };
+  const mobileDimensions = { w: 375, h: 60 };
 
   return (
     <View style={styles.root}>
@@ -21,23 +21,23 @@ export default function Login(props: Props) {
       <Input
         label='Email'
         style={{ marginTop: hp(5) }}
-        dimensions={inputDimensions}
-        mobileDimensions={inputMobileDimensions}
+        dimensions={dimensions}
+        mobileDimensions={mobileDimensions}
       />
       <Input
         label='Password'
         secure={true}
         style={{ marginTop: hp(2.5) }}
-        dimensions={inputDimensions}
-        mobileDimensions={inputMobileDimensions}
+        dimensions={dimensions}
+        mobileDimensions={mobileDimensions}
       />
       <Button
         text='Log in'
         textColor='white'
         buttonColor='#8951FF'
         style={{ marginTop: hp(5) }}
-        dimensions={inputDimensions}
-        mobileDimensions={inputMobileDimensions}
+        dimensions={dimensions}
+        mobileDimensions={mobileDimensions}
         onPress={() => appNavigation.go('home')}
       />
     </View>

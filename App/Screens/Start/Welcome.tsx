@@ -16,8 +16,8 @@ export default function Welcome(props: Props) {
 
   onMount(() => navigation.hideHeader());
 
-  const buttonDimensions = { w: 400, h: 55 };
-  const buttonMobileDimensions = { w: 375, h: 60 };
+  const dimensions = { w: 400, h: 55 };
+  const mobileDimensions = { w: 375, h: 60 };
 
   return (
     <View style={styles.root} onLayout={props.onLayoutRootView}>
@@ -33,8 +33,8 @@ export default function Welcome(props: Props) {
         textColor='white'
         buttonColor='#8951FF'
         style={{ marginTop: hp(20) }}
-        dimensions={buttonDimensions}
-        mobileDimensions={buttonMobileDimensions}
+        dimensions={dimensions}
+        mobileDimensions={mobileDimensions}
         onPress={() => navigation.go('LanguagePicker')}
       />
 
@@ -43,8 +43,8 @@ export default function Welcome(props: Props) {
         textColor='#B3B3B3'
         buttonColor='#2C2831'
         style={{ marginTop: hp(3) }}
-        dimensions={buttonDimensions}
-        mobileDimensions={buttonMobileDimensions}
+        dimensions={dimensions}
+        mobileDimensions={mobileDimensions}
         onPress={() => navigation.go('Login')}
       />
     </View>

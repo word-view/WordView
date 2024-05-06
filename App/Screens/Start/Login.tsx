@@ -1,7 +1,6 @@
 import { StyleSheet, View } from 'react-native';
-import { useContext } from 'react';
 import { Text } from 'react-native-paper';
-import { Button, DesktopModeProvider, Input } from '../../Components';
+import { Button, Input } from '../../Components';
 import { Navigation } from '../../Navigation/Navigation';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
@@ -11,9 +10,6 @@ interface Props {
 }
 
 export default function Login(props: Props) {
-  const desktop = useContext(DesktopModeProvider);
-
-  const navigation = new Navigation(props.navigation);
   const appNavigation = new Navigation(props.appNavigation);
 
   const inputDimensions = { w: 400, h: 55 };

@@ -1,6 +1,5 @@
-import { useContext } from 'react';
-import { Button, ContentHolder, DesktopModeProvider } from '../../Components';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { Button } from '../../Components';
+import { StyleSheet, View } from 'react-native';
 import { Navigation } from '../../Navigation/Navigation';
 import { onMount } from '../../../Framework/Components/Actions';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -11,7 +10,6 @@ interface Props {
 }
 
 export default function LanguagePicker(props: Props) {
-  const desktop = useContext(DesktopModeProvider);
   const navigation = new Navigation(props.navigation);
   const appNavigation = new Navigation(props.appNavigation);
 

@@ -34,7 +34,7 @@ test('Press works', done => {
   fireEvent(button, 'press');
 });
 
-function createButton(onPress?: () => {}) {
+function createButton(onPress?: () => void) {
   return (
     <Button
       text='Start learning'

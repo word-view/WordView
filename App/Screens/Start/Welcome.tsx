@@ -4,6 +4,7 @@ import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Navigation } from '../../Navigation/Navigation';
 import { onMount } from '../../../Framework/Components/Actions';
 import images from '../../image';
+import { colors } from '../../colors';
 
 interface Props {
   appNavigation: any;
@@ -31,7 +32,7 @@ export default function Welcome(props: Props) {
       <Button
         text='Start learning'
         textColor='white'
-        buttonColor='#8951FF'
+        buttonColor={colors.accent}
         style={{ marginTop: hp(20) }}
         dimensions={dimensions}
         mobileDimensions={mobileDimensions}
@@ -40,8 +41,8 @@ export default function Welcome(props: Props) {
 
       <Button
         text='I have a account already'
-        textColor='#B3B3B3'
-        buttonColor='#2C2831'
+        textColor={colors.text}
+        buttonColor={colors.interface}
         style={{ marginTop: hp(3) }}
         dimensions={dimensions}
         mobileDimensions={mobileDimensions}
@@ -54,7 +55,7 @@ export default function Welcome(props: Props) {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: '#1C1B1F',
+    backgroundColor: colors.background,
     alignItems: 'center',
   },
   logo: { alignItems: 'center', top: 0, marginTop: hp(15) },
@@ -72,6 +73,6 @@ const styles = StyleSheet.create({
     fontFamily: 'OpenSans',
     fontSize: 20,
     textAlign: 'center',
-    color: '#B3B3B3',
+    color: colors.text,
   },
 });

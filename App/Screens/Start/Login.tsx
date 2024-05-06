@@ -3,6 +3,7 @@ import { Text } from 'react-native-paper';
 import { Button, Input } from '../../Components';
 import { Navigation } from '../../Navigation/Navigation';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { colors } from '../../colors';
 
 interface Props {
   appNavigation: any;
@@ -34,7 +35,7 @@ export default function Login(props: Props) {
       <Button
         text='Log in'
         textColor='white'
-        buttonColor='#8951FF'
+        buttonColor={colors.accent}
         style={{ marginTop: hp(5) }}
         dimensions={dimensions}
         mobileDimensions={mobileDimensions}
@@ -47,13 +48,13 @@ export default function Login(props: Props) {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: '#1C1B1F',
+    backgroundColor: colors.background,
     alignItems: 'center',
   },
   text: {
     fontFamily: 'OpenSans',
     fontSize: 30,
     textAlign: 'center',
-    color: '#CAC4D0',
+    color: colors.text,
   },
 });

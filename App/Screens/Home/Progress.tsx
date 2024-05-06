@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import { View } from 'react-native';
 import { Section } from '../../Components';
 import { Text } from 'react-native-paper';

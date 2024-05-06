@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import { Section } from '../../Components';
 import { Text } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';

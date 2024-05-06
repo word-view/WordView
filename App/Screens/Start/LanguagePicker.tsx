@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Navigation } from '../../Navigation/Navigation';
 import { onMount } from '../../../Framework/Components/Actions';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { colors } from '../../colors';
 
 interface Props {
   appNavigation: any;
@@ -56,7 +57,7 @@ export default function LanguagePicker(props: Props) {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: '#1C1B1F',
+    backgroundColor: colors.background,
     alignItems: 'center',
   },
 });

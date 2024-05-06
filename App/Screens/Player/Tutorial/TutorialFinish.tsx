@@ -4,7 +4,7 @@ import { SmallButton, Song } from '../../../Components';
 import { song } from '../../../Storage/store/player';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Navigation } from '../../../Navigation/Navigation';
-import { onMount } from '../../../../Framework/Component/Actions';
+import { onMount } from '../../../../Framework/Components/Actions';
 import React from 'react';
 
 interface Props {

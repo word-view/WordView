@@ -14,8 +14,6 @@
  You should have received a copy of the GNU General Public License
  along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
-
-import React from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { PaperProvider } from 'react-native-paper';
@@ -25,7 +23,7 @@ import { DesktopModeProvider, ResponsiveLayout } from './App/Components';
 import { CombinedDarkTheme } from './App/theme';
 import { apiAvailable, testing } from './App/Storage/store/state';
 import { checkAPIAvailable } from './App/API/check';
-import { onMountAsync } from './Framework/Component/Actions';
+import { onMountAsync } from './Framework/Components/Actions';
 import { FontLoader } from './Framework/Resources/FontLoader';
 
 SplashScreen.preventAutoHideAsync();
@@ -40,8 +38,6 @@ export default function App() {
   onMountAsync(async () => {
     const available = await checkAPIAvailable();
     apiAvailable.set(available);
-
-    console.log('API is available? ' + available);
   });
 
   const { fontsLoaded, onLayoutRootView } = FontLoader();

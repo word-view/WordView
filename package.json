@@ -7,7 +7,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "jest --detectOpenHandles ./tests",
+    "test": "jest ./tests",
     "playwright": "npx playwright test"
   },
   "jest": {
@@ -73,6 +73,7 @@
     "@babel/core": "^7.20.0",
     "@playwright/test": "^1.43.1",
     "@testing-library/react-native": "^12.3.0",
+    "@types/color": "^3.0.6",
     "@types/jest": "^29.5.5",
     "@types/node": "^20.12.7",
     "@types/react": "~18.2.14",

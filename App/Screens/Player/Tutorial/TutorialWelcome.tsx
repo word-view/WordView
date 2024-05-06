@@ -4,7 +4,7 @@ import { song, tutorialing } from '../../../Storage/store/player';
 import { Input, Song } from '../../../Components';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Navigation } from '../../../Navigation/Navigation';
-import { onMount } from '../../../../Framework/Component/Actions';
+import { onMount } from '../../../../Framework/Components/Actions';
 import React from 'react';
 import images from '../../../image';
 

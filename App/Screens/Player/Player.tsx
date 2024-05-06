@@ -14,7 +14,7 @@ import { parseWebVTT } from '../../Util/webvtt/parse';
 import { Subtitle, fetchLyrics, fetchSubtitles, songUrl } from '../../API/song';
 import { Navigation } from '../../Navigation/Navigation';
 import { ProgressBar } from '../../Components/Player/ProgressBar';
-import { onMount, onMountAsync } from '../../../Framework/Component/Actions';
+import { onMount, onMountAsync } from '../../../Framework/Components/Actions';
 
 interface Props {
   appNavigation: any;

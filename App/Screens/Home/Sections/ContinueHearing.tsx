@@ -6,7 +6,7 @@ import {
 } from 'react-native-responsive-screen';
 import { Song as SongType, song } from '../../../Storage/store/player';
 import { fetchHistory } from '../../../API/song';
-import { onMount, onMountAsync } from '../../../../Framework/Component/Actions';
+import { onMount, onMountAsync } from '../../../../Framework/Components/Actions';
 import React from 'react';
 
 interface ContinueHearingProps {

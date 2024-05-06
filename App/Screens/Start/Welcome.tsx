@@ -1,9 +1,8 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
-import React from 'react';
 import { Button } from '../../Components';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Navigation } from '../../Navigation/Navigation';
-import { onMount } from '../../../Framework/Component/Actions';
+import { onMount } from '../../../Framework/Components/Actions';
 import images from '../../image';
 
 interface Props {
@@ -17,49 +16,59 @@ export default function Welcome(props: Props) {
 
   onMount(() => navigation.hideHeader());
 
-  return (
-    <View style={styles.container} onLayout={props.onLayoutRootView}>
-      <View style={styles.wvLogoHolder}>
-        <Image style={styles.wvIcon} source={images.wvIcon} />
-        <Image style={styles.wvTitle} source={images.wvTitle} />
+  const buttonDimensions = { w: 400, h: 55 };
+  const buttonMobileDimensions = { w: 375, h: 60 };
 
-        <Text style={styles.wvText}>A maneira inteligente de {'\n'} aprender idiomas</Text>
+  return (
+    <View style={styles.root} onLayout={props.onLayoutRootView}>
+      <View style={styles.logo}>
+        <Image style={styles.icon} source={images.wvIcon} />
+        <Image style={styles.title} source={images.wvTitle} />
+
+        <Text style={styles.text}>The smart way to learn{'\n'}a language</Text>
       </View>
 
       <Button
-        text='Começar'
-        color={{ text: 'white', button: '#8951FF' }}
-        onPress={() => navigation.go('Register')}
-        marginTop={20}
+        text='Start learning'
+        textColor='white'
+        buttonColor='#8951FF'
+        style={{ marginTop: hp(20) }}
+        dimensions={buttonDimensions}
+        mobileDimensions={buttonMobileDimensions}
+        onPress={() => navigation.go('LanguagePicker')}
       />
+
       <Button
-        text='Já tenho uma conta'
-        color={{ text: 'black', button: 'white' }}
+        text='I have a account already'
+        textColor='#B3B3B3'
+        buttonColor='#2C2831'
+        style={{ marginTop: hp(3) }}
+        dimensions={buttonDimensions}
+        mobileDimensions={buttonMobileDimensions}
         onPress={() => navigation.go('Login')}
-        marginTop={2.5}
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  root: {
     flex: 1,
-    backgroundColor: '#2C2831',
+    backgroundColor: '#1C1B1F',
     alignItems: 'center',
   },
-  wvLogoHolder: { alignItems: 'center', top: 0, marginTop: hp(15) },
-  wvIcon: {
+  logo: { alignItems: 'center', top: 0, marginTop: hp(15) },
+  icon: {
     height: 82,
     width: 101,
     marginBottom: 15,
   },
-  wvTitle: {
+  title: {
     height: 36,
     width: 220,
     marginBottom: 15,
   },
-  wvText: {
+  text: {
     fontFamily: 'OpenSans',
     fontSize: 20,
     textAlign: 'center',

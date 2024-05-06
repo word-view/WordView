@@ -9,7 +9,7 @@ import { DesktopModeProvider } from '../Provider';
 
 interface ContentHolderProps {
   title: string;
-  children?: any;
+  children?: React.JSX.Element;
   style?: any;
 }
 

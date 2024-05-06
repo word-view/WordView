@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Appbar, Dialog, List, Portal } from 'react-native-paper';
-import { song, tutorialing } from '../../Storage/store/player';
+import { song } from '../../Storage/store/player';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -14,7 +14,8 @@ import { parseWebVTT } from '../../Util/webvtt/parse';
 import { Subtitle, fetchLyrics, fetchSubtitles, songUrl } from '../../API/song';
 import { Navigation } from '../../Navigation/Navigation';
 import { ProgressBar } from '../../Components/Player/ProgressBar';
-import { onMount, onMountAsync } from '../../../Framework/Component/Actions';
+import { onMount, onMountAsync } from '../../../Framework/Components/Actions';
+import { colors } from '../../colors';
 
 interface Props {
   appNavigation: any;
@@ -22,7 +23,6 @@ interface Props {
 }
 
 function Player(props: Props) {
-  const tutorial = tutorialing.get();
   const desktop = useContext(DesktopModeProvider);
   const navigation = new Navigation(props.navigation);
   const appNavigation = new Navigation(props.appNavigation);
@@ -51,8 +51,6 @@ function Player(props: Props) {
   });
 
   onMount(() => {
-    if (tutorial) navigation.go('TutorialWelcome');
-
     showDialog();
 
     navigation.setTitle(`${choosenSong.title} - WordView`);
@@ -61,7 +59,6 @@ function Player(props: Props) {
       <Appbar.Action
         icon='arrow-left'
         onPress={() => {
-          if (tutorial) tutorialing.set(false);
           appNavigation.go('home');
         }}
       />,
@@ -220,7 +217,7 @@ const styles = StyleSheet.create({
   },
   musicInfo: {
     width: '100%',
-    backgroundColor: '#2C2831',
+    backgroundColor: colors.interface,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',

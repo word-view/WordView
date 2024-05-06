@@ -19,7 +19,7 @@ function HomeNavigation(props: Props) {
         initialRouteName='Home'
         screenOptions={{
           animationEnabled: true,
-          headerStyle: navStyles.headerStyle,
+          headerStyle: navStyles.headerStyleV1,
           headerTitleStyle: navStyles.headerTitleStyle,
         }}
       >

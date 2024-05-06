@@ -2,7 +2,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { CombinedDarkTheme } from './theme';
 import { createStackNavigator } from '@react-navigation/stack';
 import { navStyles } from './nav-styles';
-import React from 'react';
 import Player from '../Screens/Player/Player';
 import { StyleSheet } from 'react-native';
 import TutorialWelcome from '../Screens/Player/Tutorial/TutorialWelcome';

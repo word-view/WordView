@@ -5,7 +5,7 @@ import { Route, SideNavigation } from '../../Components/Home/SideNavigation';
 import Main from './Main';
 import Progress from './Progress';
 import Explore from './Explore';
-import { onUpdate, onMount } from '../../../Framework/Component/Actions';
+import { onUpdate, onMount } from '../../../Framework/Components/Actions';
 import { Navigation } from '../../Navigation/Navigation';
 
 interface Props {

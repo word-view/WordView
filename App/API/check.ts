@@ -1,3 +1,4 @@
+import { testing } from '../Storage/store/state';
 import { get } from './client';
 
 /**
@@ -5,6 +6,7 @@ import { get } from './client';
  * @returns {boolean} Returns true if the API is reachable; otherwise, false.
  */
 export async function checkAPIAvailable(): Promise<boolean> {
+  if (testing) return true;
   try {
     const response = await get('/ping');
 

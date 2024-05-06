@@ -6,8 +6,7 @@ import {
 } from 'react-native-responsive-screen';
 import { Song as SongType, song } from '../../../Storage/store/player';
 import { fetchHistory } from '../../../API/song';
-import { onMount, onMountAsync } from '../../../../Framework/Component/Actions';
-import React from 'react';
+import { onMountAsync } from '../../../../Framework/Components/Actions';
 
 interface ContinueHearingProps {
   marginLeft?: number;

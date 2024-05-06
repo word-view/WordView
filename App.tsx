@@ -14,37 +14,36 @@
  You should have received a copy of the GNU General Public License
  along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
-
-import React from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { PaperProvider } from 'react-native-paper';
 import * as NavigationBar from 'expo-navigation-bar';
 import AppNavigation from './App/Navigation/AppNavigation';
-import { DesktopModeProvider, ResponsiveLayout } from './App/Components';
+import { DesktopModeProvider, appLayout } from './App/Components';
 import { CombinedDarkTheme } from './App/theme';
 import { apiAvailable, testing } from './App/Storage/store/state';
 import { checkAPIAvailable } from './App/API/check';
-import { onMountAsync } from './Framework/Component/Actions';
-import { FontLoader } from './Framework/Resources/FontLoader';
+import { onMountAsync } from './Framework/Components/Actions';
+import { fontLoader } from './Framework/Resources/FontLoader';
 
 SplashScreen.preventAutoHideAsync();
 const warn = console.warn;
-if (testing) console.warn = () => {};
+if (testing.get()) console.warn = () => {};
 NavigationBar.setBackgroundColorAsync('#2C2831');
 console.warn = warn;
 
 export default function App() {
-  const { isDesktop } = ResponsiveLayout();
+  const { isDesktop } = appLayout();
 
   onMountAsync(async () => {
     const available = await checkAPIAvailable();
     apiAvailable.set(available);
-
-    console.log('API is available? ' + available);
   });
 
-  const { fontsLoaded, onLayoutRootView } = FontLoader();
+  const { fontsLoaded, onLayoutRootView } = fontLoader({
+    OpenSans: require('./assets/fonts/open-sans/static/OpenSans-SemiBold.ttf'),
+  });
+
   if (!fontsLoaded) return null;
 
   return (

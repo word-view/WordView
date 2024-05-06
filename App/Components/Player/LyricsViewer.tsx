@@ -2,7 +2,7 @@ import { memo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Cue } from '../../Util/webvtt/types';
 import { Text } from 'react-native-paper';
-import { onUpdate } from '../../../Framework/Component/Actions/update';
+import { onUpdate } from '../../../Framework/Components/Actions/update';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 interface LyricsViewerProps {

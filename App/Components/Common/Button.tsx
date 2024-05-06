@@ -1,69 +1,37 @@
-import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
-import { Button as RNPButton } from 'react-native-paper';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import { StyleProp, ViewStyle } from 'react-native';
 import { memo, useContext } from 'react';
+import { FrameworkButton } from '../../../Framework/Components/FrameworkButton';
 import { DesktopModeProvider } from '../Provider';
 
 interface ButtonProps {
   text: string;
-  icon?: string;
-  disabled?: boolean;
-  color: {
-    text: string;
-    button: string;
-  };
-  /** As heightPercentageToDP */
-  marginTop?: number;
-  onPress: () => void;
+  textColor: string;
+  buttonColor: string;
   style?: StyleProp<ViewStyle>;
-  pressable?: boolean;
+  dimensions: { w: number; h: number };
+  mobileDimensions: { w: number; h: number };
+  onPress: () => void;
 }
 
 function $Button(props: ButtonProps) {
   const desktop = useContext(DesktopModeProvider);
 
   return (
-    <RNPButton
-      mode='elevated'
-      disabled={props.disabled}
-      textColor={props.color.text}
-      icon={props.icon}
-      buttonColor={props.color.button}
-      onPress={() => {
-        if (props.pressable || props.pressable == undefined) props.onPress();
-      }}
-      style={{ marginTop: hp(props.marginTop ?? 0), borderRadius: 10 }}
-      labelStyle={[{ fontWeight: '600' }, desktop && { fontSize: 16 }]}
-      contentStyle={[
-        styles.button,
-        desktop ? desktopStyles.button : mobileStyles.button,
-        props.style,
-      ]}
-    >
-      {props.text}
-    </RNPButton>
+    <FrameworkButton
+      text={props.text}
+      textColor={props.textColor}
+      buttonColor={props.buttonColor}
+      fontWeight='600'
+      style={props.style}
+      dimensions={desktop ? props.dimensions : props.mobileDimensions}
+      borderRadius={20}
+      gradientColors={
+        // for some reason the orders get inverted between mobile and desktop
+        desktop ? ['rgba(28,27,31,0.5)', 'transparent'] : ['transparent', 'rgba(28,27,31,0.5)']
+      }
+      onPress={props.onPress}
+    />
   );
 }
-
-const mobileStyles = StyleSheet.create({
-  button: {
-    width: wp(90),
-  },
-});
-
-const desktopStyles = StyleSheet.create({
-  button: {
-    width: wp(30),
-  },
-});
-
-const styles = StyleSheet.create({
-  button: {
-    height: 55,
-  },
-});
 
 export const Button = memo($Button);

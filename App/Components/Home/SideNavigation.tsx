@@ -16,7 +16,7 @@ interface Props {
   setIndex: (index: number) => void;
 }
 
-const $SideNavigation = forwardRef((props: Props) => {
+const $SideNavigation = forwardRef((props: Props, ref) => {
   function routeToAction(route: Route) {
     const routeIndex = props.routes.indexOf(route);
     const setIndex = () => props.setIndex(routeIndex);

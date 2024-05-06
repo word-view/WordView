@@ -4,8 +4,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { navStyles } from './nav-styles';
 import Player from '../Screens/Player/Player';
 import { StyleSheet } from 'react-native';
-import TutorialWelcome from '../Screens/Player/Tutorial/TutorialWelcome';
-import TutorialFinish from '../Screens/Player/Tutorial/TutorialFinish';
 
 const Navigator = createStackNavigator().Navigator;
 const Screen = createStackNavigator().Screen;
@@ -27,12 +25,6 @@ function PlayerNavigation(props: Props) {
       >
         <Screen name='Player'>
           {$props => <Player {...$props} appNavigation={props.navigation} />}
-        </Screen>
-        <Screen name='TutorialWelcome'>
-          {$props => <TutorialWelcome {...$props} appNavigation={props.navigation} />}
-        </Screen>
-        <Screen name='TutorialFinish'>
-          {$props => <TutorialFinish {...$props} appNavigation={props.navigation} />}
         </Screen>
       </Navigator>
     </NavigationContainer>

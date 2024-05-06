@@ -25,7 +25,7 @@ interface FrameworkButtonProps {
     | '800'
     | '900'
     | undefined;
-  children?: any;
+  children?: React.JSX.Element;
   gradientColors?: string[];
 }
 

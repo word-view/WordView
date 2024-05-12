@@ -33,25 +33,25 @@ NavigationBar.setBackgroundColorAsync('#2C2831');
 console.warn = warn;
 
 export default function App() {
-  const { isDesktop } = appLayout();
+    const { isDesktop } = appLayout();
 
-  onMountAsync(async () => {
-    const available = await checkAPIAvailable();
-    apiAvailable.set(available);
-  });
+    onMountAsync(async () => {
+        const available = await checkAPIAvailable();
+        apiAvailable.set(available);
+    });
 
-  const { fontsLoaded, onLayoutRootView } = fontLoader({
-    OpenSans: require('./assets/fonts/open-sans/static/OpenSans-SemiBold.ttf'),
-  });
+    const { fontsLoaded, onLayoutRootView } = fontLoader({
+        OpenSans: require('./assets/fonts/open-sans/static/OpenSans-SemiBold.ttf'),
+    });
 
-  if (!fontsLoaded) return null;
+    if (!fontsLoaded) return null;
 
-  return (
-    <PaperProvider theme={CombinedDarkTheme}>
-      <DesktopModeProvider.Provider value={isDesktop}>
-        <AppNavigation hideSplashCallback={onLayoutRootView} />
-        <StatusBar style='light' translucent={true} />
-      </DesktopModeProvider.Provider>
-    </PaperProvider>
-  );
+    return (
+        <PaperProvider theme={CombinedDarkTheme}>
+            <DesktopModeProvider.Provider value={isDesktop}>
+                <AppNavigation hideSplashCallback={onLayoutRootView} />
+                <StatusBar style='light' translucent={true} />
+            </DesktopModeProvider.Provider>
+        </PaperProvider>
+    );
 }

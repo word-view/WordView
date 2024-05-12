@@ -6,9 +6,9 @@ import { useEffect } from 'react';
  * @param callback - The callback function to be called.
  */
 export function onUpdate(deps: React.DependencyList, callback: () => void) {
-  useEffect(() => {
-    callback();
-  }, deps);
+    useEffect(() => {
+        callback();
+    }, deps);
 }
 
 /**
@@ -17,9 +17,9 @@ export function onUpdate(deps: React.DependencyList, callback: () => void) {
  * @param callback - The callback function to be called.
  */
 export function onUpdateAsync(deps: React.DependencyList, callback: () => void) {
-  useEffect(() => {
-    (async function onUpdate() {
-      await callback();
-    })();
-  }, deps);
+    useEffect(() => {
+        (async function onUpdate() {
+            await callback();
+        })();
+    }, deps);
 }

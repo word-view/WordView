@@ -5,9 +5,9 @@ import { useEffect } from 'react';
  * @param callback - The callback function to be called.
  */
 export function onMount(callback: () => void) {
-  useEffect(() => {
-    callback();
-  }, []);
+    useEffect(() => {
+        callback();
+    }, []);
 }
 
 /**
@@ -15,9 +15,9 @@ export function onMount(callback: () => void) {
  * @param callback - The callback function to be called.
  */
 export function onMountAsync(callback: () => void) {
-  useEffect(() => {
-    (async function onMount() {
-      await callback();
-    })();
-  }, []);
+    useEffect(() => {
+        (async function onMount() {
+            await callback();
+        })();
+    }, []);
 }

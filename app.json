@@ -1,35 +1,35 @@
 {
-  "expo": {
-    "name": "WordView",
-    "slug": "app-wordview-cc",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/iconwv.png",
-    "userInterfaceStyle": "dark",
-    "jsEngine": "hermes",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#2C2831"
-    },
-    "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "supportsTablet": false
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-wv.png",
-        "backgroundColor": "#2C2831"
-      },
-      "package": "app.wordview.cc"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "9082e1e2-bbfa-4a04-b171-b107b91e71c6"
-      }
+    "expo": {
+        "name": "WordView",
+        "slug": "app-wordview-cc",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/iconwv.png",
+        "userInterfaceStyle": "dark",
+        "jsEngine": "hermes",
+        "splash": {
+            "image": "./assets/splash.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#2C2831"
+        },
+        "assetBundlePatterns": ["**/*"],
+        "ios": {
+            "supportsTablet": false
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/adaptive-wv.png",
+                "backgroundColor": "#2C2831"
+            },
+            "package": "app.wordview.cc"
+        },
+        "web": {
+            "favicon": "./assets/favicon.png"
+        },
+        "extra": {
+            "eas": {
+                "projectId": "9082e1e2-bbfa-4a04-b171-b107b91e71c6"
+            }
+        }
     }
-  }
 }

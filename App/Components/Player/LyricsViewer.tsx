@@ -6,67 +6,67 @@ import { onUpdate } from '../../../Framework/Components/Actions/update';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 interface LyricsViewerProps {
-  cues: Cue[];
-  audioPosition: number;
+    cues: Cue[];
+    audioPosition: number;
 }
 
 function $LyricsViewer(props: LyricsViewerProps) {
-  const [caption, setCaption] = useState<Cue>();
+    const [caption, setCaption] = useState<Cue>();
 
-  onUpdate([props.audioPosition, props.cues], () => {
-    let timeoutId: string | number | NodeJS.Timeout | undefined;
+    onUpdate([props.audioPosition, props.cues], () => {
+        let timeoutId: string | number | NodeJS.Timeout | undefined;
 
-    // Clear previous timeout when audio position changes
-    clearTimeout(timeoutId);
+        // Clear previous timeout when audio position changes
+        clearTimeout(timeoutId);
 
-    for (const cue of props.cues) {
-      const startTimeMs = Math.floor(cue.startTime * 1000);
-      const endTimeMs = Math.floor(cue.endTime * 1000);
+        for (const cue of props.cues) {
+            const startTimeMs = Math.floor(cue.startTime * 1000);
+            const endTimeMs = Math.floor(cue.endTime * 1000);
 
-      if (props.audioPosition >= startTimeMs && props.audioPosition < endTimeMs) {
-        // Display caption if audio position is within cue's time range
-        setCaption(cue);
+            if (props.audioPosition >= startTimeMs && props.audioPosition < endTimeMs) {
+                // Display caption if audio position is within cue's time range
+                setCaption(cue);
 
-        // Set timeout to hide caption
-        const duration = endTimeMs - props.audioPosition;
-        timeoutId = setTimeout(() => {
-          setCaption(undefined); // Hide caption
-        }, duration);
+                // Set timeout to hide caption
+                const duration = endTimeMs - props.audioPosition;
+                timeoutId = setTimeout(() => {
+                    setCaption(undefined); // Hide caption
+                }, duration);
 
-        break; // Exit loop after finding the current cue
-      }
-    }
+                break; // Exit loop after finding the current cue
+            }
+        }
 
-    return () => {
-      // Clear timeout when component unmounts or audio position changes
-      clearTimeout(timeoutId);
-    };
-  });
+        return () => {
+            // Clear timeout when component unmounts or audio position changes
+            clearTimeout(timeoutId);
+        };
+    });
 
-  return (
-    <View style={styles.lyricsViewer}>
-      <Text variant='titleLarge' key={caption?.id} style={styles.cue}>
-        {caption?.text}
-      </Text>
-    </View>
-  );
+    return (
+        <View style={styles.lyricsViewer}>
+            <Text variant='titleLarge' key={caption?.id} style={styles.cue}>
+                {caption?.text}
+            </Text>
+        </View>
+    );
 }
 
 export const LyricsViewer = memo($LyricsViewer);
 
 const styles = StyleSheet.create({
-  lyricsViewer: {
-    width: '94%',
-    height: '84%',
-    alignSelf: 'center',
-    borderRadius: 10,
-    backgroundColor: '#CB495E',
-    overflow: 'scroll',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-  },
-  cue: {
-    fontWeight: '800',
-    marginBottom: hp(8),
-  },
+    lyricsViewer: {
+        width: '94%',
+        height: '84%',
+        alignSelf: 'center',
+        borderRadius: 10,
+        backgroundColor: '#CB495E',
+        overflow: 'scroll',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+    },
+    cue: {
+        fontWeight: '800',
+        marginBottom: hp(8),
+    },
 });

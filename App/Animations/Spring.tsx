@@ -9,13 +9,13 @@ import { Animated } from 'react-native';
  * @returns {Animated.CompositeAnimation} The created animation object.
  */
 export function springTo(
-  to: { x: number; y: number },
-  hook: Animated.ValueXY | Animated.Value,
-  native?: boolean,
+    to: { x: number; y: number },
+    hook: Animated.ValueXY | Animated.Value,
+    native?: boolean,
 ): Animated.CompositeAnimation {
-  const animation = Animated.spring(hook, {
-    toValue: to,
-    useNativeDriver: native ?? true,
-  });
-  return animation;
+    const animation = Animated.spring(hook, {
+        toValue: to,
+        useNativeDriver: native ?? true,
+    });
+    return animation;
 }

@@ -11,18 +11,18 @@ import { Animated } from 'react-native';
  * @returns {Animated.CompositeAnimation} The created animation object.
  */
 export function timing(
-  hook: Animated.Value,
-  to: number,
-  duration: number,
-  native?: boolean,
-  easing?: (value: number) => number,
+    hook: Animated.Value,
+    to: number,
+    duration: number,
+    native?: boolean,
+    easing?: (value: number) => number,
 ): Animated.CompositeAnimation {
-  const animation = Animated.timing(hook, {
-    toValue: to,
-    duration: duration,
-    easing: easing,
-    useNativeDriver: native ?? true,
-  });
+    const animation = Animated.timing(hook, {
+        toValue: to,
+        duration: duration,
+        easing: easing,
+        useNativeDriver: native ?? true,
+    });
 
-  return animation;
+    return animation;
 }

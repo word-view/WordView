@@ -10,39 +10,39 @@ const Navigator = createStackNavigator().Navigator;
 const Screen = createStackNavigator().Screen;
 
 interface Props {
-  navigation: any;
-  hideSplashCallback?: any;
+    navigation: any;
+    hideSplashCallback?: any;
 }
 
 function AuthNavigation(props: Props) {
-  return (
-    <NavigationContainer theme={CombinedDarkTheme} independent={true}>
-      <Navigator
-        initialRouteName='Welcome'
-        screenOptions={{
-          animationEnabled: true,
-          headerStyle: navStyles.headerStyle,
-          headerTitleStyle: navStyles.headerTitleStyle,
-        }}
-      >
-        <Screen name='Welcome' options={{ title: 'Bem vindo ao WordView!' }}>
-          {$props => (
-            <Welcome
-              {...$props}
-              appNavigation={props.navigation}
-              onLayoutRootView={props.hideSplashCallback}
-            />
-          )}
-        </Screen>
-        <Screen name='Login'>
-          {$props => <Login {...$props} appNavigation={props.navigation} />}
-        </Screen>
-        <Screen name='LanguagePicker'>
-          {$props => <LanguagePicker {...$props} appNavigation={props.navigation} />}
-        </Screen>
-      </Navigator>
-    </NavigationContainer>
-  );
+    return (
+        <NavigationContainer theme={CombinedDarkTheme} independent={true}>
+            <Navigator
+                initialRouteName='Welcome'
+                screenOptions={{
+                    animationEnabled: true,
+                    headerStyle: navStyles.headerStyle,
+                    headerTitleStyle: navStyles.headerTitleStyle,
+                }}
+            >
+                <Screen name='Welcome' options={{ title: 'Bem vindo ao WordView!' }}>
+                    {$props => (
+                        <Welcome
+                            {...$props}
+                            appNavigation={props.navigation}
+                            onLayoutRootView={props.hideSplashCallback}
+                        />
+                    )}
+                </Screen>
+                <Screen name='Login'>
+                    {$props => <Login {...$props} appNavigation={props.navigation} />}
+                </Screen>
+                <Screen name='LanguagePicker'>
+                    {$props => <LanguagePicker {...$props} appNavigation={props.navigation} />}
+                </Screen>
+            </Navigator>
+        </NavigationContainer>
+    );
 }
 
 export default AuthNavigation;

@@ -17,6 +17,7 @@ import { ProgressBar } from '../../Components/Player/ProgressBar';
 import { onMount, onMountAsync } from '../../../Framework/Components/Actions';
 import { colors } from '../../colors';
 import { ReactNativeKeysKeyCode, useHotkey } from 'react-native-hotkeys';
+import ActionButton from '../../../Framework/Components/ActionButton';
 
 interface Props {
     appNavigation: any;
@@ -231,28 +232,26 @@ function Player(props: Props) {
                     style={{ marginTop: 2 }}
                 />
                 <View style={styles.playerControlsContainer}>
-                    <Tooltip title='Retroceder (J)'>
-                        <Appbar.Action
-                            icon='skip-backward'
-                            style={{ padding: 0, marginRight: 0 }}
-                            size={24}
-                            onPress={skipBack}
-                        />
-                    </Tooltip>
+                    <ActionButton
+                        tooltipTitle='Retroceder (J)'
+                        icon='skip-backward'
+                        style={{ padding: 0, marginRight: 0 }}
+                        size={24}
+                        onPress={skipBack}
+                    />
                     <PlayButton
                         isAudioPlaying={audioPlaying}
                         size={28}
                         onPlay={play}
                         onPause={pause}
                     />
-                    <Tooltip title='Avançar (L)'>
-                        <Appbar.Action
-                            icon='skip-forward'
-                            style={{ padding: 0, marginLeft: 0 }}
-                            size={24}
-                            onPress={skipForward}
-                        />
-                    </Tooltip>
+                    <ActionButton
+                        tooltipTitle='Avançar (L)'
+                        icon='skip-forward'
+                        style={{ padding: 0, marginRight: 0 }}
+                        size={24}
+                        onPress={skipForward}
+                    />
                 </View>
             </View>
         </>

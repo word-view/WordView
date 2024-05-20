@@ -52,7 +52,7 @@ function Player(props: Props) {
         setAudio(sound);
     });
 
-    useHotkey(ReactNativeKeysKeyCode.KeyK, _ => {
+    useHotkey(ReactNativeKeysKeyCode.KeyK, () => {
         if (audioPlaying) pause();
         else play();
     });

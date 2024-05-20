@@ -12,7 +12,7 @@ test('Press works ', done => {
     fireEvent(button, 'press');
 });
 
-function createActionButton(onPress?: () => {}) {
+function createActionButton(onPress?: () => void) {
     return (
         <ActionButton
             tooltipTitle='Do (D)'

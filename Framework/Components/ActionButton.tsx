@@ -1,3 +1,4 @@
+import { StyleProp, ViewStyle } from 'react-native';
 import { Appbar, Tooltip } from 'react-native-paper';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
 
@@ -5,7 +6,7 @@ interface ActionButtonProps {
     tooltipTitle: string;
     onPress: () => void;
     size: number;
-    style?: any;
+    style?: StyleProp<ViewStyle>;
     icon: IconSource;
 }
 

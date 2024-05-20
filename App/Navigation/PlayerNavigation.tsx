@@ -19,7 +19,7 @@ function PlayerNavigation(props: Props) {
                 initialRouteName='Player'
                 screenOptions={{
                     animationEnabled: true,
-                    headerStyle: styles.headerStyle,
+                    headerStyle: navStyles.headerStyleV1,
                     headerTitleStyle: navStyles.headerTitleStyle,
                 }}
             >

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
-import { Appbar, Dialog, List, Portal, Text, Tooltip } from 'react-native-paper';
+import { Appbar, Dialog, List, Portal, Text } from 'react-native-paper';
 import { song } from '../../Storage/store/player';
 import {
     heightPercentageToDP as hp,
@@ -224,6 +224,7 @@ function Player(props: Props) {
                     opacity: 0.6,
                 }}
             />
+            <LyricsViewer cues={cues} audioPosition={audioPosition} />
 
             <View style={styles.controls}>
                 <ProgressBar

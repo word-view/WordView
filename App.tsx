@@ -25,6 +25,7 @@ import { apiAvailable, testing } from './App/Storage/store/state';
 import { checkAPIAvailable } from './App/API/check';
 import { onMountAsync } from './Framework/Components/Actions';
 import { fontLoader } from './Framework/Resources/FontLoader';
+import { KeysProvider } from 'react-native-hotkeys';
 
 SplashScreen.preventAutoHideAsync();
 const warn = console.warn;
@@ -49,8 +50,10 @@ export default function App() {
     return (
         <PaperProvider theme={CombinedDarkTheme}>
             <DesktopModeProvider.Provider value={isDesktop}>
-                <AppNavigation hideSplashCallback={onLayoutRootView} />
-                <StatusBar style='light' translucent={true} />
+                <KeysProvider>
+                    <AppNavigation hideSplashCallback={onLayoutRootView} />
+                    <StatusBar style='light' translucent={true} />
+                </KeysProvider>
             </DesktopModeProvider.Provider>
         </PaperProvider>
     );

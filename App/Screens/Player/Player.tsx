@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Appbar, Dialog, List, Portal } from 'react-native-paper';
+import { StyleSheet, View, Image } from 'react-native';
+import { Appbar, Dialog, List, Portal, Text } from 'react-native-paper';
 import { song } from '../../Storage/store/player';
 import {
     heightPercentageToDP as hp,
@@ -16,6 +16,8 @@ import { Navigation } from '../../Navigation/Navigation';
 import { ProgressBar } from '../../Components/Player/ProgressBar';
 import { onMount, onMountAsync } from '../../../Framework/Components/Actions';
 import { colors } from '../../colors';
+import { ReactNativeKeysKeyCode, useHotkey } from 'react-native-hotkeys';
+import ActionButton from '../../../Framework/Components/ActionButton';
 
 interface Props {
     appNavigation: any;
@@ -50,18 +52,40 @@ function Player(props: Props) {
         setAudio(sound);
     });
 
+    useHotkey(ReactNativeKeysKeyCode.KeyK, () => {
+        if (audioPlaying) pause();
+        else play();
+    });
+
+    useHotkey(ReactNativeKeysKeyCode.KeyL, skipForward);
+    useHotkey(ReactNativeKeysKeyCode.KeyJ, skipBack);
+
     onMount(() => {
         showDialog();
 
         navigation.setTitle(`${choosenSong.title} - WordView`);
         navigation.emptyHeaderTitle();
         navigation.setHeaderLeft(
-            <Appbar.Action
-                icon='arrow-left'
-                onPress={() => {
-                    appNavigation.go('home');
-                }}
-            />,
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Appbar.Action
+                    style={{ marginLeft: 5 }}
+                    icon='arrow-left'
+                    onPress={() => {
+                        appNavigation.go('home');
+                    }}
+                />
+                <View style={{ justifyContent: 'center' }}>
+                    <Text variant='bodyLarge' style={{ fontWeight: '700', color: colors.icon }}>
+                        {choosenSong.title}
+                    </Text>
+                    <Text
+                        variant='bodySmall'
+                        style={{ fontWeight: '600', color: colors.iconDarker }}
+                    >
+                        {choosenSong.artist}
+                    </Text>
+                </View>
+            </View>,
         );
     });
 
@@ -185,22 +209,50 @@ function Player(props: Props) {
                     </Dialog.Content>
                 </Dialog>
             </Portal>
-            <View style={styles.root}>
-                <LyricsViewer cues={cues} audioPosition={audioPosition} />
-                <View style={styles.musicInfo}>
-                    <MusicInfo song={choosenSong} />
-                    <View style={styles.playerBarCenter}>
-                        <View style={styles.playerControlsContainer}>
-                            <Appbar.Action icon='skip-backward' size={20} onPress={skipBack} />
-                            <PlayButton
-                                isAudioPlaying={audioPlaying}
-                                onPlay={play}
-                                onPause={pause}
-                            />
-                            <Appbar.Action icon='skip-forward' size={20} onPress={skipForward} />
-                        </View>
-                        <ProgressBar audioPosition={audioPosition} getAudioInfo={getAudioInfo} />
-                    </View>
+            <Image
+                style={{ height: '100%', width: '100%' }}
+                // for some reason source doesn't accept a string altough it supports opening a url (???)
+                source={`https://img.youtube.com/vi/${choosenSong.id}/maxresdefault.jpg` as any}
+                blurRadius={5}
+            />
+            <View
+                style={{
+                    position: 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    backgroundColor: '#000',
+                    opacity: 0.6,
+                }}
+            />
+            <LyricsViewer cues={cues} audioPosition={audioPosition} />
+
+            <View style={styles.controls}>
+                <ProgressBar
+                    audioPosition={audioPosition}
+                    getAudioInfo={getAudioInfo}
+                    style={{ marginTop: 2 }}
+                />
+                <View style={styles.playerControlsContainer}>
+                    <ActionButton
+                        tooltipTitle='Retroceder (J)'
+                        icon='skip-backward'
+                        style={{ padding: 0, marginRight: 0 }}
+                        size={24}
+                        onPress={skipBack}
+                    />
+                    <PlayButton
+                        isAudioPlaying={audioPlaying}
+                        size={28}
+                        onPlay={play}
+                        onPause={pause}
+                    />
+                    <ActionButton
+                        tooltipTitle='Avançar (L)'
+                        icon='skip-forward'
+                        style={{ padding: 0, marginRight: 0 }}
+                        size={24}
+                        onPress={skipForward}
+                    />
                 </View>
             </View>
         </>
@@ -213,38 +265,26 @@ const styles = StyleSheet.create({
         height: '100%',
         flexDirection: 'column',
         justifyContent: 'space-between',
+        position: 'absolute',
     },
-    lyricsViewer: {
-        width: '98%',
-        height: '84%',
-        alignSelf: 'center',
-        borderRadius: 10,
-        backgroundColor: '#CB495E',
-        overflow: 'scroll',
-    },
-    musicInfo: {
+    controls: {
+        bottom: 0,
         width: '100%',
+        height: 80,
         backgroundColor: colors.interface,
-        alignSelf: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: hp(14),
+        position: 'absolute',
+        borderTopColor: colors.interfaceBorder,
+        borderTopWidth: 1,
+        overflow: 'hidden',
     },
     subtitlePickerModal: {
         overflow: 'scroll',
         maxHeight: hp(40),
     },
-    playerBarCenter: {
-        flexDirection: 'column',
-        alignSelf: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'absolute',
-        height: '100%',
-    },
     playerControlsContainer: {
         flexDirection: 'row',
         alignItems: 'center',
+        height: 45,
     },
 });
 

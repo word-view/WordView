@@ -1,6 +1,6 @@
 import { formatTime } from '../../Util/time';
 import { Text } from 'react-native-paper';
-import { StyleSheet, View } from 'react-native';
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { useContext, useState } from 'react';
 import { DesktopModeProvider } from '../Provider';
 import {
@@ -9,10 +9,12 @@ import {
 } from 'react-native-responsive-screen';
 import { AVPlaybackStatusSuccess } from 'expo-av';
 import { onUpdateAsync } from '../../../Framework/Components/Actions/update';
+import { colors } from '../../colors';
 
 interface ProgressBarProps {
     audioPosition: number;
     getAudioInfo: () => Promise<AVPlaybackStatusSuccess | undefined>;
+    style?: StyleProp<ViewStyle>;
 }
 
 export function ProgressBar(props: ProgressBarProps) {
@@ -31,7 +33,18 @@ export function ProgressBar(props: ProgressBarProps) {
     }
 
     return (
-        <View style={styles.progressBarRoot}>
+        <View style={[styles.progressBarRoot, props.style]}>
+            <Text
+                variant='bodySmall'
+                style={{
+                    marginRight: 10,
+                    fontFamily: 'OpenSans',
+                    fontWeight: '600',
+                    color: colors.icon,
+                }}
+            >
+                {formatTime(props.audioPosition)}
+            </Text>
             <View style={styles.progressBar}>
                 <View
                     style={[
@@ -45,12 +58,17 @@ export function ProgressBar(props: ProgressBarProps) {
                     ]}
                 />
             </View>
-            <View style={styles.timeContainer}>
-                <Text variant='bodySmall'>{formatTime(props.audioPosition)}</Text>
-                <Text variant='bodySmall'>
-                    {formatTime((audioInfo?.durationMillis ?? 0) - props.audioPosition)}
-                </Text>
-            </View>
+            <Text
+                variant='bodySmall'
+                style={{
+                    marginLeft: 10,
+                    fontFamily: 'OpenSans',
+                    fontWeight: '600',
+                    color: colors.icon,
+                }}
+            >
+                {formatTime((audioInfo?.durationMillis ?? 0) - props.audioPosition)}
+            </Text>
         </View>
     );
 }
@@ -58,21 +76,19 @@ export function ProgressBar(props: ProgressBarProps) {
 const styles = StyleSheet.create({
     progressBarRoot: {
         height: 30,
-        width: wp(50),
-        marginBottom: 1,
+        width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
+        flexDirection: 'row',
     },
     timeContainer: {
-        width: wp(50),
+        width: '92%',
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
-
     progressBar: {
-        width: wp(50),
+        width: '92%',
         height: hp(0.8),
-        marginBottom: 4,
         borderRadius: 20,
         backgroundColor: '#4C4850',
     },

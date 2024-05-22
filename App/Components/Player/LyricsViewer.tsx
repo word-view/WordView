@@ -3,7 +3,6 @@ import { StyleSheet, View } from 'react-native';
 import { Cue } from '../../Util/webvtt/types';
 import { Text } from 'react-native-paper';
 import { onUpdate } from '../../../Framework/Components/Actions/update';
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 interface LyricsViewerProps {
     cues: Cue[];
@@ -44,7 +43,7 @@ function $LyricsViewer(props: LyricsViewerProps) {
     });
 
     return (
-        <View style={styles.lyricsViewer}>
+        <View style={styles.root}>
             <Text variant='titleLarge' key={caption?.id} style={styles.cue}>
                 {caption?.text}
             </Text>
@@ -55,18 +54,16 @@ function $LyricsViewer(props: LyricsViewerProps) {
 export const LyricsViewer = memo($LyricsViewer);
 
 const styles = StyleSheet.create({
-    lyricsViewer: {
-        width: '94%',
-        height: '84%',
+    root: {
+        width: '100%',
+        height: '100%',
         alignSelf: 'center',
-        borderRadius: 10,
-        backgroundColor: '#CB495E',
-        overflow: 'scroll',
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'flex-end',
+        bottom: 0,
+        position: 'absolute',
     },
     cue: {
         fontWeight: '800',
-        marginBottom: hp(8),
     },
 });

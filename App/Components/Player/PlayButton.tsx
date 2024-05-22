@@ -1,17 +1,34 @@
 import { memo } from 'react';
-import { Appbar } from 'react-native-paper';
+import ActionButton from '../../../Framework/Components/ActionButton';
 
 interface PlayButtonProps {
     isAudioPlaying: boolean;
+    size: number;
     onPause: () => void;
     onPlay: () => void;
 }
 
 function $PlayButton(props: PlayButtonProps) {
     if (props.isAudioPlaying) {
-        return <Appbar.Action icon='pause' size={32} onPress={props.onPause} />;
+        return (
+            <ActionButton
+                tooltipTitle='Pausar (K)'
+                icon='pause'
+                style={{ padding: 0, marginRight: 0 }}
+                size={props.size}
+                onPress={props.onPause}
+            />
+        );
     } else {
-        return <Appbar.Action icon='play' size={32} onPress={props.onPlay} />;
+        return (
+            <ActionButton
+                tooltipTitle='Reproduzir (K)'
+                icon='play'
+                style={{ padding: 0, marginRight: 0 }}
+                size={props.size}
+                onPress={props.onPlay}
+            />
+        );
     }
 }
 

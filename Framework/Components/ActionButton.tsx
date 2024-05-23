@@ -12,7 +12,7 @@ interface ActionButtonProps {
 
 export default function ActionButton(props: ActionButtonProps) {
     return (
-        <Tooltip title={props.tooltipTitle}>
+        <Tooltip title={props.tooltipTitle} enterTouchDelay={0} leaveTouchDelay={0}>
             <Appbar.Action
                 testID='action-button'
                 icon={props.icon}

@@ -18,6 +18,7 @@ import { onMount, onMountAsync } from '../../../Framework/Components/Actions';
 import { colors } from '../../colors';
 import { ReactNativeKeysKeyCode, useHotkey } from 'react-native-hotkeys';
 import ActionButton from '../../../Framework/Components/ActionButton';
+import { MuteButton } from '../../Components/Player/MuteButton';
 
 interface Props {
     appNavigation: any;
@@ -52,13 +53,18 @@ function Player(props: Props) {
         setAudio(sound);
     });
 
+    // Shortcuts
     useHotkey(ReactNativeKeysKeyCode.KeyK, () => {
         if (audioPlaying) pause();
         else play();
     });
-
     useHotkey(ReactNativeKeysKeyCode.KeyL, skipForward);
+    useHotkey(ReactNativeKeysKeyCode.ArrowRight, skipForward);
+
     useHotkey(ReactNativeKeysKeyCode.KeyJ, skipBack);
+    useHotkey(ReactNativeKeysKeyCode.ArrowLeft, skipBack);
+
+    useHotkey(ReactNativeKeysKeyCode.KeyM, toggleMute);
 
     onMount(() => {
         showDialog();
@@ -192,6 +198,11 @@ function Player(props: Props) {
         }
     }
 
+    async function toggleMute() {
+        const audioInfo = await getAudioInfo();
+        audio?.setIsMutedAsync(!audioInfo?.isMuted);
+    }
+
     return (
         <>
             <Portal>
@@ -252,6 +263,11 @@ function Player(props: Props) {
                         style={{ padding: 0, marginRight: 0 }}
                         size={24}
                         onPress={skipForward}
+                    />
+                    <MuteButton
+                        size={20}
+                        getAudioInfo={getAudioInfo}
+                        onPress={toggleMute}
                     />
                 </View>
             </View>

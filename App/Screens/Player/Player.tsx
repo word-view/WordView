@@ -264,11 +264,7 @@ function Player(props: Props) {
                         size={24}
                         onPress={skipForward}
                     />
-                    <MuteButton
-                        size={20}
-                        getAudioInfo={getAudioInfo}
-                        onPress={toggleMute}
-                    />
+                    <MuteButton size={20} getAudioInfo={getAudioInfo} onPress={toggleMute} />
                 </View>
             </View>
         </>

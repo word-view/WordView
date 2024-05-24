@@ -17,7 +17,7 @@ export default function ActionButton(props: ActionButtonProps) {
                 testID='action-button'
                 icon={props.icon}
                 style={props.style}
-                size={24}
+                size={props.size}
                 onPress={props.onPress}
             />
         </Tooltip>

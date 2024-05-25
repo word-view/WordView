@@ -1,8 +1,9 @@
 import { ScrollView, StyleSheet } from 'react-native';
 import { Section, SettingEntry } from '../../Components';
+import { NavigationProp } from '@react-navigation/native';
 
 interface Props {
-    navigation: any;
+    navigation: NavigationProp<any, any>;
 }
 
 function Settings() {

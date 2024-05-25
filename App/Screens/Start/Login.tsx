@@ -4,10 +4,11 @@ import { Button, Input } from '../../Components';
 import { Navigation } from '../../Navigation/Navigation';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { colors } from '../../colors';
+import { NavigationProp } from '@react-navigation/native';
 
 interface Props {
-    appNavigation: any;
-    navigation: any;
+    appNavigation: NavigationProp<any, any>;
+    navigation: NavigationProp<any, any>;
 }
 
 export default function Login(props: Props) {

@@ -7,10 +7,11 @@ import Progress from './Progress';
 import Explore from './Explore';
 import { onUpdate, onMount } from '../../../Framework/Components/Actions';
 import { Navigation } from '../../Navigation/Navigation';
+import { NavigationProp } from '@react-navigation/native';
 
 interface Props {
-    appNavigation: any;
-    navigation: any;
+    appNavigation: NavigationProp<any, any>;
+    navigation: NavigationProp<any, any>;
 }
 
 function Home(props: Props) {

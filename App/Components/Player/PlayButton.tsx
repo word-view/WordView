@@ -9,27 +9,15 @@ interface PlayButtonProps {
 }
 
 function $PlayButton(props: PlayButtonProps) {
-    if (props.isAudioPlaying) {
-        return (
-            <ActionButton
-                tooltipTitle='Pausar (K)'
-                icon='pause'
-                style={{ padding: 0, marginRight: 0 }}
-                size={props.size}
-                onPress={props.onPause}
-            />
-        );
-    } else {
-        return (
-            <ActionButton
-                tooltipTitle='Reproduzir (K)'
-                icon='play'
-                style={{ padding: 0, marginRight: 0 }}
-                size={props.size}
-                onPress={props.onPlay}
-            />
-        );
-    }
+    return (
+        <ActionButton
+            tooltipTitle={props.isAudioPlaying ? 'Pausar (K)' : 'Reproduzir (K)'}
+            icon={props.isAudioPlaying ? 'pause' : 'play'}
+            style={{ padding: 0, marginRight: 0 }}
+            size={props.size}
+            onPress={props.isAudioPlaying ? props.onPause : props.onPlay}
+        />
+    );
 }
 
 export const PlayButton = memo($PlayButton);

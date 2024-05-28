@@ -10,14 +10,20 @@ interface ActionButtonProps {
     icon: IconSource;
 }
 
+/**
+ * A icon button that shows a tooltip upon hovering it.
+ *
+ * @param {ActionButtonProps} props - The properties passed to the component
+ * @returns {JSX.Element} The button
+ */
 export default function ActionButton(props: ActionButtonProps) {
     return (
-        <Tooltip title={props.tooltipTitle}>
+        <Tooltip title={props.tooltipTitle} enterTouchDelay={250} leaveTouchDelay={0}>
             <Appbar.Action
                 testID='action-button'
                 icon={props.icon}
                 style={props.style}
-                size={24}
+                size={props.size}
                 onPress={props.onPress}
             />
         </Tooltip>

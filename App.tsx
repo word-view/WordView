@@ -21,9 +21,7 @@ import * as NavigationBar from 'expo-navigation-bar';
 import AppNavigation from './App/Navigation/AppNavigation';
 import { DesktopModeProvider, appLayout } from './App/Components';
 import { CombinedDarkTheme } from './App/theme';
-import { apiAvailable, testing } from './App/Storage/store/state';
-import { checkAPIAvailable } from './App/API/check';
-import { onMountAsync } from './Framework/Components/Actions';
+import { testing } from './App/Storage/store/state';
 import { fontLoader } from './Framework/Resources/FontLoader';
 import { KeysProvider } from 'react-native-hotkeys';
 
@@ -35,11 +33,6 @@ console.warn = warn;
 
 export default function App() {
     const { isDesktop } = appLayout();
-
-    onMountAsync(async () => {
-        const available = await checkAPIAvailable();
-        apiAvailable.set(available);
-    });
 
     const { fontsLoaded, onLayoutRootView } = fontLoader({
         OpenSans: require('./assets/fonts/open-sans/static/OpenSans-SemiBold.ttf'),

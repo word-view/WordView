@@ -1,7 +1,5 @@
 import { Song } from '../Storage/store/player';
-import { apiAvailable } from '../Storage/store/state';
 import { API_URL_DEV, get } from './client';
-import { notifyAPIUnreachable } from './err';
 
 export interface Subtitle {
     language: string;
@@ -10,10 +8,6 @@ export interface Subtitle {
 
 export async function fetchHistory() {
     const response = await get('/music/history');
-    if (!apiAvailable) {
-        notifyAPIUnreachable();
-        return;
-    }
 
     const responseText = await response.text();
 
@@ -24,10 +18,6 @@ export async function fetchHistory() {
 
 export async function fetchSubtitles(id: string) {
     const response = await get(`/music/lyrics/list?id=${id}`);
-    if (!apiAvailable) {
-        notifyAPIUnreachable();
-        return;
-    }
 
     const responseText = await response.text();
 
@@ -38,10 +28,6 @@ export async function fetchSubtitles(id: string) {
 
 export async function fetchLyrics(id: string, lang: string) {
     const response = await get(`/music/lyrics?id=${id}&lang=${lang}`);
-    if (!apiAvailable) {
-        notifyAPIUnreachable();
-        return;
-    }
 
     const responseText = await response.text();
 

@@ -8,7 +8,7 @@ import {
 } from 'react-native-responsive-screen';
 import { DesktopModeProvider, Loader } from '../../Components';
 import { Audio } from 'expo-av';
-import { LyricsViewer, MusicInfo, PlayButton } from '../../Components/Player';
+import { LyricsViewer, PlayButton } from '../../Components/Player';
 import { Cue } from '../../Util/webvtt/types';
 import { parseWebVTT } from '../../Util/webvtt/parse';
 import { Subtitle, fetchLyrics, fetchSubtitles, songUrl } from '../../API/song';

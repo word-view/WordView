@@ -19,10 +19,11 @@ import { colors } from '../../colors';
 import { ReactNativeKeysKeyCode, useHotkey } from 'react-native-hotkeys';
 import ActionButton from '../../../Framework/Components/ActionButton';
 import { MuteButton } from '../../Components/Player/MuteButton';
+import { NavigationProp } from '@react-navigation/native';
 
 interface Props {
-    appNavigation: any;
-    navigation: any;
+    appNavigation: NavigationProp<any, any>;
+    navigation: NavigationProp<any, any>;
 }
 
 function Player(props: Props) {

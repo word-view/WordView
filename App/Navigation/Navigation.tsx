@@ -1,14 +1,16 @@
+import { NavigationProp } from '@react-navigation/native';
+
 /**
  * Utility class for manipulating react-navigation's navigation object.
  */
 export class Navigation {
-    navigation: any;
+    navigation: NavigationProp<any, any>;
 
     /**
      * Initializes Navigation object with the provided navigation object.
      * @param navigation The react-navigation navigation object.
      */
-    constructor(navigation: any) {
+    constructor(navigation: NavigationProp<any, any>) {
         this.navigation = navigation;
     }
 

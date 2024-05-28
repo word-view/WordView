@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, NavigationProp } from '@react-navigation/native';
 import { CombinedDarkTheme } from './theme';
 import { createStackNavigator } from '@react-navigation/stack';
 import { navStyles } from './nav-styles';
@@ -9,7 +9,7 @@ const Navigator = createStackNavigator().Navigator;
 const Screen = createStackNavigator().Screen;
 
 interface Props {
-    navigation: any;
+    navigation: NavigationProp<any, any>;
 }
 
 function PlayerNavigation(props: Props) {

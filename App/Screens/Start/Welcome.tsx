@@ -5,10 +5,11 @@ import { Navigation } from '../../Navigation/Navigation';
 import { onMount } from '../../../Framework/Components/Actions';
 import images from '../../image';
 import { colors } from '../../colors';
+import { NavigationProp } from '@react-navigation/native';
 
 interface Props {
-    appNavigation: any;
-    navigation: any;
+    appNavigation: NavigationProp<any, any>;
+    navigation: NavigationProp<any, any>;
     onLayoutRootView: any;
 }
 

@@ -9,7 +9,6 @@ interface FrameworkButtonProps {
     buttonColor: string;
     style?: StyleProp<ViewStyle>;
     onPress: () => void;
-    /** Object containing x and y properties specifying the width and height of the button */
     dimensions: { w: number; h: number };
     borderRadius?: number;
     fontWeight?:
